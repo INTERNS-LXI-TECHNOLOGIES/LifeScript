@@ -1,4 +1,4 @@
-name: social_dimension
+name: circular_menu
 description: A new Flutter project.
 
 # The following line prevents the package from being accidentally published to
@@ -40,7 +40,7 @@ dependencies:
   google_fonts: 6.1.0
   intl: 0.19.0
   json_path: 0.7.2
-  circular_menu: ^4.0.0
+  #circular_menu: ^4.0.0
   page_transition: 2.1.0
   path_provider: 2.1.4
   path_provider_android: 2.2.10
