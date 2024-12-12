@@ -1,0 +1,144 @@
+import 'package:flutter/material.dart';
+
+
+
+class RoleDragApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: RoleDragPage(),
+    );
+  }
+}
+
+class RoleDragPage extends StatefulWidget {
+  @override
+  _RoleDragPageState createState() => _RoleDragPageState();
+}
+
+class _RoleDragPageState extends State<RoleDragPage> {
+  String? droppedRole;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Drag Your Role'),
+        backgroundColor: Colors.deepPurple,
+      ),
+      body: Stack(
+        children: [
+          // Background Gradient
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.deepPurple, Colors.purpleAccent],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+              ),
+            ),
+          ),
+
+          // Main content
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Drop Area (Circle)
+                DragTarget<String>(
+                  onAccept: (data) {
+                    setState(() {
+                      droppedRole = data;
+                    });
+                  },
+                  builder: (context, candidateData, rejectedData) {
+                    return Container(
+                      width: 200,
+                      height: 200,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.white.withOpacity(0.2),
+                        border: Border.all(color: Colors.white, width: 2),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black26,
+                            blurRadius: 10,
+                            spreadRadius: 5,
+                          ),
+                        ],
+                      ),
+                      child: Center(
+                        child: Text(
+                          droppedRole ?? 'Drop Here',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    );
+                  },
+                ),
+
+                SizedBox(height: 50),
+
+                // Draggable Roles
+                Wrap(
+                  spacing: 20,
+                  children: [
+                    _buildDraggableRole('Student', Colors.blue),
+                    _buildDraggableRole('Developer', Colors.green),
+                    _buildDraggableRole('Designer', Colors.orange),
+                    _buildDraggableRole('Manager', Colors.red),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildDraggableRole(String role, Color color) {
+    return Draggable<String>(
+      data: role,
+      feedback: _buildRoleChip(role, color, isDragging: true),
+      childWhenDragging: _buildRoleChip(role, color.withOpacity(0.5), isDragging: false),
+      child: _buildRoleChip(role, color, isDragging: false),
+    );
+  }
+
+  Widget _buildRoleChip(String role, Color color, {required bool isDragging}) {
+    return Material(
+      color: Colors.transparent,
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(20),
+          boxShadow: isDragging
+              ? [
+                  BoxShadow(
+                    color: color.withOpacity(0.6),
+                    blurRadius: 10,
+                    spreadRadius: 2,
+                  ),
+                ]
+              : [],
+        ),
+        child: Text(
+          role,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+}
