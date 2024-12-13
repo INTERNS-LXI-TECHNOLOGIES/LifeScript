@@ -12,22 +12,22 @@ class TimeManagementMazeApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MazeStartPage(),
+      home: MazeGamePage(),
     );
   }
 }
 
-class MazeStartPage extends StatefulWidget {
+class MazeGamePage extends StatefulWidget {
   @override
-  _MazeStartPageState createState() => _MazeStartPageState();
+  _MazeGamePageState createState() => _MazeGamePageState();
 }
 
-class _MazeStartPageState extends State<MazeStartPage> {
-  bool hasStarted = false;
+class _MazeGamePageState extends State<MazeGamePage> {
+  String draggedItem = "";
 
-  void startMaze() {
+  void handleDrag(String item) {
     setState(() {
-      hasStarted = true;
+      draggedItem = item;
     });
   }
 
@@ -35,62 +35,115 @@ class _MazeStartPageState extends State<MazeStartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Escape the Labyrinth of Procrastination'),
+        title: Text('Drag and Drop Maze'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Welcome to the Time Management Maze!',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+      body: Column(
+        children: [
+          Expanded(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Draggable<String>(
+                  data: "happy",
+                  feedback: Icon(
+                    Icons.sentiment_satisfied_alt,
+                    color: Colors.green,
+                    size: 50,
+                  ),
+                  child: Icon(
+                    Icons.sentiment_satisfied_alt,
+                    color: Colors.green,
+                    size: 50,
+                  ),
+                  childWhenDragging: Icon(
+                    Icons.sentiment_satisfied_alt,
+                    color: Colors.grey,
+                    size: 50,
+                  ),
+                ),
+                Draggable<String>(
+                  data: "sad",
+                  feedback: Icon(
+                    Icons.sentiment_dissatisfied,
+                    color: Colors.red,
+                    size: 50,
+                  ),
+                  child: Icon(
+                    Icons.sentiment_dissatisfied,
+                    color: Colors.red,
+                    size: 50,
+                  ),
+                  childWhenDragging: Icon(
+                    Icons.sentiment_dissatisfied,
+                    color: Colors.grey,
+                    size: 50,
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 20),
-            AnimatedContainer(
-              duration: Duration(milliseconds: 300),
-              child: hasStarted
-                  ? Icon(
-                      Icons.sentiment_satisfied_alt,
-                      color: Colors.green,
-                      size: 100,
-                    )
-                  : Icon(
-                      Icons.sentiment_neutral,
-                      color: Colors.grey,
-                      size: 100,
+          ),
+          Expanded(
+            flex: 3,
+            child: GridView.count(
+              crossAxisCount: 2,
+              children: [
+                DragTarget<String>(
+                  onAccept: (data) {
+                    if (data == "happy") {
+                      handleDrag("Q1");
+                    }
+                  },
+                  builder: (context, candidateData, rejectedData) => Container(
+                    color: draggedItem == "Q1" ? Colors.green[200] : Colors.grey[300],
+                    child: Center(
+                      child: Text("Q1", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
                     ),
+                  ),
+                ),
+                DragTarget<String>(
+                  onAccept: (data) {
+                    if (data == "happy") {
+                      handleDrag("Q2");
+                    }
+                  },
+                  builder: (context, candidateData, rejectedData) => Container(
+                    color: draggedItem == "Q2" ? Colors.green[200] : Colors.grey[300],
+                    child: Center(
+                      child: Text("Q2", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                ),
+                DragTarget<String>(
+                  onAccept: (data) {
+                    if (data == "sad") {
+                      handleDrag("Q3");
+                    }
+                  },
+                  builder: (context, candidateData, rejectedData) => Container(
+                    color: draggedItem == "Q3" ? Colors.red[200] : Colors.grey[300],
+                    child: Center(
+                      child: Text("Q3", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                ),
+                DragTarget<String>(
+                  onAccept: (data) {
+                    if (data == "sad") {
+                      handleDrag("Q4");
+                    }
+                  },
+                  builder: (context, candidateData, rejectedData) => Container(
+                    color: draggedItem == "Q4" ? Colors.red[200] : Colors.grey[300],
+                    child: Center(
+                      child: Text("Q4", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+                    ),
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                startMaze();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MazeGamePage()),
-                );
-              },
-              child: Text('Start Maze'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class MazeGamePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Time Management Maze'),
-      ),
-      body: Center(
-        child: Text(
-          'Maze Game Goes Here!',
-          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
+          ),
+        ],
       ),
     );
   }
