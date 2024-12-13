@@ -1,0 +1,5 @@
+# Created at 2024-12-11T18:46:32.901
+Boot Manifest-JAR contains absolute paths in classpath 'E:\LXI\flutter_projects\voice_assist\backend\voiceAssist\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
