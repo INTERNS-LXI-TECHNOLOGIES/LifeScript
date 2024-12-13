@@ -1,15 +1,25 @@
-import '/flutter_flow/flutter_flow_theme.dart';
+import '/components/lock_widget.dart';
 import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
 import 'home_page_widget.dart' show HomePageWidget;
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 class HomePageModel extends FlutterFlowModel<HomePageWidget> {
-  @override
-  void initState(BuildContext context) {}
+  ///  State fields for stateful widgets in this page.
+
+  // Model for lock component.
+  late LockModel lockModel1;
+  // Model for lock component.
+  late LockModel lockModel2;
 
   @override
-  void dispose() {}
+  void initState(BuildContext context) {
+    lockModel1 = createModel(context, () => LockModel());
+    lockModel2 = createModel(context, () => LockModel());
+  }
+
+  @override
+  void dispose() {
+    lockModel1.dispose();
+    lockModel2.dispose();
+  }
 }
