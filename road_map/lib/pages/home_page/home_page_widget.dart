@@ -91,6 +91,21 @@ class _HomePageWidgetState extends State<HomePageWidget>
 
   @override
   Widget build(BuildContext context) {
+
+ final List<Map<String, dynamic>> levels = [
+      {'alignment': AlignmentDirectional(-0.1, 0.57), 'completed': true},
+      {'alignment': AlignmentDirectional(0.02, 0.25), 'completed': false},
+      {'alignment': AlignmentDirectional(-0.02, 0.34), 'completed': false},
+      {'alignment': AlignmentDirectional(-0.05, 0.5), 'completed': false},
+      {'alignment':  AlignmentDirectional(0.03, -0.74),'completed': false},
+       {'alignment': AlignmentDirectional(0.12, 0.05), 'completed': true},
+      {'alignment':  AlignmentDirectional(0.11, -0.07), 'completed': false},
+      {'alignment': AlignmentDirectional(0.05, -0.17), 'completed': false},
+      {'alignment': AlignmentDirectional(-0.06, -0.31), 'completed': false},
+      {'alignment':   AlignmentDirectional(-0.1, -0.37), 'completed': false},
+    ];
+
+
     return Scaffold(
       key: scaffoldKey,
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -127,6 +142,41 @@ class _HomePageWidgetState extends State<HomePageWidget>
                         ),
                       ),
                     ),
+
+                     for (var level in levels)
+              Align(
+                alignment: level['alignment'],
+                child: Container(
+                  width: 30,
+                  height: 30,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: level['completed'] ? Colors.green : Colors.red,
+                    border: Border.all(
+                      color: Colors.white,
+                      width: 3,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.2),
+                        blurRadius: 8,
+                        spreadRadius: 2,
+                      ),
+                    ],
+                  ),
+                  child: Center(
+                    child: Text(
+                      level['completed'] ? '✓' : '!',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+
                     Align(
                       alignment: AlignmentDirectional(-0.16, 0.6),
                       child: Icon(
