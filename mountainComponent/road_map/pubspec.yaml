@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   lottie: ^2.2.0  
+  shimmer: ^2.0.0
   flutter_localizations:
     sdk: flutter
   flutter_web_plugins:

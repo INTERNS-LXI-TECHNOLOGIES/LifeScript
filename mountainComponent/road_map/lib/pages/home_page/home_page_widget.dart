@@ -1,5 +1,6 @@
 import 'package:lottie/lottie.dart';
 
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -23,7 +24,7 @@ class HomePageWidget extends StatefulWidget {
 class _HomePageWidgetState extends State<HomePageWidget> {
   late HomePageModel _model;
 
-  Alignment _currentAlignment = Alignment(-0.55, 0.63);
+  Alignment _currentAlignment = Alignment(-0.35, 0.63);
   bool _isUnlocked = false;
   bool _isSecondLockUnlocked = false;
   bool _isThirdLockUnlocked = false;
@@ -44,32 +45,38 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   void _levelUp() {
     setState(() {
       // Unlock current position
-      if (_currentAlignment == Alignment(-0.55, 0.63)) {
+      if (_currentAlignment == Alignment(-0.35, 0.63)) {
         _currentAlignment = Alignment(-0.2, 0.54);
       } else if (_currentAlignment == Alignment(-0.2, 0.54)) {
         _currentAlignment = Alignment(-0.06, 0.36);
         _isUnlocked = true;
       } else if (_currentAlignment == Alignment(-0.06, 0.36)) {
-        _currentAlignment = Alignment(0.12, 0.26);
-      } else if (_currentAlignment == Alignment(0.12, 0.26)) {
-        _currentAlignment = Alignment(0.36, 0.08);
+        _currentAlignment = Alignment(-0.05, 0.24);
+
+      } else if (_currentAlignment == Alignment(-0.05, 0.24)) {
+        _currentAlignment = Alignment(0.12, 0.04);
         _isSecondLockUnlocked = true;
-      } else if (_currentAlignment == Alignment(0.36, 0.08)) {
-        _currentAlignment = Alignment(0.34, -0.03);
-      } else if (_currentAlignment == Alignment(0.34, -0.03)) {
-        _currentAlignment = Alignment(0.09, -0.14);
-      } else if (_currentAlignment == Alignment(0.09, -0.14)) {
-        _currentAlignment = Alignment(-0.23, -0.28);
+
+      } else if (_currentAlignment == Alignment(0.12, 0.04)) {
+        _currentAlignment = Alignment(0.22, -0.02);
+
+      } else if (_currentAlignment == Alignment(0.22, -0.02)) {
+        _currentAlignment = Alignment(0.10, -0.14);
+
+      } else if (_currentAlignment == Alignment(0.10, -0.14)) {
+        _currentAlignment = Alignment(-0.06, -0.35);
         _isThirdLockUnlocked = true;
-      } else if (_currentAlignment == Alignment(-0.23, -0.28)) {
-        _currentAlignment = Alignment(-0.42, -0.35);
-      } else if (_currentAlignment == Alignment(-0.42, -0.35)) {
-        _currentAlignment = Alignment(-0.32, -0.47);
+
+      } else if (_currentAlignment == Alignment(-0.06, -0.35)) {
+        _currentAlignment = Alignment(-0.21, -0.38);
+
+      } else if (_currentAlignment == Alignment(-0.21, -0.38)) {
+        _currentAlignment = Alignment(-0.22, -0.47);
         _isFourthLockUnlocked = true;
-      } else if (_currentAlignment == Alignment(-0.32, -0.47)) {
-        _currentAlignment = Alignment(-0.08, -0.55);
-      } else if (_currentAlignment == Alignment(-0.08, -0.55)) {
-        _currentAlignment = Alignment(0.12, -0.7);
+      } else if (_currentAlignment == Alignment(-0.22, -0.47)) {
+        _currentAlignment = Alignment(-0.12, -0.55);
+      } else if (_currentAlignment == Alignment(-0.12, -0.55)) {
+        _currentAlignment = Alignment(0.03, -0.78);
         _isFifthhLockUnlocked = true;
       }
     });
@@ -82,6 +89,31 @@ class _HomePageWidgetState extends State<HomePageWidget> {
     _model.dispose();
     super.dispose();
   }
+
+  Widget _showMotivationalPopup(BuildContext context) {
+  // Show a dialog with a motivational message
+  Future.delayed(Duration.zero, () {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('You Got This!'),
+          content: Text('Keep pushing forward, you are doing great!'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // Close the dialog
+              },
+              child: Text('Okay'),
+            ),
+          ],
+        );
+      },
+    );
+  });
+  return Container(); // Return an empty container (the popup is handled by the dialog)
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -137,82 +169,128 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               ),
             ),
 
+
+
+      Align(
+  alignment: _currentAlignment, // Align based on current alignment
+  child: _currentAlignment == Alignment(-0.2, 0.54)
+      ? Align(
+          alignment: Alignment(-0.2, 0.34), // Position the animation at this point
+          child: Lottie.asset(
+            'assets/jsons/cloudyrain.json', // Cloudy rain animation
+            width: 85,
+            height: 70,
+            repeat: true, // Make sure it repeats
+          ),
+        )
+      : Container(), // Show nothing if alignment doesn't match
+),
+
+Align(
+  alignment: _currentAlignment, // Align based on current alignment
+  child: _currentAlignment == Alignment(-0.05, 0.24)
+      ? Stack(
+          children: [
+            Align(
+              alignment: Alignment(0.08, 0.14), // Position the animation at this point
+              child: Lottie.asset(
+                'assets/jsons/thunder.json', // Thunder animation
+                width: 65,
+                height: 60,
+                repeat: true, // Make sure it repeats
+              ),
+            ),
+            // Check if the alignment matches and show popup
+            if (_currentAlignment == Alignment(-0.05, 0.24))
+              _showMotivationalPopup(context), // Show the popup
+          ],
+        )
+      : Container(), // Show nothing if alignment doesn't match
+)
+,
+
+
             Align(
               alignment: AlignmentDirectional(-0.1, 0.44),
               child: !_isUnlocked
-                  ? Icon(
-                      Icons.lock_open_sharp, // Unlock icon
-                      color: Color(0xFF340AEA),
-                      size: 24.0,
-                    )
+                  ? Lottie.asset(
+          'assets/jsons/mountain.json', // Mountain animation
+          width: 35,
+          height: 35,
+          repeat: true,
+        )
                   : Lottie.asset(
                       'assets/jsons/flag.json', // Lock animation
-                      width: 40,
-                      height: 40,
+                      width: 50,
+                      height: 50,
                       repeat: true,
                     ),
             ),
 
             Align(
-              alignment: AlignmentDirectional(0.28, 0.14),
+              alignment: AlignmentDirectional(0.08, 0.14),
               child: !_isSecondLockUnlocked
-                  ? Icon(
-                      Icons.lock_open_sharp, // Unlock icon
-                      color: Color(0xFF340AEA),
-                      size: 24.0,
-                    )
+                  ? Lottie.asset(
+          'assets/jsons/mountain.json', // Mountain animation
+          width: 35,
+          height: 35,
+          repeat: true,
+        )
                   : Lottie.asset(
                       'assets/jsons/flag.json', // Flag animation
-                      width: 40,
-                      height: 40,
+                      width: 50,
+                      height: 50,
                       repeat: true,
                     ),
             ),
 
             Align(
-              alignment: AlignmentDirectional(-0.07, -0.21),
+              alignment: AlignmentDirectional(0.00, -0.21),
               child: !_isThirdLockUnlocked
-                  ? Icon(
-                      Icons.lock_open_sharp, // Unlock icon
-                      color: Color(0xFF340AEA),
-                      size: 24.0,
-                    )
+                  ? Lottie.asset(
+          'assets/jsons/mountain.json', // Mountain animation
+          width: 35,
+          height: 35,
+          repeat: true,
+        )
                   : Lottie.asset(
                       'assets/jsons/flag.json', // Flag animation
-                      width: 40,
-                      height: 40,
+                      width: 50,
+                      height: 50,
                       repeat: true,
                     ),
             ),
 
             Align(
-              alignment: AlignmentDirectional(-0.48, -0.43),
+              alignment: AlignmentDirectional(-0.22, -0.43),
               child: !_isFourthLockUnlocked
-                  ? Icon(
-                      Icons.lock_open_sharp, // Unlock icon
-                      color: Color(0xFF340AEA),
-                      size: 24.0,
-                    )
+                  ? Lottie.asset(
+          'assets/jsons/mountain.json', // Mountain animation
+          width: 35,
+          height: 35,
+          repeat: true,
+        )
                   : Lottie.asset(
                       'assets/jsons/flag.json', // Flag animation
-                      width: 40,
-                      height: 40,
+                      width: 50,
+                      height: 50,
                       repeat: true,
                     ),
             ),
-            
-             Align(
-              alignment: AlignmentDirectional(0.03, -0.64),
+
+            Align(
+              alignment: AlignmentDirectional(0.01, -0.64),
               child: !_isFifthhLockUnlocked
-                  ? Icon(
-                      Icons.lock_open_sharp, // Unlock icon
-                      color: Color(0xFF340AEA),
-                      size: 24.0,
-                    )
+                 ? Lottie.asset(
+          'assets/jsons/mountain.json', // Mountain animation
+          width: 35,
+          height: 35,
+          repeat: true,
+        )
                   : Lottie.asset(
                       'assets/jsons/flag.json', // Flag animation
-                      width: 40,
-                      height: 40,
+                      width: 50,
+                      height: 50,
                       repeat: true,
                     ),
             ),
@@ -223,123 +301,57 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               duration: Duration(seconds: 1), // Animation duration
               curve: Curves.easeInOut, // Smooth animation curve
               child: Lottie.asset(
-                'assets/jsons/cycle.json',
-                width: 40,
-                height: 40,
+                'assets/jsons/olympic-athlete.json',
+                width: 60,
+                height: 60,
                 repeat: true,
               ),
             ),
 
             // Level Up button
             Align(
-              alignment: Alignment.bottomCenter,
+              alignment: Alignment.topLeft,
               child: ElevatedButton(
                 onPressed: _levelUp,
                 child: Text("Level Up"),
               ),
             ),
-            Align(
-              alignment: AlignmentDirectional(0.09, -0.14),
-              child: FaIcon(
-                FontAwesomeIcons.dotCircle,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 20.0,
-              ),
-            ),
-            Align(
-              alignment: AlignmentDirectional(0.34, -0.03),
-              child: FaIcon(
-                FontAwesomeIcons.dotCircle,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 20.0,
-              ),
-            ),
-            Align(
-              alignment: AlignmentDirectional(0.36, 0.08),
-              child: FaIcon(
-                FontAwesomeIcons.dotCircle,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 20.0,
-              ),
-            ),
-            Align(
-              alignment: AlignmentDirectional(0.12, 0.26),
-              child: FaIcon(
-                FontAwesomeIcons.dotCircle,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 20.0,
-              ),
-            ),
-            Align(
-              alignment: AlignmentDirectional(-0.06, 0.36),
-              child: FaIcon(
-                FontAwesomeIcons.dotCircle,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 20.0,
-              ),
-            ),
-            Align(
-              alignment: AlignmentDirectional(-0.55, 0.63),
-              child: FaIcon(
-                FontAwesomeIcons.dotCircle,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 20.0,
-              ),
-            ),
-            Align(
-              alignment: AlignmentDirectional(-0.08, -0.55),
-              child: FaIcon(
-                FontAwesomeIcons.dotCircle,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 20.0,
-              ),
-            ),
-            Align(
-              alignment: AlignmentDirectional(-0.32, -0.47),
-              child: FaIcon(
-                FontAwesomeIcons.dotCircle,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 20.0,
-              ),
-            ),
-            Align(
-              alignment: AlignmentDirectional(0.12, -0.7),
-              child: FaIcon(
-                FontAwesomeIcons.dotCircle,
-                color: FlutterFlowTheme.of(context).primaryText,
-                size: 20.0,
-              ),
-            ),
+           
+           
+        
+
+          Align(
+  alignment: AlignmentDirectional(0.36, -0.8),
+  child: CircularPercentIndicator(
+    percent: 1.0,
+    radius: 45.0,
+    lineWidth: 32.0,
+    animation: true,
+    animateFromLastPercent: true,
+    animationDuration: 8000, // Set duration of animation in milliseconds (e.g., 5000 ms = 5 seconds)
+    progressColor: FlutterFlowTheme.of(context).primary,
+    backgroundColor: FlutterFlowTheme.of(context).accent4,
+    center: Text(
+      '100%',
+      style: FlutterFlowTheme.of(context).headlineSmall.override(
+            fontFamily: 'Inter Tight',
+            color: FlutterFlowTheme.of(context).primaryText,
+            fontSize: 28.0,
+            letterSpacing: 0.0,
+          ),
+    ),
+  ),
+),
 
             Align(
-              alignment: AlignmentDirectional(0.73, -0.8),
-              child: CircularPercentIndicator(
-                percent: 1.0,
-                radius: 45.0,
-                lineWidth: 32.0,
-                animation: true,
-                animateFromLastPercent: true,
-                progressColor: FlutterFlowTheme.of(context).primary,
-                backgroundColor: FlutterFlowTheme.of(context).accent4,
-                center: Text(
-                  '100%',
-                  style: FlutterFlowTheme.of(context).headlineSmall.override(
-                        fontFamily: 'Inter Tight',
-                        color: FlutterFlowTheme.of(context).primaryText,
-                        fontSize: 28.0,
-                        letterSpacing: 0.0,
-                      ),
-                ),
-              ),
-            ),
-            Align(
-              alignment: AlignmentDirectional(0.68, 0.47),
+              alignment: AlignmentDirectional(0.29, 0.39),
               child: CircularPercentIndicator(
                 percent: 0.2,
                 radius: 25.0,
                 lineWidth: 32.0,
                 animation: true,
                 animateFromLastPercent: true,
+                  animationDuration: 4000, 
                 progressColor: FlutterFlowTheme.of(context).primary,
                 backgroundColor: FlutterFlowTheme.of(context).accent4,
                 center: Text(
@@ -354,13 +366,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.56, -0.23),
+              alignment: AlignmentDirectional(0.23, -0.28),
               child: CircularPercentIndicator(
                 percent: 0.6,
                 radius: 35.0,
                 lineWidth: 32.0,
                 animation: true,
                 animateFromLastPercent: true,
+                  animationDuration: 6000, 
                 progressColor: FlutterFlowTheme.of(context).primary,
                 backgroundColor: FlutterFlowTheme.of(context).accent4,
                 center: Text(
@@ -375,13 +388,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.78, -0.49),
+              alignment: AlignmentDirectional(0.33, -0.49),
               child: CircularPercentIndicator(
                 percent: 0.8,
                 radius: 40.0,
                 lineWidth: 32.0,
                 animation: true,
                 animateFromLastPercent: true,
+                  animationDuration: 7000, 
                 progressColor: FlutterFlowTheme.of(context).primary,
                 backgroundColor: FlutterFlowTheme.of(context).accent4,
                 center: Text(
@@ -396,13 +410,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               ),
             ),
             Align(
-              alignment: AlignmentDirectional(0.72, 0.17),
+              alignment: AlignmentDirectional(0.30, 0.13),
               child: CircularPercentIndicator(
                 percent: 0.4,
                 radius: 30.0,
                 lineWidth: 32.0,
                 animation: true,
                 animateFromLastPercent: true,
+                  animationDuration: 5000, 
                 progressColor: FlutterFlowTheme.of(context).primary,
                 backgroundColor: FlutterFlowTheme.of(context).accent4,
                 center: Text(
