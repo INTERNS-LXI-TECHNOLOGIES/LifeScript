@@ -1,72 +1,93 @@
 import 'package:flutter/material.dart';
 
 class CircularMenu extends StatefulWidget {
+  final List<MenuButton> menuButtons;
+
+  const CircularMenu({Key? key, required this.menuButtons}) : super(key: key);
+
   @override
   _CircularMenuState createState() => _CircularMenuState();
 }
 
 class _CircularMenuState extends State<CircularMenu> {
-  Offset _position = Offset(150, 300);
+  late Offset _position; // Offset to position the menu
   bool _isMenuOpen = false;
 
   @override
+  void initState() {
+    super.initState();
+    // Set the initial position to the bottom-right corner
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final size = MediaQuery.of(context).size;
+      setState(() {
+        _position = Offset(size.width - 80, size.height - 160); // Adjust offset
+      });
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Positioned(
-      left: _position.dx,
-      top: _position.dy,
-      child: GestureDetector(
-        onPanUpdate: (details) {
-          setState(() {
-            _position += details.delta;
-          });
-        },
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            if (_isMenuOpen) _buildCircularMenu(),
-            FloatingActionButton(
-              onPressed: () {
+    return _position == null
+        ? SizedBox.shrink() // Return empty widget until position is calculated
+        : Positioned(
+            left: _position.dx,
+            top: _position.dy,
+            child: GestureDetector(
+              onPanUpdate: (details) {
                 setState(() {
-                  _isMenuOpen = !_isMenuOpen;
+                  _position += details.delta; // Enable drag
                 });
               },
-              backgroundColor: Colors.blue,
-              child: Icon(_isMenuOpen ? Icons.close : Icons.menu),
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  if (_isMenuOpen) _buildCircularMenu(),
+                  FloatingActionButton(
+                    onPressed: () {
+                      setState(() {
+                        _isMenuOpen = !_isMenuOpen;
+                      });
+                    },
+                    backgroundColor: Colors.blue,
+                    child: Icon(_isMenuOpen ? Icons.close : Icons.menu),
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
-      ),
-    );
+          );
   }
 
   Widget _buildCircularMenu() {
-    final double buttonDistance = 80.0;
     return Stack(
       alignment: Alignment.center,
-      children: [
-        _buildMenuButton(Icons.home, "Home", Offset(-buttonDistance, 0)),
-        _buildMenuButton(Icons.camera_alt, "Camera", Offset(0, -buttonDistance)),
-        _buildMenuButton(Icons.alarm, "Alarm", Offset(buttonDistance, 0)),
-        _buildMenuButton(Icons.location_on, "Location", Offset(50, 75)),
-        _buildMenuButton(Icons.settings, "Settings", Offset(-30, 75)),
-      ],
+      children: widget.menuButtons.map((button) {
+        return Transform.translate(
+          offset: button.offset,
+          child: FloatingActionButton(
+            heroTag: button.tooltip,
+            onPressed: button.onPressed,
+            backgroundColor: button.color, // Use button's color
+            child: Icon(button.icon),
+            tooltip: button.tooltip,
+          ),
+        );
+      }).toList(),
     );
   }
+}
 
-  Widget _buildMenuButton(IconData icon, String tooltip, Offset offset) {
-    return Transform.translate(
-      offset: offset,
-      child: FloatingActionButton(
-        heroTag: tooltip,
-        onPressed: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('$tooltip clicked!')),
-          );
-        },
-        backgroundColor: Colors.blue,
-        child: Icon(icon),
-        tooltip: tooltip,
-      ),
-    );
-  }
+class MenuButton {
+  final IconData icon;
+  final String tooltip;
+  final Offset offset;
+  final VoidCallback onPressed;
+  final Color color; // Added color property
+
+  MenuButton({
+    required this.icon,
+    required this.tooltip,
+    required this.offset,
+    required this.onPressed,
+    this.color = Colors.blue, // Default color
+  });
 }

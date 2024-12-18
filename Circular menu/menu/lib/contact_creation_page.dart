@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'circular_menu.dart'; // Import the CircularMenu class
+import 'circular_menu.dart'; // Import the updated CircularMenu class
 
 class ContactCreationPage extends StatelessWidget {
   final TextEditingController nameController = TextEditingController();
@@ -77,7 +77,37 @@ class ContactCreationPage extends StatelessWidget {
               ],
             ),
           ),
-          CircularMenu(), // Add the CircularMenu widget here
+          CircularMenu(
+            menuButtons: [
+              MenuButton(
+                icon: Icons.home,
+                tooltip: 'Home',
+                offset: Offset(0, -100),
+                onPressed: () {
+                  print('Home button pressed');
+                },
+                color: Colors.red, // Specify the color
+              ),
+              MenuButton(
+                icon: Icons.settings,
+                tooltip: 'Settings',
+                offset: Offset(100, 0),
+                onPressed: () {
+                  print('Settings button pressed');
+                },
+                color: Colors.green, // Specify the color
+              ),
+              MenuButton(
+                icon: Icons.info,
+                tooltip: 'Info',
+                offset: Offset(-100, 0),
+                onPressed: () {
+                  print('Info button pressed');
+                },
+                color: Colors.purple, // Specify the color
+              ),
+            ],
+          ),
         ],
       ),
     );
