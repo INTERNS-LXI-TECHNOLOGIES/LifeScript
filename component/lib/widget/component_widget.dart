@@ -1,165 +1,325 @@
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
-
-
-class TaskPrioritizationApp extends StatelessWidget {
+class DraggableComposeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: TaskPrioritizationScreen(),
+      title: 'Draggable Compose Example',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(''),
+          centerTitle: true,
+          backgroundColor: const Color.fromARGB(255, 239, 237, 244),
+        ),
+        body: QuadrantComponent(),
+      ),
     );
   }
 }
 
-class TaskPrioritizationScreen extends StatefulWidget {
+class QuadrantComponent extends StatefulWidget {
   @override
-  _TaskPrioritizationScreenState createState() =>
-      _TaskPrioritizationScreenState();
+  _QuadrantComponentState createState() => _QuadrantComponentState();
 }
 
-class _TaskPrioritizationScreenState extends State<TaskPrioritizationScreen> {
-  String draggedTask = "";
+class _QuadrantComponentState extends State<QuadrantComponent> {
+  String show = "";
+  Map<String, List<String>> quadrantItems = {
+    'Quadrant 1': [],
+    'Quadrant 2': [],
+    'Quadrant 3': [],
+    'Quadrant 4': [],
+  };
+
+  final List<String> draggableItems = [
+    'i have Meeting',
+    ' beacome a Developer',
+    'become a Designer',
+    'Manager'
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[200],
-      appBar: AppBar(
-        title: Text('Task Prioritization'),
-        backgroundColor: Colors.teal,
-      ),
-      body: Column(
-        children: [
-          SizedBox(height: 20),
-          Text(
-            'Drag tasks into the quadrants below',
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+    return Stack(
+      children: [
+        // Background GIF
+        Positioned.fill(
+          child: Image.asset(
+            'assets/rainforest.gif', // Add your GIF path here
+            fit: BoxFit.cover,
           ),
-          SizedBox(height: 20),
-          Draggable<String>(
-            data: 'Task A',
-            child: TaskWidget(task: 'Task A'),
-            feedback: TaskWidget(task: 'Task A', isDragging: true),
-            childWhenDragging: TaskWidget(task: 'Task A', isDragging: false),
+        ),
+        // Foreground Content
+        Container(
+          decoration: BoxDecoration(
+              // If you still want to keep the static image option, uncomment the lines below:
+              // image: DecorationImage(
+              //   image: AssetImage('assets/background.jpg'),
+              //   fit: BoxFit.cover,
+              // ),
+              ),
+          child: Column(
+            children: [
+              // Draggable Items at the Top
+              Container(
+                height: 70,
+                color: Colors.grey.shade200
+                    .withOpacity(0.7), // Semi-transparent background
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: draggableItems.length,
+                  itemBuilder: (context, index) {
+                    final item = draggableItems[index];
+                    return Draggable<String>(
+                      data: item,
+                      feedback: DraggingItem(item: item),
+                      childWhenDragging: Opacity(
+                        opacity: 0.3,
+                        child: DraggableItem(item: item),
+                      ),
+                      child: DraggableItem(item: item),
+                    );
+                  },
+                ),
+              ),
+              // Quadrant Layout
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: show == "Quadrant 1"
+                                  ? Lottie.asset(
+                                      'assets/jsons/Animation-green.json',
+                                      width: 150.0, // Adjust width
+                                      height: 100.0,
+                                    )
+                                  : buildQuadrant('Quadrant 1'),
+                            ),
+                            Expanded(
+                              child: show == "Quadrant 2"
+                                  ? Lottie.asset(
+                                      'assets/jsons/Animation-white.json',
+                                      width: 100.0, // Adjust width
+                                      height: 100.0,
+                                    )
+                                  : buildQuadrant('Quadrant 2'),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: show == "Quadrant 3"
+                                  ? Lottie.asset(
+                                      'assets/jsons/Animation -yellow.json',
+                                      width: 100.0, // Adjust width
+                                      height: 100.0,
+                                    )
+                                  : buildQuadrant('Quadrant 3'),
+                            ),
+                            Expanded(
+                              child: show == "Quadrant 4"
+                                  ? Lottie.asset('assets/jsons/Animation.json',
+                                      width: 100.0, height: 100.0)
+                                  : buildQuadrant('Quadrant 4'),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
-          SizedBox(height: 20),
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                QuadrantWidget(
-                  title: 'Quadrant II',
-                  color: Colors.green[100]!,
-                  onAccept: (task) {
-                    setState(() {
-                      draggedTask = '$task added to Quadrant II';
-                    });
-                  },
-                ),
-                QuadrantWidget(
-                  title: 'Quadrant III',
-                  color: Colors.yellow[100]!,
-                  onAccept: (task) {
-                    setState(() {
-                      draggedTask = '$task added to Quadrant III';
-                    });
-                  },
-                ),
-                QuadrantWidget(
-                  title: 'Quadrant IV',
-                  color: Colors.red[100]!,
-                  onAccept: (task) {
-                    setState(() {
-                      draggedTask = '$task added to Quadrant IV';
-                    });
-                  },
-                ),
-              ],
+        ),
+      ],
+    );
+  }
+
+  Widget buildQuadrant(String label) {
+    return DragTarget<String>(
+      onAcceptWithDetails: (data) {
+        setState(() {
+          show = label;
+          quadrantItems[label]?.add(data.data);
+
+          // Reset show after 12 seconds
+          Future.delayed(Duration(seconds: 12), () {
+            setState(() {
+              show = "";
+            });
+          });
+        });
+      },
+      builder: (context, candidateData, rejectedData) {
+        return Container(
+          margin: EdgeInsets.all(8.0),
+          width: 160.0, // Smaller width for the circle
+          height: 160.0,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: const Color.fromARGB(255, 47, 220, 16),
+            // borderRadius: BorderRadius.circular(1.0),
+            border: Border.all(
+              color: const Color.fromARGB(255, 219, 216, 225),
+              width: 1,
             ),
           ),
-          Text(
-            draggedTask,
-            style: TextStyle(fontSize: 16, fontStyle: FontStyle.italic),
+          child: Center(
+            child: quadrantItems[label]!.isEmpty
+                ? Text(
+                    label,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 12.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        label,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      SizedBox(height: 8.0),
+                      // Display the list of items in the quadrant
+                      Column(
+                        children: quadrantItems[label]!
+                            .map((item) => Text(
+                                  item,
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 14.0,
+                                  ),
+                                ))
+                            .toList(),
+                      ),
+                      SizedBox(height: 8.0),
+                      Text(
+                        'Items: ${quadrantItems[label]!.length}',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 14.0,
+                        ),
+                      ),
+                    ],
+                  ),
           ),
-          SizedBox(height: 20),
+        );
+      },
+    );
+  }
+}
+
+// Widget for draggable item
+class DraggableItem extends StatelessWidget {
+  final String item;
+
+  const DraggableItem({Key? key, required this.item}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+      padding: EdgeInsets.all(12.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black26,
+            offset: Offset(2, 2),
+            blurRadius: 4,
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          // Flower Icon
+          Container(
+            width: 30,
+            height: 30,
+            decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: LinearGradient(
+                  colors: [Colors.pink, Colors.orange],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+                image: DecorationImage(image: AssetImage('assets/flower.png'))),
+          ),
+          SizedBox(width: 8.0),
+          // Task Name
+          Text(
+            item,
+            style: TextStyle(
+              color: Colors.black87,
+              fontWeight: FontWeight.bold,
+              fontSize: 16.0,
+            ),
+          ),
         ],
       ),
     );
   }
 }
 
-class TaskWidget extends StatelessWidget {
-  final String task;
-  final bool isDragging;
+// Widget for dragging feedback
+class DraggingItem extends StatelessWidget {
+  final String item;
 
-  const TaskWidget({
-    required this.task,
-    this.isDragging = false,
-  });
+  const DraggingItem({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 80,
-      height: 80,
-      alignment: Alignment.center,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        color: isDragging ? Colors.teal.withOpacity(0.5) : Colors.teal,
-        boxShadow: isDragging
-            ? []
-            : [BoxShadow(color: Colors.black26, blurRadius: 4, spreadRadius: 2)],
-      ),
-      child: Text(
-        task,
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      ),
-    );
-  }
-}
-
-class QuadrantWidget extends StatelessWidget {
-  final String title;
-  final Color color;
-  final void Function(String) onAccept;
-
-  const QuadrantWidget({
-    required this.title,
-    required this.color,
-    required this.onAccept,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return DragTarget<String>(
-      onAccept: onAccept,
-      builder: (context, candidateData, rejectedData) {
-        return Container(
-          width: 100,
-          height: 150,
-          padding: EdgeInsets.all(8),
-          decoration: BoxDecoration(
-            color: color,
-            borderRadius: BorderRadius.circular(8),
-            border: Border.all(
-              color: candidateData.isNotEmpty ? Colors.teal : Colors.transparent,
-              width: 3,
+    return Material(
+      color: Colors.transparent,
+      child: Container(
+        padding: EdgeInsets.all(12.0),
+        decoration: BoxDecoration(
+          color: Colors.pinkAccent,
+          borderRadius: BorderRadius.circular(8.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black38,
+              offset: Offset(2, 2),
+              blurRadius: 6,
             ),
-          ),
-          child: Center(
-            child: Text(
-              title,
+          ],
+        ),
+        child: Row(
+          children: [
+            // Flower Image
+            Image.asset(
+              'assets/flower.png', // Path to your custom flower image
+              width: 20,
+              height: 20,
+            ),
+            SizedBox(width: 8.0),
+            Text(
+              item,
               style: TextStyle(
-                fontSize: 16,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
-                color: Colors.black87,
+                fontSize: 16.0,
               ),
-              textAlign: TextAlign.center,
             ),
-          ),
-        );
-      },
+          ],
+        ),
+      ),
     );
   }
 }

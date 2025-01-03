@@ -1,24 +1,37 @@
-
+import 'package:component/main.dart';
 import 'package:component/widget/component_widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:component/main.dart';
+ // Replace with actual import path
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    
-    await tester.pumpWidget(TaskPrioritizationApp());
+  group('ComposeContainer Tests', () {
+    testWidgets('DraggableWidget displays correctly', (WidgetTester tester) async {
+     
+      await tester.pumpWidget(MaterialApp(home: DraggableComposeApp()));
 
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+     
+      final draggableFinder = find.text('Drag Me');
+      expect(draggableFinder, findsOneWidget);
+    });
 
-   
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    testWidgets('DraggableWidget moves when dragged', (WidgetTester tester) async {
+      
+      await tester.pumpWidget(MaterialApp(home: DraggableComposeApp()));
 
-    
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+      
+      final draggableFinder = find.text('Drag Me');
+
+      
+      expect(draggableFinder, findsOneWidget);
+
+      // Act: Drag the widget
+      await tester.drag(draggableFinder, const Offset(50, 50));
+      await tester.pumpAndSettle();
+
+      // Assert: Verify that the widget is moved
+      expect(draggableFinder, findsOneWidget);
+    });
   });
 }
