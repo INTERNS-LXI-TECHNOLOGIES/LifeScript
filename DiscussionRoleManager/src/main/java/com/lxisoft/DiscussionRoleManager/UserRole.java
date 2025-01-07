@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Feedback {
+public class UserRole {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,16 +15,26 @@ public class Feedback {
     @ManyToOne
     private User user;
     
+    @ManyToOne
+    private Role role;
+    
     private int sessionId;
-    private String feedbackText;
 
 
-    public String getFeedbackText() {
-        return feedbackText;
+    public Role getRole() {
+        return role;
     }
 
-    public void setFeedbackText(String feedbackText) {
-        this.feedbackText = feedbackText;
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public int getSessionId() {
+        return sessionId;
+    }
+
+    public void setSessionId(int sessionId) {
+        this.sessionId = sessionId;
     }
 
     public User getUser() {
@@ -42,13 +52,4 @@ public class Feedback {
     public void setId(Long id) {
         this.id = id;
     }
-
-    public int getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(int sessionId) {
-        this.sessionId = sessionId;
-    }
-
 }
