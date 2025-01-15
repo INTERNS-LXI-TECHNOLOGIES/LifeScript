@@ -3,53 +3,50 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:openapi/src/model/habit_entity.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'habit_entity.g.dart';
+part 'task.g.dart';
 
-/// HabitEntity
+/// Task
 ///
 /// Properties:
 /// * [id] 
-/// * [duration] 
+/// * [completed] 
 /// * [habit] 
-/// * [description] 
 @BuiltValue()
-abstract class HabitEntity implements Built<HabitEntity, HabitEntityBuilder> {
+abstract class Task implements Built<Task, TaskBuilder> {
   @BuiltValueField(wireName: r'id')
   int? get id;
 
-  @BuiltValueField(wireName: r'duration')
-  String? get duration;
+  @BuiltValueField(wireName: r'completed')
+  bool? get completed;
 
   @BuiltValueField(wireName: r'habit')
-  String? get habit;
+  HabitEntity? get habit;
 
-  @BuiltValueField(wireName: r'description')
-  String? get description;
+  Task._();
 
-  HabitEntity._();
-
-  factory HabitEntity([void updates(HabitEntityBuilder b)]) = _$HabitEntity;
+  factory Task([void updates(TaskBuilder b)]) = _$Task;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(HabitEntityBuilder b) => b;
+  static void _defaults(TaskBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<HabitEntity> get serializer => _$HabitEntitySerializer();
+  static Serializer<Task> get serializer => _$TaskSerializer();
 }
 
-class _$HabitEntitySerializer implements PrimitiveSerializer<HabitEntity> {
+class _$TaskSerializer implements PrimitiveSerializer<Task> {
   @override
-  final Iterable<Type> types = const [HabitEntity, _$HabitEntity];
+  final Iterable<Type> types = const [Task, _$Task];
 
   @override
-  final String wireName = r'HabitEntity';
+  final String wireName = r'Task';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    HabitEntity object, {
+    Task object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
     if (object.id != null) {
@@ -59,25 +56,18 @@ class _$HabitEntitySerializer implements PrimitiveSerializer<HabitEntity> {
         specifiedType: const FullType(int),
       );
     }
-    if (object.duration != null) {
-      yield r'duration';
+    if (object.completed != null) {
+      yield r'completed';
       yield serializers.serialize(
-        object.duration,
-        specifiedType: const FullType(String),
+        object.completed,
+        specifiedType: const FullType(bool),
       );
     }
     if (object.habit != null) {
       yield r'habit';
       yield serializers.serialize(
         object.habit,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.description != null) {
-      yield r'description';
-      yield serializers.serialize(
-        object.description,
-        specifiedType: const FullType(String),
+        specifiedType: const FullType(HabitEntity),
       );
     }
   }
@@ -85,7 +75,7 @@ class _$HabitEntitySerializer implements PrimitiveSerializer<HabitEntity> {
   @override
   Object serialize(
     Serializers serializers,
-    HabitEntity object, {
+    Task object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -96,7 +86,7 @@ class _$HabitEntitySerializer implements PrimitiveSerializer<HabitEntity> {
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required HabitEntityBuilder result,
+    required TaskBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
@@ -110,26 +100,19 @@ class _$HabitEntitySerializer implements PrimitiveSerializer<HabitEntity> {
           ) as int;
           result.id = valueDes;
           break;
-        case r'duration':
+        case r'completed':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.duration = valueDes;
+            specifiedType: const FullType(bool),
+          ) as bool;
+          result.completed = valueDes;
           break;
         case r'habit':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.habit = valueDes;
-          break;
-        case r'description':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.description = valueDes;
+            specifiedType: const FullType(HabitEntity),
+          ) as HabitEntity;
+          result.habit.replace(valueDes);
           break;
         default:
           unhandled.add(key);
@@ -140,12 +123,12 @@ class _$HabitEntitySerializer implements PrimitiveSerializer<HabitEntity> {
   }
 
   @override
-  HabitEntity deserialize(
+  Task deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = HabitEntityBuilder();
+    final result = TaskBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

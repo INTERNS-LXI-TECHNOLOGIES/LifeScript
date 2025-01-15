@@ -48,13 +48,12 @@ import 'package:openapi/openapi.dart';
 
 
 final api = Openapi().getHabitControllerApi();
-final HabitEntity habitEntity = ; // HabitEntity | 
 
 try {
-    final response = await api.createHabit(habitEntity);
+    final response = await api.getTaskForAllHabits();
     print(response);
 } catch on DioException (e) {
-    print("Exception when calling HabitControllerApi->createHabit: $e\n");
+    print("Exception when calling HabitControllerApi->getTaskForAllHabits: $e\n");
 }
 
 ```
@@ -65,13 +64,16 @@ All URIs are relative to *http://localhost:8080*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-[*HabitControllerApi*](doc/HabitControllerApi.md) | [**createHabit**](doc/HabitControllerApi.md#createhabit) | **POST** / | 
-[*HabitControllerApi*](doc/HabitControllerApi.md) | [**getAllPersons**](doc/HabitControllerApi.md#getallpersons) | **GET** / | 
+[*HabitControllerApi*](doc/HabitControllerApi.md) | [**getTaskForAllHabits**](doc/HabitControllerApi.md#gettaskforallhabits) | **GET** /read | 
+[*HabitControllerApi*](doc/HabitControllerApi.md) | [**markTaskCompleted**](doc/HabitControllerApi.md#marktaskcompleted) | **POST** /delete | 
+[*HabitControllerApi*](doc/HabitControllerApi.md) | [**readAllHabits**](doc/HabitControllerApi.md#readallhabits) | **GET** / | 
+[*HabitControllerApi*](doc/HabitControllerApi.md) | [**saveHabit**](doc/HabitControllerApi.md#savehabit) | **POST** / | 
 
 
 ## Documentation For Models
 
  - [HabitEntity](doc/HabitEntity.md)
+ - [Task](doc/Task.md)
 
 
 ## Documentation For Authorization

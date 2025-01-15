@@ -11,12 +11,46 @@
         }
     ],
     "paths": {
+        "/delete": {
+            "post": {
+                "tags": [
+                    "habit-controller"
+                ],
+                "operationId": "markTaskCompleted",
+                "parameters": [
+                    {
+                        "name": "taskId",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Task"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/": {
             "get": {
                 "tags": [
                     "habit-controller"
                 ],
-                "operationId": "getAllPersons",
+                "operationId": "readAllHabits",
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -37,7 +71,7 @@
                 "tags": [
                     "habit-controller"
                 ],
-                "operationId": "createHabit",
+                "operationId": "saveHabit",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -61,6 +95,30 @@
                     }
                 }
             }
+        },
+        "/read": {
+            "get": {
+                "tags": [
+                    "habit-controller"
+                ],
+                "operationId": "getTaskForAllHabits",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Task"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -72,7 +130,7 @@
                         "type": "integer",
                         "format": "int64"
                     },
-                    "name": {
+                    "duration": {
                         "type": "string"
                     },
                     "habit": {
@@ -80,6 +138,21 @@
                     },
                     "description": {
                         "type": "string"
+                    }
+                }
+            },
+            "Task": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "completed": {
+                        "type": "boolean"
+                    },
+                    "habit": {
+                        "$ref": "#/components/schemas/HabitEntity"
                     }
                 }
             }

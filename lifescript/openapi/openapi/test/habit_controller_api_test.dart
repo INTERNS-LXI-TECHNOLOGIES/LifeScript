@@ -7,13 +7,23 @@ void main() {
   final instance = Openapi().getHabitControllerApi();
 
   group(HabitControllerApi, () {
-    //Future<HabitEntity> createHabit(HabitEntity habitEntity) async
-    test('test createHabit', () async {
+    //Future<BuiltList<Task>> getTaskForAllHabits() async
+    test('test getTaskForAllHabits', () async {
       // TODO
     });
 
-    //Future<BuiltList<HabitEntity>> getAllPersons() async
-    test('test getAllPersons', () async {
+    //Future<BuiltList<Task>> markTaskCompleted(int taskId) async
+    test('test markTaskCompleted', () async {
+      // TODO
+    });
+
+    //Future<BuiltList<HabitEntity>> readAllHabits() async
+    test('test readAllHabits', () async {
+      // TODO
+    });
+
+    //Future<HabitEntity> saveHabit(HabitEntity habitEntity) async
+    test('test saveHabit', () async {
       // TODO
     });
 

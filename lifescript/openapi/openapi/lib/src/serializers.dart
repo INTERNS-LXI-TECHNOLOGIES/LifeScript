@@ -15,16 +15,22 @@ import 'package:openapi/src/date_serializer.dart';
 import 'package:openapi/src/model/date.dart';
 
 import 'package:openapi/src/model/habit_entity.dart';
+import 'package:openapi/src/model/task.dart';
 
 part 'serializers.g.dart';
 
 @SerializersFor([
   HabitEntity,
+  Task,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(HabitEntity)]),
         () => ListBuilder<HabitEntity>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Task)]),
+        () => ListBuilder<Task>(),
       )
       ..add(const OneOfSerializer())
       ..add(const AnyOfSerializer())

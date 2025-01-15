@@ -1,4 +1,4 @@
-# openapi.model.HabitEntity
+# openapi.model.Task
 
 ## Load the model package
 ```dart
@@ -9,9 +9,8 @@ import 'package:openapi/api.dart';
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | [optional] 
-**duration** | **String** |  | [optional] 
-**habit** | **String** |  | [optional] 
-**description** | **String** |  | [optional] 
+**completed** | **bool** |  | [optional] 
+**habit** | [**HabitEntity**](HabitEntity.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -13,4 +13,5 @@ export 'package:openapi/src/model/date.dart';
 export 'package:openapi/src/api/habit_controller_api.dart';
 
 export 'package:openapi/src/model/habit_entity.dart';
+export 'package:openapi/src/model/task.dart';
 
