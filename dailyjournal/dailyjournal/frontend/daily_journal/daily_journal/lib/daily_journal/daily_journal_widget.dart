@@ -310,7 +310,7 @@ class _DailyJournalWidgetState extends State<DailyJournalWidget> {
                                     ..title = _model.textController1?.text
                                     ..content = _model.textController2?.text
                                     ..date =
-                                        _model.textController3?.text as Date?);
+                                        DateTime.parse(_model.textController3!.text!).toDate() as Date?);
 
                                   final response = await api.createJournalEntry(
                                     // Pass the type (not clear what you intend here; clarify if needed)
