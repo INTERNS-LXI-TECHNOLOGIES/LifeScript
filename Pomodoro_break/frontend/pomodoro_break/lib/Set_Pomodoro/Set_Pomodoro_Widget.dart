@@ -1,3 +1,5 @@
+import 'package:pomodoro_break/controller/PomodoroController.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -166,7 +168,7 @@ class _SetPomodoroWidgetState extends State<SetPomodoroWidget> {
                                   ),
                             ),
                             Text(
-                              '${_model.sliderValue?.toInt() ?? 15} minutes',
+                              '${_model.sliderValue?.toInt() ?? 5} minutes',
                               style: FlutterFlowTheme.of(context)
                                   .displaySmall
                                   .override(
@@ -192,7 +194,7 @@ class _SetPomodoroWidgetState extends State<SetPomodoroWidget> {
                                 inactiveColor: Color(0xFFE0E3E7),
                                 min: 5,
                                 max: 15,
-                                value: _model.sliderValue ??= 15,
+                                value: _model.sliderValue ??= 5,
                                 onChanged: (newValue) {
                                   safeSetState(() {
                                     _model.sliderValue =
@@ -312,8 +314,10 @@ class _SetPomodoroWidgetState extends State<SetPomodoroWidget> {
                   ),
                   FFButtonWidget(
                     onPressed: () {
-                      print('Button pressed ...');
-                      
+                      int workDuration = 25;
+                      int breakDuration = _model.sliderValue?.toInt() ?? 5;
+                      PomodoroController().savePomo(workDuration, breakDuration);
+                      print('Pomodoro saved with work duration: $workDuration minutes and break duration: $breakDuration minutes');
                     },
                     text: 'Start Pomodoro',
                     options: FFButtonOptions(

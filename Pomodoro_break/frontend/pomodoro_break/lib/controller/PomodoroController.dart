@@ -1,5 +1,4 @@
-import 'package:pomodoro_break/openapi/lib/src/api.dart';
-import 'package:pomodoro_break/openapi/lib/src/api/pomodoro_controller_api.dart';
+import 'package:openapi/openapi.dart';
 
 class PomodoroController{
     PomodoroControllerApi api = Openapi().getPomodoroControllerApi();

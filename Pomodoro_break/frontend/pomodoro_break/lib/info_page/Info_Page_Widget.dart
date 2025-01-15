@@ -624,7 +624,7 @@ class _InfoPageWidgetState extends State<InfoPageWidget> {
                   ),
                   FFButtonWidget(
                     onPressed: () {
-                      print('Button pressed ...');
+                      print('Instruction Section Button pressed ...');
                       context.go('/setPomodoro');
                     },
                     text: 'Lets Start',
