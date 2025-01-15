@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'VoiceAssistant',
+      title: 'setPomodoro',
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -84,7 +84,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'textToVoice';
+  String _currentPageName = 'infoPage';
   late Widget? _currentPage;
 
   @override
@@ -97,9 +97,9 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'textToVoice': InfoPageWidget(),
+      'infoPage': InfoPageWidget(),
       'home': HomePageWidget(),
-      'voiceToText': SetPomodoroWidget(),
+      'setPomodoro': SetPomodoroWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
@@ -125,7 +125,7 @@ class _NavBarPageState extends State<NavBarPage> {
             activeIcon: Icon(
               Icons.record_voice_over,
             ),
-            label: 'text-voice',
+            label: 'infoPage',
             tooltip: '',
           ),
           BottomNavigationBarItem(
@@ -142,7 +142,7 @@ class _NavBarPageState extends State<NavBarPage> {
             icon: Icon(
               Icons.voice_chat,
             ),
-            label: 'voice-text',
+            label: 'setPomodoro',
             tooltip: '',
           )
         ],

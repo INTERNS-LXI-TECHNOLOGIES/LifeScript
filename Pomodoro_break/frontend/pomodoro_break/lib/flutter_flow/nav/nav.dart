@@ -33,48 +33,33 @@ class AppStateNotifier extends ChangeNotifier {
 }
 
 GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
-      initialLocation: '/',
-      debugLogDiagnostics: true,
-      refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) => NavBarPage(),
-      routes: [
-        FFRoute(
-          name: '_initialize',
-          path: '/',
-          builder: (context, _) => HomePageWidget(),
-        ),
-        FFRoute(
-          name: 'textToVoice',
-          path: '/textToVoice',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'textToVoice')
-              : NavBarPage(
-                  initialPage: 'textToVoice',
-                  page: InfoPageWidget(),
-                ),
-        ),
-        FFRoute(
-          name: 'voiceToText',
-          path: '/voiceToText',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'voiceToText')
-              : NavBarPage(
-                  initialPage: 'voiceToText',
-                  page: SetPomodoroWidget(),
-                ),
-        ),
-        FFRoute(
-          name: 'home',
-          path: '/home',
-          builder: (context, params) => params.isEmpty
-              ? NavBarPage(initialPage: 'home')
-              : NavBarPage(
-                  initialPage: 'home',
-                  page: HomePageWidget(),
-                ),
-        )
-      ].map((r) => r.toRoute(appStateNotifier)).toList(),
-    );
+  initialLocation: '/', // Ensure the initial location is '/'
+  debugLogDiagnostics: true,
+  refreshListenable: appStateNotifier,
+  errorBuilder: (context, state) => HomePageWidget(), // Default error page
+  routes: [
+    FFRoute(
+      name: '_initialize',
+      path: '/', // Root path shows HomePageWidget
+      builder: (context, _) => HomePageWidget(),
+    ),
+    FFRoute(
+      name: 'infoPage',
+      path: '/infoPage',
+      builder: (context, params) => InfoPageWidget(),
+    ),
+    FFRoute(
+      name: 'setPomodoro',
+      path: '/setPomodoro',
+      builder: (context, params) => SetPomodoroWidget(),
+    ),
+    FFRoute(
+      name: 'home',
+      path: '/home',
+      builder: (context, params) => HomePageWidget(),
+    ),
+  ].map((r) => r.toRoute(appStateNotifier)).toList(),
+);
 
 extension NavParamExtensions on Map<String, String?> {
   Map<String, String> get withoutNulls => Map.fromEntries(

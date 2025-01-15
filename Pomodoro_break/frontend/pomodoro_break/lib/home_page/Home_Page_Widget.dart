@@ -2,6 +2,7 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +38,10 @@ class _HomePageWidgetState extends State<HomePageWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -45,12 +49,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
           leading: FlutterFlowIconButton(
-            borderRadius: 8.0,
-            buttonSize: 40.0,
+            borderRadius: 8,
+            buttonSize: 40,
             icon: Icon(
               Icons.arrow_back,
               color: Colors.white,
-              size: 24.0,
+              size: 24,
             ),
             onPressed: () {
               print('IconButton pressed ...');
@@ -61,40 +65,39 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             style: FlutterFlowTheme.of(context).headlineMedium.override(
                   fontFamily: 'Inter Tight',
                   color: Colors.white,
-                  fontSize: 22.0,
+                  fontSize: 22,
                   letterSpacing: 0.0,
                 ),
           ),
           actions: [],
           centerTitle: false,
-          elevation: 2.0,
+          elevation: 2,
         ),
         body: SafeArea(
           top: true,
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
+            padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
             child: SingleChildScrollView(
               child: Column(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Material(
                     color: Colors.transparent,
-                    elevation: 2.0,
+                    elevation: 2,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16.0),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                     child: Container(
-                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      width: MediaQuery.sizeOf(context).width,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(16.0),
+                        borderRadius: BorderRadius.circular(16),
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 20.0, 20.0, 20.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
                         child: Column(
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
                               'What is the Pomodoro Technique?',
@@ -115,28 +118,27 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                     letterSpacing: 0.0,
                                   ),
                             ),
-                          ].divide(SizedBox(height: 16.0)),
+                          ].divide(SizedBox(height: 16)),
                         ),
                       ),
                     ),
                   ),
                   Material(
                     color: Colors.transparent,
-                    elevation: 2.0,
+                    elevation: 2,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16.0),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                     child: Container(
-                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      width: MediaQuery.sizeOf(context).width,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(16.0),
+                        borderRadius: BorderRadius.circular(16),
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 20.0, 20.0, 20.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
                         child: Column(
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
                               'How it Works',
@@ -149,7 +151,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   ),
                             ),
                             Column(
-                              mainAxisSize: MainAxisSize.min,
+                              mainAxisSize: MainAxisSize.max,
                               children: [
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -158,7 +160,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       Icons.timer,
                                       color:
                                           FlutterFlowTheme.of(context).primary,
-                                      size: 24.0,
+                                      size: 24,
                                     ),
                                     Text(
                                       'Work for 25 minutes',
@@ -169,7 +171,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 12.0)),
+                                  ].divide(SizedBox(width: 12)),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -178,7 +180,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       Icons.coffee,
                                       color:
                                           FlutterFlowTheme.of(context).primary,
-                                      size: 24.0,
+                                      size: 24,
                                     ),
                                     Text(
                                       'Take a 5-minute break',
@@ -189,7 +191,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 12.0)),
+                                  ].divide(SizedBox(width: 12)),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -198,7 +200,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       Icons.repeat,
                                       color:
                                           FlutterFlowTheme.of(context).primary,
-                                      size: 24.0,
+                                      size: 24,
                                     ),
                                     Text(
                                       'Repeat 4 times',
@@ -209,7 +211,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 12.0)),
+                                  ].divide(SizedBox(width: 12)),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -218,7 +220,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       Icons.hotel,
                                       color:
                                           FlutterFlowTheme.of(context).primary,
-                                      size: 24.0,
+                                      size: 24,
                                     ),
                                     Text(
                                       'Take a longer 15-30 minute break',
@@ -229,32 +231,31 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 12.0)),
+                                  ].divide(SizedBox(width: 12)),
                                 ),
-                              ].divide(SizedBox(height: 12.0)),
+                              ].divide(SizedBox(height: 12)),
                             ),
-                          ].divide(SizedBox(height: 16.0)),
+                          ].divide(SizedBox(height: 16)),
                         ),
                       ),
                     ),
                   ),
                   Material(
                     color: Colors.transparent,
-                    elevation: 2.0,
+                    elevation: 2,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16.0),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                     child: Container(
-                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      width: MediaQuery.sizeOf(context).width,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(16.0),
+                        borderRadius: BorderRadius.circular(16),
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 20.0, 20.0, 20.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
                         child: Column(
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
                               'Benefits',
@@ -267,7 +268,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   ),
                             ),
                             Column(
-                              mainAxisSize: MainAxisSize.min,
+                              mainAxisSize: MainAxisSize.max,
                               children: [
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -276,7 +277,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       Icons.check_circle_outline,
                                       color:
                                           FlutterFlowTheme.of(context).success,
-                                      size: 24.0,
+                                      size: 24,
                                     ),
                                     Text(
                                       'Increased focus and concentration',
@@ -287,7 +288,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 12.0)),
+                                  ].divide(SizedBox(width: 12)),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -296,7 +297,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       Icons.check_circle_outline,
                                       color:
                                           FlutterFlowTheme.of(context).success,
-                                      size: 24.0,
+                                      size: 24,
                                     ),
                                     Text(
                                       'Reduced mental fatigue',
@@ -307,7 +308,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 12.0)),
+                                  ].divide(SizedBox(width: 12)),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -316,7 +317,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       Icons.check_circle_outline,
                                       color:
                                           FlutterFlowTheme.of(context).success,
-                                      size: 24.0,
+                                      size: 24,
                                     ),
                                     Text(
                                       'Better work-life balance',
@@ -327,7 +328,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 12.0)),
+                                  ].divide(SizedBox(width: 12)),
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
@@ -336,7 +337,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       Icons.check_circle_outline,
                                       color:
                                           FlutterFlowTheme.of(context).success,
-                                      size: 24.0,
+                                      size: 24,
                                     ),
                                     Text(
                                       'Improved productivity',
@@ -347,32 +348,31 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             letterSpacing: 0.0,
                                           ),
                                     ),
-                                  ].divide(SizedBox(width: 12.0)),
+                                  ].divide(SizedBox(width: 12)),
                                 ),
-                              ].divide(SizedBox(height: 12.0)),
+                              ].divide(SizedBox(height: 12)),
                             ),
-                          ].divide(SizedBox(height: 16.0)),
+                          ].divide(SizedBox(height: 16)),
                         ),
                       ),
                     ),
                   ),
                   Material(
                     color: Colors.transparent,
-                    elevation: 2.0,
+                    elevation: 2,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16.0),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                     child: Container(
-                      width: MediaQuery.sizeOf(context).width * 1.0,
+                      width: MediaQuery.sizeOf(context).width,
                       decoration: BoxDecoration(
                         color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(16.0),
+                        borderRadius: BorderRadius.circular(16),
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 20.0, 20.0, 20.0),
+                        padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
                         child: Column(
-                          mainAxisSize: MainAxisSize.min,
+                          mainAxisSize: MainAxisSize.max,
                           children: [
                             Text(
                               'Tips for Success',
@@ -385,7 +385,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   ),
                             ),
                             Column(
-                              mainAxisSize: MainAxisSize.min,
+                              mainAxisSize: MainAxisSize.max,
                               children: [
                                 Text(
                                   '1. Choose a quiet workspace',
@@ -394,10 +394,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       .override(
                                         fontFamily: 'Inter',
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                 ),
                                 Text(
-                                  '2. Keep a to-do list handy',
+                                  'Find a location where you can focus without interruptions.',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -406,7 +407,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                 ),
                                 Text(
-                                  '3. Use breaks wisely',
+                                  '2. Start with one task',
+                                  style: FlutterFlowTheme.of(context)
+                                      .bodyMedium
+                                      .override(
+                                        fontFamily: 'Inter',
+                                        letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                ),
+                                Text(
+                                  'Don\'t try to multitask during your Pomodoro sessions.',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -415,16 +426,17 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                       ),
                                 ),
                                 Text(
-                                  '4. Stay committed to the time blocks',
+                                  '3. Respect the timer',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
                                         fontFamily: 'Inter',
                                         letterSpacing: 0.0,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                 ),
                                 Text(
-                                  '5. Track your progress',
+                                  'When the timer rings, stop working and take your break.',
                                   style: FlutterFlowTheme.of(context)
                                       .bodyMedium
                                       .override(
@@ -432,25 +444,24 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         letterSpacing: 0.0,
                                       ),
                                 ),
-                              ].divide(SizedBox(height: 12.0)),
+                              ].divide(SizedBox(height: 12)),
                             ),
-                          ].divide(SizedBox(height: 16.0)),
+                          ].divide(SizedBox(height: 16)),
                         ),
                       ),
                     ),
                   ),
                   FFButtonWidget(
                     onPressed: () {
-                      print('Button pressed ...');
+                      print('Go to Info Page Button pressed ...');
+                      context.go('/infoPage');
                     },
-                    text: 'Start Your First Pomodoro',
+                    text: 'Start Your Pomodoro',
                     options: FFButtonOptions(
-                      width: MediaQuery.sizeOf(context).width * 1.0,
-                      height: 50.0,
-                      padding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                      iconPadding:
-                          EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                      width: MediaQuery.sizeOf(context).width,
+                      height: 50,
+                      padding: EdgeInsets.all(8),
+                      iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                       color: FlutterFlowTheme.of(context).primary,
                       textStyle:
                           FlutterFlowTheme.of(context).titleSmall.override(
@@ -458,11 +469,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                 color: Colors.white,
                                 letterSpacing: 0.0,
                               ),
-                      elevation: 0.0,
-                      borderRadius: BorderRadius.circular(25.0),
+                      elevation: 0,
+                      borderRadius: BorderRadius.circular(25),
                     ),
                   ),
-                ].divide(SizedBox(height: 24.0)),
+                ].divide(SizedBox(height: 24)),
               ),
             ),
           ),
