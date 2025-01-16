@@ -51,7 +51,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'setPomodoro',
+      title: 'Set your Pomodoro Break',
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
@@ -84,7 +84,7 @@ class NavBarPage extends StatefulWidget {
 
 /// This is the private State class that goes with NavBarPage.
 class _NavBarPageState extends State<NavBarPage> {
-  String _currentPageName = 'infoPage';
+  String _currentPageName = 'home';
   late Widget? _currentPage;
 
   @override
@@ -97,7 +97,7 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'infoPage': InfoPageWidget(),
+      'infoPage': InstructionPageWidget(),
       'home': HomePageWidget(),
       'setPomodoro': SetPomodoroWidget(),
     };
