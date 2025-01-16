@@ -16,8 +16,6 @@ import com.lxisoft.habittracker.exception.TaskNotFoundException;
 import com.lxisoft.habittracker.repository.TaskRepository;
 import com.lxisoft.habittracker.service.HabitService;
 
-
-
 @RestController
 @RequestMapping("/")
 public class HabitController{

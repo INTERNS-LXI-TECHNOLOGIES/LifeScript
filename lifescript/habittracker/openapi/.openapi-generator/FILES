@@ -4,6 +4,7 @@ README.md
 analysis_options.yaml
 doc/HabitControllerApi.md
 doc/HabitEntity.md
+doc/Task.md
 lib/openapi.dart
 lib/src/api.dart
 lib/src/api/habit_controller_api.dart
@@ -16,7 +17,9 @@ lib/src/auth/oauth.dart
 lib/src/date_serializer.dart
 lib/src/model/date.dart
 lib/src/model/habit_entity.dart
+lib/src/model/task.dart
 lib/src/serializers.dart
 pubspec.yaml
 test/habit_controller_api_test.dart
 test/habit_entity_test.dart
+test/task_test.dart

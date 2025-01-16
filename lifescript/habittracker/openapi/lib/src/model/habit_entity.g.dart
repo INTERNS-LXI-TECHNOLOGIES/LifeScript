@@ -10,7 +10,7 @@ class _$HabitEntity extends HabitEntity {
   @override
   final int? id;
   @override
-  final String? name;
+  final String? duration;
   @override
   final String? habit;
   @override
@@ -19,7 +19,7 @@ class _$HabitEntity extends HabitEntity {
   factory _$HabitEntity([void Function(HabitEntityBuilder)? updates]) =>
       (new HabitEntityBuilder()..update(updates))._build();
 
-  _$HabitEntity._({this.id, this.name, this.habit, this.description})
+  _$HabitEntity._({this.id, this.duration, this.habit, this.description})
       : super._();
 
   @override
@@ -34,7 +34,7 @@ class _$HabitEntity extends HabitEntity {
     if (identical(other, this)) return true;
     return other is HabitEntity &&
         id == other.id &&
-        name == other.name &&
+        duration == other.duration &&
         habit == other.habit &&
         description == other.description;
   }
@@ -43,7 +43,7 @@ class _$HabitEntity extends HabitEntity {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, id.hashCode);
-    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, duration.hashCode);
     _$hash = $jc(_$hash, habit.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jf(_$hash);
@@ -54,7 +54,7 @@ class _$HabitEntity extends HabitEntity {
   String toString() {
     return (newBuiltValueToStringHelper(r'HabitEntity')
           ..add('id', id)
-          ..add('name', name)
+          ..add('duration', duration)
           ..add('habit', habit)
           ..add('description', description))
         .toString();
@@ -68,9 +68,9 @@ class HabitEntityBuilder implements Builder<HabitEntity, HabitEntityBuilder> {
   int? get id => _$this._id;
   set id(int? id) => _$this._id = id;
 
-  String? _name;
-  String? get name => _$this._name;
-  set name(String? name) => _$this._name = name;
+  String? _duration;
+  String? get duration => _$this._duration;
+  set duration(String? duration) => _$this._duration = duration;
 
   String? _habit;
   String? get habit => _$this._habit;
@@ -88,7 +88,7 @@ class HabitEntityBuilder implements Builder<HabitEntity, HabitEntityBuilder> {
     final $v = _$v;
     if ($v != null) {
       _id = $v.id;
-      _name = $v.name;
+      _duration = $v.duration;
       _habit = $v.habit;
       _description = $v.description;
       _$v = null;
@@ -113,7 +113,7 @@ class HabitEntityBuilder implements Builder<HabitEntity, HabitEntityBuilder> {
   _$HabitEntity _build() {
     final _$result = _$v ??
         new _$HabitEntity._(
-            id: id, name: name, habit: habit, description: description);
+            id: id, duration: duration, habit: habit, description: description);
     replace(_$result);
     return _$result;
   }

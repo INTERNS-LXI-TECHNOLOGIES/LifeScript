@@ -9,12 +9,129 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createHabit**](HabitControllerApi.md#createhabit) | **POST** / | 
-[**getAllPersons**](HabitControllerApi.md#getallpersons) | **GET** / | 
+[**getTaskForAllHabits**](HabitControllerApi.md#gettaskforallhabits) | **GET** /read | 
+[**markTaskCompleted**](HabitControllerApi.md#marktaskcompleted) | **POST** /delete | 
+[**readAllHabits**](HabitControllerApi.md#readallhabits) | **GET** / | 
+[**saveHabit**](HabitControllerApi.md#savehabit) | **POST** / | 
 
 
-# **createHabit**
-> HabitEntity createHabit(habitEntity)
+# **getTaskForAllHabits**
+> BuiltList<Task> getTaskForAllHabits()
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getHabitControllerApi();
+
+try {
+    final response = api.getTaskForAllHabits();
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling HabitControllerApi->getTaskForAllHabits: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**BuiltList&lt;Task&gt;**](Task.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **markTaskCompleted**
+> BuiltList<Task> markTaskCompleted(taskId)
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getHabitControllerApi();
+final int taskId = 789; // int | 
+
+try {
+    final response = api.markTaskCompleted(taskId);
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling HabitControllerApi->markTaskCompleted: $e\n');
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **taskId** | **int**|  | 
+
+### Return type
+
+[**BuiltList&lt;Task&gt;**](Task.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **readAllHabits**
+> BuiltList<HabitEntity> readAllHabits()
+
+
+
+### Example
+```dart
+import 'package:openapi/api.dart';
+
+final api = Openapi().getHabitControllerApi();
+
+try {
+    final response = api.readAllHabits();
+    print(response);
+} catch on DioException (e) {
+    print('Exception when calling HabitControllerApi->readAllHabits: $e\n');
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**BuiltList&lt;HabitEntity&gt;**](HabitEntity.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: */*
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **saveHabit**
+> HabitEntity saveHabit(habitEntity)
 
 
 
@@ -26,10 +143,10 @@ final api = Openapi().getHabitControllerApi();
 final HabitEntity habitEntity = ; // HabitEntity | 
 
 try {
-    final response = api.createHabit(habitEntity);
+    final response = api.saveHabit(habitEntity);
     print(response);
 } catch on DioException (e) {
-    print('Exception when calling HabitControllerApi->createHabit: $e\n');
+    print('Exception when calling HabitControllerApi->saveHabit: $e\n');
 }
 ```
 
@@ -50,43 +167,6 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: */*
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **getAllPersons**
-> BuiltList<HabitEntity> getAllPersons()
-
-
-
-### Example
-```dart
-import 'package:openapi/api.dart';
-
-final api = Openapi().getHabitControllerApi();
-
-try {
-    final response = api.getAllPersons();
-    print(response);
-} catch on DioException (e) {
-    print('Exception when calling HabitControllerApi->getAllPersons: $e\n');
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**BuiltList&lt;HabitEntity&gt;**](HabitEntity.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
  - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

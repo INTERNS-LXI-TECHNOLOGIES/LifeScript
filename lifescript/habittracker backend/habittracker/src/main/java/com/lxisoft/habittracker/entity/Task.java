@@ -1,6 +1,8 @@
 package com.lxisoft.habittracker.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
 
@@ -8,10 +10,11 @@ import jakarta.persistence.ManyToOne;
 public class Task {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private boolean completed;
 
-    @ManyToOne // Define the relationship between Task and HabitEntity
+    @ManyToOne 
     private HabitEntity habit;
 
     public void setId(Long id) {
