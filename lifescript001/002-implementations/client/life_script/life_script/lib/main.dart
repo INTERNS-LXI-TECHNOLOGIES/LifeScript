@@ -6,6 +6,7 @@ import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:go_router/go_router.dart';
 import 'package:life_script/life_script/life_script_widget.dart';
 import 'package:perfectday_frontend/PerfectdayWidget.dart';
+import 'package:pomodoro_break/home_page/Home_Page_Widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/nav/nav.dart';
@@ -59,6 +60,10 @@ class _MyAppState extends State<MyApp> {
         GoRoute(
           path: '/dailyjournal',
           builder: (context, state) => DailyJournalWidget(),
+        ),
+         GoRoute(
+          path: '/pomodoro',
+          builder: (context, state) => HomePageWidget(),
         ),
       ],
     );
