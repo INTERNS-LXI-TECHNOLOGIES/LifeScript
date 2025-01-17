@@ -1,4 +1,5 @@
 import 'package:daily_journal/daily_journal/daily_journal_widget.dart';
+import 'package:goal_setting/goal_setting/goal_setting_widget.dart';
 import 'package:perfectday_frontend/PerfectdayWidget.dart';
 
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -117,60 +118,72 @@ class _LifeScriptWidgetState extends State<LifeScriptWidget> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0),
                     ),
-                    child: Container(
-                      width: MediaQuery.sizeOf(context).width * 1.0,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFE8F5E9),
-                        borderRadius: BorderRadius.circular(12.0),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 20.0, 20.0, 20.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Container(
-                              width: 50.0,
-                              height: 50.0,
-                              decoration: BoxDecoration(
-                                color: Colors.green,
-                                borderRadius: BorderRadius.circular(25.0),
+                    child: InkWell(
+                      // Wrap Material with InkWell for tap detection
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => GoalSettingWidget()),
+                        );
+                      },
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width * 1.0,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFFF8E1),
+                          borderRadius: BorderRadius.circular(12.0),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(
+                              20.0, 20.0, 20.0, 20.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Container(
+                                width: 50.0,
+                                height: 50.0,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFFFC107),
+                                  borderRadius: BorderRadius.circular(25.0),
+                                ),
+                                child: Icon(
+                                  Icons.task_alt,
+                                  color: Colors.white,
+                                  size: 30.0,
+                                ),
                               ),
-                              child: Icon(
-                                Icons.track_changes,
-                                color: Colors.white,
-                                size: 30.0,
+                              SizedBox(
+                                  width: 16.0), // Add spacing between elements
+                              Expanded(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'goalSetting',
+                                      style: FlutterFlowTheme.of(context)
+                                          .titleMedium
+                                          .override(
+                                            fontFamily: 'Inter Tight',
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                    Text(
+                                      'Organize your daily activities',
+                                      style: FlutterFlowTheme.of(context)
+                                          .bodySmall
+                                          .override(
+                                            fontFamily: 'Inter',
+                                            color: FlutterFlowTheme.of(context)
+                                                .secondaryText,
+                                            letterSpacing: 0.0,
+                                          ),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Goal Setting',
-                                    style: FlutterFlowTheme.of(context)
-                                        .titleMedium
-                                        .override(
-                                          fontFamily: 'Inter Tight',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                  Text(
-                                    'Track and achieve your wellness goals',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodySmall
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ].divide(SizedBox(width: 16.0)),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -288,7 +301,7 @@ class _LifeScriptWidgetState extends State<LifeScriptWidget> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'dailyjournal',
+                                    'habit',
                                     style: FlutterFlowTheme.of(context)
                                         .titleMedium
                                         .override(
@@ -316,77 +329,77 @@ class _LifeScriptWidgetState extends State<LifeScriptWidget> {
                     ),
                   ),
                  Material(
-  color: Colors.transparent,
-  elevation: 2.0,
-  shape: RoundedRectangleBorder(
-    borderRadius: BorderRadius.circular(12.0),
-  ),
-  child: InkWell(
-    // Wrap Material with InkWell for tap detection
-    onTap: () {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => DailyJournalWidget()),
-      );
-    },
-    child: Container(
-      width: MediaQuery.sizeOf(context).width * 1.0,
-      decoration: BoxDecoration(
-        color: Color(0xFFFFF8E1),
-        borderRadius: BorderRadius.circular(12.0),
-      ),
-      child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
-        child: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Container(
-              width: 50.0,
-              height: 50.0,
-              decoration: BoxDecoration(
-                color: Color(0xFFFFC107),
-                borderRadius: BorderRadius.circular(25.0),
-              ),
-              child: Icon(
-                Icons.task_alt,
-                color: Colors.white,
-                size: 30.0,
-              ),
-            ),
-            SizedBox(width: 16.0), // Add spacing between elements
-            Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Perfect Day',
-                    style: FlutterFlowTheme.of(context)
-                        .titleMedium
-                        .override(
-                          fontFamily: 'Inter Tight',
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                  Text(
-                    'Organize your daily activities',
-                    style: FlutterFlowTheme.of(context)
-                        .bodySmall
-                        .override(
-                          fontFamily: 'Inter',
-                          color: FlutterFlowTheme.of(context).secondaryText,
-                          letterSpacing: 0.0,
-                        ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    ),
-  ),
-),
+                            color: Colors.transparent,
+                            elevation: 2.0,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12.0),
+                            ),
+                            child: InkWell(
+                              // Wrap Material with InkWell for tap detection
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => DailyJournalWidget()),
+                                );
+                              },
+                              child: Container(
+                                width: MediaQuery.sizeOf(context).width * 1.0,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFFFF8E1),
+                                  borderRadius: BorderRadius.circular(12.0),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(20.0, 20.0, 20.0, 20.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Container(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        decoration: BoxDecoration(
+                                          color: Color(0xFFFFC107),
+                                          borderRadius: BorderRadius.circular(25.0),
+                                        ),
+                                        child: Icon(
+                                          Icons.task_alt,
+                                          color: Colors.white,
+                                          size: 30.0,
+                                        ),
+                                      ),
+                                      SizedBox(width: 16.0), // Add spacing between elements
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              'dailyjournal',
+                                              style: FlutterFlowTheme.of(context)
+                                                  .titleMedium
+                                                  .override(
+                                                    fontFamily: 'Inter Tight',
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                            ),
+                                            Text(
+                                              'Organize your daily activities',
+                                              style: FlutterFlowTheme.of(context)
+                                                  .bodySmall
+                                                  .override(
+                                                    fontFamily: 'Inter',
+                                                    color: FlutterFlowTheme.of(context).secondaryText,
+                                                    letterSpacing: 0.0,
+                                                  ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
 
                   Material(
                     color: Colors.transparent,

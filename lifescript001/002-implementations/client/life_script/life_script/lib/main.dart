@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:go_router/go_router.dart';
+import 'package:goal_setting/index.dart';
 import 'package:life_script/life_script/life_script_widget.dart';
 import 'package:perfectday_frontend/PerfectdayWidget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -59,6 +60,10 @@ class _MyAppState extends State<MyApp> {
         GoRoute(
           path: '/dailyjournal',
           builder: (context, state) => DailyJournalWidget(),
+        ),
+         GoRoute(
+          path: '/goalSetting',
+          builder: (context, state) => GoalSettingWidget(),
         ),
       ],
     );
