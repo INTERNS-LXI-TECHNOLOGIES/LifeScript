@@ -1,4 +1,5 @@
 import 'package:daily_journal/daily_journal/daily_journal_widget.dart';
+import 'package:habittracker/widget/habit_track_homepagewidget.dart';
 import 'package:perfectday_frontend/PerfectdayWidget.dart';
 import 'package:pomodoro_break/home_page/Home_Page_Widget.dart';
 
@@ -462,13 +463,21 @@ class _LifeScriptWidgetState extends State<LifeScriptWidget> {
                       ),
                     ),
                     ),
-                  Material(
+                    Material(
                     color: Colors.transparent,
                     elevation: 2.0,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0),
                     ),
-                    child: Container(
+                    child: InkWell(
+                      // Wrap Material with InkWell for tap detection
+                      onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HabittrackhomepageWidget()),
+                      );
+                      },
+                      child: Container(
                       width: MediaQuery.sizeOf(context).width * 1.0,
                       decoration: BoxDecoration(
                         color: Color(0xFFE1F5FE),
@@ -476,62 +485,63 @@ class _LifeScriptWidgetState extends State<LifeScriptWidget> {
                       ),
                       child: Padding(
                         padding: EdgeInsetsDirectional.fromSTEB(
-                            20.0, 20.0, 20.0, 20.0),
+                          20.0, 20.0, 20.0, 20.0),
                         child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Container(
-                              width: 50.0,
-                              height: 50.0,
-                              decoration: BoxDecoration(
-                                color: Color(0xFF00BCD4),
-                                borderRadius: BorderRadius.circular(25.0),
-                              ),
-                              child: Icon(
-                                Icons.self_improvement,
-                                color: Colors.white,
-                                size: 30.0,
-                              ),
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Container(
+                          width: 50.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            color: Color(0xFF00BCD4),
+                            borderRadius: BorderRadius.circular(25.0),
+                          ),
+                          child: Icon(
+                            Icons.self_improvement,
+                            color: Colors.white,
+                            size: 30.0,
+                          ),
+                          ),
+                          Expanded(
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                            Text(
+                              'Habit tracker',
+                              style: FlutterFlowTheme.of(context)
+                                .titleMedium
+                                .override(
+                                fontFamily: 'Inter Tight',
+                                letterSpacing: 0.0,
+                                ),
                             ),
-                            Expanded(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Habit tracker',
-                                    style: FlutterFlowTheme.of(context)
-                                        .titleMedium
-                                        .override(
-                                          fontFamily: 'Inter Tight',
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                  Text(
-                                    'Find your inner peace',
-                                    style: FlutterFlowTheme.of(context)
-                                        .bodySmall
-                                        .override(
-                                          fontFamily: 'Inter',
-                                          color: FlutterFlowTheme.of(context)
-                                              .secondaryText,
-                                          letterSpacing: 0.0,
-                                        ),
-                                  ),
-                                ],
-                              ),
+                            Text(
+                              'Find your inner peace',
+                              style: FlutterFlowTheme.of(context)
+                                .bodySmall
+                                .override(
+                                fontFamily: 'Inter',
+                                color: FlutterFlowTheme.of(context)
+                                  .secondaryText,
+                                letterSpacing: 0.0,
+                                ),
                             ),
-                          ].divide(SizedBox(width: 16.0)),
+                            ],
+                          ),
+                          ),
+                        ].divide(SizedBox(width: 16.0)),
                         ),
                       ),
+                      ),
                     ),
+                    ),
+                  ].divide(SizedBox(height: 16.0)),
                   ),
-                ].divide(SizedBox(height: 16.0)),
+                ),
+                ),
               ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
+              ),
+            );
+            }
+          }

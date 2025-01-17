@@ -60,7 +60,8 @@ dependencies:
     path: ./daily_journal
   pomodoro_break:
     path: ./pomodoro_break
-  
+  habittracker:
+    path: ./habittracker
 
   # Cupertino icons for iOS
   cupertino_icons: ^1.0.0
