@@ -94,7 +94,7 @@ spring:
     name: perfectdaybackend
   docker:
     compose:
-      enabled: true
+      enabled: false
       lifecycle-management: start-only
       file: src/main/docker/services.yml
   profiles:
@@ -223,3 +223,6 @@ jhipster:
 # ===================================================================
 
 # application:
+logging:
+  level:
+    org.springframework.security: DEBUG
