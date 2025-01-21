@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (habitTracker(); as habitTrackerRef) {
+      <div>
+        <h2 data-cy="habitTrackerDetailsHeading">
+          <span jhiTranslate="habittrackBackendApp.habitTracker.detail.title">Habit Tracker</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ habitTrackerRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="habittrackBackendApp.habitTracker.habitId">Habit Id</span></dt>
+          <dd>
+            <span>{{ habitTrackerRef.habitId }}</span>
+          </dd>
+          <dt><span jhiTranslate="habittrackBackendApp.habitTracker.habitName">Habit Name</span></dt>
+          <dd>
+            <span>{{ habitTrackerRef.habitName }}</span>
+          </dd>
+          <dt><span jhiTranslate="habittrackBackendApp.habitTracker.description">Description</span></dt>
+          <dd>
+            <span>{{ habitTrackerRef.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="habittrackBackendApp.habitTracker.startDate">Start Date</span></dt>
+          <dd>
+            <span>{{ habitTrackerRef.startDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="habittrackBackendApp.habitTracker.endDate">End Date</span></dt>
+          <dd>
+            <span>{{ habitTrackerRef.endDate }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/habit-tracker', habitTrackerRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
