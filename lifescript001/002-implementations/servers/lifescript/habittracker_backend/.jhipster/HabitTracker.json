@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20250121061415"
+  },
+  "fields": [
+    {
+      "fieldName": "habitId",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "habitName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "startDate",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "endDate",
+      "fieldType": "String"
+    }
+  ],
+  "name": "HabitTracker",
+  "pagination": "no",
+  "readOnly": true,
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "no"
+}
