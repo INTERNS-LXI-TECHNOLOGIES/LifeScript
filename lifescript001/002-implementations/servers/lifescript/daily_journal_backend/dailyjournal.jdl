@@ -4,4 +4,3 @@ entity DailyJournal {
   content String required,
   date LocalDate required
 }
-

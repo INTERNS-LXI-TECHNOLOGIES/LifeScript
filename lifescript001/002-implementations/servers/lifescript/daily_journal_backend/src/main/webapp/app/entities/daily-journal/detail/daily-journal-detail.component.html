@@ -2,9 +2,7 @@
   <div class="col-8">
     @if (dailyJournal) {
       <div>
-        <h2 data-cy="dailyJournalDetailsHeading">
-          <span jhiTranslate="dailyJournalBackendApp.dailyJournal.detail.title">Daily Journal</span>
-        </h2>
+        <h2 data-cy="dailyJournalDetailsHeading"><span jhiTranslate="dailyJournalApp.dailyJournal.detail.title">Daily Journal</span></h2>
 
         <hr />
 
@@ -13,19 +11,19 @@
         <jhi-alert></jhi-alert>
 
         <dl class="row-md jh-entity-details">
-          <dt><span jhiTranslate="dailyJournalBackendApp.dailyJournal.id">Id</span></dt>
+          <dt><span jhiTranslate="dailyJournalApp.dailyJournal.id">Id</span></dt>
           <dd>
             <span>{{ dailyJournal.id }}</span>
           </dd>
-          <dt><span jhiTranslate="dailyJournalBackendApp.dailyJournal.title">Title</span></dt>
+          <dt><span jhiTranslate="dailyJournalApp.dailyJournal.title">Title</span></dt>
           <dd>
             <span>{{ dailyJournal.title }}</span>
           </dd>
-          <dt><span jhiTranslate="dailyJournalBackendApp.dailyJournal.content">Content</span></dt>
+          <dt><span jhiTranslate="dailyJournalApp.dailyJournal.content">Content</span></dt>
           <dd>
             <span>{{ dailyJournal.content }}</span>
           </dd>
-          <dt><span jhiTranslate="dailyJournalBackendApp.dailyJournal.date">Date</span></dt>
+          <dt><span jhiTranslate="dailyJournalApp.dailyJournal.date">Date</span></dt>
           <dd>
             <span>{{ dailyJournal.date | formatMediumDate }}</span>
           </dd>

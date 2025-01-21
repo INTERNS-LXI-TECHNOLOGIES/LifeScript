@@ -3,12 +3,12 @@
                              https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.diviso.dailyjournal</groupId>
-    <artifactId>daily-journal-backend</artifactId>
+    <groupId>com.diviso</groupId>
+    <artifactId>daily-journal</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Daily Journal Backend</name>
-    <description>Description for Daily Journal Backend</description>
+    <name>Daily Journal</name>
+    <description>Description for Daily Journal</description>
 
     <properties>
         <!--
@@ -24,7 +24,7 @@
         <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <start-class>com.diviso.dailyjournal.DailyJournalBackendApp</start-class>
+        <start-class>com.diviso.DailyJournalApp</start-class>
         <argLine>-Djava.security.egd=file:/dev/./urandom -Xmx1G</argLine>
         <m2e.apt.activation>jdt_apt</m2e.apt.activation>
         <run.addResources>false</run.addResources>
@@ -407,7 +407,7 @@
                             </platforms>
                         </from>
                         <to>
-                            <image>dailyjournalbackend:latest</image>
+                            <image>dailyjournal:latest</image>
                         </to>
                         <container>
                             <entrypoint>
@@ -830,7 +830,7 @@
                 <!-- default Spring profiles -->
                 <spring.profiles.active>dev${profile.tls}${profile.no-liquibase}</spring.profiles.active>
                 <profile.test>testdev</profile.test>
-                <liquibase-plugin.url>jdbc:mysql://localhost:3306/dailyJournalBackend</liquibase-plugin.url>
+                <liquibase-plugin.url>jdbc:mysql://localhost:3306/DailyJournal</liquibase-plugin.url>
                 <liquibase-plugin.username>root</liquibase-plugin.username>
                 <liquibase-plugin.password/>
             </properties>
@@ -934,7 +934,7 @@
                 <!-- default Spring profiles -->
                 <spring.profiles.active>prod${profile.api-docs}${profile.tls}${profile.e2e}${profile.no-liquibase}</spring.profiles.active>
                 <profile.test>testprod</profile.test>
-                <liquibase-plugin.url>jdbc:mysql://localhost:3306/dailyJournalBackend</liquibase-plugin.url>
+                <liquibase-plugin.url>jdbc:mysql://localhost:3306/DailyJournal</liquibase-plugin.url>
                 <liquibase-plugin.username>root</liquibase-plugin.username>
                 <liquibase-plugin.password/>
             </properties>

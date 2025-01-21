@@ -18,7 +18,7 @@ logging:
     ROOT: DEBUG
     tech.jhipster: DEBUG
     org.hibernate.SQL: DEBUG
-    com.diviso.dailyjournal: DEBUG
+    com.diviso: DEBUG
 
 spring:
   devtools:
@@ -33,7 +33,7 @@ spring:
   liquibase:
     # Remove 'faker' if you do not want the sample data to be loaded automatically
     contexts: dev, faker
-    url: jdbc:mysql://localhost:3306/dailyJournalBackend?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/DailyJournal?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
   mail:
     host: localhost
     port: 25
@@ -42,9 +42,9 @@ spring:
   messages:
     cache-duration: PT1S # 1 second, see the ISO 8601 standard
   r2dbc:
-    url: r2dbc:mysql://localhost:3306/dailyJournalBackend?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+    url: r2dbc:mysql://localhost:3306/DailyJournal?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
     username: root
-    password:
+    password: root
   thymeleaf:
     cache: false
 
@@ -73,7 +73,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-        base64-secret: NjU4NTA0YWMxMTFkMjE4NjhmMGFhYmRlMzk5YWYzMTg0NDU5NDk0N2MzYzgzMGFjZTA0ZTMxZGQ0MTY1ODJkNWFkNzg1YzA4ZTcwZGVjMTlhYjA3OGRiYTc1OTQ5MjZlYzdjOTUzZGMzMjYxZDM4YTAxMzFmZGRlY2U2NTg2NTM=
+        base64-secret: YTZiM2M5N2YwOTBlMGI0ZjNjNDM3MDUyYTE1NzhhNTMwNzVlZWVmOTkyYzQ4MDM1NmQ1ODA0NGI4MzgzZjgwMWQ2MDk5M2RlOWE1ZTcyNzlkYjk4NjkyMTNiYWNiOWI2NDNhOTVlY2M1Y2U4ZDhlZTcwOWQ2NjRkY2ZlMGFmM2U=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000

@@ -1,11 +1,11 @@
 <div>
   <h2 id="page-heading" data-cy="DailyJournalHeading">
-    <span jhiTranslate="dailyJournalBackendApp.dailyJournal.home.title">Daily Journals</span>
+    <span jhiTranslate="dailyJournalApp.dailyJournal.home.title">Daily Journals</span>
 
     <div class="d-flex justify-content-end">
       <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
         <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
-        <span jhiTranslate="dailyJournalBackendApp.dailyJournal.home.refreshListLabel">Refresh list</span>
+        <span jhiTranslate="dailyJournalApp.dailyJournal.home.refreshListLabel">Refresh list</span>
       </button>
 
       <button
@@ -15,7 +15,7 @@
         [routerLink]="['/daily-journal/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="dailyJournalBackendApp.dailyJournal.home.createLabel">Create a new Daily Journal</span>
+        <span jhiTranslate="dailyJournalApp.dailyJournal.home.createLabel">Create a new Daily Journal</span>
       </button>
     </div>
   </h2>
@@ -26,7 +26,7 @@
 
   @if (dailyJournals?.length === 0) {
     <div class="alert alert-warning" id="no-result">
-      <span jhiTranslate="dailyJournalBackendApp.dailyJournal.home.notFound">No Daily Journals found</span>
+      <span jhiTranslate="dailyJournalApp.dailyJournal.home.notFound">No Daily Journals found</span>
     </div>
   }
 
@@ -37,28 +37,28 @@
           <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
             <th scope="col" jhiSortBy="id">
               <div class="d-flex">
-                <span jhiTranslate="dailyJournalBackendApp.dailyJournal.id">Id</span>
+                <span jhiTranslate="dailyJournalApp.dailyJournal.id">Id</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
             <th scope="col" jhiSortBy="title">
               <div class="d-flex">
-                <span jhiTranslate="dailyJournalBackendApp.dailyJournal.title">Title</span>
+                <span jhiTranslate="dailyJournalApp.dailyJournal.title">Title</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
             <th scope="col" jhiSortBy="content">
               <div class="d-flex">
-                <span jhiTranslate="dailyJournalBackendApp.dailyJournal.content">Content</span>
+                <span jhiTranslate="dailyJournalApp.dailyJournal.content">Content</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
             <th scope="col" jhiSortBy="date">
               <div class="d-flex">
-                <span jhiTranslate="dailyJournalBackendApp.dailyJournal.date">Date</span>
+                <span jhiTranslate="dailyJournalApp.dailyJournal.date">Date</span>
 
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>

@@ -3,29 +3,29 @@ import dayjs from 'dayjs/esm';
 import { IDailyJournal, NewDailyJournal } from './daily-journal.model';
 
 export const sampleWithRequiredData: IDailyJournal = {
-  id: 31254,
-  title: 'rainbow indeed furiously',
-  content: 'for',
-  date: dayjs('2025-01-20'),
+  id: 13705,
+  title: 'cash',
+  content: 'shirk pricey what',
+  date: dayjs('2025-01-21'),
 };
 
 export const sampleWithPartialData: IDailyJournal = {
-  id: 23508,
-  title: 'gracious',
-  content: 'fantastic haze blah',
+  id: 24116,
+  title: 'selfishly',
+  content: 'loudly atop past',
   date: dayjs('2025-01-20'),
 };
 
 export const sampleWithFullData: IDailyJournal = {
-  id: 30522,
-  title: 'asphyxiate scarily unfolded',
-  content: 'gosh',
-  date: dayjs('2025-01-21'),
+  id: 28774,
+  title: 'whenever',
+  content: 'small',
+  date: dayjs('2025-01-20'),
 };
 
 export const sampleWithNewData: NewDailyJournal = {
-  title: 'ack',
-  content: 'manufacturer',
+  title: 'joyful whether',
+  content: 'fifth',
   date: dayjs('2025-01-20'),
   id: null,
 };

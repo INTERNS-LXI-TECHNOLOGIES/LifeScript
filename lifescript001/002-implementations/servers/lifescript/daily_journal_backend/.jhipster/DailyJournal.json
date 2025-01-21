@@ -1,6 +1,6 @@
 {
   "annotations": {
-    "changelogDate": "20250121051437"
+    "changelogDate": "20250121101144"
   },
   "applications": "*",
   "entityTableName": "daily_journal",

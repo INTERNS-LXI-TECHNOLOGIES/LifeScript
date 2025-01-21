@@ -17,7 +17,7 @@ logging:
   level:
     ROOT: INFO
     tech.jhipster: INFO
-    com.diviso.dailyjournal: INFO
+    com.diviso: INFO
 
 management:
   prometheus:
@@ -34,14 +34,14 @@ spring:
   # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
   liquibase:
     contexts: prod
-    url: jdbc:mysql://localhost:3306/dailyJournalBackend?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/DailyJournal?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
   mail:
     host: localhost
     port: 25
     username:
     password:
   r2dbc:
-    url: r2dbc:mysql://localhost:3306/dailyJournalBackend?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+    url: r2dbc:mysql://localhost:3306/DailyJournal?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
     username: root
     password:
   thymeleaf:
@@ -49,7 +49,7 @@ spring:
 
 # ===================================================================
 # To enable TLS in production, generate a certificate using:
-# keytool -genkey -alias dailyjournalbackend -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
+# keytool -genkey -alias dailyjournal -storetype PKCS12 -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650
 #
 # You can also use Let's Encrypt:
 # See details in topic "Create a Java Keystore (.JKS) from Let's Encrypt Certificates" on https://maximilian-boehm.com/en-gb/blog
@@ -92,7 +92,7 @@ jhipster:
         # - In the Consul configserver
         # - In a separate `application-prod.yml` file, in the same folder as your executable JAR file
         # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
-        base64-secret: NjU4NTA0YWMxMTFkMjE4NjhmMGFhYmRlMzk5YWYzMTg0NDU5NDk0N2MzYzgzMGFjZTA0ZTMxZGQ0MTY1ODJkNWFkNzg1YzA4ZTcwZGVjMTlhYjA3OGRiYTc1OTQ5MjZlYzdjOTUzZGMzMjYxZDM4YTAxMzFmZGRlY2U2NTg2NTM=
+        base64-secret: YTZiM2M5N2YwOTBlMGI0ZjNjNDM3MDUyYTE1NzhhNTMwNzVlZWVmOTkyYzQ4MDM1NmQ1ODA0NGI4MzgzZjgwMWQ2MDk5M2RlOWE1ZTcyNzlkYjk4NjkyMTNiYWNiOWI2NDNhOTVlY2M1Y2U4ZDhlZTcwOWQ2NjRkY2ZlMGFmM2U=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000
