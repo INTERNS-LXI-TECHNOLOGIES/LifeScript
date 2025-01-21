@@ -1,0 +1,26 @@
+{
+  "dailyJournalApp": {
+    "dailyJournal": {
+      "home": {
+        "title": "Daily Journals",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Daily Journal",
+        "createOrEditLabel": "Create or edit a Daily Journal",
+        "notFound": "No Daily Journals found"
+      },
+      "created": "A new Daily Journal is created with identifier {{ param }}",
+      "updated": "A Daily Journal is updated with identifier {{ param }}",
+      "deleted": "A Daily Journal is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Daily Journal {{ id }}?"
+      },
+      "detail": {
+        "title": "Daily Journal"
+      },
+      "id": "Id",
+      "title": "Title",
+      "content": "Content",
+      "date": "Date"
+    }
+  }
+}
