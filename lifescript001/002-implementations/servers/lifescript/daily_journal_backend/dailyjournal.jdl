@@ -1,0 +1,7 @@
+entity DailyJournal {
+  id Long,
+  title String required,
+  content String required,
+  date LocalDate required
+}
+

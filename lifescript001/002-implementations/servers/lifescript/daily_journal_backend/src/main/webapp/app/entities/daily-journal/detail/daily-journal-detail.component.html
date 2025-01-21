@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (dailyJournal) {
+      <div>
+        <h2 data-cy="dailyJournalDetailsHeading">
+          <span jhiTranslate="dailyJournalBackendApp.dailyJournal.detail.title">Daily Journal</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="dailyJournalBackendApp.dailyJournal.id">Id</span></dt>
+          <dd>
+            <span>{{ dailyJournal.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="dailyJournalBackendApp.dailyJournal.title">Title</span></dt>
+          <dd>
+            <span>{{ dailyJournal.title }}</span>
+          </dd>
+          <dt><span jhiTranslate="dailyJournalBackendApp.dailyJournal.content">Content</span></dt>
+          <dd>
+            <span>{{ dailyJournal.content }}</span>
+          </dd>
+          <dt><span jhiTranslate="dailyJournalBackendApp.dailyJournal.date">Date</span></dt>
+          <dd>
+            <span>{{ dailyJournal.date | formatMediumDate }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/daily-journal', dailyJournal.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

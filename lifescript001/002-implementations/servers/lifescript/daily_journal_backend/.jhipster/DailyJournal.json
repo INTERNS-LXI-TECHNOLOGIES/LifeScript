@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20250121051437"
+  },
+  "applications": "*",
+  "entityTableName": "daily_journal",
+  "fields": [
+    {
+      "fieldName": "id",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "title",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "content",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "DailyJournal",
+  "relationships": [],
+  "searchEngine": "no"
+}
