@@ -10,21 +10,21 @@ import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/api_util.dart';
-import 'package:openapi/src/model/day_plan.dart';
+import 'package:openapi/src/model/perfect_day.dart';
 
-class DayPlanControllerApi {
+class PerfectDayResourceApi {
 
   final Dio _dio;
 
   final Serializers _serializers;
 
-  const DayPlanControllerApi(this._dio, this._serializers);
+  const PerfectDayResourceApi(this._dio, this._serializers);
 
-  /// createDayPlan
+  /// createPerfectDay
   /// 
   ///
   /// Parameters:
-  /// * [dayPlan] 
+  /// * [perfectDay] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -32,10 +32,10 @@ class DayPlanControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [DayPlan] as data
+  /// Returns a [Future] containing a [Response] with a [PerfectDay] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<DayPlan>> createDayPlan({ 
-    required DayPlan dayPlan,
+  Future<Response<PerfectDay>> createPerfectDay({ 
+    required PerfectDay perfectDay,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -43,7 +43,7 @@ class DayPlanControllerApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/dayplans';
+    final _path = r'/api/perfect-days';
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -60,8 +60,8 @@ class DayPlanControllerApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(DayPlan);
-      _bodyData = _serializers.serialize(dayPlan, specifiedType: _type);
+      const _type = FullType(PerfectDay);
+      _bodyData = _serializers.serialize(perfectDay, specifiedType: _type);
 
     } catch(error, stackTrace) {
       throw DioException(
@@ -84,14 +84,14 @@ class DayPlanControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    DayPlan? _responseData;
+    PerfectDay? _responseData;
 
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : _serializers.deserialize(
         rawResponse,
-        specifiedType: const FullType(DayPlan),
-      ) as DayPlan;
+        specifiedType: const FullType(PerfectDay),
+      ) as PerfectDay;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -103,7 +103,7 @@ class DayPlanControllerApi {
       );
     }
 
-    return Response<DayPlan>(
+    return Response<PerfectDay>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -115,7 +115,7 @@ class DayPlanControllerApi {
     );
   }
 
-  /// deleteDayPlan
+  /// deletePerfectDay
   /// 
   ///
   /// Parameters:
@@ -129,7 +129,7 @@ class DayPlanControllerApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> deleteDayPlan({ 
+  Future<Response<void>> deletePerfectDay({ 
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -138,7 +138,7 @@ class DayPlanControllerApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/dayplans/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
+    final _path = r'/api/perfect-days/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -162,7 +162,7 @@ class DayPlanControllerApi {
     return _response;
   }
 
-  /// getAllDayPlans
+  /// getAllPerfectDays
   /// 
   ///
   /// Parameters:
@@ -173,9 +173,9 @@ class DayPlanControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BuiltList<DayPlan>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<PerfectDay>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<DayPlan>>> getAllDayPlans({ 
+  Future<Response<BuiltList<PerfectDay>>> getAllPerfectDays({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -183,7 +183,7 @@ class DayPlanControllerApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/dayplans';
+    final _path = r'/api/perfect-days';
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -204,14 +204,14 @@ class DayPlanControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<DayPlan>? _responseData;
+    BuiltList<PerfectDay>? _responseData;
 
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : _serializers.deserialize(
         rawResponse,
-        specifiedType: const FullType(BuiltList, [FullType(DayPlan)]),
-      ) as BuiltList<DayPlan>;
+        specifiedType: const FullType(BuiltList, [FullType(PerfectDay)]),
+      ) as BuiltList<PerfectDay>;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -223,7 +223,7 @@ class DayPlanControllerApi {
       );
     }
 
-    return Response<BuiltList<DayPlan>>(
+    return Response<BuiltList<PerfectDay>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -235,7 +235,7 @@ class DayPlanControllerApi {
     );
   }
 
-  /// getDayPlanById
+  /// getPerfectDay
   /// 
   ///
   /// Parameters:
@@ -247,9 +247,9 @@ class DayPlanControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [DayPlan] as data
+  /// Returns a [Future] containing a [Response] with a [PerfectDay] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<DayPlan>> getDayPlanById({ 
+  Future<Response<PerfectDay>> getPerfectDay({ 
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -258,7 +258,7 @@ class DayPlanControllerApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/dayplans/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
+    final _path = r'/api/perfect-days/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -279,14 +279,14 @@ class DayPlanControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    DayPlan? _responseData;
+    PerfectDay? _responseData;
 
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : _serializers.deserialize(
         rawResponse,
-        specifiedType: const FullType(DayPlan),
-      ) as DayPlan;
+        specifiedType: const FullType(PerfectDay),
+      ) as PerfectDay;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -298,7 +298,7 @@ class DayPlanControllerApi {
       );
     }
 
-    return Response<DayPlan>(
+    return Response<PerfectDay>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -310,12 +310,12 @@ class DayPlanControllerApi {
     );
   }
 
-  /// updateDayPlan
+  /// partialUpdatePerfectDay
   /// 
   ///
   /// Parameters:
   /// * [id] 
-  /// * [dayPlan] 
+  /// * [perfectDay] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -323,11 +323,11 @@ class DayPlanControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [DayPlan] as data
+  /// Returns a [Future] containing a [Response] with a [PerfectDay] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<DayPlan>> updateDayPlan({ 
+  Future<Response<PerfectDay>> partialUpdatePerfectDay({ 
     required int id,
-    required DayPlan dayPlan,
+    required PerfectDay perfectDay,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -335,9 +335,9 @@ class DayPlanControllerApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/dayplans/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
+    final _path = r'/api/perfect-days/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
-      method: r'PUT',
+      method: r'PATCH',
       headers: <String, dynamic>{
         ...?headers,
       },
@@ -352,8 +352,8 @@ class DayPlanControllerApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(DayPlan);
-      _bodyData = _serializers.serialize(dayPlan, specifiedType: _type);
+      const _type = FullType(PerfectDay);
+      _bodyData = _serializers.serialize(perfectDay, specifiedType: _type);
 
     } catch(error, stackTrace) {
       throw DioException(
@@ -376,14 +376,14 @@ class DayPlanControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    DayPlan? _responseData;
+    PerfectDay? _responseData;
 
     try {
       final rawResponse = _response.data;
       _responseData = rawResponse == null ? null : _serializers.deserialize(
         rawResponse,
-        specifiedType: const FullType(DayPlan),
-      ) as DayPlan;
+        specifiedType: const FullType(PerfectDay),
+      ) as PerfectDay;
 
     } catch (error, stackTrace) {
       throw DioException(
@@ -395,7 +395,104 @@ class DayPlanControllerApi {
       );
     }
 
-    return Response<DayPlan>(
+    return Response<PerfectDay>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// updatePerfectDay
+  /// 
+  ///
+  /// Parameters:
+  /// * [id] 
+  /// * [perfectDay] 
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [PerfectDay] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<PerfectDay>> updatePerfectDay({ 
+    required int id,
+    required PerfectDay perfectDay,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/perfect-days/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
+    final _options = Options(
+      method: r'PUT',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(PerfectDay);
+      _bodyData = _serializers.serialize(perfectDay, specifiedType: _type);
+
+    } catch(error, stackTrace) {
+      throw DioException(
+         requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    PerfectDay? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(PerfectDay),
+      ) as PerfectDay;
+
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<PerfectDay>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
