@@ -1,6 +1,3 @@
-
-
-
 import 'package:daily_journal_openapi/openapi.dart';
 
 import '/flutter_flow/flutter_flow_icon_button.dart';

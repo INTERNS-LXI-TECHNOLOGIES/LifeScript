@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:openapi/openapi.dart';
+import 'package:openapiperfectday/openapi.dart';
 import 'package:perfectday_frontend/PerfectdayModel.dart';
 import 'package:perfectday_frontend/blocs/day_plan_bloc.dart';
 import 'package:perfectday_frontend/events/day_plan_event.dart';
@@ -299,13 +299,13 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
                               onPressed: () {
                                 final title = _model.textController1.text;
                                 final desc = _model.textController2.text;
-                                DayPlanControllerApi api =
-                                    Openapi().getDayPlanControllerApi();
+                                PerfectDayResourceApi api =
+                                    Openapi().getPerfectDayResourceApi();
 
-                                final dayPlan = DayPlan((b) => b
+                                final dayPlan = PerfectDay((b) => b
                                   ..title = title
                                   ..description = desc);
-                                api.createDayPlan(dayPlan: dayPlan);
+                                api.createPerfectDay(perfectDay: dayPlan);
 
                                 print("succes fully created");
                                 //context

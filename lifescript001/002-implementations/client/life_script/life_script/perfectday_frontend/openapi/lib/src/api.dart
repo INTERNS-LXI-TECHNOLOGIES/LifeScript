@@ -4,17 +4,17 @@
 
 import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
-import 'package:openapi/src/serializers.dart';
-import 'package:openapi/src/auth/api_key_auth.dart';
-import 'package:openapi/src/auth/basic_auth.dart';
-import 'package:openapi/src/auth/bearer_auth.dart';
-import 'package:openapi/src/auth/oauth.dart';
-import 'package:openapi/src/api/account_resource_api.dart';
-import 'package:openapi/src/api/authenticate_controller_api.dart';
-import 'package:openapi/src/api/authority_resource_api.dart';
-import 'package:openapi/src/api/perfect_day_resource_api.dart';
-import 'package:openapi/src/api/public_user_resource_api.dart';
-import 'package:openapi/src/api/user_resource_api.dart';
+import 'package:openapiperfectday/src/serializers.dart';
+import 'package:openapiperfectday/src/auth/api_key_auth.dart';
+import 'package:openapiperfectday/src/auth/basic_auth.dart';
+import 'package:openapiperfectday/src/auth/bearer_auth.dart';
+import 'package:openapiperfectday/src/auth/oauth.dart';
+import 'package:openapiperfectday/src/api/account_resource_api.dart';
+import 'package:openapiperfectday/src/api/authenticate_controller_api.dart';
+import 'package:openapiperfectday/src/api/authority_resource_api.dart';
+import 'package:openapiperfectday/src/api/perfect_day_resource_api.dart';
+import 'package:openapiperfectday/src/api/public_user_resource_api.dart';
+import 'package:openapiperfectday/src/api/user_resource_api.dart';
 
 class Openapi {
   static const String basePath = r'http://192.168.170.186:8080';
