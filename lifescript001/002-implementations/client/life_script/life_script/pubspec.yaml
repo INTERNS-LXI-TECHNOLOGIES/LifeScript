@@ -58,15 +58,12 @@ dependencies:
     path: ./perfectday_frontend
   daily_journal:
     path: ./daily_journal
-<<<<<<< HEAD
   goal_setting:
     path: ./frontend
-=======
   pomodoro_break:
     path: ./pomodoro_break
   habittracker:
     path: ./habittracker
->>>>>>> d468e6e5b9ca3d77f20dd6d4bd3624e5b4e54bc6
 
   # Cupertino icons for iOS
   cupertino_icons: ^1.0.0
