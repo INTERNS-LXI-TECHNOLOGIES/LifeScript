@@ -49,8 +49,8 @@ spring:
   mail:
     host: localhost
     port: 25
-    username: root
-    password: root
+    username:
+    password:
   messages:
     cache-duration: PT1S # 1 second, see the ISO 8601 standard
   thymeleaf:
@@ -68,6 +68,10 @@ server:
 # ===================================================================
 
 jhipster:
+  cache: # Cache configuration
+    ehcache: # Ehcache configuration
+      time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
+      max-entries: 100 # Number of objects in each cache entry
   # CORS is only enabled by default with the "dev" profile
   cors:
     # Allow Ionic for JHipster by default (* no longer allowed in Spring Boot 2.4+)
@@ -83,7 +87,7 @@ jhipster:
     authentication:
       jwt:
         # This token must be encoded using Base64 and be at least 256 bits long (you can type `openssl rand -base64 64` on your command line to generate a 512 bits one)
-        base64-secret: NjM4ZTMyYTJjZmNkZjljYmJkNzExZTlhMDlmN2YxNzM5YmFmNDY4ZTI2ZjZhOGI2M2M3OGQ3MzE2NDg1MWRkYmIxMjJjYzU2ODA3YjdjYzBlYmM1N2FhMTNhZGQ5NDc0NTE0ZDQyMzg1NGJiNDFjZWI0Njk1MDY0Y2U2ZTFmY2E=
+        base64-secret: ZDljODE3Y2ZkMjEzOTVhM2ExZTQyNGRjMmVjMzA0ZjEzOGUzOTBjMDQwYTM3ZDRhNTY5ZDNjMjlhMDY3YWRmOTNiYWM0YTEyNjU1YWIyZjYwODUwYmE4ZWQxMTZmNDA5NTI2NDcwMzE2M2NmY2I1NTRjMTcxZGEzMGY0YWFhYmI=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000

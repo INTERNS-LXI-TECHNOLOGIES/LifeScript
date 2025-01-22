@@ -1,7 +1,5 @@
 {
-  "annotations": {
-    "changelogDate": "20250121144917"
-  },
+  "annotations": {},
   "applications": "*",
   "fields": [
     {
@@ -20,6 +18,5 @@
     }
   ],
   "name": "TongueTwister",
-  "relationships": [],
-  "searchEngine": "no"
+  "relationships": []
 }

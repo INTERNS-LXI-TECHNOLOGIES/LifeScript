@@ -2,4 +2,4 @@ entity TongueTwister {
   text String required
   language String required
   difficultyLevel Integer
-}
+}  
