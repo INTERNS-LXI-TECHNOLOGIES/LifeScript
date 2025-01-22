@@ -39,6 +39,9 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
 
     _model.textController2 ??= TextEditingController();
     _model.textFieldFocusNode2 ??= FocusNode();
+
+     _model.textController3 ??= TextEditingController();
+    _model.textFieldFocusNode3 ??= FocusNode();
   }
 
   @override
@@ -94,7 +97,7 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Material(
+                     Material(
                     color: Colors.transparent,
                     elevation: 2,
                     shape: RoundedRectangleBorder(
@@ -146,7 +149,9 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
                       ),
                     ),
                   ),
-                  Material(
+
+
+                Material(
                     color: Colors.transparent,
                     elevation: 2,
                     shape: RoundedRectangleBorder(
@@ -295,16 +300,87 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
                               validator: _model.textController2Validator
                                   .asValidator(context),
                             ),
+                            TextFormField(
+                              controller: _model.textController3,
+                              focusNode: _model.textFieldFocusNode3,
+                              autofocus: false,
+                              obscureText: false,
+                              decoration: InputDecoration(
+                                labelText: 'Date',
+                                labelStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      letterSpacing: 0.0,
+                                    ),
+                                hintStyle: FlutterFlowTheme.of(context)
+                                    .bodyMedium
+                                    .override(
+                                      fontFamily: 'Inter',
+                                      letterSpacing: 0.0,
+                                    ),
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color:
+                                        FlutterFlowTheme.of(context).alternate,
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                errorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                focusedErrorBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Color(0x00000000),
+                                    width: 1.0,
+                                  ),
+                                  borderRadius: BorderRadius.circular(8.0),
+                                ),
+                                filled: true,
+                                fillColor: FlutterFlowTheme.of(context)
+                                    .secondaryBackground,
+                              ),
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyLarge
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    letterSpacing: 0.0,
+                                  ),
+                              minLines: 1,
+                              validator: _model.textController3Validator
+                                  .asValidator(context),
+                            ),
                             FFButtonWidget(
                               onPressed: () {
-                                final title = _model.textController1.text;
-                                final desc = _model.textController2.text;
+                                     ///final date = _model.textController3.text;
                                 PerfectDayResourceApi api =
                                     Openapi().getPerfectDayResourceApi();
 
-                                final dayPlan = PerfectDay((b) => b
-                                  ..title = title
-                                  ..description = desc);
+                                   final dayPlan = PerfectDay((b) => b
+                                  ..title = _model.textController1.text
+                                  ..description = _model.textController2.text
+                                  ..date = DateTime.parse(_model.textController3.text).toDate() as Date?);
+                               //   final responseUser = api.getAllPerfectDays().getAccount(headers: {'Authorization': 'Bearer $jwt'});
+                               // final title = _model.textController1.text;
+                               // final desc = _model.textController2.text;
+                             
+
+                              //  final dayPlan = PerfectDay((b) => b
+                                 // ..title = title
+                                  //..description = desc
+                                 // ..date = date as Date?);
                                 api.createPerfectDay(perfectDay: dayPlan);
 
                                 print("succes fully created");
@@ -337,6 +413,7 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
                       ),
                     ),
                   ),
+
                   Material(
                     color: Colors.transparent,
                     elevation: 2,
