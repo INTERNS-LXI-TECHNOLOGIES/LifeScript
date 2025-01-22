@@ -1,8 +1,7 @@
 import 'package:daily_journal/daily_journal/daily_journal_widget.dart';
-import 'package:habittracker/widget/habit_track_homepagewidget.dart';
+import 'package:habittracker/widget/habittrack_homepage_widgetwidget.dart';
 import 'package:perfectday_frontend/PerfectdayWidget.dart';
 import 'package:pomodoro_break/home_page/Home_Page_Widget.dart';
-
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -474,7 +473,7 @@ class _LifeScriptWidgetState extends State<LifeScriptWidget> {
                       onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => HabittrackhomepageWidget()),
+                        MaterialPageRoute(builder: (context) => HabittrackhomepagewidgetWidget()),
                       );
                       },
                       child: Container(
