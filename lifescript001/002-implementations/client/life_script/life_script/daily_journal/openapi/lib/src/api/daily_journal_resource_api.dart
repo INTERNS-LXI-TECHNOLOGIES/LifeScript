@@ -10,20 +10,20 @@ import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:daily_journal_openapi/src/api_util.dart';
-import 'package:daily_journal_openapi/src/model/journal_entry.dart';
+import 'package:daily_journal_openapi/src/model/daily_journal.dart';
 
-class JournalEntryControllerApi {
+class DailyJournalResourceApi {
   final Dio _dio;
 
   final Serializers _serializers;
 
-  const JournalEntryControllerApi(this._dio, this._serializers);
+  const DailyJournalResourceApi(this._dio, this._serializers);
 
-  /// createJournalEntry
+  /// createDailyJournal
   ///
   ///
   /// Parameters:
-  /// * [journalEntry]
+  /// * [dailyJournal]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -31,10 +31,10 @@ class JournalEntryControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [JournalEntry] as data
+  /// Returns a [Future] containing a [Response] with a [DailyJournal] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<JournalEntry>> createJournalEntry({
-    required JournalEntry journalEntry,
+  Future<Response<DailyJournal>> createDailyJournal({
+    required DailyJournal dailyJournal,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -42,7 +42,7 @@ class JournalEntryControllerApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/journal';
+    final _path = r'/api/daily-journals';
     final _options = Options(
       method: r'POST',
       headers: <String, dynamic>{
@@ -59,8 +59,8 @@ class JournalEntryControllerApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(JournalEntry);
-      _bodyData = _serializers.serialize(journalEntry, specifiedType: _type);
+      const _type = FullType(DailyJournal);
+      _bodyData = _serializers.serialize(dailyJournal, specifiedType: _type);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _options.compose(
@@ -82,7 +82,7 @@ class JournalEntryControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JournalEntry? _responseData;
+    DailyJournal? _responseData;
 
     try {
       final rawResponse = _response.data;
@@ -90,8 +90,8 @@ class JournalEntryControllerApi {
           ? null
           : _serializers.deserialize(
               rawResponse,
-              specifiedType: const FullType(JournalEntry),
-            ) as JournalEntry;
+              specifiedType: const FullType(DailyJournal),
+            ) as DailyJournal;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -102,7 +102,7 @@ class JournalEntryControllerApi {
       );
     }
 
-    return Response<JournalEntry>(
+    return Response<DailyJournal>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -114,7 +114,7 @@ class JournalEntryControllerApi {
     );
   }
 
-  /// deleteJournalEntry
+  /// deleteDailyJournal
   ///
   ///
   /// Parameters:
@@ -128,7 +128,7 @@ class JournalEntryControllerApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> deleteJournalEntry({
+  Future<Response<void>> deleteDailyJournal({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -137,7 +137,7 @@ class JournalEntryControllerApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/journal/{id}'.replaceAll('{' r'id' '}',
+    final _path = r'/api/daily-journals/{id}'.replaceAll('{' r'id' '}',
         encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'DELETE',
@@ -162,7 +162,7 @@ class JournalEntryControllerApi {
     return _response;
   }
 
-  /// getAllJournalEntries
+  /// getAllDailyJournalsAsStream1
   ///
   ///
   /// Parameters:
@@ -173,9 +173,9 @@ class JournalEntryControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [BuiltList<JournalEntry>] as data
+  /// Returns a [Future] containing a [Response] with a [BuiltList<DailyJournal>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<JournalEntry>>> getAllJournalEntries({
+  Future<Response<BuiltList<DailyJournal>>> getAllDailyJournalsAsStream1({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -183,7 +183,7 @@ class JournalEntryControllerApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/journal';
+    final _path = r'/api/daily-journals';
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -204,7 +204,7 @@ class JournalEntryControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    BuiltList<JournalEntry>? _responseData;
+    BuiltList<DailyJournal>? _responseData;
 
     try {
       final rawResponse = _response.data;
@@ -213,8 +213,8 @@ class JournalEntryControllerApi {
           : _serializers.deserialize(
               rawResponse,
               specifiedType:
-                  const FullType(BuiltList, [FullType(JournalEntry)]),
-            ) as BuiltList<JournalEntry>;
+                  const FullType(BuiltList, [FullType(DailyJournal)]),
+            ) as BuiltList<DailyJournal>;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -225,7 +225,7 @@ class JournalEntryControllerApi {
       );
     }
 
-    return Response<BuiltList<JournalEntry>>(
+    return Response<BuiltList<DailyJournal>>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -237,7 +237,7 @@ class JournalEntryControllerApi {
     );
   }
 
-  /// getJournalEntryById
+  /// getDailyJournal
   ///
   ///
   /// Parameters:
@@ -249,9 +249,9 @@ class JournalEntryControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [JournalEntry] as data
+  /// Returns a [Future] containing a [Response] with a [DailyJournal] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<JournalEntry>> getJournalEntryById({
+  Future<Response<DailyJournal>> getDailyJournal({
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -260,7 +260,7 @@ class JournalEntryControllerApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/journal/{id}'.replaceAll('{' r'id' '}',
+    final _path = r'/api/daily-journals/{id}'.replaceAll('{' r'id' '}',
         encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'GET',
@@ -282,7 +282,7 @@ class JournalEntryControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JournalEntry? _responseData;
+    DailyJournal? _responseData;
 
     try {
       final rawResponse = _response.data;
@@ -290,8 +290,8 @@ class JournalEntryControllerApi {
           ? null
           : _serializers.deserialize(
               rawResponse,
-              specifiedType: const FullType(JournalEntry),
-            ) as JournalEntry;
+              specifiedType: const FullType(DailyJournal),
+            ) as DailyJournal;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -302,7 +302,7 @@ class JournalEntryControllerApi {
       );
     }
 
-    return Response<JournalEntry>(
+    return Response<DailyJournal>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
@@ -314,12 +314,12 @@ class JournalEntryControllerApi {
     );
   }
 
-  /// updateJournalEntry
+  /// partialUpdateDailyJournal
   ///
   ///
   /// Parameters:
   /// * [id]
-  /// * [journalEntry]
+  /// * [dailyJournal]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -327,11 +327,11 @@ class JournalEntryControllerApi {
   /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
   /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
   ///
-  /// Returns a [Future] containing a [Response] with a [JournalEntry] as data
+  /// Returns a [Future] containing a [Response] with a [DailyJournal] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<JournalEntry>> updateJournalEntry({
+  Future<Response<DailyJournal>> partialUpdateDailyJournal({
     required int id,
-    required JournalEntry journalEntry,
+    required DailyJournal dailyJournal,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -339,10 +339,10 @@ class JournalEntryControllerApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/journal/{id}'.replaceAll('{' r'id' '}',
+    final _path = r'/api/daily-journals/{id}'.replaceAll('{' r'id' '}',
         encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
-      method: r'PUT',
+      method: r'PATCH',
       headers: <String, dynamic>{
         ...?headers,
       },
@@ -357,8 +357,8 @@ class JournalEntryControllerApi {
     dynamic _bodyData;
 
     try {
-      const _type = FullType(JournalEntry);
-      _bodyData = _serializers.serialize(journalEntry, specifiedType: _type);
+      const _type = FullType(DailyJournal);
+      _bodyData = _serializers.serialize(dailyJournal, specifiedType: _type);
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _options.compose(
@@ -380,7 +380,7 @@ class JournalEntryControllerApi {
       onReceiveProgress: onReceiveProgress,
     );
 
-    JournalEntry? _responseData;
+    DailyJournal? _responseData;
 
     try {
       final rawResponse = _response.data;
@@ -388,8 +388,8 @@ class JournalEntryControllerApi {
           ? null
           : _serializers.deserialize(
               rawResponse,
-              specifiedType: const FullType(JournalEntry),
-            ) as JournalEntry;
+              specifiedType: const FullType(DailyJournal),
+            ) as DailyJournal;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -400,7 +400,105 @@ class JournalEntryControllerApi {
       );
     }
 
-    return Response<JournalEntry>(
+    return Response<DailyJournal>(
+      data: _responseData,
+      headers: _response.headers,
+      isRedirect: _response.isRedirect,
+      requestOptions: _response.requestOptions,
+      redirects: _response.redirects,
+      statusCode: _response.statusCode,
+      statusMessage: _response.statusMessage,
+      extra: _response.extra,
+    );
+  }
+
+  /// updateDailyJournal
+  ///
+  ///
+  /// Parameters:
+  /// * [id]
+  /// * [dailyJournal]
+  /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
+  /// * [headers] - Can be used to add additional headers to the request
+  /// * [extras] - Can be used to add flags to the request
+  /// * [validateStatus] - A [ValidateStatus] callback that can be used to determine request success based on the HTTP status of the response
+  /// * [onSendProgress] - A [ProgressCallback] that can be used to get the send progress
+  /// * [onReceiveProgress] - A [ProgressCallback] that can be used to get the receive progress
+  ///
+  /// Returns a [Future] containing a [Response] with a [DailyJournal] as data
+  /// Throws [DioException] if API call or serialization fails
+  Future<Response<DailyJournal>> updateDailyJournal({
+    required int id,
+    required DailyJournal dailyJournal,
+    CancelToken? cancelToken,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? extra,
+    ValidateStatus? validateStatus,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceiveProgress,
+  }) async {
+    final _path = r'/api/daily-journals/{id}'.replaceAll('{' r'id' '}',
+        encodeQueryParameter(_serializers, id, const FullType(int)).toString());
+    final _options = Options(
+      method: r'PUT',
+      headers: <String, dynamic>{
+        ...?headers,
+      },
+      extra: <String, dynamic>{
+        'secure': <Map<String, String>>[],
+        ...?extra,
+      },
+      contentType: 'application/json',
+      validateStatus: validateStatus,
+    );
+
+    dynamic _bodyData;
+
+    try {
+      const _type = FullType(DailyJournal);
+      _bodyData = _serializers.serialize(dailyJournal, specifiedType: _type);
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _options.compose(
+          _dio.options,
+          _path,
+        ),
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    final _response = await _dio.request<Object>(
+      _path,
+      data: _bodyData,
+      options: _options,
+      cancelToken: cancelToken,
+      onSendProgress: onSendProgress,
+      onReceiveProgress: onReceiveProgress,
+    );
+
+    DailyJournal? _responseData;
+
+    try {
+      final rawResponse = _response.data;
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(DailyJournal),
+            ) as DailyJournal;
+    } catch (error, stackTrace) {
+      throw DioException(
+        requestOptions: _response.requestOptions,
+        response: _response,
+        type: DioExceptionType.unknown,
+        error: error,
+        stackTrace: stackTrace,
+      );
+    }
+
+    return Response<DailyJournal>(
       data: _responseData,
       headers: _response.headers,
       isRedirect: _response.isRedirect,
