@@ -307,18 +307,18 @@ class _DailyJournalWidgetState extends State<DailyJournalWidget> {
                               onPressed: () async {
                                 try {
                                   final api =
-                                      Openapi().getJournalEntryControllerApi();
+                                      Openapi().getDailyJournalResourceApi();
 
-                                  final journalEntry = JournalEntry((b) => b
+                                  final journalEntry = DailyJournal((b) => b
                                     ..title = _model.textController1?.text
                                     ..content = _model.textController2?.text
                                     ..date = DateTime.parse(
                                             _model.textController3!.text!)
                                         .toDate() as Date?);
 
-                                  final response = await api.createJournalEntry(
+                                  final response = await api.createDailyJournal(
                                     // Pass the type (not clear what you intend here; clarify if needed)
-                                    journalEntry:
+                                    dailyJournal:
                                         journalEntry, // Pass the actual journal entry object
                                   ); // Correctly formatted date
 
