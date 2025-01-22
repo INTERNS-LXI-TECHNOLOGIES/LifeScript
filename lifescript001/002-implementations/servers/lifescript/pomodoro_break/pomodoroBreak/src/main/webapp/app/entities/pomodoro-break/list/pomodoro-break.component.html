@@ -40,13 +40,6 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="userName">
-              <div class="d-flex">
-                <span jhiTranslate="pomodoroBreakApp.pomodoroBreak.userName">User Name</span>
-
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
             <th scope="col" jhiSortBy="totalWorkingHour">
               <div class="d-flex">
                 <span jhiTranslate="pomodoroBreakApp.pomodoroBreak.totalWorkingHour">Total Working Hour</span>
@@ -119,7 +112,6 @@
               <td>
                 <a [routerLink]="['/pomodoro-break', pomodoroBreak.id, 'view']">{{ pomodoroBreak.id }}</a>
               </td>
-              <td>{{ pomodoroBreak.userName }}</td>
               <td>{{ pomodoroBreak.totalWorkingHour }}</td>
               <td>{{ pomodoroBreak.dailyDurationOfWork }}</td>
               <td>{{ pomodoroBreak.splitBreakDuration }}</td>

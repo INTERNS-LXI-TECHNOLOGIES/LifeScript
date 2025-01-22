@@ -34,9 +34,6 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 @WithMockUser
 class PomodoroBreakResourceIT {
 
-    private static final String DEFAULT_USER_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_USER_NAME = "BBBBBBBBBB";
-
     private static final Integer DEFAULT_TOTAL_WORKING_HOUR = 1;
     private static final Integer UPDATED_TOTAL_WORKING_HOUR = 2;
 
@@ -94,7 +91,6 @@ class PomodoroBreakResourceIT {
      */
     public static PomodoroBreak createEntity() {
         return new PomodoroBreak()
-            .userName(DEFAULT_USER_NAME)
             .totalWorkingHour(DEFAULT_TOTAL_WORKING_HOUR)
             .dailyDurationOfWork(DEFAULT_DAILY_DURATION_OF_WORK)
             .splitBreakDuration(DEFAULT_SPLIT_BREAK_DURATION)
@@ -114,7 +110,6 @@ class PomodoroBreakResourceIT {
      */
     public static PomodoroBreak createUpdatedEntity() {
         return new PomodoroBreak()
-            .userName(UPDATED_USER_NAME)
             .totalWorkingHour(UPDATED_TOTAL_WORKING_HOUR)
             .dailyDurationOfWork(UPDATED_DAILY_DURATION_OF_WORK)
             .splitBreakDuration(UPDATED_SPLIT_BREAK_DURATION)
@@ -239,8 +234,6 @@ class PomodoroBreakResourceIT {
             .expectBody()
             .jsonPath("$.[*].id")
             .value(hasItem(pomodoroBreak.getId().intValue()))
-            .jsonPath("$.[*].userName")
-            .value(hasItem(DEFAULT_USER_NAME))
             .jsonPath("$.[*].totalWorkingHour")
             .value(hasItem(DEFAULT_TOTAL_WORKING_HOUR))
             .jsonPath("$.[*].dailyDurationOfWork")
@@ -279,8 +272,6 @@ class PomodoroBreakResourceIT {
             .expectBody()
             .jsonPath("$.id")
             .value(is(pomodoroBreak.getId().intValue()))
-            .jsonPath("$.userName")
-            .value(is(DEFAULT_USER_NAME))
             .jsonPath("$.totalWorkingHour")
             .value(is(DEFAULT_TOTAL_WORKING_HOUR))
             .jsonPath("$.dailyDurationOfWork")
@@ -323,7 +314,6 @@ class PomodoroBreakResourceIT {
         // Update the pomodoroBreak
         PomodoroBreak updatedPomodoroBreak = pomodoroBreakRepository.findById(pomodoroBreak.getId()).block();
         updatedPomodoroBreak
-            .userName(UPDATED_USER_NAME)
             .totalWorkingHour(UPDATED_TOTAL_WORKING_HOUR)
             .dailyDurationOfWork(UPDATED_DAILY_DURATION_OF_WORK)
             .splitBreakDuration(UPDATED_SPLIT_BREAK_DURATION)
@@ -417,10 +407,10 @@ class PomodoroBreakResourceIT {
         partialUpdatedPomodoroBreak.setId(pomodoroBreak.getId());
 
         partialUpdatedPomodoroBreak
-            .breakDuration(UPDATED_BREAK_DURATION)
-            .timeOfPomodoroCreation(UPDATED_TIME_OF_POMODORO_CREATION)
-            .notificationForBreak(UPDATED_NOTIFICATION_FOR_BREAK)
-            .finalMessage(UPDATED_FINAL_MESSAGE);
+            .dailyDurationOfWork(UPDATED_DAILY_DURATION_OF_WORK)
+            .completedBreaks(UPDATED_COMPLETED_BREAKS)
+            .dateOfPomodoro(UPDATED_DATE_OF_POMODORO)
+            .notificationForBreak(UPDATED_NOTIFICATION_FOR_BREAK);
 
         webTestClient
             .patch()
@@ -452,7 +442,6 @@ class PomodoroBreakResourceIT {
         partialUpdatedPomodoroBreak.setId(pomodoroBreak.getId());
 
         partialUpdatedPomodoroBreak
-            .userName(UPDATED_USER_NAME)
             .totalWorkingHour(UPDATED_TOTAL_WORKING_HOUR)
             .dailyDurationOfWork(UPDATED_DAILY_DURATION_OF_WORK)
             .splitBreakDuration(UPDATED_SPLIT_BREAK_DURATION)

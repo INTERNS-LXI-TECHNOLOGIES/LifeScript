@@ -11,7 +11,6 @@ public class PomodoroBreakSqlHelper {
     public static List<Expression> getColumns(Table table, String columnPrefix) {
         List<Expression> columns = new ArrayList<>();
         columns.add(Column.aliased("id", table, columnPrefix + "_id"));
-        columns.add(Column.aliased("user_name", table, columnPrefix + "_user_name"));
         columns.add(Column.aliased("total_working_hour", table, columnPrefix + "_total_working_hour"));
         columns.add(Column.aliased("daily_duration_of_work", table, columnPrefix + "_daily_duration_of_work"));
         columns.add(Column.aliased("split_break_duration", table, columnPrefix + "_split_break_duration"));

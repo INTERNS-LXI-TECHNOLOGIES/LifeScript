@@ -19,9 +19,6 @@ public class PomodoroBreak implements Serializable {
     @Column("id")
     private Long id;
 
-    @Column("user_name")
-    private String userName;
-
     @Column("total_working_hour")
     private Integer totalWorkingHour;
 
@@ -62,19 +59,6 @@ public class PomodoroBreak implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getUserName() {
-        return this.userName;
-    }
-
-    public PomodoroBreak userName(String userName) {
-        this.setUserName(userName);
-        return this;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public Integer getTotalWorkingHour() {
@@ -218,7 +202,6 @@ public class PomodoroBreak implements Serializable {
     public String toString() {
         return "PomodoroBreak{" +
             "id=" + getId() +
-            ", userName='" + getUserName() + "'" +
             ", totalWorkingHour=" + getTotalWorkingHour() +
             ", dailyDurationOfWork=" + getDailyDurationOfWork() +
             ", splitBreakDuration=" + getSplitBreakDuration() +

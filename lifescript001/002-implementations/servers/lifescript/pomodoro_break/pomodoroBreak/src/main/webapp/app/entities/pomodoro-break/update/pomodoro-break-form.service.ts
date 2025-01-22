@@ -32,7 +32,6 @@ type PomodoroBreakFormDefaults = Pick<NewPomodoroBreak, 'id' | 'dateOfPomodoro' 
 
 type PomodoroBreakFormGroupContent = {
   id: FormControl<PomodoroBreakFormRawValue['id'] | NewPomodoroBreak['id']>;
-  userName: FormControl<PomodoroBreakFormRawValue['userName']>;
   totalWorkingHour: FormControl<PomodoroBreakFormRawValue['totalWorkingHour']>;
   dailyDurationOfWork: FormControl<PomodoroBreakFormRawValue['dailyDurationOfWork']>;
   splitBreakDuration: FormControl<PomodoroBreakFormRawValue['splitBreakDuration']>;
@@ -61,7 +60,6 @@ export class PomodoroBreakFormService {
           validators: [Validators.required],
         },
       ),
-      userName: new FormControl(pomodoroBreakRawValue.userName),
       totalWorkingHour: new FormControl(pomodoroBreakRawValue.totalWorkingHour),
       dailyDurationOfWork: new FormControl(pomodoroBreakRawValue.dailyDurationOfWork),
       splitBreakDuration: new FormControl(pomodoroBreakRawValue.splitBreakDuration),

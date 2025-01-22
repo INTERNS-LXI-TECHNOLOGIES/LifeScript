@@ -26,7 +26,6 @@ public class PomodoroBreakRowMapper implements BiFunction<Row, String, PomodoroB
     public PomodoroBreak apply(Row row, String prefix) {
         PomodoroBreak entity = new PomodoroBreak();
         entity.setId(converter.fromRow(row, prefix + "_id", Long.class));
-        entity.setUserName(converter.fromRow(row, prefix + "_user_name", String.class));
         entity.setTotalWorkingHour(converter.fromRow(row, prefix + "_total_working_hour", Integer.class));
         entity.setDailyDurationOfWork(converter.fromRow(row, prefix + "_daily_duration_of_work", Integer.class));
         entity.setSplitBreakDuration(converter.fromRow(row, prefix + "_split_break_duration", Integer.class));

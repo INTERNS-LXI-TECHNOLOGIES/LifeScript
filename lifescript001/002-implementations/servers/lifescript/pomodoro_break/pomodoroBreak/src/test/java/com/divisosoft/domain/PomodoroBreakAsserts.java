@@ -47,7 +47,6 @@ public class PomodoroBreakAsserts {
     public static void assertPomodoroBreakUpdatableFieldsEquals(PomodoroBreak expected, PomodoroBreak actual) {
         assertThat(expected)
             .as("Verify PomodoroBreak relevant properties")
-            .satisfies(e -> assertThat(e.getUserName()).as("check userName").isEqualTo(actual.getUserName()))
             .satisfies(e -> assertThat(e.getTotalWorkingHour()).as("check totalWorkingHour").isEqualTo(actual.getTotalWorkingHour()))
             .satisfies(e ->
                 assertThat(e.getDailyDurationOfWork()).as("check dailyDurationOfWork").isEqualTo(actual.getDailyDurationOfWork())
