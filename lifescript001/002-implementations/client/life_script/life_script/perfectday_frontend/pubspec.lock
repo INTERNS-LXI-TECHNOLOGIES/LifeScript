@@ -397,7 +397,7 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
-  openapi:
+  openapiperfectday:
     dependency: "direct main"
     description:
       path: openapi

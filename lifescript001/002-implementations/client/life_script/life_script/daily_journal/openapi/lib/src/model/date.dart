@@ -55,8 +55,6 @@ class Date implements Comparable<Date> {
   @override
   int get hashCode => year.hashCode ^ month.hashCode ^ day.hashCode;
 
-  get value => null;
-
   @override
   String toString() {
     final yyyy = year.toString();
