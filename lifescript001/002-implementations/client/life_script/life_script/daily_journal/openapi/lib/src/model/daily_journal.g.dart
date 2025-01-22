@@ -1,37 +1,43 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'journal_entry.dart';
+part of 'daily_journal.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-class _$JournalEntry extends JournalEntry {
+class _$DailyJournal extends DailyJournal {
   @override
   final int? id;
   @override
-  final String? title;
+  final String title;
   @override
-  final String? content;
+  final String content;
   @override
-  final Date? date;
+  final Date date;
 
-  factory _$JournalEntry([void Function(JournalEntryBuilder)? updates]) =>
-      (new JournalEntryBuilder()..update(updates))._build();
+  factory _$DailyJournal([void Function(DailyJournalBuilder)? updates]) =>
+      (new DailyJournalBuilder()..update(updates))._build();
 
-  _$JournalEntry._({this.id, this.title, this.content, this.date}) : super._();
+  _$DailyJournal._(
+      {this.id, required this.title, required this.content, required this.date})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(title, r'DailyJournal', 'title');
+    BuiltValueNullFieldError.checkNotNull(content, r'DailyJournal', 'content');
+    BuiltValueNullFieldError.checkNotNull(date, r'DailyJournal', 'date');
+  }
 
   @override
-  JournalEntry rebuild(void Function(JournalEntryBuilder) updates) =>
+  DailyJournal rebuild(void Function(DailyJournalBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  JournalEntryBuilder toBuilder() => new JournalEntryBuilder()..replace(this);
+  DailyJournalBuilder toBuilder() => new DailyJournalBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is JournalEntry &&
+    return other is DailyJournal &&
         id == other.id &&
         title == other.title &&
         content == other.content &&
@@ -51,7 +57,7 @@ class _$JournalEntry extends JournalEntry {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'JournalEntry')
+    return (newBuiltValueToStringHelper(r'DailyJournal')
           ..add('id', id)
           ..add('title', title)
           ..add('content', content)
@@ -60,9 +66,9 @@ class _$JournalEntry extends JournalEntry {
   }
 }
 
-class JournalEntryBuilder
-    implements Builder<JournalEntry, JournalEntryBuilder> {
-  _$JournalEntry? _$v;
+class DailyJournalBuilder
+    implements Builder<DailyJournal, DailyJournalBuilder> {
+  _$DailyJournal? _$v;
 
   int? _id;
   int? get id => _$this._id;
@@ -80,11 +86,11 @@ class JournalEntryBuilder
   Date? get date => _$this._date;
   set date(Date? date) => _$this._date = date;
 
-  JournalEntryBuilder() {
-    JournalEntry._defaults(this);
+  DailyJournalBuilder() {
+    DailyJournal._defaults(this);
   }
 
-  JournalEntryBuilder get _$this {
+  DailyJournalBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _id = $v.id;
@@ -97,23 +103,30 @@ class JournalEntryBuilder
   }
 
   @override
-  void replace(JournalEntry other) {
+  void replace(DailyJournal other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$JournalEntry;
+    _$v = other as _$DailyJournal;
   }
 
   @override
-  void update(void Function(JournalEntryBuilder)? updates) {
+  void update(void Function(DailyJournalBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  JournalEntry build() => _build();
+  DailyJournal build() => _build();
 
-  _$JournalEntry _build() {
+  _$DailyJournal _build() {
     final _$result = _$v ??
-        new _$JournalEntry._(
-            id: id, title: title, content: content, date: date);
+        new _$DailyJournal._(
+          id: id,
+          title: BuiltValueNullFieldError.checkNotNull(
+              title, r'DailyJournal', 'title'),
+          content: BuiltValueNullFieldError.checkNotNull(
+              content, r'DailyJournal', 'content'),
+          date: BuiltValueNullFieldError.checkNotNull(
+              date, r'DailyJournal', 'date'),
+        );
     replace(_$result);
     return _$result;
   }

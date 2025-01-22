@@ -1,23 +1,23 @@
-# openapi.api.JournalEntryControllerApi
+# openapi.api.UserResourceApi
 
 ## Load the API package
 ```dart
 import 'package:openapi/api.dart';
 ```
 
-All URIs are relative to *http://localhost:8080*
+All URIs are relative to *http://192.168.170.4:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createJournalEntry**](JournalEntryControllerApi.md#createjournalentry) | **POST** /api/journal | 
-[**deleteJournalEntry**](JournalEntryControllerApi.md#deletejournalentry) | **DELETE** /api/journal/{id} | 
-[**getAllJournalEntries**](JournalEntryControllerApi.md#getalljournalentries) | **GET** /api/journal | 
-[**getJournalEntryById**](JournalEntryControllerApi.md#getjournalentrybyid) | **GET** /api/journal/{id} | 
-[**updateJournalEntry**](JournalEntryControllerApi.md#updatejournalentry) | **PUT** /api/journal/{id} | 
+[**createUser**](UserResourceApi.md#createuser) | **POST** /api/admin/users | 
+[**deleteUser**](UserResourceApi.md#deleteuser) | **DELETE** /api/admin/users/{login} | 
+[**getAllUsers**](UserResourceApi.md#getallusers) | **GET** /api/admin/users | 
+[**getUser**](UserResourceApi.md#getuser) | **GET** /api/admin/users/{login} | 
+[**updateUser**](UserResourceApi.md#updateuser) | **PUT** /api/admin/users | 
 
 
-# **createJournalEntry**
-> JournalEntry createJournalEntry(journalEntry)
+# **createUser**
+> User createUser(adminUserDTO)
 
 
 
@@ -25,14 +25,14 @@ Method | HTTP request | Description
 ```dart
 import 'package:openapi/api.dart';
 
-final api = Openapi().getJournalEntryControllerApi();
-final JournalEntry journalEntry = ; // JournalEntry | 
+final api = Openapi().getUserResourceApi();
+final AdminUserDTO adminUserDTO = ; // AdminUserDTO | 
 
 try {
-    final response = api.createJournalEntry(journalEntry);
+    final response = api.createUser(adminUserDTO);
     print(response);
 } catch on DioException (e) {
-    print('Exception when calling JournalEntryControllerApi->createJournalEntry: $e\n');
+    print('Exception when calling UserResourceApi->createUser: $e\n');
 }
 ```
 
@@ -40,11 +40,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **journalEntry** | [**JournalEntry**](JournalEntry.md)|  | 
+ **adminUserDTO** | [**AdminUserDTO**](AdminUserDTO.md)|  | 
 
 ### Return type
 
-[**JournalEntry**](JournalEntry.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -57,8 +57,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **deleteJournalEntry**
-> deleteJournalEntry(id)
+# **deleteUser**
+> deleteUser(login)
 
 
 
@@ -66,13 +66,13 @@ No authorization required
 ```dart
 import 'package:openapi/api.dart';
 
-final api = Openapi().getJournalEntryControllerApi();
-final int id = 789; // int | 
+final api = Openapi().getUserResourceApi();
+final String login = login_example; // String | 
 
 try {
-    api.deleteJournalEntry(id);
+    api.deleteUser(login);
 } catch on DioException (e) {
-    print('Exception when calling JournalEntryControllerApi->deleteJournalEntry: $e\n');
+    print('Exception when calling UserResourceApi->deleteUser: $e\n');
 }
 ```
 
@@ -80,7 +80,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**|  | 
+ **login** | **String**|  | 
 
 ### Return type
 
@@ -97,8 +97,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getAllJournalEntries**
-> BuiltList<JournalEntry> getAllJournalEntries()
+# **getAllUsers**
+> BuiltList<AdminUserDTO> getAllUsers(page, size, sort)
 
 
 
@@ -106,22 +106,30 @@ No authorization required
 ```dart
 import 'package:openapi/api.dart';
 
-final api = Openapi().getJournalEntryControllerApi();
+final api = Openapi().getUserResourceApi();
+final int page = 56; // int | Zero-based page index (0..N)
+final int size = 56; // int | The size of the page to be returned
+final BuiltList<String> sort = ; // BuiltList<String> | Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported.
 
 try {
-    final response = api.getAllJournalEntries();
+    final response = api.getAllUsers(page, size, sort);
     print(response);
 } catch on DioException (e) {
-    print('Exception when calling JournalEntryControllerApi->getAllJournalEntries: $e\n');
+    print('Exception when calling UserResourceApi->getAllUsers: $e\n');
 }
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **int**| Zero-based page index (0..N) | [optional] [default to 0]
+ **size** | **int**| The size of the page to be returned | [optional] [default to 20]
+ **sort** | [**BuiltList&lt;String&gt;**](String.md)| Sorting criteria in the format: property,(asc|desc). Default sort order is ascending. Multiple sort criteria are supported. | [optional] 
 
 ### Return type
 
-[**BuiltList&lt;JournalEntry&gt;**](JournalEntry.md)
+[**BuiltList&lt;AdminUserDTO&gt;**](AdminUserDTO.md)
 
 ### Authorization
 
@@ -134,8 +142,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getJournalEntryById**
-> JournalEntry getJournalEntryById(id)
+# **getUser**
+> AdminUserDTO getUser(login)
 
 
 
@@ -143,14 +151,14 @@ No authorization required
 ```dart
 import 'package:openapi/api.dart';
 
-final api = Openapi().getJournalEntryControllerApi();
-final int id = 789; // int | 
+final api = Openapi().getUserResourceApi();
+final String login = login_example; // String | 
 
 try {
-    final response = api.getJournalEntryById(id);
+    final response = api.getUser(login);
     print(response);
 } catch on DioException (e) {
-    print('Exception when calling JournalEntryControllerApi->getJournalEntryById: $e\n');
+    print('Exception when calling UserResourceApi->getUser: $e\n');
 }
 ```
 
@@ -158,11 +166,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**|  | 
+ **login** | **String**|  | 
 
 ### Return type
 
-[**JournalEntry**](JournalEntry.md)
+[**AdminUserDTO**](AdminUserDTO.md)
 
 ### Authorization
 
@@ -175,8 +183,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **updateJournalEntry**
-> JournalEntry updateJournalEntry(id, journalEntry)
+# **updateUser**
+> AdminUserDTO updateUser(adminUserDTO)
 
 
 
@@ -184,15 +192,14 @@ No authorization required
 ```dart
 import 'package:openapi/api.dart';
 
-final api = Openapi().getJournalEntryControllerApi();
-final int id = 789; // int | 
-final JournalEntry journalEntry = ; // JournalEntry | 
+final api = Openapi().getUserResourceApi();
+final AdminUserDTO adminUserDTO = ; // AdminUserDTO | 
 
 try {
-    final response = api.updateJournalEntry(id, journalEntry);
+    final response = api.updateUser(adminUserDTO);
     print(response);
 } catch on DioException (e) {
-    print('Exception when calling JournalEntryControllerApi->updateJournalEntry: $e\n');
+    print('Exception when calling UserResourceApi->updateUser: $e\n');
 }
 ```
 
@@ -200,12 +207,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **int**|  | 
- **journalEntry** | [**JournalEntry**](JournalEntry.md)|  | 
+ **adminUserDTO** | [**AdminUserDTO**](AdminUserDTO.md)|  | 
 
 ### Return type
 
-[**JournalEntry**](JournalEntry.md)
+[**AdminUserDTO**](AdminUserDTO.md)
 
 ### Authorization
 
