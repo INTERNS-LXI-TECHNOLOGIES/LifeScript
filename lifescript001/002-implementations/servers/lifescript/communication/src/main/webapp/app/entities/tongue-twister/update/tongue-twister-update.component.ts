@@ -2,13 +2,11 @@ import { Component, OnInit, inject } from '@angular/core';
 import { HttpResponse } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { finalize, map } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 
 import SharedModule from 'app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { IUser } from 'app/entities/user/user.model';
-import { UserService } from 'app/entities/user/service/user.service';
 import { ITongueTwister } from '../tongue-twister.model';
 import { TongueTwisterService } from '../service/tongue-twister.service';
 import { TongueTwisterFormGroup, TongueTwisterFormService } from './tongue-twister-form.service';
@@ -22,17 +20,12 @@ export class TongueTwisterUpdateComponent implements OnInit {
   isSaving = false;
   tongueTwister: ITongueTwister | null = null;
 
-  usersSharedCollection: IUser[] = [];
-
   protected tongueTwisterService = inject(TongueTwisterService);
   protected tongueTwisterFormService = inject(TongueTwisterFormService);
-  protected userService = inject(UserService);
   protected activatedRoute = inject(ActivatedRoute);
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   editForm: TongueTwisterFormGroup = this.tongueTwisterFormService.createTongueTwisterFormGroup();
-
-  compareUser = (o1: IUser | null, o2: IUser | null): boolean => this.userService.compareUser(o1, o2);
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ tongueTwister }) => {
@@ -40,8 +33,6 @@ export class TongueTwisterUpdateComponent implements OnInit {
       if (tongueTwister) {
         this.updateForm(tongueTwister);
       }
-
-      this.loadRelationshipsOptions();
     });
   }
 
@@ -81,15 +72,5 @@ export class TongueTwisterUpdateComponent implements OnInit {
   protected updateForm(tongueTwister: ITongueTwister): void {
     this.tongueTwister = tongueTwister;
     this.tongueTwisterFormService.resetForm(this.editForm, tongueTwister);
-
-    this.usersSharedCollection = this.userService.addUserToCollectionIfMissing<IUser>(this.usersSharedCollection, tongueTwister.creator);
-  }
-
-  protected loadRelationshipsOptions(): void {
-    this.userService
-      .query()
-      .pipe(map((res: HttpResponse<IUser[]>) => res.body ?? []))
-      .pipe(map((users: IUser[]) => this.userService.addUserToCollectionIfMissing<IUser>(users, this.tongueTwister?.creator)))
-      .subscribe((users: IUser[]) => (this.usersSharedCollection = users));
   }
 }

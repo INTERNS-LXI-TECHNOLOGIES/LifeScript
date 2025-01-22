@@ -21,7 +21,6 @@ type TongueTwisterFormGroupContent = {
   text: FormControl<ITongueTwister['text']>;
   language: FormControl<ITongueTwister['language']>;
   difficultyLevel: FormControl<ITongueTwister['difficultyLevel']>;
-  creator: FormControl<ITongueTwister['creator']>;
 };
 
 export type TongueTwisterFormGroup = FormGroup<TongueTwisterFormGroupContent>;
@@ -48,7 +47,6 @@ export class TongueTwisterFormService {
         validators: [Validators.required],
       }),
       difficultyLevel: new FormControl(tongueTwisterRawValue.difficultyLevel),
-      creator: new FormControl(tongueTwisterRawValue.creator),
     });
   }
 

@@ -4,29 +4,21 @@ import static com.diviso.domain.TongueTwisterAsserts.*;
 import static com.diviso.web.rest.TestUtil.createUpdateProxyForBean;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.diviso.IntegrationTest;
 import com.diviso.domain.TongueTwister;
 import com.diviso.repository.TongueTwisterRepository;
-import com.diviso.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityManager;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -36,7 +28,6 @@ import org.springframework.transaction.annotation.Transactional;
  * Integration tests for the {@link TongueTwisterResource} REST controller.
  */
 @IntegrationTest
-@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class TongueTwisterResourceIT {
@@ -61,12 +52,6 @@ class TongueTwisterResourceIT {
 
     @Autowired
     private TongueTwisterRepository tongueTwisterRepository;
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Mock
-    private TongueTwisterRepository tongueTwisterRepositoryMock;
 
     @Autowired
     private EntityManager em;
@@ -199,23 +184,6 @@ class TongueTwisterResourceIT {
             .andExpect(jsonPath("$.[*].difficultyLevel").value(hasItem(DEFAULT_DIFFICULTY_LEVEL)));
     }
 
-    @SuppressWarnings({ "unchecked" })
-    void getAllTongueTwistersWithEagerRelationshipsIsEnabled() throws Exception {
-        when(tongueTwisterRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restTongueTwisterMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
-
-        verify(tongueTwisterRepositoryMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    void getAllTongueTwistersWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(tongueTwisterRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restTongueTwisterMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
-        verify(tongueTwisterRepositoryMock, times(1)).findAll(any(Pageable.class));
-    }
-
     @Test
     @Transactional
     void getTongueTwister() throws Exception {
@@ -332,7 +300,7 @@ class TongueTwisterResourceIT {
         TongueTwister partialUpdatedTongueTwister = new TongueTwister();
         partialUpdatedTongueTwister.setId(tongueTwister.getId());
 
-        partialUpdatedTongueTwister.text(UPDATED_TEXT).difficultyLevel(UPDATED_DIFFICULTY_LEVEL);
+        partialUpdatedTongueTwister.text(UPDATED_TEXT).language(UPDATED_LANGUAGE);
 
         restTongueTwisterMockMvc
             .perform(

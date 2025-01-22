@@ -23,7 +23,6 @@ describe('TongueTwister Form Service', () => {
             text: expect.any(Object),
             language: expect.any(Object),
             difficultyLevel: expect.any(Object),
-            creator: expect.any(Object),
           }),
         );
       });
@@ -37,7 +36,6 @@ describe('TongueTwister Form Service', () => {
             text: expect.any(Object),
             language: expect.any(Object),
             difficultyLevel: expect.any(Object),
-            creator: expect.any(Object),
           }),
         );
       });

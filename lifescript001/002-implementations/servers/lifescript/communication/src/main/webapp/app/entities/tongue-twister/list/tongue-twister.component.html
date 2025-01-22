@@ -61,12 +61,6 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="creator.login">
-              <div class="d-flex">
-                <span jhiTranslate="communicationApp.tongueTwister.creator">Creator</span>
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -79,9 +73,6 @@
               <td>{{ tongueTwister.text }}</td>
               <td>{{ tongueTwister.language }}</td>
               <td>{{ tongueTwister.difficultyLevel }}</td>
-              <td>
-                {{ tongueTwister.creator?.login }}
-              </td>
               <td class="text-end">
                 <div class="btn-group">
                   <a [routerLink]="['/tongue-twister', tongueTwister.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">

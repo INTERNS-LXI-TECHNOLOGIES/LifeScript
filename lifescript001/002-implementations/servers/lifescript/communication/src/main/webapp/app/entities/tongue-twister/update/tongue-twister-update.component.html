@@ -58,23 +58,6 @@
             formControlName="difficultyLevel"
           />
         </div>
-
-        <div class="mb-3">
-          <label class="form-label" for="field_creator" jhiTranslate="communicationApp.tongueTwister.creator">Creator</label>
-          <select
-            class="form-control"
-            id="field_creator"
-            data-cy="creator"
-            name="creator"
-            formControlName="creator"
-            [compareWith]="compareUser"
-          >
-            <option [ngValue]="null"></option>
-            @for (userOption of usersSharedCollection; track $index) {
-              <option [ngValue]="userOption">{{ userOption.login }}</option>
-            }
-          </select>
-        </div>
       </div>
 
       <div>

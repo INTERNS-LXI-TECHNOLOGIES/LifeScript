@@ -30,9 +30,6 @@ public class TongueTwister implements Serializable {
     @Column(name = "difficulty_level")
     private Integer difficultyLevel;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private User creator;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public Long getId() {
@@ -85,19 +82,6 @@ public class TongueTwister implements Serializable {
 
     public void setDifficultyLevel(Integer difficultyLevel) {
         this.difficultyLevel = difficultyLevel;
-    }
-
-    public User getCreator() {
-        return this.creator;
-    }
-
-    public void setCreator(User user) {
-        this.creator = user;
-    }
-
-    public TongueTwister creator(User user) {
-        this.setCreator(user);
-        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

@@ -19,7 +19,7 @@
     "jhipsterVersion": "8.8.0",
     "jwtSecretKey": "NjM4ZTMyYTJjZmNkZjljYmJkNzExZTlhMDlmN2YxNzM5YmFmNDY4ZTI2ZjZhOGI2M2M3OGQ3MzE2NDg1MWRkYmIxMjJjYzU2ODA3YjdjYzBlYmM1N2FhMTNhZGQ5NDc0NTE0ZDQyMzg1NGJiNDFjZWI0Njk1MDY0Y2U2ZTFmY2E=",
     "languages": ["en"],
-    "lastLiquibaseTimestamp": 1737470958000,
+    "lastLiquibaseTimestamp": 1737528082000,
     "microfrontend": null,
     "microfrontends": [],
     "monorepository": true,

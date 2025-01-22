@@ -146,19 +146,12 @@ public class TongueTwisterResource {
     /**
      * {@code GET  /tongue-twisters} : get all the tongueTwisters.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of tongueTwisters in body.
      */
     @GetMapping("")
-    public List<TongueTwister> getAllTongueTwisters(
-        @RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload
-    ) {
+    public List<TongueTwister> getAllTongueTwisters() {
         LOG.debug("REST request to get all TongueTwisters");
-        if (eagerload) {
-            return tongueTwisterRepository.findAllWithEagerRelationships();
-        } else {
-            return tongueTwisterRepository.findAll();
-        }
+        return tongueTwisterRepository.findAll();
     }
 
     /**
@@ -170,7 +163,7 @@ public class TongueTwisterResource {
     @GetMapping("/{id}")
     public ResponseEntity<TongueTwister> getTongueTwister(@PathVariable("id") Long id) {
         LOG.debug("REST request to get TongueTwister : {}", id);
-        Optional<TongueTwister> tongueTwister = tongueTwisterRepository.findOneWithEagerRelationships(id);
+        Optional<TongueTwister> tongueTwister = tongueTwisterRepository.findById(id);
         return ResponseUtil.wrapOrNotFound(tongueTwister);
     }
 
