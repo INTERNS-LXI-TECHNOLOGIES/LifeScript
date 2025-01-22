@@ -1,0 +1,6 @@
+entity PerfectDay {
+    id Long,
+    title String required, // Title of the day plan
+    description String, // Description of the day plan
+    date LocalDate required // Date of the day plan
+}
