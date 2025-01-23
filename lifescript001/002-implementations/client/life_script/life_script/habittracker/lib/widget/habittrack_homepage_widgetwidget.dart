@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:habittracker_openapi/openapi.dart';
 
+import 'package:dio/dio.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -529,31 +530,59 @@ class _HabittrackhomepagewidgetWidgetState
                                       ),
                                    
                                       FFButtonWidget(
-                                        onPressed: () async {
+                                       onPressed: () async {
                                           final habitName = _model.textController1.text;
                                           final description = _model.textController2.text;    
                                           final startDate = DateTime.now().toIso8601String();   
                                           final endDate = DateTime.now().toIso8601String(); 
 
-                                          
-                                          HabitTracker habitTracker = HabitTracker((b) => b
+                                         
+                                          Habittrack habitTracker = Habittrack((b) => b
                                             ..habitName = habitName
                                             ..description = description
                                             ..startDate = startDate 
                                             ..endDate = endDate
-                                            
-                                          );
-                                          String jwt ='eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTczNzYyOTgwOCwiYXV0aCI6IlJPTEVfQURNSU4gUk9MRV9VU0VSIiwiaWF0IjoxNzM3NTQzNDA4fQ.5OFc-5k0EegWhkDwaE2tvGKIZ0UdiV3DvDWnZkPlGPCAu015TN2aDYVvxRVv40aLmGnl_j_i1Yt4sUxIMVEzQQ';
-                                          
-                                          final responseUser = await Openapi().getAccountResourceApi().getAccount(
-                                                headers: {'Authorization': 'Bearer $jwt'},
                                           );
 
-                                          HabitTrackerResourceApi api = Openapi().getHabitTrackerResourceApi();
-                                          api.createHabitTracker(habitTracker: habitTracker);
-                                         // api.deleteHabitTracker(id: 1);
-                                         // api.updateHabitTracker(id: 1 , habitTracker: habitTracker);
-                                          print('Button pressed ...');
+                                          try {
+                                           
+                                            String jwt = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTczNzYyOTgwOCwiYXV0aCI6IlJPTEVfQURNSU4gUk9MRV9VU0VSIiwiaWF0IjoxNzM3NTQzNDA4fQ.5OFc-5k0EegWhkDwaE2tvGKIZ0UdiV3DvDWnZkPlGPCAu015TN2aDYVvxRVv40aLmGnl_j_i1Yt4sUxIMVEzQQ';
+
+                                            
+                                            final responseUser = await Openapi()
+                                                .getAccountResourceApi()
+                                                .getAccount(headers: {'Authorization': 'Bearer $jwt'});
+
+                                            if (responseUser.statusCode == 200) {
+                                              debugPrint('User account retrieved successfully.');
+                                            } else {
+                                              debugPrint('Failed to fetch user account: ${responseUser.statusCode}');
+                                              return;
+                                            }
+
+                                            
+                                            HabittrackResourceApi api = Openapi().getHabittrackResourceApi();
+                                            final response = await api.createHabittrack(
+                                              habittrack: habitTracker,
+                                              headers: {'Authorization': 'Bearer $jwt'},
+                                            );
+
+                                            if (response.statusCode == 201) {
+                                              debugPrint('Habittrack saved successfully!');
+                                            } else {
+                                              debugPrint('Failed to save Habittrack: ${response.statusCode}');
+                                            }
+                                          } catch (e) {
+                                            if (e is DioException) {
+                                              debugPrint('DioException: ${e.message}');
+                                              debugPrint('Response data: ${e.response?.data}');
+                                              debugPrint('Request path: ${e.requestOptions.path}');
+                                              debugPrint('Request headers: ${e.requestOptions.headers}');
+                                              debugPrint('Request data: ${e.requestOptions.data}');
+                                            } else {
+                                              debugPrint('Error: $e');
+                                            }
+                                          }
                                         },
                                         text: 'Start',
                                         options: FFButtonOptions(

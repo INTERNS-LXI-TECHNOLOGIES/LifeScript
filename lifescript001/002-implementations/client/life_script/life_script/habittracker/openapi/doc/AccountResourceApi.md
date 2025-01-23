@@ -5,7 +5,7 @@
 import 'package:openapi/api.dart';
 ```
 
-All URIs are relative to *http://192.168.170.55:8080*
+All URIs are relative to *http://172.20.10.11:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

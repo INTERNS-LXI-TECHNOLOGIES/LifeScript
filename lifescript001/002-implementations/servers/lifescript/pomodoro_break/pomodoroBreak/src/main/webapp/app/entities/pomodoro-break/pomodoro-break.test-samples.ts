@@ -7,24 +7,23 @@ export const sampleWithRequiredData: IPomodoroBreak = {
 };
 
 export const sampleWithPartialData: IPomodoroBreak = {
-  id: 4700,
-  totalWorkingHour: 6513,
-  splitBreakDuration: 31553,
-  notificationForBreak: false,
+  id: 30444,
+  dailyDurationOfWork: 4700,
+  breakDuration: 6513,
+  finalMessage: 'internal remark angrily',
 };
 
 export const sampleWithFullData: IPomodoroBreak = {
   id: 2465,
-  userName: 'corny till',
-  totalWorkingHour: 23614,
-  dailyDurationOfWork: 20875,
-  splitBreakDuration: 14276,
-  breakDuration: 12075,
-  completedBreaks: 10097,
-  dateOfPomodoro: dayjs('2025-01-20T18:48'),
-  timeOfPomodoroCreation: dayjs('2025-01-20T17:14'),
-  notificationForBreak: false,
-  finalMessage: 'worriedly',
+  totalWorkingHour: 17497,
+  dailyDurationOfWork: 31457,
+  splitBreakDuration: 25373,
+  breakDuration: 17504,
+  completedBreaks: 31266,
+  dateOfPomodoro: dayjs('2025-01-22T05:00'),
+  timeOfPomodoroCreation: dayjs('2025-01-22T01:30'),
+  notificationForBreak: true,
+  finalMessage: 'plus',
 };
 
 export const sampleWithNewData: NewPomodoroBreak = {

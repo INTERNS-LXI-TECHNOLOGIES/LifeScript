@@ -397,6 +397,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
+  openapi:
+    dependency: "direct main"
+    description:
+      path: openapi
+      relative: true
+    source: path
+    version: "1.0.0"
   page_transition:
     dependency: "direct main"
     description:
@@ -485,13 +492,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.8"
-  pomodoro_break_openapi:
-    dependency: "direct main"
-    description:
-      path: openapi
-      relative: true
-    source: path
-    version: "1.0.0"
   provider:
     dependency: "direct main"
     description:

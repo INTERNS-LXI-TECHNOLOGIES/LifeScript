@@ -143,9 +143,6 @@ public class PomodoroBreakResource {
                 Mono<PomodoroBreak> result = pomodoroBreakRepository
                     .findById(pomodoroBreak.getId())
                     .map(existingPomodoroBreak -> {
-                        if (pomodoroBreak.getUserName() != null) {
-                            existingPomodoroBreak.setUserName(pomodoroBreak.getUserName());
-                        }
                         if (pomodoroBreak.getTotalWorkingHour() != null) {
                             existingPomodoroBreak.setTotalWorkingHour(pomodoroBreak.getTotalWorkingHour());
                         }

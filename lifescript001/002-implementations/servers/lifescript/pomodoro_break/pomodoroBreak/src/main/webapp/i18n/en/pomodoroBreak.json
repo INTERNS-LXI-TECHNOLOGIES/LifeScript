@@ -18,7 +18,6 @@
         "title": "Pomodoro Break"
       },
       "id": "ID",
-      "userName": "User Name",
       "totalWorkingHour": "Total Working Hour",
       "dailyDurationOfWork": "Daily Duration Of Work",
       "splitBreakDuration": "Split Break Duration",

@@ -1,12 +1,8 @@
 {
   "annotations": {
-    "changelogDate": "20250121101306"
+    "changelogDate": "20250122110053"
   },
   "fields": [
-    {
-      "fieldName": "userName",
-      "fieldType": "String"
-    },
     {
       "fieldName": "totalWorkingHour",
       "fieldType": "Integer"

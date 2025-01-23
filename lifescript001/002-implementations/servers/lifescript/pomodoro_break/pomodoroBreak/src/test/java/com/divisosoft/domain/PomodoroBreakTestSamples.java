@@ -14,7 +14,6 @@ public class PomodoroBreakTestSamples {
     public static PomodoroBreak getPomodoroBreakSample1() {
         return new PomodoroBreak()
             .id(1L)
-            .userName("userName1")
             .totalWorkingHour(1)
             .dailyDurationOfWork(1)
             .splitBreakDuration(1)
@@ -26,7 +25,6 @@ public class PomodoroBreakTestSamples {
     public static PomodoroBreak getPomodoroBreakSample2() {
         return new PomodoroBreak()
             .id(2L)
-            .userName("userName2")
             .totalWorkingHour(2)
             .dailyDurationOfWork(2)
             .splitBreakDuration(2)
@@ -38,7 +36,6 @@ public class PomodoroBreakTestSamples {
     public static PomodoroBreak getPomodoroBreakRandomSampleGenerator() {
         return new PomodoroBreak()
             .id(longCount.incrementAndGet())
-            .userName(UUID.randomUUID().toString())
             .totalWorkingHour(intCount.incrementAndGet())
             .dailyDurationOfWork(intCount.incrementAndGet())
             .splitBreakDuration(intCount.incrementAndGet())

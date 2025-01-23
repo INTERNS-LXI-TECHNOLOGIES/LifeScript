@@ -20,7 +20,6 @@ describe('PomodoroBreak Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
-            userName: expect.any(Object),
             totalWorkingHour: expect.any(Object),
             dailyDurationOfWork: expect.any(Object),
             splitBreakDuration: expect.any(Object),
@@ -40,7 +39,6 @@ describe('PomodoroBreak Form Service', () => {
         expect(formGroup.controls).toEqual(
           expect.objectContaining({
             id: expect.any(Object),
-            userName: expect.any(Object),
             totalWorkingHour: expect.any(Object),
             dailyDurationOfWork: expect.any(Object),
             splitBreakDuration: expect.any(Object),

@@ -12,12 +12,12 @@ import 'package:habittracker_openapi/src/auth/oauth.dart';
 import 'package:habittracker_openapi/src/api/account_resource_api.dart';
 import 'package:habittracker_openapi/src/api/authenticate_controller_api.dart';
 import 'package:habittracker_openapi/src/api/authority_resource_api.dart';
-import 'package:habittracker_openapi/src/api/habit_tracker_resource_api.dart';
+import 'package:habittracker_openapi/src/api/habittrack_resource_api.dart';
 import 'package:habittracker_openapi/src/api/public_user_resource_api.dart';
 import 'package:habittracker_openapi/src/api/user_resource_api.dart';
 
 class Openapi {
-  static const String basePath = r'http://192.168.170.55:8080';
+  static const String basePath = r'http://172.20.10.11:8080';
 
   final Dio dio;
   final Serializers serializers;
@@ -88,10 +88,10 @@ class Openapi {
     return AuthorityResourceApi(dio, serializers);
   }
 
-  /// Get HabitTrackerResourceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// Get HabittrackResourceApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
-  HabitTrackerResourceApi getHabitTrackerResourceApi() {
-    return HabitTrackerResourceApi(dio, serializers);
+  HabittrackResourceApi getHabittrackResourceApi() {
+    return HabittrackResourceApi(dio, serializers);
   }
 
   /// Get PublicUserResourceApi instance, base route and serializer can be overridden by a given but be careful,

@@ -16,7 +16,7 @@ import 'package:habittracker_openapi/src/model/date.dart';
 
 import 'package:habittracker_openapi/src/model/admin_user_dto.dart';
 import 'package:habittracker_openapi/src/model/authority.dart';
-import 'package:habittracker_openapi/src/model/habit_tracker.dart';
+import 'package:habittracker_openapi/src/model/habittrack.dart';
 import 'package:habittracker_openapi/src/model/jwt_token.dart';
 import 'package:habittracker_openapi/src/model/key_and_password_vm.dart';
 import 'package:habittracker_openapi/src/model/login_vm.dart';
@@ -30,7 +30,7 @@ part 'serializers.g.dart';
 @SerializersFor([
   AdminUserDTO,
   Authority,
-  HabitTracker,
+  Habittrack,
   JWTToken,
   KeyAndPasswordVM,
   LoginVM,
@@ -40,10 +40,6 @@ part 'serializers.g.dart';
   UserDTO,
 ])
 Serializers serializers = (_$serializers.toBuilder()
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(HabitTracker)]),
-        () => ListBuilder<HabitTracker>(),
-      )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AdminUserDTO)]),
         () => ListBuilder<AdminUserDTO>(),
@@ -55,6 +51,10 @@ Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(UserDTO)]),
         () => ListBuilder<UserDTO>(),
+      )
+      ..addBuilderFactory(
+        const FullType(BuiltList, [FullType(Habittrack)]),
+        () => ListBuilder<Habittrack>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(Authority)]),

@@ -1,5 +1,4 @@
-entity PomodoroBreak {
-  userName String,
+entity PomodoroBreak{
   totalWorkingHour Integer,
   dailyDurationOfWork Integer,
   splitBreakDuration Integer,
