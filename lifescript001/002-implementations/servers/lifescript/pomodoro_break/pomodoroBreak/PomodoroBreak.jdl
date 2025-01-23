@@ -1,0 +1,11 @@
+entity PomodoroBreak{
+  totalWorkingHour Integer,
+  dailyDurationOfWork Integer,
+  splitBreakDuration Integer,
+  breakDuration Integer,
+  completedBreaks Integer,
+  dateOfPomodoro Instant,
+  timeOfPomodoroCreation Instant,
+  notificationForBreak Boolean,
+  finalMessage String
+}

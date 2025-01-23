@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (pomodoroBreak(); as pomodoroBreakRef) {
+      <div>
+        <h2 data-cy="pomodoroBreakDetailsHeading">
+          <span jhiTranslate="pomodoroBreakApp.pomodoroBreak.detail.title">Pomodoro Break</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ pomodoroBreakRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="pomodoroBreakApp.pomodoroBreak.totalWorkingHour">Total Working Hour</span></dt>
+          <dd>
+            <span>{{ pomodoroBreakRef.totalWorkingHour }}</span>
+          </dd>
+          <dt><span jhiTranslate="pomodoroBreakApp.pomodoroBreak.dailyDurationOfWork">Daily Duration Of Work</span></dt>
+          <dd>
+            <span>{{ pomodoroBreakRef.dailyDurationOfWork }}</span>
+          </dd>
+          <dt><span jhiTranslate="pomodoroBreakApp.pomodoroBreak.splitBreakDuration">Split Break Duration</span></dt>
+          <dd>
+            <span>{{ pomodoroBreakRef.splitBreakDuration }}</span>
+          </dd>
+          <dt><span jhiTranslate="pomodoroBreakApp.pomodoroBreak.breakDuration">Break Duration</span></dt>
+          <dd>
+            <span>{{ pomodoroBreakRef.breakDuration }}</span>
+          </dd>
+          <dt><span jhiTranslate="pomodoroBreakApp.pomodoroBreak.completedBreaks">Completed Breaks</span></dt>
+          <dd>
+            <span>{{ pomodoroBreakRef.completedBreaks }}</span>
+          </dd>
+          <dt><span jhiTranslate="pomodoroBreakApp.pomodoroBreak.dateOfPomodoro">Date Of Pomodoro</span></dt>
+          <dd>
+            <span>{{ pomodoroBreakRef.dateOfPomodoro | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="pomodoroBreakApp.pomodoroBreak.timeOfPomodoroCreation">Time Of Pomodoro Creation</span></dt>
+          <dd>
+            <span>{{ pomodoroBreakRef.timeOfPomodoroCreation | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="pomodoroBreakApp.pomodoroBreak.notificationForBreak">Notification For Break</span></dt>
+          <dd>
+            <span>{{ pomodoroBreakRef.notificationForBreak }}</span>
+          </dd>
+          <dt><span jhiTranslate="pomodoroBreakApp.pomodoroBreak.finalMessage">Final Message</span></dt>
+          <dd>
+            <span>{{ pomodoroBreakRef.finalMessage }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/pomodoro-break', pomodoroBreakRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

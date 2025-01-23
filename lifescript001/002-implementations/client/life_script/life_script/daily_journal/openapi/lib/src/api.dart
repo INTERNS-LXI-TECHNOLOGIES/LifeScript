@@ -9,10 +9,14 @@ import 'package:daily_journal_openapi/src/auth/api_key_auth.dart';
 import 'package:daily_journal_openapi/src/auth/basic_auth.dart';
 import 'package:daily_journal_openapi/src/auth/bearer_auth.dart';
 import 'package:daily_journal_openapi/src/auth/oauth.dart';
-import 'package:daily_journal_openapi/src/api/journal_entry_controller_api.dart';
+import 'package:daily_journal_openapi/src/api/account_resource_api.dart';
+import 'package:daily_journal_openapi/src/api/authenticate_controller_api.dart';
+import 'package:daily_journal_openapi/src/api/daily_journal_resource_api.dart';
+import 'package:daily_journal_openapi/src/api/public_user_resource_api.dart';
+import 'package:daily_journal_openapi/src/api/user_resource_api.dart';
 
 class Openapi {
-  static const String basePath = r'http://localhost:8080';
+  static const String basePath = r'http://192.168.170.4:8080';
 
   final Dio dio;
   final Serializers serializers;
@@ -43,42 +47,55 @@ class Openapi {
 
   void setOAuthToken(String name, String token) {
     if (this.dio.interceptors.any((i) => i is OAuthInterceptor)) {
-      (this.dio.interceptors.firstWhere((i) => i is OAuthInterceptor)
-              as OAuthInterceptor)
-          .tokens[name] = token;
+      (this.dio.interceptors.firstWhere((i) => i is OAuthInterceptor) as OAuthInterceptor).tokens[name] = token;
     }
   }
 
   void setBearerAuth(String name, String token) {
     if (this.dio.interceptors.any((i) => i is BearerAuthInterceptor)) {
-      (this.dio.interceptors.firstWhere((i) => i is BearerAuthInterceptor)
-              as BearerAuthInterceptor)
-          .tokens[name] = token;
+      (this.dio.interceptors.firstWhere((i) => i is BearerAuthInterceptor) as BearerAuthInterceptor).tokens[name] = token;
     }
   }
 
   void setBasicAuth(String name, String username, String password) {
     if (this.dio.interceptors.any((i) => i is BasicAuthInterceptor)) {
-      (this.dio.interceptors.firstWhere((i) => i is BasicAuthInterceptor)
-              as BasicAuthInterceptor)
-          .authInfo[name] = BasicAuthInfo(username, password);
+      (this.dio.interceptors.firstWhere((i) => i is BasicAuthInterceptor) as BasicAuthInterceptor).authInfo[name] = BasicAuthInfo(username, password);
     }
   }
 
   void setApiKey(String name, String apiKey) {
     if (this.dio.interceptors.any((i) => i is ApiKeyAuthInterceptor)) {
-      (this
-                  .dio
-                  .interceptors
-                  .firstWhere((element) => element is ApiKeyAuthInterceptor)
-              as ApiKeyAuthInterceptor)
-          .apiKeys[name] = apiKey;
+      (this.dio.interceptors.firstWhere((element) => element is ApiKeyAuthInterceptor) as ApiKeyAuthInterceptor).apiKeys[name] = apiKey;
     }
   }
 
-  /// Get JournalEntryControllerApi instance, base route and serializer can be overridden by a given but be careful,
+  /// Get AccountResourceApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
-  JournalEntryControllerApi getJournalEntryControllerApi() {
-    return JournalEntryControllerApi(dio, serializers);
+  AccountResourceApi getAccountResourceApi() {
+    return AccountResourceApi(dio, serializers);
+  }
+
+  /// Get AuthenticateControllerApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  AuthenticateControllerApi getAuthenticateControllerApi() {
+    return AuthenticateControllerApi(dio, serializers);
+  }
+
+  /// Get DailyJournalResourceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  DailyJournalResourceApi getDailyJournalResourceApi() {
+    return DailyJournalResourceApi(dio, serializers);
+  }
+
+  /// Get PublicUserResourceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  PublicUserResourceApi getPublicUserResourceApi() {
+    return PublicUserResourceApi(dio, serializers);
+  }
+
+  /// Get UserResourceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  UserResourceApi getUserResourceApi() {
+    return UserResourceApi(dio, serializers);
   }
 }

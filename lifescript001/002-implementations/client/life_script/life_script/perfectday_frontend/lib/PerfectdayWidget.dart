@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:openapi/openapi.dart';
+import 'package:openapiperfectday/openapi.dart';
 import 'package:perfectday_frontend/PerfectdayModel.dart';
 import 'package:perfectday_frontend/blocs/day_plan_bloc.dart';
 import 'package:perfectday_frontend/events/day_plan_event.dart';
@@ -299,12 +299,18 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
                               onPressed: () {
                                 final title = _model.textController1.text;
                                 final desc = _model.textController2.text;
-                                DayPlanControllerApi api =
-                                    Openapi().getDayPlanControllerApi();
+                                PerfectDayResourceApi api =
+                                    Openapi().getPerfectDayResourceApi();
 
-                                context
-                                    .read<DayPlanBloc>()
-                                    .add(CreateDayPlanEvent(title: title, description: desc));
+                                final dayPlan = PerfectDay((b) => b
+                                  ..title = title
+                                  ..description = desc);
+                                api.createPerfectDay(perfectDay: dayPlan);
+
+                                print("succes fully created");
+                                //context
+                                //  .read<DayPlanBloc>()
+                                // .add(CreateDayPlanEvent(title: title, description: desc));
                                 print('Button pressed ...');
                               },
                               text: 'Add Goal',
@@ -531,36 +537,58 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
                                               ),
                                               onPressed: () {
                                                 print('IconButton pressed ...');
-                                                
-  BlocBuilder<DayPlanBloc, DayPlanState>(
-  builder: (context, state) {
-    if (state is DayPlanInitialState) {
-      return Text(
-        'Welcome! No day plan data available.',
-        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-      );
-    } else if (state is DayPlanLoadingState) {
-      return CircularProgressIndicator(); // Show a loading spinner
-    } else if (state is DayPlanSuccessState) {
-      return Text(
-        state.title, // Display the success message
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.green),
-      );
-    } else if (state is DayPlanErrorState) {
-      return Text(
-        state.errorMessage, // Display the error message
-        style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red),
-      );
-    } else {
-      return Text(
-        'Unexpected state!',
-        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-      );
-    }
-  },
-);
 
-
+                                                BlocBuilder<DayPlanBloc,
+                                                    DayPlanState>(
+                                                  builder: (context, state) {
+                                                    if (state
+                                                        is DayPlanInitialState) {
+                                                      return Text(
+                                                        'Welcome! No day plan data available.',
+                                                        style: TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      );
+                                                    } else if (state
+                                                        is DayPlanLoadingState) {
+                                                      return CircularProgressIndicator(); // Show a loading spinner
+                                                    } else if (state
+                                                        is DayPlanSuccessState) {
+                                                      return Text(
+                                                        state
+                                                            .title, // Display the success message
+                                                        style: TextStyle(
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color:
+                                                                Colors.green),
+                                                      );
+                                                    } else if (state
+                                                        is DayPlanErrorState) {
+                                                      return Text(
+                                                        state
+                                                            .errorMessage, // Display the error message
+                                                        style: TextStyle(
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color: Colors.red),
+                                                      );
+                                                    } else {
+                                                      return Text(
+                                                        'Unexpected state!',
+                                                        style: TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold),
+                                                      );
+                                                    }
+                                                  },
+                                                );
                                               },
                                             ),
                                           ].divide(SizedBox(width: 8)),
@@ -742,8 +770,6 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
                                                 size: 20,
                                               ),
                                               onPressed: () {
-             
-
                                                 print('IconButton pressed ...');
                                               },
                                             ),
