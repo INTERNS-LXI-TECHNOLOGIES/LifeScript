@@ -13,6 +13,10 @@ class SetPomodoroModel extends FlutterFlowModel<SetPomodoroWidget> {
   // State field(s) for Slider widget.
   double? sliderValue;
 
+  get totalWorkingHour => null;
+
+  get totalWorkingHours => null;
+
   @override
   void initState(BuildContext context) {}
 
