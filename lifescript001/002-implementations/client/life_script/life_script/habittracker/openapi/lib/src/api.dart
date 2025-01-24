@@ -17,8 +17,8 @@ import 'package:habittracker_openapi/src/api/public_user_resource_api.dart';
 import 'package:habittracker_openapi/src/api/user_resource_api.dart';
 
 class Openapi {
-  static const String basePath = r'http://172.20.10.11:8080';
-
+  static const String basePath = r'http://localhost:8080/';
+static String? jwt = "";
   final Dio dio;
   final Serializers serializers;
 
@@ -44,6 +44,7 @@ class Openapi {
     } else {
       this.dio.interceptors.addAll(interceptors);
     }
+     
   }
 
   void setOAuthToken(String name, String token) {

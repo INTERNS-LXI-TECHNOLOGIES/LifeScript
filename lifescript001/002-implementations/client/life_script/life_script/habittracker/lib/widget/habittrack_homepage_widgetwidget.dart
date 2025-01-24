@@ -17,6 +17,7 @@ class HabittrackhomepagewidgetWidget extends StatefulWidget {
   const HabittrackhomepagewidgetWidget({super.key});
 
   @override
+  
   State<HabittrackhomepagewidgetWidget> createState() =>
       _HabittrackhomepagewidgetWidgetState();
 }
@@ -531,58 +532,39 @@ class _HabittrackhomepagewidgetWidgetState
                                    
                                       FFButtonWidget(
                                        onPressed: () async {
+                                        try{
+                                          final Openapi openApi =Openapi();
+                                          
                                           final habitName = _model.textController1.text;
                                           final description = _model.textController2.text;    
-                                          final startDate = DateTime.now().toIso8601String();   
-                                          final endDate = DateTime.now().toIso8601String(); 
-
-                                         
-                                          Habittrack habitTracker = Habittrack((b) => b
-                                            ..habitName = habitName
-                                            ..description = description
-                                            ..startDate = startDate 
-                                            ..endDate = endDate
-                                          );
-
-                                          try {
-                                           
-                                            String jwt = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTczNzYyOTgwOCwiYXV0aCI6IlJPTEVfQURNSU4gUk9MRV9VU0VSIiwiaWF0IjoxNzM3NTQzNDA4fQ.5OFc-5k0EegWhkDwaE2tvGKIZ0UdiV3DvDWnZkPlGPCAu015TN2aDYVvxRVv40aLmGnl_j_i1Yt4sUxIMVEzQQ';
-
-                                            
-                                            final responseUser = await Openapi()
-                                                .getAccountResourceApi()
-                                                .getAccount(headers: {'Authorization': 'Bearer $jwt'});
-
-                                            if (responseUser.statusCode == 200) {
-                                              debugPrint('User account retrieved successfully.');
-                                            } else {
-                                              debugPrint('Failed to fetch user account: ${responseUser.statusCode}');
-                                              return;
-                                            }
-
-                                            
-                                            HabittrackResourceApi api = Openapi().getHabittrackResourceApi();
-                                            final response = await api.createHabittrack(
-                                              habittrack: habitTracker,
-                                              headers: {'Authorization': 'Bearer $jwt'},
-                                            );
-
-                                            if (response.statusCode == 201) {
-                                              debugPrint('Habittrack saved successfully!');
-                                            } else {
-                                              debugPrint('Failed to save Habittrack: ${response.statusCode}');
-                                            }
-                                          } catch (e) {
-                                            if (e is DioException) {
-                                              debugPrint('DioException: ${e.message}');
-                                              debugPrint('Response data: ${e.response?.data}');
-                                              debugPrint('Request path: ${e.requestOptions.path}');
-                                              debugPrint('Request headers: ${e.requestOptions.headers}');
-                                              debugPrint('Request data: ${e.requestOptions.data}');
-                                            } else {
-                                              debugPrint('Error: $e');
-                                            }
+                                          //final startDate = DateTime.now().toIso8601String();   
+                                          //final endDate = DateTime.now().toIso8601String(); 
+                                          
+                                          if (habitName.isEmpty || description.isEmpty) {
+                                            print('Habit name and description cannot be empty');
+                                            return;
                                           }
+                                         
+                                          final habitTracker = Habittrack((b) => b
+                                            ..habitName = habitName
+                                            ..description = description);
+                                            //..startDate = startDate 
+                                            //..endDate = endDate);
+                                         
+                                          final response =await openApi.getHabittrackResourceApi().createHabittrack(habittrack: habitTracker , headers: {'Authorization':'Bearer ${Openapi.jwt}'});
+                                            
+                                          if (response.statusCode == 200) {
+                                            print('Habittrack created successfully');
+                                          } 
+                                          else {
+                                            print('Failed to create habittrack');
+                                          }
+                                        } 
+                                        catch (e) {
+                                          print('Error creating habittrack: $e');
+                                        }
+
+              
                                         },
                                         text: 'Start',
                                         options: FFButtonOptions(
