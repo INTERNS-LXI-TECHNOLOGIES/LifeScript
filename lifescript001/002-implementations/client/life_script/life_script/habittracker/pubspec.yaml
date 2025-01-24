@@ -67,6 +67,7 @@ dependencies:
   http_multi_server: 3.2.2
 
   cupertino_icons: ^1.0.8
+  flutter_secure_storage: ^4.2.1
 
 dependency_overrides:
   http: 1.2.2
