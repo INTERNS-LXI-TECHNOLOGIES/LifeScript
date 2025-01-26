@@ -1,5 +1,7 @@
 {
-  "annotations": {},
+  "annotations": {
+    "changelogDate": "20250126103752"
+  },
   "applications": "*",
   "fields": [
     {
@@ -14,21 +16,6 @@
     }
   ],
   "name": "UserProfile",
-  "relationships": [
-    {
-      "otherEntityField": "login",
-      "otherEntityName": "user",
-      "relationshipName": "user",
-      "relationshipSide": "left",
-      "relationshipType": "one-to-one",
-      "relationshipWithBuiltInEntity": true
-    },
-    {
-      "otherEntityField": "login",
-      "otherEntityName": "twisterPractice",
-      "relationshipName": "twisterPractice",
-      "relationshipSide": "left",
-      "relationshipType": "one-to-many"
-    }
-  ]
+  "relationships": [],
+  "searchEngine": "no"
 }

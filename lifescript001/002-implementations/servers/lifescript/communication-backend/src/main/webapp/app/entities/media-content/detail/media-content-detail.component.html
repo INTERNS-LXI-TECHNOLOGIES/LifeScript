@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (mediaContent(); as mediaContentRef) {
+      <div>
+        <h2 data-cy="mediaContentDetailsHeading">
+          <span jhiTranslate="communicationBackendApp.mediaContent.detail.title">Media Content</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ mediaContentRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="communicationBackendApp.mediaContent.text">Text</span></dt>
+          <dd>
+            <span>{{ mediaContentRef.text }}</span>
+          </dd>
+          <dt><span jhiTranslate="communicationBackendApp.mediaContent.audio">Audio</span></dt>
+          <dd>
+            <span>{{ mediaContentRef.audio }}</span>
+          </dd>
+          <dt><span jhiTranslate="communicationBackendApp.mediaContent.uploadDateTime">Upload Date Time</span></dt>
+          <dd>
+            <span>{{ mediaContentRef.uploadDateTime | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="communicationBackendApp.mediaContent.language">Language</span></dt>
+          <dd>
+            <span>{{ mediaContentRef.language }}</span>
+          </dd>
+          <dt><span jhiTranslate="communicationBackendApp.mediaContent.difficultyLevel">Difficulty Level</span></dt>
+          <dd>
+            <span>{{ mediaContentRef.difficultyLevel }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/media-content', mediaContentRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

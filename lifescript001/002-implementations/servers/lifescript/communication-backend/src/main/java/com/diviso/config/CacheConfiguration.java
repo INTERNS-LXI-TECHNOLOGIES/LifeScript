@@ -50,6 +50,10 @@ public class CacheConfiguration {
             createCache(cm, com.diviso.domain.User.class.getName());
             createCache(cm, com.diviso.domain.Authority.class.getName());
             createCache(cm, com.diviso.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.diviso.domain.UserProfile.class.getName());
+            createCache(cm, com.diviso.domain.MediaContent.class.getName());
+            createCache(cm, com.diviso.domain.MediaContent.class.getName() + ".twisterPractices");
+            createCache(cm, com.diviso.domain.TwisterPractice.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }
