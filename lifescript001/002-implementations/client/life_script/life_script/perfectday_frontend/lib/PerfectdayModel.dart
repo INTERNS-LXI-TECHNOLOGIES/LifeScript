@@ -22,6 +22,11 @@ class Perfectdayplan1Model extends FlutterFlowModel<Perfectdayplan1Widget> {
   TextEditingController? textController2;
   String? Function(BuildContext, String?)? textController2Validator;
 
+  FocusNode? textFieldFocusNode3;
+  TextEditingController? textController3;
+  String? Function(BuildContext, String?)? textController3Validator;
+
+
   @override
   void initState(BuildContext context) {}
 
@@ -32,5 +37,8 @@ class Perfectdayplan1Model extends FlutterFlowModel<Perfectdayplan1Widget> {
 
     textFieldFocusNode2?.dispose();
     textController2?.dispose();
+
+     textFieldFocusNode3?.dispose();
+    textController3?.dispose();
   }
 }

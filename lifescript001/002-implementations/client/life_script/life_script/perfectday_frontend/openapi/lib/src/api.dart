@@ -17,11 +17,11 @@ import 'package:openapiperfectday/src/api/public_user_resource_api.dart';
 import 'package:openapiperfectday/src/api/user_resource_api.dart';
 
 class Openapi {
-  static const String basePath = r'http://192.168.170.186:8080';
+  static const String basePath = r'http://localhost:8080/';
 
   final Dio dio;
   final Serializers serializers;
-
+  static String jwt='';
   Openapi({
     Dio? dio,
     Serializers? serializers,
