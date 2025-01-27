@@ -227,7 +227,7 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 filled: true,
-                                fillColor: Color(0xFFF5F5F5),
+                                fillColor: Color.fromRGBO(21, 21, 21, 1),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyLarge
@@ -260,7 +260,7 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
                                     ),
                                 enabledBorder: OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Color(0xFFE0E0E0),
+                                    color: Color.fromARGB(255, 16, 16, 16),
                                     width: 1.0,
                                   ),
                                   borderRadius: BorderRadius.circular(8),
@@ -287,7 +287,7 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
                                   borderRadius: BorderRadius.circular(8),
                                 ),
                                 filled: true,
-                                fillColor: Color(0xFFF5F5F5),
+                                fillColor: Color.fromARGB(255, 30, 29, 29),
                               ),
                               style: FlutterFlowTheme.of(context)
                                   .bodyLarge
@@ -364,24 +364,20 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
                             ),
                             FFButtonWidget(
                               onPressed: () {
-                                     ///final date = _model.textController3.text;
-                                PerfectDayResourceApi api =
-                                    Openapi().getPerfectDayResourceApi();
-
-                                   final dayPlan = PerfectDay((b) => b
+                                     
+                                //PerfectDayResourceApi api =
+                                    final dayPlan = PerfectDay((b) => b
                                   ..title = _model.textController1.text
                                   ..description = _model.textController2.text
                                   ..date = DateTime.parse(_model.textController3.text).toDate() as Date?);
+                                   Openapi().getPerfectDayResourceApi().createPerfectDay(perfectDay: dayPlan,
+                                   headers: {'Authorization': 'Bearer ${Openapi.jwt}'},
+);
                                //   final responseUser = api.getAllPerfectDays().getAccount(headers: {'Authorization': 'Bearer $jwt'});
                                // final title = _model.textController1.text;
                                // final desc = _model.textController2.text;
                              
-
-                              //  final dayPlan = PerfectDay((b) => b
-                                 // ..title = title
-                                  //..description = desc
-                                 // ..date = date as Date?);
-                                api.createPerfectDay(perfectDay: dayPlan);
+                                //api.createPerfectDay(perfectDay: dayPlan,headers:"");
 
                                 print("succes fully created");
                                 //context
@@ -414,455 +410,101 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
                     ),
                   ),
 
-                  Material(
-                    color: Colors.transparent,
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+                                    Container(
+                    width: MediaQuery.sizeOf(context).width,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFF5F5F5),
+                      borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Container(
-                      width: MediaQuery.sizeOf(context).width,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              'Today\'s Goals',
-                              style: FlutterFlowTheme.of(context)
-                                  .headlineSmall
-                                  .override(
-                                    fontFamily: 'Inter Tight',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    letterSpacing: 0.0,
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(16, 16, 16, 16),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                mainAxisSize: MainAxisSize.max,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // Dynamically displaying Goal Title
+                                  Text(
+                                    _model.textController1.text.isNotEmpty
+                                        ? _model.textController1.text
+                                        : 'Goal Title Not Provided',
+                                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                          fontFamily: 'Inter',
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w600,
+                                        ),
                                   ),
-                            ),
-                            Container(
-                              width: MediaQuery.sizeOf(context).width,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFF5F5F5),
-                                borderRadius: BorderRadius.circular(8),
+                                  // Dynamically displaying Description
+                                  Text(
+                                    _model.textController2.text.isNotEmpty
+                                        ? _model.textController2.text
+                                        : 'No Description Available',
+                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                          fontFamily: 'Inter',
+                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                  // Dynamically displaying Date
+                                  Text(
+                                    _model.textController3.text.isNotEmpty
+                                        ? _model.textController3.text
+                                        : 'Date Not Provided',
+                                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                                          fontFamily: 'Inter',
+                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                          letterSpacing: 0.0,
+                                        ),
+                                  ),
+                                ],
                               ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16, 16, 16, 16),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Complete Project Presentation',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                            ),
-                                            Text(
-                                              'Finalize slides and practice delivery',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            FlutterFlowIconButton(
-                                              borderRadius: 20,
-                                              buttonSize: 40,
-                                              fillColor: Color(0xFFE3F2FD),
-                                              icon: Icon(
-                                                Icons.edit,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 20,
-                                              ),
-                                              onPressed: () {
-                                                print('IconButton pressed ...');
-                                              },
-                                            ),
-                                            FlutterFlowIconButton(
-                                              borderRadius: 20,
-                                              buttonSize: 40,
-                                              fillColor: Color(0xFFFFEBEE),
-                                              icon: Icon(
-                                                Icons.delete_outline,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                size: 20,
-                                              ),
-                                              onPressed: () {
-                                                print('IconButton pressed ...');
-                                              },
-                                            ),
-                                          ].divide(SizedBox(width: 8)),
-                                        ),
-                                      ],
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  FlutterFlowIconButton(
+                                    borderRadius: 20,
+                                    buttonSize: 40,
+                                    fillColor: Color(0xFFE3F2FD),
+                                    icon: Icon(
+                                      Icons.edit,
+                                      color: FlutterFlowTheme.of(context).primary,
+                                      size: 20,
                                     ),
-                                  ].divide(SizedBox(height: 12)),
-                                ),
+                                    onPressed: () {
+                                      // Logic for editing can be implemented here
+                                      print('Edit IconButton pressed ...');
+                                    },
+                                  ),
+                                  FlutterFlowIconButton(
+                                    borderRadius: 20,
+                                    buttonSize: 40,
+                                    fillColor: Color(0xFFFFEBEE),
+                                    icon: Icon(
+                                      Icons.delete_outline,
+                                      color: FlutterFlowTheme.of(context).error,
+                                      size: 20,
+                                    ),
+                                    onPressed: () {
+                                      // Logic for deletion can be implemented here
+                                      print('Delete IconButton pressed ...');
+                                    },
+                                  )
+                                ].divide(SizedBox(width: 8)),
                               ),
-                            ),
-                            Container(
-                              width: MediaQuery.sizeOf(context).width,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFF5F5F5),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16, 16, 16, 16),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Gym Session',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                            ),
-                                            Text(
-                                              '45-minute strength training',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            FlutterFlowIconButton(
-                                              borderRadius: 20,
-                                              buttonSize: 40,
-                                              fillColor: Color(0xFFE3F2FD),
-                                              icon: Icon(
-                                                Icons.edit,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 20,
-                                              ),
-                                              onPressed: () {
-                                                print('IconButton pressed ...');
-                                              },
-                                            ),
-                                            FlutterFlowIconButton(
-                                              borderRadius: 20,
-                                              buttonSize: 40,
-                                              fillColor: Color(0xFFFFEBEE),
-                                              icon: Icon(
-                                                Icons.delete_outline,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                size: 20,
-                                              ),
-                                              onPressed: () {
-                                                print('IconButton pressed ...');
+                            ],
 
-                                                BlocBuilder<DayPlanBloc,
-                                                    DayPlanState>(
-                                                  builder: (context, state) {
-                                                    if (state
-                                                        is DayPlanInitialState) {
-                                                      return Text(
-                                                        'Welcome! No day plan data available.',
-                                                        style: TextStyle(
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      );
-                                                    } else if (state
-                                                        is DayPlanLoadingState) {
-                                                      return CircularProgressIndicator(); // Show a loading spinner
-                                                    } else if (state
-                                                        is DayPlanSuccessState) {
-                                                      return Text(
-                                                        state
-                                                            .title, // Display the success message
-                                                        style: TextStyle(
-                                                            fontSize: 18,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color:
-                                                                Colors.green),
-                                                      );
-                                                    } else if (state
-                                                        is DayPlanErrorState) {
-                                                      return Text(
-                                                        state
-                                                            .errorMessage, // Display the error message
-                                                        style: TextStyle(
-                                                            fontSize: 18,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            color: Colors.red),
-                                                      );
-                                                    } else {
-                                                      return Text(
-                                                        'Unexpected state!',
-                                                        style: TextStyle(
-                                                            fontSize: 16,
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold),
-                                                      );
-                                                    }
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                          ].divide(SizedBox(width: 8)),
-                                        ),
-                                      ],
-                                    ),
-                                  ].divide(SizedBox(height: 12)),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: MediaQuery.sizeOf(context).width,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFF5F5F5),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16, 16, 16, 16),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Team Meeting',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                            ),
-                                            Text(
-                                              'Weekly sync with development team',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            FlutterFlowIconButton(
-                                              borderRadius: 20,
-                                              buttonSize: 40,
-                                              fillColor: Color(0xFFE3F2FD),
-                                              icon: Icon(
-                                                Icons.edit,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 20,
-                                              ),
-                                              onPressed: () {
-                                                print('IconButton pressed ...');
-                                              },
-                                            ),
-                                            FlutterFlowIconButton(
-                                              borderRadius: 20,
-                                              buttonSize: 40,
-                                              fillColor: Color(0xFFFFEBEE),
-                                              icon: Icon(
-                                                Icons.delete_outline,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                size: 20,
-                                              ),
-                                              onPressed: () {
-                                                print('IconButton pressed ...');
-                                              },
-                                            ),
-                                          ].divide(SizedBox(width: 8)),
-                                        ),
-                                      ],
-                                    ),
-                                  ].divide(SizedBox(height: 12)),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: MediaQuery.sizeOf(context).width,
-                              decoration: BoxDecoration(
-                                color: Color(0xFFF5F5F5),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    16, 16, 16, 16),
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Row(
-                                      mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              'Read Book',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyLarge
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        letterSpacing: 0.0,
-                                                        fontWeight:
-                                                            FontWeight.w600,
-                                                      ),
-                                            ),
-                                            Text(
-                                              '30 minutes of reading',
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        color:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .secondaryText,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          mainAxisSize: MainAxisSize.max,
-                                          children: [
-                                            FlutterFlowIconButton(
-                                              borderRadius: 20,
-                                              buttonSize: 40,
-                                              fillColor: Color(0xFFE3F2FD),
-                                              icon: Icon(
-                                                Icons.edit,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .primary,
-                                                size: 20,
-                                              ),
-                                              onPressed: () {
-                                                print('IconButton pressed ...');
-                                              },
-                                            ),
-                                            FlutterFlowIconButton(
-                                              borderRadius: 20,
-                                              buttonSize: 40,
-                                              fillColor: Color(0xFFFFEBEE),
-                                              icon: Icon(
-                                                Icons.delete_outline,
-                                                color:
-                                                    FlutterFlowTheme.of(context)
-                                                        .error,
-                                                size: 20,
-                                              ),
-                                              onPressed: () {
-                                                print('IconButton pressed ...');
-                                              },
-                                            ),
-                                          ].divide(SizedBox(width: 8)),
-                                        ),
-                                      ],
-                                    ),
-                                  ].divide(SizedBox(height: 12)),
-                                ),
-                              ),
-                            ),
-                          ].divide(SizedBox(height: 16)),
-                        ),
+                          ),
+                        ].divide(SizedBox(height: 12)),
                       ),
                     ),
                   ),
+
                 ].divide(SizedBox(height: 24)),
               ),
             ),
