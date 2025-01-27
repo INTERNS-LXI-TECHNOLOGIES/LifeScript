@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'package:pomodoro_break/login_page/Login_Page_Widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -100,6 +101,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'infoPage': InstructionPageWidget(),
       'home': HomePageWidget(),
       'setPomodoro': SetPomodoroWidget(),
+      'loginPage': LoginPageWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 

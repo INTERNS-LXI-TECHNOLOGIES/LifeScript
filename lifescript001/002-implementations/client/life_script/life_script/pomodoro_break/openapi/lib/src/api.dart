@@ -4,15 +4,21 @@
 
 import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
-import 'package:pomodoro_break_openapi/src/serializers.dart';
-import 'package:pomodoro_break_openapi/src/auth/api_key_auth.dart';
-import 'package:pomodoro_break_openapi/src/auth/basic_auth.dart';
-import 'package:pomodoro_break_openapi/src/auth/bearer_auth.dart';
-import 'package:pomodoro_break_openapi/src/auth/oauth.dart';
-import 'package:pomodoro_break_openapi/src/api/pomodoro_controller_api.dart';
+import 'package:openapi/src/serializers.dart';
+import 'package:openapi/src/auth/api_key_auth.dart';
+import 'package:openapi/src/auth/basic_auth.dart';
+import 'package:openapi/src/auth/bearer_auth.dart';
+import 'package:openapi/src/auth/oauth.dart';
+import 'package:openapi/src/api/account_resource_api.dart';
+import 'package:openapi/src/api/authenticate_controller_api.dart';
+import 'package:openapi/src/api/authority_resource_api.dart';
+import 'package:openapi/src/api/pomodoro_break_resource_api.dart';
+import 'package:openapi/src/api/public_user_resource_api.dart';
+import 'package:openapi/src/api/user_resource_api.dart';
 
 class Openapi {
-  static const String basePath = r'http://localhost:8080';
+  static const String basePath = r'http://localhost:8080/';
+  static  String? jwt ="";
 
   final Dio dio;
   final Serializers serializers;
@@ -65,9 +71,39 @@ class Openapi {
     }
   }
 
-  /// Get PomodoroControllerApi instance, base route and serializer can be overridden by a given but be careful,
+  /// Get AccountResourceApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
-  PomodoroControllerApi getPomodoroControllerApi() {
-    return PomodoroControllerApi(dio, serializers);
+  AccountResourceApi getAccountResourceApi() {
+    return AccountResourceApi(dio, serializers);
+  }
+
+  /// Get AuthenticateControllerApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  AuthenticateControllerApi getAuthenticateControllerApi() {
+    return AuthenticateControllerApi(dio, serializers);
+  }
+
+  /// Get AuthorityResourceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  AuthorityResourceApi getAuthorityResourceApi() {
+    return AuthorityResourceApi(dio, serializers);
+  }
+
+  /// Get PomodoroBreakResourceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  PomodoroBreakResourceApi getPomodoroBreakResourceApi() {
+    return PomodoroBreakResourceApi(dio, serializers);
+  }
+
+  /// Get PublicUserResourceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  PublicUserResourceApi getPublicUserResourceApi() {
+    return PublicUserResourceApi(dio, serializers);
+  }
+
+  /// Get UserResourceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  UserResourceApi getUserResourceApi() {
+    return UserResourceApi(dio, serializers);
   }
 }

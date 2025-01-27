@@ -1,4 +1,6 @@
-import 'package:pomodoro_break/controller/PomodoroController.dart';
+import 'package:dio/dio.dart';
+import 'package:openapi/openapi.dart';
+import 'package:pomodoro_break/services/api_service.dart';
 
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -20,8 +22,8 @@ class SetPomodoroWidget extends StatefulWidget {
 
 class _SetPomodoroWidgetState extends State<SetPomodoroWidget> {
   late SetPomodoroModel _model;
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  final TextEditingController _totalWorkingHourController = TextEditingController();
 
   @override
   void initState() {
@@ -34,7 +36,7 @@ class _SetPomodoroWidgetState extends State<SetPomodoroWidget> {
   @override
   void dispose() {
     _model.dispose();
-
+    _totalWorkingHourController.dispose();
     super.dispose();
   }
 
@@ -73,6 +75,31 @@ class _SetPomodoroWidgetState extends State<SetPomodoroWidget> {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Text(
+                    'Total Working Hour',
+                    style: FlutterFlowTheme.of(context).headlineSmall.override(
+                      fontFamily: 'Inter Tight',
+                      color: FlutterFlowTheme.of(context).primaryText,
+                      letterSpacing: 0.0,
+                    ),
+                  ),
+                  SizedBox(height: 8),
+                  TextField(
+                    controller: _totalWorkingHourController,
+                    decoration: InputDecoration(
+                      labelText: 'Enter total working hours',
+                      labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                        fontFamily: 'Inter',
+                        color: FlutterFlowTheme.of(context).secondaryText,
+                        letterSpacing: 0.0,
+                      ),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
+                    ),
+                    keyboardType: TextInputType.number,
+                  ),
+                  SizedBox(height: 32),
                   Material(
                     color: Colors.transparent,
                     elevation: 2,
@@ -313,11 +340,26 @@ class _SetPomodoroWidgetState extends State<SetPomodoroWidget> {
                     ),
                   ),
                   FFButtonWidget(
-                    onPressed: () {
-                      int workDuration = 25;
-                      int breakDuration = _model.sliderValue?.toInt() ?? 5;
-                      PomodoroController().savePomo(workDuration, breakDuration);
-                      print('Pomodoro saved with work duration: $workDuration minutes and break duration: $breakDuration minutes');
+                    onPressed: () async {
+
+                      PomodoroBreakBuilder pomodoro = PomodoroBreakBuilder();
+                    
+                      pomodoro.totalWorkingHour = int.tryParse(_totalWorkingHourController.text) ?? 10;
+                      pomodoro.dailyDurationOfWork = 7;
+                      pomodoro.splitBreakDuration = 17;
+                      pomodoro.breakDuration = _model.sliderValue?.toInt() ?? 5;
+                      pomodoro.completedBreaks = 2;
+                      pomodoro.dateOfPomodoro = DateTime.now().toUtc();
+                      pomodoro.timeOfPomodoroCreation = DateTime.now().toUtc();
+                      pomodoro.notificationForBreak = true;
+                      pomodoro.finalMessage = "good job!";
+
+                      Openapi().getPomodoroBreakResourceApi().createPomodoroBreak(pomodoroBreak: pomodoro.build(),
+                    headers: {'Authorization': 'Bearer ${Openapi.jwt}'}) ;
+                      
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text('Pomodoro created successfully!')),
+                        ); 
                     },
                     text: 'Start Pomodoro',
                     options: FFButtonOptions(
@@ -326,12 +368,11 @@ class _SetPomodoroWidgetState extends State<SetPomodoroWidget> {
                       padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                       iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                       color: FlutterFlowTheme.of(context).primary,
-                      textStyle:
-                          FlutterFlowTheme.of(context).titleMedium.override(
-                                fontFamily: 'Inter Tight',
-                                color: FlutterFlowTheme.of(context).info,
-                                letterSpacing: 0.0,
-                              ),
+                      textStyle: FlutterFlowTheme.of(context).titleMedium.override(
+                        fontFamily: 'Inter Tight',
+                        color: FlutterFlowTheme.of(context).info,
+                        letterSpacing: 0.0,
+                      ),
                       elevation: 3,
                       borderRadius: BorderRadius.circular(28),
                     ),
