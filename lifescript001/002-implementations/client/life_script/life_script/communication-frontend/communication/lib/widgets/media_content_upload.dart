@@ -4,13 +4,10 @@ import 'package:flutter/material.dart';
 class MediaContentUploadPage extends StatefulWidget {
   @override
   _MediaContentUploadPageState createState() => _MediaContentUploadPageState();
-
-  
 }
 
 class _MediaContentUploadPageState extends State<MediaContentUploadPage> {
-
-   final Openapi _openapi = Openapi();
+  final Openapi _openapi = Openapi();
   final _formKey = GlobalKey<FormState>();
   String? _text;
   String? _audioFilePath;
@@ -22,20 +19,18 @@ class _MediaContentUploadPageState extends State<MediaContentUploadPage> {
   final List<String> _languages = ['English', 'Spanish', 'French', 'German'];
 
   // OpenAPI client instance
-  
 
   @override
   void initState() {
     super.initState();
     // Initialize OpenAPI client instance
-    
-    
   }
 
   // Function to handle form submission and upload content
   void _submitForm() async {
     if (_formKey.currentState!.validate()) {
-      _formKey.currentState!.save(); // Save form values to the corresponding variables
+      _formKey.currentState!
+          .save(); // Save form values to the corresponding variables
 
       try {
         // Create the MediaContent object
@@ -44,15 +39,17 @@ class _MediaContentUploadPageState extends State<MediaContentUploadPage> {
           ..textAudio = _audioFilePath
           ..language = _language
           ..difficultyLevel = _difficultyLevel
-          ..uploadDateTime = _uploadDateTime.toIso8601String() as DateTime?;
+          ..uploadDateTime = _uploadDateTime.toUtc() as DateTime?;
 
         // Make the API call to create media content
         final response = await _openapi
             .getMediaContentResourceApi()
-            .createMediaContent(mediaContent: mediaContent.build());
-
+            .createMediaContent(
+                mediaContent: mediaContent.build(),
+                headers: {'Authorization': 'Bearer ${Openapi.jwt}'});
+        debugPrint('response: $response');
         // Check the response status
-        if (response.statusCode == 200) {
+        if (response.statusCode == 200||response.statusCode == 201) {
           // Handle successful response
           print('Media content uploaded successfully: ${response.data}');
           ScaffoldMessenger.of(context).showSnackBar(
@@ -60,7 +57,8 @@ class _MediaContentUploadPageState extends State<MediaContentUploadPage> {
           );
         } else {
           // Handle error response
-          print('Failed to upload media content. Status: ${response.statusCode}');
+          print(
+              'Failed to upload media content. Status: ${response.statusCode}');
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text('Failed to upload media content.')),
           );

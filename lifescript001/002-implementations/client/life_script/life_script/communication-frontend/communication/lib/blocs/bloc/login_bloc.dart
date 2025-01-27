@@ -44,7 +44,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
               .getAccountResourceApi()
               .getAccount(headers: {
             'Authorization': 'Bearer ${Openapi.jwt}'
-          });
+          });      
 
           _logger.info(
               "account response status code: ${userResponse.statusCode}");
