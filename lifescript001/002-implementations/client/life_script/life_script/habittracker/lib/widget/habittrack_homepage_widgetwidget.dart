@@ -1,4 +1,6 @@
 import 'package:flutter/foundation.dart';
+import 'package:habittracker/bloc/habit_track_bloc.dart';
+import 'package:habittracker/event/create_habit_event.dart';
 import 'package:habittracker_openapi/openapi.dart';
 
 import 'package:dio/dio.dart';
@@ -25,6 +27,7 @@ class HabittrackhomepagewidgetWidget extends StatefulWidget {
 class _HabittrackhomepagewidgetWidgetState
     extends State<HabittrackhomepagewidgetWidget> {
   late HabittrackhomepagewidgetModel _model;
+  late final _bloc = Provider.of<HabitTrackBloc>(context, listen: false);
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -532,39 +535,10 @@ class _HabittrackhomepagewidgetWidgetState
                                    
                                       FFButtonWidget(
                                        onPressed: () async {
-                                        try{
-                                          final Openapi openApi =Openapi();
-                                          
-                                          final habitName = _model.textController1.text;
-                                          final description = _model.textController2.text;    
-                                          //final startDate = DateTime.now().toIso8601String();   
-                                          //final endDate = DateTime.now().toIso8601String(); 
-                                          
-                                          if (habitName.isEmpty || description.isEmpty) {
-                                            print('Habit name and description cannot be empty');
-                                            return;
-                                          }
-                                         
-                                          final habitTracker = Habittrack((b) => b
-                                            ..habitName = habitName
-                                            ..description = description);
-                                            //..startDate = startDate 
-                                            //..endDate = endDate);
-                                         
-                                          final response =await openApi.getHabittrackResourceApi().createHabittrack(habittrack: habitTracker , headers: {'Authorization':'Bearer ${Openapi.jwt}'});
-                                            
-                                          if (response.statusCode == 200) {
-                                            print('Habittrack created successfully');
-                                          } 
-                                          else {
-                                            print('Failed to create habittrack');
-                                          }
-                                        } 
-                                        catch (e) {
-                                          print('Error creating habittrack: $e');
-                                        }
-
-              
+                                         final habitName = _model.textController1.text;
+              final description = _model.textController2.text;
+                  _bloc.onEvent(CreateHabitEvent(habitName, description));
+  
                                         },
                                         text: 'Start',
                                         options: FFButtonOptions(
