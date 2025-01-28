@@ -18,7 +18,7 @@ import 'package:openapi/src/api/user_resource_api.dart';
 
 class Openapi {
   static const String basePath = r'http://localhost:8080/';
-  static  String? jwt ="";
+  static String? jwt = "";
 
   final Dio dio;
   final Serializers serializers;
@@ -44,6 +44,11 @@ class Openapi {
       ]);
     } else {
       this.dio.interceptors.addAll(interceptors);
+    }
+
+    // Ensure the Bearer token is set correctly
+    if (jwt != null && jwt!.isNotEmpty) {
+      setBearerAuth('default', jwt!);
     }
   }
 

@@ -1,7 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:openapi/openapi.dart';
-import 'package:pomodoro_break/services/api_service.dart';
-
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
