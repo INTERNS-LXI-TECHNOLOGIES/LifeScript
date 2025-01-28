@@ -149,6 +149,25 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
                       ),
                     ),
                   ),
+                  BlocBuilder<DayPlanBloc, DayPlanState>(
+                          builder: (context, state) {
+                          if (state is DayPlanLoadingState) {
+                          return CircularProgressIndicator(); 
+                        } else if (state is DayPlanErrorState) {
+                          return Text(
+                            state.errorMessage,
+                            style: TextStyle(color: Colors.red),
+                          ); 
+                        } else if (state is DayPlanSuccessState) {
+                          return Text(
+                            "Goal added successfully!",
+                            style: TextStyle(color: Colors.green),
+                          ); // Show success message
+                        }
+
+                        return Container(); 
+                      },
+                    ),
 
 
                 Material(
@@ -362,48 +381,39 @@ class _Perfectdayplan1WidgetState extends State<Perfectdayplan1Widget> {
                               validator: _model.textController3Validator
                                   .asValidator(context),
                             ),
-                            FFButtonWidget(
-                              onPressed: () {
-                                     
-                                //PerfectDayResourceApi api =
-                                    final dayPlan = PerfectDay((b) => b
-                                  ..title = _model.textController1.text
-                                  ..description = _model.textController2.text
-                                  ..date = DateTime.parse(_model.textController3.text).toDate() as Date?);
-                                   Openapi().getPerfectDayResourceApi().createPerfectDay(perfectDay: dayPlan,
-                                   headers: {'Authorization': 'Bearer ${Openapi.jwt}'},
-);
-                               //   final responseUser = api.getAllPerfectDays().getAccount(headers: {'Authorization': 'Bearer $jwt'});
-                               // final title = _model.textController1.text;
-                               // final desc = _model.textController2.text;
-                             
-                                //api.createPerfectDay(perfectDay: dayPlan,headers:"");
+                          FFButtonWidget(
+                            onPressed: () {
+                              final title = _model.textController1.text;
+                              final description = _model.textController2.text;
+                              final date = DateTime.parse(_model.textController3.text);
 
-                                print("succes fully created");
-                                //context
-                                //  .read<DayPlanBloc>()
-                                // .add(CreateDayPlanEvent(title: title, description: desc));
-                                print('Button pressed ...');
-                              },
-                              text: 'Add Goal',
-                              options: FFButtonOptions(
-                                width: MediaQuery.sizeOf(context).width,
-                                height: 56,
-                                padding: EdgeInsets.all(8),
-                                iconPadding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                color: FlutterFlowTheme.of(context).primary,
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                      fontFamily: 'Inter Tight',
-                                      color: Colors.white,
-                                      letterSpacing: 0.0,
-                                    ),
-                                elevation: 3,
-                                borderRadius: BorderRadius.circular(28),
-                              ),
+                              // Dispatch the CreateDayPlanEvent
+                              context.read<DayPlanBloc>().add(
+                                CreateDayPlanEvent(
+                                  title: title,
+                                  description: description,
+                                ),
+                              );
+
+                              print("Button pressed and event dispatched...");
+                            },
+                            text: 'Add Goal',
+                            options: FFButtonOptions(
+                              width: MediaQuery.sizeOf(context).width,
+                              height: 56,
+                              padding: EdgeInsets.all(8),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                              color: FlutterFlowTheme.of(context).primary,
+                              textStyle: FlutterFlowTheme.of(context).titleMedium.override(
+                                    fontFamily: 'Inter Tight',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                  ),
+                              elevation: 3,
+                              borderRadius: BorderRadius.circular(28),
                             ),
+                          ),
+
                           ].divide(SizedBox(height: 16)),
                         ),
                       ),

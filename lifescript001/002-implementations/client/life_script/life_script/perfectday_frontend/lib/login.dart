@@ -24,14 +24,13 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     try {
-      // Create a LoginVMBuilder and build the login object
+      
       LoginVMBuilder loginBuilder = LoginVMBuilder()
         ..username = _usernameController.text
         ..password = _passwordController.text;
 
       LoginVM loginVM = loginBuilder.build();
 
-      // Call the API
       final response = await openapi
           .getAuthenticateControllerApi()
           .authorize(loginVM: loginVM);
