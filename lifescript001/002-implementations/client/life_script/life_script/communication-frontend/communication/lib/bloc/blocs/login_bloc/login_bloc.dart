@@ -1,10 +1,10 @@
-import 'package:communication/blocs/events/login_button.dart';
-import 'package:communication/blocs/events/login_event.dart';
-import 'package:communication/blocs/states/login_failure.dart';
-import 'package:communication/blocs/states/login_initial.dart';
-import 'package:communication/blocs/states/login_loading.dart';
-import 'package:communication/blocs/states/login_state.dart';
-import 'package:communication/blocs/states/login_success.dart';
+import 'package:communication/bloc/events/login_events/login_button_event.dart';
+import 'package:communication/bloc/events/login_events/login_event.dart';
+import 'package:communication/bloc/states/login_states/login_failure_state.dart';
+import 'package:communication/bloc/states/login_states/login_initial_state.dart';
+import 'package:communication/bloc/states/login_states/login_loading_state.dart';
+import 'package:communication/bloc/states/login_states/login_state.dart';
+import 'package:communication/bloc/states/login_states/login_success_state.dart';
 import 'package:communication_openapi/openapi.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';

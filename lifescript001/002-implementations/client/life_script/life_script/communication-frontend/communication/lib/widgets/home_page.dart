@@ -1,3 +1,4 @@
+import 'package:communication/widgets/tongue_twister.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -34,16 +35,16 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 30),
             ElevatedButton(
               onPressed: () {
-                // Add functionality (e.g., logout or navigate)
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text("Home button clicked!")),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TongueTwister()),
                 );
               },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blueAccent,
                 padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
               ),
-              child: Text("Go to Dashboard"),
+              child: Text("Go to Sentence Recording"),
             ),
           ],
         ),

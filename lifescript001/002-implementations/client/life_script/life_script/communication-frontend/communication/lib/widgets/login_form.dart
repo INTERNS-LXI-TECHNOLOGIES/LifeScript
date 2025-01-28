@@ -1,10 +1,10 @@
 import 'package:built_collection/src/set.dart';
-import 'package:communication/blocs/bloc/login_bloc.dart';
-import 'package:communication/blocs/events/login_button.dart';
-import 'package:communication/blocs/states/login_failure.dart';
-import 'package:communication/blocs/states/login_loading.dart';
-import 'package:communication/blocs/states/login_state.dart';
-import 'package:communication/blocs/states/login_success.dart';
+import 'package:communication/bloc/blocs/login_bloc/login_bloc.dart';
+import 'package:communication/bloc/events/login_events/login_button_event.dart';
+import 'package:communication/bloc/states/login_states/login_failure_state.dart';
+import 'package:communication/bloc/states/login_states/login_loading_state.dart';
+import 'package:communication/bloc/states/login_states/login_state.dart';
+import 'package:communication/bloc/states/login_states/login_success_state.dart';
 import 'package:communication/widgets/home_page.dart';
 import 'package:communication/widgets/media_content_upload.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +52,7 @@ Widget build(BuildContext context) {
         child: BlocListener<LoginBloc, LoginState>(
           listener: (context, state) {
             if (state is LoginFailure) {
-              _showErrorDialog('Error', state.error);
+              _showErrorDialog('Login Failed', (state as LoginFailure).error);
             } else if (state is LoginSuccess) {
               if (state.authorities != null) {
                 if (state.authorities!.contains("ROLE_ADMIN")) {

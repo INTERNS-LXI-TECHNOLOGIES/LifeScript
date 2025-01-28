@@ -1,4 +1,4 @@
-import 'package:communication/blocs/states/login_state.dart';
+import 'package:communication/bloc/states/login_states/login_state.dart';
 
 class LoginFailure extends LoginState {
   final String error;

@@ -1,4 +1,4 @@
-import 'package:communication/blocs/events/login_event.dart';
+import 'package:communication/bloc/events/login_events/login_event.dart';
 
 class LoginButtonPressed extends LoginEvent {
   final String username;
