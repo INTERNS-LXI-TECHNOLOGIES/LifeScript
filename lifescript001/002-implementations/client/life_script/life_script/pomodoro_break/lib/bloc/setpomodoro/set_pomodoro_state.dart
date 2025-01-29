@@ -24,3 +24,10 @@ class SetPomodoroInitial extends SetPomodoroState {
   @override
   List<Object> get props => [breakDuration];
 }
+
+class PomodoroExists extends SetPomodoroState {
+  @override
+  SetPomodoroState copyWith({int? breakDuration}) {
+    return PomodoroExists();
+  }
+}

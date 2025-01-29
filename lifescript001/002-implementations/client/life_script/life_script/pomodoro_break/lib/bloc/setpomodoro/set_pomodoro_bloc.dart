@@ -1,13 +1,58 @@
-import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter_bloc/flutter_bloc.dart'; // Use flutter_bloc package
 import 'package:equatable/equatable.dart';
+import 'package:openapi/openapi.dart';
 
 part 'set_pomodoro_event.dart';
 part 'set_pomodoro_state.dart';
 
 class SetPomodoroBloc extends Bloc<SetPomodoroEvent, SetPomodoroState> {
-  SetPomodoroBloc() : super(SetPomodoroInitial()) {
+  final void Function(String route) navigate;
+
+  SetPomodoroBloc({required this.navigate}) : super(SetPomodoroInitial()) {
     on<UpdateBreakDuration>((event, emit) {
       emit(state.copyWith(breakDuration: event.breakDuration));
     });
+
+    on<CheckExistingPomodoro>((event, emit) async {
+      final existingPomodoro = await _checkIfPomodoroExists();
+      if (existingPomodoro) {
+        emit(PomodoroExists());
+      } else {
+        emit(SetPomodoroInitial());
+      }
+    });
+
+    on<NavigateToInstructionPage>((event, emit) {
+      navigate('/infopage'); // Trigger navigation to InstructionPageWidget
+    });
+  }
+
+  Future<bool> _checkIfPomodoroExists() async {
+    try {
+      // Ensure the JWT token is set
+      final jwtToken = Openapi.jwt;
+      if (jwtToken == null || jwtToken.isEmpty) {
+        throw DioException(
+          requestOptions: RequestOptions(path: ''),
+          type: DioExceptionType.badResponse,
+          response: Response(
+            requestOptions: RequestOptions(path: ''),
+            statusCode: 401,
+            statusMessage: 'Unauthorized',
+          ),
+        );
+      }
+
+      final response = await Openapi().getPomodoroBreakResourceApi().getAllPomodoroBreaksAsStream(
+        headers: {'Authorization': 'Bearer $jwtToken'},
+      );
+      final pomodoros = response.data?.toList() ?? [];
+      final currentDate = DateTime.now().toUtc().toIso8601String().split('T').first;
+
+      return pomodoros.any((pomodoro) => pomodoro.dateOfPomodoro?.toIso8601String().split('T').first == currentDate);
+    } catch (e) {
+      return false;
+    }
   }
 }
