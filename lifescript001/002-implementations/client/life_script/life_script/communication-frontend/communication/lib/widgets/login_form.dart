@@ -1,5 +1,6 @@
 import 'package:built_collection/src/set.dart';
 import 'package:communication/bloc/blocs/login_bloc/login_bloc.dart';
+
 import 'package:communication/bloc/events/login_events/login_button_event.dart';
 import 'package:communication/bloc/states/login_states/login_failure_state.dart';
 import 'package:communication/bloc/states/login_states/login_loading_state.dart';
@@ -22,7 +23,7 @@ class LoginForm extends StatefulWidget {
 class LoginFormState extends State<LoginForm> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final Openapi _openapi = Openapi();
+ // final Openapi _openapi = Openapi();
   final Logger _logger = Logger('LoginForm');
   late final LoginBloc _loginBloc;
 

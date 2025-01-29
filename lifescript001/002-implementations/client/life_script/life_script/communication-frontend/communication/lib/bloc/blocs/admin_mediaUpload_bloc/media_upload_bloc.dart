@@ -29,6 +29,7 @@ class AdminMediaUploadBloc extends Bloc<UploadEvent, UploadState> {
         ..uploadDateTime = event.uploadDateTime;
 
       // Make the API call to upload media content
+       //Openapi.jwt = response.data?.idToken;
       final response = await _openapi.getMediaContentResourceApi().createMediaContent(
         mediaContent: mediaContent.build(),
         headers: {'Authorization': 'Bearer ${Openapi.jwt}'},

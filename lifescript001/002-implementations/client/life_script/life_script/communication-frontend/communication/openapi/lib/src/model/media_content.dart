@@ -50,6 +50,8 @@ abstract class MediaContent implements Built<MediaContent, MediaContentBuilder> 
 
   @BuiltValueSerializer(custom: true)
   static Serializer<MediaContent> get serializer => _$MediaContentSerializer();
+
+  Object? get idToken => null;
 }
 
 class _$MediaContentSerializer implements PrimitiveSerializer<MediaContent> {
