@@ -1,0 +1,29 @@
+{
+  "communicationBackendApp": {
+    "mediaContent": {
+      "home": {
+        "title": "Media Contents",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Media Content",
+        "createOrEditLabel": "Create or edit a Media Content",
+        "notFound": "No Media Contents found"
+      },
+      "created": "A new Media Content is created with identifier {{ param }}",
+      "updated": "A Media Content is updated with identifier {{ param }}",
+      "deleted": "A Media Content is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Media Content {{ id }}?"
+      },
+      "detail": {
+        "title": "Media Content"
+      },
+      "id": "ID",
+      "text": "Text",
+      "audio": "Audio",
+      "uploadDateTime": "Upload Date Time",
+      "language": "Language",
+      "difficultyLevel": "Difficulty Level",
+      "twisterPractice": "Twister Practice"
+    }
+  }
+}

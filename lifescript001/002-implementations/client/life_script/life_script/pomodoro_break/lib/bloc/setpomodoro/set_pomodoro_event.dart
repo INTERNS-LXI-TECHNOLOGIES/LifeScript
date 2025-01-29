@@ -15,3 +15,7 @@ class UpdateBreakDuration extends SetPomodoroEvent {
   @override
   List<Object> get props => [breakDuration];
 }
+
+class CheckExistingPomodoro extends SetPomodoroEvent {}
+
+class NavigateToInstructionPage extends SetPomodoroEvent {}

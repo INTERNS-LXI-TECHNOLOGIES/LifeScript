@@ -1,0 +1,21 @@
+{
+  "annotations": {
+    "changelogDate": "20250126103752"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "nickName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "address",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "UserProfile",
+  "relationships": [],
+  "searchEngine": "no"
+}
