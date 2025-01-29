@@ -22,7 +22,7 @@ abstract class PerfectDay implements Built<PerfectDay, PerfectDayBuilder> {
   int? get id;
 
   @BuiltValueField(wireName: r'title')
-  String get title;
+  String get title;  
 
   @BuiltValueField(wireName: r'description')
   String? get description;

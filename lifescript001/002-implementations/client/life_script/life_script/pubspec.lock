@@ -159,6 +159,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.0.0"
+  equatable:
+    dependency: transitive
+    description:
+      name: equatable
+      sha256: "567c64b3cb4cf82397aac55f4f0cbd3ca20d77c6c03bedbc4ceaddc08904aef7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.7"
   fake_async:
     dependency: transitive
     description:
@@ -233,6 +241,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_secure_storage:
+    dependency: transitive
+    description:
+      name: flutter_secure_storage
+      sha256: "9f3dd2ac3b6875b0fde5b04734789c3ef35ba3965c18e99dd564a7a2f8056df6"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.2.1"
   flutter_shaders:
     dependency: transitive
     description:
@@ -519,6 +535,13 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.5.0"
+  openapi:
+    dependency: transitive
+    description:
+      path: "pomodoro_break/openapi"
+      relative: true
+    source: path
+    version: "1.0.0"
   openapiperfectday:
     dependency: transitive
     description:
@@ -628,13 +651,6 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
-  pomodoro_break_openapi:
-    dependency: transitive
-    description:
-      path: "pomodoro_break/openapi"
-      relative: true
-    source: path
-    version: "1.0.0"
   provider:
     dependency: "direct main"
     description:

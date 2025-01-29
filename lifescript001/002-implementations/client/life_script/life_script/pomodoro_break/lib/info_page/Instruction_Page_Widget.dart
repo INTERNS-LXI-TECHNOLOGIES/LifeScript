@@ -6,35 +6,25 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart'; // Import the flutter_bloc package
 
 import 'Instruction_Page_Model.dart';
 export 'Instruction_Page_Model.dart';
+import '../bloc/instructionpage/instruction_page_bloc.dart'; // Import the Bloc file
 
-class InstructionPageWidget extends StatefulWidget {
+class InstructionPageWidget extends StatelessWidget {
   const InstructionPageWidget({super.key});
 
   @override
-  State<InstructionPageWidget> createState() => _InstructionPageWidgetState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => InstructionPageBloc(navigate: (route) => context.go(route)),
+      child: InstructionPageView(),
+    );
+  }
 }
 
-class _InstructionPageWidgetState extends State<InstructionPageWidget> {
-  late InstructionPageModel _model;
-
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-
-  @override
-  void initState() {
-    super.initState();
-    _model = createModel(context, () => InstructionPageModel());
-  }
-
-  @override
-  void dispose() {
-    _model.dispose();
-
-    super.dispose();
-  }
-
+class InstructionPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -43,7 +33,7 @@ class _InstructionPageWidgetState extends State<InstructionPageWidget> {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       child: Scaffold(
-        key: scaffoldKey,
+        key: GlobalKey<ScaffoldState>(),
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
@@ -57,8 +47,7 @@ class _InstructionPageWidgetState extends State<InstructionPageWidget> {
               size: 24,
             ),
             onPressed: () {
-              print('Back to Home Page ...');
-                 context.go('/Home');
+              context.read<InstructionPageBloc>().add(NavigateToHomePage()); // Trigger Bloc event
             },
           ),
           title: Text(
@@ -454,8 +443,7 @@ class _InstructionPageWidgetState extends State<InstructionPageWidget> {
                   ),
                   FFButtonWidget(
                     onPressed: () {
-                      print('Go to Info Page Button pressed ...');
-                      context.go('/setPomodoro');
+                      context.read<InstructionPageBloc>().add(NavigateToSetPomodoroPage()); // Trigger Bloc event
                     },
                     text: 'Start Your Pomodoro',
                     options: FFButtonOptions(

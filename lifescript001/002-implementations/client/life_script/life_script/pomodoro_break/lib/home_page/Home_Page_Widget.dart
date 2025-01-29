@@ -5,21 +5,26 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:circular_menu/circular_menu.dart'; // Import the CircularMenu package
+import 'package:circular_menu/circular_menu.dart';
+import 'package:flutter_bloc/flutter_bloc.dart'; // Import the flutter_bloc package
 
 import 'home_page_model.dart';
 export 'home_page_model.dart';
+import '../bloc/homepage/home_page_bloc.dart'; // Import the Bloc file
 
-class HomePageWidget extends StatefulWidget {
+class HomePageWidget extends StatelessWidget {
   const HomePageWidget({super.key});
 
   @override
-  State<HomePageWidget> createState() => _HomePageWidgetState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => HomePageBloc(navigate: (route) => context.go(route)),
+      child: HomePageView(),
+    );
+  }
 }
 
-class _HomePageWidgetState extends State<HomePageWidget> {
-  final scaffoldKey = GlobalKey<ScaffoldState>();
-
+class HomePageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -27,13 +32,13 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         FocusScope.of(context).unfocus();
       },
       child: Scaffold(
-        key: scaffoldKey,
+        key: GlobalKey<ScaffoldState>(),
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         body: Stack(
           children: [
             Container(
-              width: MediaQuery.sizeOf(context).width,
-              height: MediaQuery.sizeOf(context).height,
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
               decoration: BoxDecoration(
                 color: FlutterFlowTheme.of(context).primaryBackground,
               ),
@@ -55,29 +60,32 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       textAlign: TextAlign.center,
                     ),
                     SizedBox(height: 24),
-                    FFButtonWidget(
-                      onPressed: () {
-                          print('Entered the HomePage ...');
-                          context.go('/InfoPage');
-                      },
-                      text: 'Set Pomodoro',
-                      options: FFButtonOptions(
-                        width: 200,
-                        height: 50,
-                        color: FlutterFlowTheme.of(context).primary,
-                        textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                              fontFamily: 'Inter Tight',
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                    BlocBuilder<HomePageBloc, HomePageState>(
+                      builder: (context, state) {
+                        return FFButtonWidget(
+                          onPressed: () {
+                            context.read<HomePageBloc>().add(NavigateToInfoPage()); // Trigger Bloc event
+                          },
+                          text: 'Set Pomodoro',
+                          options: FFButtonOptions(
+                            width: 200,
+                            height: 50,
+                            color: FlutterFlowTheme.of(context).primary,
+                            textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                                  fontFamily: 'Inter Tight',
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                            elevation: 3,
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
                             ),
-                        elevation: 3,
-                        borderSide: BorderSide(
-                          color: Colors.transparent,
-                          width: 1,
-                        ),
-                        borderRadius: BorderRadius.circular(8),
-                      ),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -113,7 +121,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                   CircularMenuItem(
                     icon: Icons.delete,
                     onTap: () {
-                      print('Delete button pressed');
+                      context.read<HomePageBloc>().add(NavigateToDeletePage());
                     },
                     color: const Color.fromARGB(255, 35, 183, 171),
                   ),

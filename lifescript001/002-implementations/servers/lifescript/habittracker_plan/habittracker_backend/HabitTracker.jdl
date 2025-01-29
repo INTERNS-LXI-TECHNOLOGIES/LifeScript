@@ -1,9 +1,0 @@
-entity HabitTracker {
-  
-  habitId Integer,
-  habitName String,
-  description String,
-  startDate String,
-  endDate String
-  
-}
