@@ -1,6 +1,8 @@
 import 'package:flutter/foundation.dart';
-import 'package:habittracker/bloc/habit_track_bloc.dart';
-import 'package:habittracker/event/create_habit_event.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:habittracker/bloc/homepage/habit_track_bloc.dart';
+import 'package:habittracker/bloc/homepage/habit_track_event.dart';
+
 import 'package:habittracker_openapi/openapi.dart';
 
 import 'package:dio/dio.dart';
@@ -27,7 +29,7 @@ class HabittrackhomepagewidgetWidget extends StatefulWidget {
 class _HabittrackhomepagewidgetWidgetState
     extends State<HabittrackhomepagewidgetWidget> {
   late HabittrackhomepagewidgetModel _model;
-  late final _bloc = Provider.of<HabitTrackBloc>(context, listen: false);
+  //late final _bloc = Provider.of<HabitTrackBloc>(context, listen: false);
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -534,11 +536,18 @@ class _HabittrackhomepagewidgetWidgetState
                                       ),
                                    
                                       FFButtonWidget(
-                                       onPressed: () async {
-                                         final habitName = _model.textController1.text;
-              final description = _model.textController2.text;
-                  _bloc.onEvent(CreateHabitEvent(habitName, description));
-  
+                                       onPressed: () {
+                                          final habitName = _model.textController1.text;
+                                          final description = _model.textController2.text;
+
+                                          if (habitName.isEmpty || description.isEmpty) {
+                                            print('Habit name and description cannot be empty');
+                                            return;
+                                          }
+
+                                          BlocProvider.of<HabitTrackBloc>(context).add(
+                                            HabitTrackSubmitted(habitName: habitName, description: description),
+                                          );
                                         },
                                         text: 'Start',
                                         options: FFButtonOptions(

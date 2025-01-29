@@ -1,0 +1,13 @@
+entity HabitTrack {
+  habitId Integer
+  habitName String
+  description String
+  category String
+  startDate String
+  endDate String
+}
+entity UserEntity {
+  userId Integer
+  userName String
+}
+
