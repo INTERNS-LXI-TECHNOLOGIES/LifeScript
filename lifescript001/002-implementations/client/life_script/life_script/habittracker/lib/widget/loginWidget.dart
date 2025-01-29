@@ -1,5 +1,6 @@
 import 'package:habittracker/widget/habittrack_homepage_widgetwidget.dart';
 import 'package:habittracker_openapi/openapi.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -9,20 +10,31 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
-
 import '../model/loginmodel.dart';
+import '../bloc/login_bloc.dart'; // Import the login bloc
 export '../model/loginmodel.dart';
 
-class LoginWidget extends StatefulWidget {
+class LoginWidget extends StatelessWidget {
   const LoginWidget({super.key});
 
   @override
-  State<LoginWidget> createState() => _LoginWidgetState();
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => LoginBloc(),
+      child: LoginForm(),
+    );
+  }
 }
 
-class _LoginWidgetState extends State<LoginWidget> {
+class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
+
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
   late LoginModel _model;
-  
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -205,7 +217,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 filled: true,
                                 fillColor: Color(0xFF2D2D2D),
                                 suffixIcon: InkWell(
-                                  onTap: () => safeSetState(
+                                  onTap: () => setState(
                                     () => _model.passwordVisibility =
                                         !_model.passwordVisibility,
                                   ),
@@ -230,63 +242,58 @@ class _LoginWidgetState extends State<LoginWidget> {
                               validator: _model.textController2Validator
                                   .asValidator(context),
                             ),
-                            FFButtonWidget(
-                              onPressed: () async {
-                                try {
-                                  final Openapi openApi = Openapi();
-
-                                  final loginVMBuilder = LoginVMBuilder()
-                                    ..username = _model.textController1?.text
-                                    ..password = _model.textController2?.text;
-
-                                    if ((loginVMBuilder.username?.isEmpty ?? true) || (loginVMBuilder.password?.isEmpty ?? true)) {
-                                      print('Username or password cannot be empty');
-                                    }
-
-                                  final loginVM = loginVMBuilder.build();
-
-                                  final loginResponse = await openApi.getAuthenticateControllerApi().authorize(loginVM: loginVM);
-                                
-
-                                  if (loginResponse.statusCode == 200 || loginResponse.statusCode == 201) {
-                                  Openapi.jwt= loginResponse.data?.idToken;
-                                  debugPrint('Login successful. Token: $Openapi.jwt');
-                                  
-                                  final responseUser = await openApi.getAccountResourceApi().getAccount(headers: {'Authorization':'Bearer ${Openapi.jwt}'});
-                                  print('Authenticated successfully');
-                                      
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => HabittrackhomepagewidgetWidget(),
-                                        ),);
-                                  } 
-                                  else {
-                                    print('Login failed: ${loginResponse.statusCode} - ${loginResponse.data}');
-                                  }
-                                } 
-                                catch (e) {
-                                  print('Error during login: $e');
+                            BlocConsumer<LoginBloc, LoginState>(
+                              listener: (context, state) {
+                                if (state is LoginSuccess) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          HabittrackhomepagewidgetWidget(),
+                                    ),
+                                  );
+                                } else if (state is LoginFailure) {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(
+                                      content: Text('Login Failed: ${state.error}'),
+                                    ),
+                                  );
                                 }
                               },
-                              text: 'Login',
-                              options: FFButtonOptions(
-                                width: MediaQuery.sizeOf(context).width,
-                                height: 50,
-                                padding: EdgeInsets.all(8),
-                                iconPadding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                                color: Color(0xFF4B39EF),
-                                textStyle: FlutterFlowTheme.of(context)
-                                    .titleMedium
-                                    .override(
-                                      fontFamily: 'Inter Tight',
-                                      color: Colors.white,
-                                      letterSpacing: 0.0,
-                                    ),
-                                elevation: 3,
-                                borderRadius: BorderRadius.circular(25),
-                              ),
+                              builder: (context, state) {
+                                return FFButtonWidget(
+                                  onPressed: () {
+                                    if (( _model.textController1?.text.isEmpty ?? true) || (_model.textController2?.text.isEmpty ?? true)) {
+                                      print('Username or password cannot be empty');
+                                      return;
+                                    }
+                                    context.read<LoginBloc>().add(
+                                          LoginSubmitted(
+                                            username: _model.textController1?.text ?? '',
+                                            password: _model.textController2?.text ?? '',
+                                          ),
+                                        );
+                                  },
+                                  text: state is LoginLoading ? 'Loading...' : 'Login',
+                                  options: FFButtonOptions(
+                                    width: MediaQuery.sizeOf(context).width,
+                                    height: 50,
+                                    padding: EdgeInsets.all(8),
+                                    iconPadding:
+                                        EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                    color: Color(0xFF4B39EF),
+                                    textStyle: FlutterFlowTheme.of(context)
+                                        .titleMedium
+                                        .override(
+                                          fontFamily: 'Inter Tight',
+                                          color: Colors.white,
+                                          letterSpacing: 0.0,
+                                        ),
+                                    elevation: 3,
+                                    borderRadius: BorderRadius.circular(25),
+                                  ),
+                                );
+                              },
                             ),
                             Row(
                               mainAxisSize: MainAxisSize.max,

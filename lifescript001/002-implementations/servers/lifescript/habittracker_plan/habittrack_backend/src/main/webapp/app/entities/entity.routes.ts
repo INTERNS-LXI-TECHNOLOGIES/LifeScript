@@ -11,6 +11,11 @@ const routes: Routes = [
     data: { pageTitle: 'habittrackBackendApp.userEntity.home.title' },
     loadChildren: () => import('./user-entity/user-entity.routes'),
   },
+  {
+    path: 'habit-track',
+    data: { pageTitle: 'habittrackBackendApp.habitTrack.home.title' },
+    loadChildren: () => import('./habit-track/habit-track.routes'),
+  },
   /* jhipster-needle-add-entity-route - JHipster will add entity modules routes here */
 ];
 

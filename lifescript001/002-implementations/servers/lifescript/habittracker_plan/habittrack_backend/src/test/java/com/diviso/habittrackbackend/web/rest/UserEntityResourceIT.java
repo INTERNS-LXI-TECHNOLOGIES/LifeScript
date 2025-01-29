@@ -328,6 +328,8 @@ class UserEntityResourceIT {
         UserEntity partialUpdatedUserEntity = new UserEntity();
         partialUpdatedUserEntity.setId(userEntity.getId());
 
+        partialUpdatedUserEntity.userName(UPDATED_USER_NAME);
+
         webTestClient
             .patch()
             .uri(ENTITY_API_URL_ID, partialUpdatedUserEntity.getId())

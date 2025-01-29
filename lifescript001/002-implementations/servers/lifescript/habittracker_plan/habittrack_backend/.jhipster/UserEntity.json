@@ -2,6 +2,7 @@
   "annotations": {
     "changelogDate": "20250129060953"
   },
+  "applications": "*",
   "fields": [
     {
       "fieldName": "userId",
@@ -13,9 +14,6 @@
     }
   ],
   "name": "UserEntity",
-  "pagination": "no",
-  "readOnly": false,
   "relationships": [],
-  "searchEngine": "no",
-  "service": "no"
+  "searchEngine": "no"
 }
