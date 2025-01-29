@@ -10,4 +10,4 @@ abstract class DeletePageEvent extends Equatable {
 
 class DeletePomodoroEvent extends DeletePageEvent {}
 
-class NavigateToHomePage extends DeletePageEvent{}
+class NavigateToHomePage extends DeletePageEvent {}

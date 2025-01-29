@@ -1,4 +1,4 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart'; // Use flutter_bloc package
 import 'delete_page_event.dart';
 import 'delete_page_state.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +35,7 @@ class DeletePageBloc extends Bloc<DeletePageEvent, DeletePageState> {
 
   @override
   Future<void> close() {
-    textController.dispose();
-    textFieldFocusNode.dispose();
+    // Do not dispose of textController and textFieldFocusNode here
     return super.close();
   }
 }
