@@ -6,9 +6,9 @@ import 'package:perfectday_frontend/state/day_plan_state.dart';
 class DayPlanBloc extends Bloc<DayPlanEvent, DayPlanState> {
   final Openapi _api; // OpenAPI client instance
 
-  
+  // Constructor that takes the OpenAPI client as a parameter
   DayPlanBloc(this._api) : super(DayPlanInitialState()) {
-    
+    // Handle CreateDayPlanEvent
     on<CreateDayPlanEvent>((event, emit) async {
       emit(DayPlanLoadingState()); // Emit loading state
       try {
@@ -22,9 +22,7 @@ class DayPlanBloc extends Bloc<DayPlanEvent, DayPlanState> {
           headers: {'Authorization': 'Bearer ${Openapi.jwt}'},
         );
 
-       /// final response = await _api.createPerfectDay(perfectDay: dayPlan);
-       /// _api
-          //  .getAccountResourceApi().getAccount(headers: {'Authorization': 'Bearer ${Openapi.jwt}'});
+      
         if (response.data!= null) {
           print("Success");
         }
