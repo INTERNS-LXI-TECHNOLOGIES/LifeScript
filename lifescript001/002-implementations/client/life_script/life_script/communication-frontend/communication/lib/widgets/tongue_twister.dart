@@ -1,4 +1,5 @@
 import 'package:communication_openapi/openapi.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter/material.dart';
 
 class TongueTwister extends StatefulWidget {
@@ -11,6 +12,7 @@ class TongueTwister extends StatefulWidget {
 class _TongueTwisterState extends State<TongueTwister> {
   String _text = "Loading..."; // Placeholder text
   bool _isLoading = true; // To track loading state
+   final FlutterTts _flutterTts = FlutterTts(); 
   final Openapi _openapi = Openapi(); // OpenAPI client
 
   @override
@@ -32,6 +34,8 @@ class _TongueTwisterState extends State<TongueTwister> {
           _text = response.data?.isNotEmpty == true ? response.data!.first.text ?? "No text available" : "No text available"; // Update the text
           _isLoading = false; // Update loading state
         });
+
+        _speakText(_text);
       } else {
         throw Exception("Failed to fetch text: ${response.statusCode}");
       }
@@ -41,6 +45,14 @@ class _TongueTwisterState extends State<TongueTwister> {
         _isLoading = false; // Update loading state
       });
     }
+
+    
+  }
+   Future<void> _speakText(String text) async {
+    await _flutterTts.setLanguage("en-US"); // Set language
+    await _flutterTts.setPitch(1.0); // Set pitch
+    await _flutterTts.setSpeechRate(0.5); // Set speed
+    await _flutterTts.speak(text); // Speak the text
   }
 
   @override
@@ -104,6 +116,10 @@ class _TongueTwisterState extends State<TongueTwister> {
                                 color: Colors.white,
                               ),
                             ),
+                              ElevatedButton(
+                    onPressed: () => _speakText(_text), // Speak button
+                    child: Text("Speak Again"),
+                  ),
                     ],
                   ),
                 ),
