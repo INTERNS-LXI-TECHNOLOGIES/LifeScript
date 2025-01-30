@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (habitTrack(); as habitTrackRef) {
+      <div>
+        <h2 data-cy="habitTrackDetailsHeading"><span jhiTranslate="habittrackBackendApp.habitTrack.detail.title">Habit Track</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ habitTrackRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="habittrackBackendApp.habitTrack.habitId">Habit Id</span></dt>
+          <dd>
+            <span>{{ habitTrackRef.habitId }}</span>
+          </dd>
+          <dt><span jhiTranslate="habittrackBackendApp.habitTrack.habitName">Habit Name</span></dt>
+          <dd>
+            <span>{{ habitTrackRef.habitName }}</span>
+          </dd>
+          <dt><span jhiTranslate="habittrackBackendApp.habitTrack.description">Description</span></dt>
+          <dd>
+            <span>{{ habitTrackRef.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="habittrackBackendApp.habitTrack.category">Category</span></dt>
+          <dd>
+            <span>{{ habitTrackRef.category }}</span>
+          </dd>
+          <dt><span jhiTranslate="habittrackBackendApp.habitTrack.startDate">Start Date</span></dt>
+          <dd>
+            <span>{{ habitTrackRef.startDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="habittrackBackendApp.habitTrack.endDate">End Date</span></dt>
+          <dd>
+            <span>{{ habitTrackRef.endDate }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/habit-track', habitTrackRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -12,13 +12,14 @@ import 'package:habittracker_openapi/src/auth/oauth.dart';
 import 'package:habittracker_openapi/src/api/account_resource_api.dart';
 import 'package:habittracker_openapi/src/api/authenticate_controller_api.dart';
 import 'package:habittracker_openapi/src/api/authority_resource_api.dart';
-import 'package:habittracker_openapi/src/api/habittrack_resource_api.dart';
+import 'package:habittracker_openapi/src/api/habit_track_resource_api.dart';
 import 'package:habittracker_openapi/src/api/public_user_resource_api.dart';
+import 'package:habittracker_openapi/src/api/user_entity_resource_api.dart';
 import 'package:habittracker_openapi/src/api/user_resource_api.dart';
 
 class Openapi {
-  static const String basePath = r'http://localhost:8080/';
-static String? jwt = "";
+  static const String basePath = r'http://localhost:8080';
+  static  String jwt = "";
   final Dio dio;
   final Serializers serializers;
 
@@ -44,7 +45,6 @@ static String? jwt = "";
     } else {
       this.dio.interceptors.addAll(interceptors);
     }
-     
   }
 
   void setOAuthToken(String name, String token) {
@@ -89,16 +89,22 @@ static String? jwt = "";
     return AuthorityResourceApi(dio, serializers);
   }
 
-  /// Get HabittrackResourceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// Get HabitTrackResourceApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
-  HabittrackResourceApi getHabittrackResourceApi() {
-    return HabittrackResourceApi(dio, serializers);
+  HabitTrackResourceApi getHabitTrackResourceApi() {
+    return HabitTrackResourceApi(dio, serializers);
   }
 
   /// Get PublicUserResourceApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   PublicUserResourceApi getPublicUserResourceApi() {
     return PublicUserResourceApi(dio, serializers);
+  }
+
+  /// Get UserEntityResourceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  UserEntityResourceApi getUserEntityResourceApi() {
+    return UserEntityResourceApi(dio, serializers);
   }
 
   /// Get UserResourceApi instance, base route and serializer can be overridden by a given but be careful,

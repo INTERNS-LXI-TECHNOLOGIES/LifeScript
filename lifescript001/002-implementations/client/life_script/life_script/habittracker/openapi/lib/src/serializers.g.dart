@@ -9,7 +9,7 @@ part of 'serializers.dart';
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AdminUserDTO.serializer)
       ..add(Authority.serializer)
-      ..add(Habittrack.serializer)
+      ..add(HabitTrack.serializer)
       ..add(JWTToken.serializer)
       ..add(KeyAndPasswordVM.serializer)
       ..add(LoginVM.serializer)
@@ -17,6 +17,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(PasswordChangeDTO.serializer)
       ..add(User.serializer)
       ..add(UserDTO.serializer)
+      ..add(UserEntity.serializer)
       ..addBuilderFactory(
           const FullType(BuiltSet, const [const FullType(String)]),
           () => new SetBuilder<String>())
