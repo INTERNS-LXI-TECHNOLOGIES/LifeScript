@@ -65,7 +65,7 @@ Widget build(BuildContext context) {
                 } else if (state.authorities!.contains("ROLE_USER")) {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
                   );
                 }
               }
