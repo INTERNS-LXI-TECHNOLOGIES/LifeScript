@@ -20,8 +20,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
             .authorize(loginVM: loginVM);
 
         if (response.statusCode == 200) {
-          final jwt = response.data?.idToken;
-          emit(LoginSuccess(jwtToken: jwt ?? ''));
+          Openapi.jwt = response.data!.idToken!;
+          emit(LoginSuccess(jwtToken:Openapi.jwt ?? ''));
         } else {
           emit(LoginFailure(error: 'Invalid username or password'));
         }
