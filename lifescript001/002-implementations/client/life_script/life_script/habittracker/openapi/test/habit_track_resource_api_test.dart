@@ -17,8 +17,8 @@ void main() {
       // TODO
     });
 
-    //Future<BuiltList<HabitTrack>> getAllHabitTracksAsStream() async
-    test('test getAllHabitTracksAsStream', () async {
+    //Future<BuiltList<HabitTrack>> getAllHabitTracks() async
+    test('test getAllHabitTracks', () async {
       // TODO
     });
 

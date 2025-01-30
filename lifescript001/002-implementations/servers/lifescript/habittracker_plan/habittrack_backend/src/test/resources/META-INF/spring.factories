@@ -1,3 +1,2 @@
 org.springframework.test.context.ContextCustomizerFactory = \
-    com.diviso.habittrackbackend.config.\
-    SqlTestContainersSpringContextCustomizerFactory
+    com.diviso.habittrack.config.SqlTestContainersSpringContextCustomizerFactory

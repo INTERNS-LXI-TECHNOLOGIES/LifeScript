@@ -17,7 +17,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(PasswordChangeDTO.serializer)
       ..add(User.serializer)
       ..add(UserDTO.serializer)
-      ..add(UserEntity.serializer)
       ..addBuilderFactory(
           const FullType(BuiltSet, const [const FullType(String)]),
           () => new SetBuilder<String>())

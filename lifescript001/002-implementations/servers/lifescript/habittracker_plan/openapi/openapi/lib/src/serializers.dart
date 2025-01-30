@@ -24,7 +24,6 @@ import 'package:openapi/src/model/managed_user_vm.dart';
 import 'package:openapi/src/model/password_change_dto.dart';
 import 'package:openapi/src/model/user.dart';
 import 'package:openapi/src/model/user_dto.dart';
-import 'package:openapi/src/model/user_entity.dart';
 
 part 'serializers.g.dart';
 
@@ -39,16 +38,11 @@ part 'serializers.g.dart';
   PasswordChangeDTO,
   User,
   UserDTO,
-  UserEntity,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(AdminUserDTO)]),
         () => ListBuilder<AdminUserDTO>(),
-      )
-      ..addBuilderFactory(
-        const FullType(BuiltList, [FullType(UserEntity)]),
-        () => ListBuilder<UserEntity>(),
       )
       ..addBuilderFactory(
         const FullType(BuiltList, [FullType(HabitTrack)]),

@@ -76,21 +76,15 @@ Class | Method | HTTP request | Description
 [*AuthenticateControllerApi*](doc/AuthenticateControllerApi.md) | [**isAuthenticated**](doc/AuthenticateControllerApi.md#isauthenticated) | **GET** /api/authenticate | 
 [*AuthorityResourceApi*](doc/AuthorityResourceApi.md) | [**createAuthority**](doc/AuthorityResourceApi.md#createauthority) | **POST** /api/authorities | 
 [*AuthorityResourceApi*](doc/AuthorityResourceApi.md) | [**deleteAuthority**](doc/AuthorityResourceApi.md#deleteauthority) | **DELETE** /api/authorities/{id} | 
-[*AuthorityResourceApi*](doc/AuthorityResourceApi.md) | [**getAllAuthoritiesAsStream**](doc/AuthorityResourceApi.md#getallauthoritiesasstream) | **GET** /api/authorities | 
+[*AuthorityResourceApi*](doc/AuthorityResourceApi.md) | [**getAllAuthorities**](doc/AuthorityResourceApi.md#getallauthorities) | **GET** /api/authorities | 
 [*AuthorityResourceApi*](doc/AuthorityResourceApi.md) | [**getAuthority**](doc/AuthorityResourceApi.md#getauthority) | **GET** /api/authorities/{id} | 
 [*HabitTrackResourceApi*](doc/HabitTrackResourceApi.md) | [**createHabitTrack**](doc/HabitTrackResourceApi.md#createhabittrack) | **POST** /api/habit-tracks | 
 [*HabitTrackResourceApi*](doc/HabitTrackResourceApi.md) | [**deleteHabitTrack**](doc/HabitTrackResourceApi.md#deletehabittrack) | **DELETE** /api/habit-tracks/{id} | 
-[*HabitTrackResourceApi*](doc/HabitTrackResourceApi.md) | [**getAllHabitTracksAsStream**](doc/HabitTrackResourceApi.md#getallhabittracksasstream) | **GET** /api/habit-tracks | 
+[*HabitTrackResourceApi*](doc/HabitTrackResourceApi.md) | [**getAllHabitTracks**](doc/HabitTrackResourceApi.md#getallhabittracks) | **GET** /api/habit-tracks | 
 [*HabitTrackResourceApi*](doc/HabitTrackResourceApi.md) | [**getHabitTrack**](doc/HabitTrackResourceApi.md#gethabittrack) | **GET** /api/habit-tracks/{id} | 
 [*HabitTrackResourceApi*](doc/HabitTrackResourceApi.md) | [**partialUpdateHabitTrack**](doc/HabitTrackResourceApi.md#partialupdatehabittrack) | **PATCH** /api/habit-tracks/{id} | 
 [*HabitTrackResourceApi*](doc/HabitTrackResourceApi.md) | [**updateHabitTrack**](doc/HabitTrackResourceApi.md#updatehabittrack) | **PUT** /api/habit-tracks/{id} | 
 [*PublicUserResourceApi*](doc/PublicUserResourceApi.md) | [**getAllPublicUsers**](doc/PublicUserResourceApi.md#getallpublicusers) | **GET** /api/users | 
-[*UserEntityResourceApi*](doc/UserEntityResourceApi.md) | [**createUserEntity**](doc/UserEntityResourceApi.md#createuserentity) | **POST** /api/user-entities | 
-[*UserEntityResourceApi*](doc/UserEntityResourceApi.md) | [**deleteUserEntity**](doc/UserEntityResourceApi.md#deleteuserentity) | **DELETE** /api/user-entities/{id} | 
-[*UserEntityResourceApi*](doc/UserEntityResourceApi.md) | [**getAllUserEntitiesAsStream**](doc/UserEntityResourceApi.md#getalluserentitiesasstream) | **GET** /api/user-entities | 
-[*UserEntityResourceApi*](doc/UserEntityResourceApi.md) | [**getUserEntity**](doc/UserEntityResourceApi.md#getuserentity) | **GET** /api/user-entities/{id} | 
-[*UserEntityResourceApi*](doc/UserEntityResourceApi.md) | [**partialUpdateUserEntity**](doc/UserEntityResourceApi.md#partialupdateuserentity) | **PATCH** /api/user-entities/{id} | 
-[*UserEntityResourceApi*](doc/UserEntityResourceApi.md) | [**updateUserEntity**](doc/UserEntityResourceApi.md#updateuserentity) | **PUT** /api/user-entities/{id} | 
 [*UserResourceApi*](doc/UserResourceApi.md) | [**createUser**](doc/UserResourceApi.md#createuser) | **POST** /api/admin/users | 
 [*UserResourceApi*](doc/UserResourceApi.md) | [**deleteUser**](doc/UserResourceApi.md#deleteuser) | **DELETE** /api/admin/users/{login} | 
 [*UserResourceApi*](doc/UserResourceApi.md) | [**getAllUsers**](doc/UserResourceApi.md#getallusers) | **GET** /api/admin/users | 
@@ -111,7 +105,6 @@ Class | Method | HTTP request | Description
  - [PasswordChangeDTO](doc/PasswordChangeDTO.md)
  - [User](doc/User.md)
  - [UserDTO](doc/UserDTO.md)
- - [UserEntity](doc/UserEntity.md)
 
 
 ## Documentation For Authorization

@@ -245,13 +245,7 @@ class _LoginFormState extends State<LoginForm> {
                             BlocConsumer<LoginBloc, LoginState>(
                               listener: (context, state) {
                                 if (state is LoginSuccess) {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          HabittrackhomepagewidgetWidget(),
-                                    ),
-                                  );
+                                  Navigator.pushReplacementNamed(context, '/home');
                                 } else if (state is LoginFailure) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                     SnackBar(

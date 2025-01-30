@@ -17,7 +17,7 @@ logging:
   level:
     ROOT: INFO
     tech.jhipster: INFO
-    com.diviso.habittrackbackend: INFO
+    com.diviso.habittrack: INFO
 
 management:
   prometheus:
@@ -31,18 +31,26 @@ spring:
       enabled: false
     livereload:
       enabled: false
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:mysql://localhost:3306/habittrackBackend?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
+    username: root
+    password:
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
   # Replace by 'prod, faker' to add the faker context and have sample data loaded in production
   liquibase:
     contexts: prod
-    url: jdbc:mysql://localhost:3306/habittrackBackend?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
   mail:
     host: localhost
     port: 25
     username:
-    password:
-  r2dbc:
-    url: r2dbc:mysql://localhost:3306/habittrackBackend?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&createDatabaseIfNotExist=true
-    username: root
     password:
   thymeleaf:
     cache: true
@@ -84,6 +92,10 @@ jhipster:
   http:
     cache: # Used by the CachingHttpHeadersFilter
       timeToLiveInDays: 1461
+  cache: # Cache configuration
+    ehcache: # Ehcache configuration
+      time-to-live-seconds: 3600 # By default objects stay 1 hour in the cache
+      max-entries: 1000 # Number of objects in each cache entry
   security:
     authentication:
       jwt:
@@ -92,7 +104,7 @@ jhipster:
         # - In the Consul configserver
         # - In a separate `application-prod.yml` file, in the same folder as your executable JAR file
         # - In the `JHIPSTER_SECURITY_AUTHENTICATION_JWT_BASE64_SECRET` environment variable
-        base64-secret: YTU5NjNkNWVjNzQ4OWUyNjlkMzdhOWRlNTU3YmJiMDNkNmJiMzgwY2Y3MDAxYWJmNDA0YmIyYTUwNDMxNmQ3YjA4NzJlMjUyYjc3MmU1MWFlNDdjZjJmMmQ1Zjg1ZTUxZDJhNjE3ZjlhZGQwZjdjMmM3OTBjMTUzNjRiZGYxNjY=
+        base64-secret: N2ZlYmIxZDYyNDIxYjQ1MGUzZDZjMzYzMTU4YzYxOWMxOWFkODQ5MjgyODU0ZGIwNDZlNGNlY2ZjMjhlY2M4N2JjYzIyYTljYjQ3ZTZiZmNlOGU3NzUxNDMxNDYyOWQ2MDBlMTE3N2NlNzc2NjA5OGNkOTY3NGRiNTBmMmE5MGU=
         # Token is valid 24 hours
         token-validity-in-seconds: 86400
         token-validity-in-seconds-for-remember-me: 2592000

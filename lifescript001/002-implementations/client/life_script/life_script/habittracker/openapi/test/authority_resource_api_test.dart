@@ -17,8 +17,8 @@ void main() {
       // TODO
     });
 
-    //Future<BuiltList<Authority>> getAllAuthoritiesAsStream() async
-    test('test getAllAuthoritiesAsStream', () async {
+    //Future<BuiltList<Authority>> getAllAuthorities() async
+    test('test getAllAuthorities', () async {
       // TODO
     });
 

@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createAuthority**](AuthorityResourceApi.md#createauthority) | **POST** /api/authorities | 
 [**deleteAuthority**](AuthorityResourceApi.md#deleteauthority) | **DELETE** /api/authorities/{id} | 
-[**getAllAuthoritiesAsStream**](AuthorityResourceApi.md#getallauthoritiesasstream) | **GET** /api/authorities | 
+[**getAllAuthorities**](AuthorityResourceApi.md#getallauthorities) | **GET** /api/authorities | 
 [**getAuthority**](AuthorityResourceApi.md#getauthority) | **GET** /api/authorities/{id} | 
 
 
@@ -96,8 +96,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getAllAuthoritiesAsStream**
-> BuiltList<Authority> getAllAuthoritiesAsStream()
+# **getAllAuthorities**
+> BuiltList<Authority> getAllAuthorities()
 
 
 
@@ -108,10 +108,10 @@ import 'package:openapi/api.dart';
 final api = Openapi().getAuthorityResourceApi();
 
 try {
-    final response = api.getAllAuthoritiesAsStream();
+    final response = api.getAllAuthorities();
     print(response);
 } catch on DioException (e) {
-    print('Exception when calling AuthorityResourceApi->getAllAuthoritiesAsStream: $e\n');
+    print('Exception when calling AuthorityResourceApi->getAllAuthorities: $e\n');
 }
 ```
 
@@ -129,7 +129,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/x-ndjson, application/json
+ - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

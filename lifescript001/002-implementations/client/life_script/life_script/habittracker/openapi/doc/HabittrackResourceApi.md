@@ -11,7 +11,7 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createHabitTrack**](HabitTrackResourceApi.md#createhabittrack) | **POST** /api/habit-tracks | 
 [**deleteHabitTrack**](HabitTrackResourceApi.md#deletehabittrack) | **DELETE** /api/habit-tracks/{id} | 
-[**getAllHabitTracksAsStream**](HabitTrackResourceApi.md#getallhabittracksasstream) | **GET** /api/habit-tracks | 
+[**getAllHabitTracks**](HabitTrackResourceApi.md#getallhabittracks) | **GET** /api/habit-tracks | 
 [**getHabitTrack**](HabitTrackResourceApi.md#gethabittrack) | **GET** /api/habit-tracks/{id} | 
 [**partialUpdateHabitTrack**](HabitTrackResourceApi.md#partialupdatehabittrack) | **PATCH** /api/habit-tracks/{id} | 
 [**updateHabitTrack**](HabitTrackResourceApi.md#updatehabittrack) | **PUT** /api/habit-tracks/{id} | 
@@ -98,8 +98,8 @@ No authorization required
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **getAllHabitTracksAsStream**
-> BuiltList<HabitTrack> getAllHabitTracksAsStream()
+# **getAllHabitTracks**
+> BuiltList<HabitTrack> getAllHabitTracks()
 
 
 
@@ -110,10 +110,10 @@ import 'package:openapi/api.dart';
 final api = Openapi().getHabitTrackResourceApi();
 
 try {
-    final response = api.getAllHabitTracksAsStream();
+    final response = api.getAllHabitTracks();
     print(response);
 } catch on DioException (e) {
-    print('Exception when calling HabitTrackResourceApi->getAllHabitTracksAsStream: $e\n');
+    print('Exception when calling HabitTrackResourceApi->getAllHabitTracks: $e\n');
 }
 ```
 
@@ -131,7 +131,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/x-ndjson, application/json
+ - **Accept**: */*
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

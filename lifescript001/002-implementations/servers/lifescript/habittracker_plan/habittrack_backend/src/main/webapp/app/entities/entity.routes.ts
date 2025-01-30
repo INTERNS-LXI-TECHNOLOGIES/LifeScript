@@ -7,11 +7,6 @@ const routes: Routes = [
     loadChildren: () => import('./admin/authority/authority.routes'),
   },
   {
-    path: 'user-entity',
-    data: { pageTitle: 'habittrackBackendApp.userEntity.home.title' },
-    loadChildren: () => import('./user-entity/user-entity.routes'),
-  },
-  {
     path: 'habit-track',
     data: { pageTitle: 'habittrackBackendApp.habitTrack.home.title' },
     loadChildren: () => import('./habit-track/habit-track.routes'),

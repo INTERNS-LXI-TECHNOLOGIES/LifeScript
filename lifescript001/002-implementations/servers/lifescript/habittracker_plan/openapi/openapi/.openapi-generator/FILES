@@ -17,8 +17,6 @@ doc/PasswordChangeDTO.md
 doc/PublicUserResourceApi.md
 doc/User.md
 doc/UserDTO.md
-doc/UserEntity.md
-doc/UserEntityResourceApi.md
 doc/UserResourceApi.md
 lib/openapi.dart
 lib/src/api.dart
@@ -27,7 +25,6 @@ lib/src/api/authenticate_controller_api.dart
 lib/src/api/authority_resource_api.dart
 lib/src/api/habit_track_resource_api.dart
 lib/src/api/public_user_resource_api.dart
-lib/src/api/user_entity_resource_api.dart
 lib/src/api/user_resource_api.dart
 lib/src/api_util.dart
 lib/src/auth/api_key_auth.dart
@@ -47,7 +44,6 @@ lib/src/model/managed_user_vm.dart
 lib/src/model/password_change_dto.dart
 lib/src/model/user.dart
 lib/src/model/user_dto.dart
-lib/src/model/user_entity.dart
 lib/src/serializers.dart
 pubspec.yaml
 test/account_resource_api_test.dart
@@ -64,7 +60,5 @@ test/managed_user_vm_test.dart
 test/password_change_dto_test.dart
 test/public_user_resource_api_test.dart
 test/user_dto_test.dart
-test/user_entity_resource_api_test.dart
-test/user_entity_test.dart
 test/user_resource_api_test.dart
 test/user_test.dart

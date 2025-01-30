@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habittracker/bloc/homepage/habit_track_bloc.dart';
-import 'package:habittracker/bloc/homepage/habit_track_event.dart';
 
 import 'package:habittracker_openapi/openapi.dart';
 
@@ -542,12 +541,14 @@ class _HabittrackhomepagewidgetWidgetState
 
                                           if (habitName.isEmpty || description.isEmpty) {
                                             print('Habit name and description cannot be empty');
+                                            
                                             return;
                                           }
 
-                                          BlocProvider.of<HabitTrackBloc>(context).add(
-                                            HabitTrackSubmitted(habitName: habitName, description: description),
-                                          );
+                                          context.read<HabitTrackBloc>().add(HabitTrackSubmittedEvent(
+                                            habitName: habitName,
+                                            description: description,
+                                          ));
                                         },
                                         text: 'Start',
                                         options: FFButtonOptions(

@@ -162,7 +162,7 @@ class AuthorityResourceApi {
     return _response;
   }
 
-  /// getAllAuthoritiesAsStream
+  /// getAllAuthorities
   /// 
   ///
   /// Parameters:
@@ -175,7 +175,7 @@ class AuthorityResourceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<Authority>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<Authority>>> getAllAuthoritiesAsStream({ 
+  Future<Response<BuiltList<Authority>>> getAllAuthorities({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,

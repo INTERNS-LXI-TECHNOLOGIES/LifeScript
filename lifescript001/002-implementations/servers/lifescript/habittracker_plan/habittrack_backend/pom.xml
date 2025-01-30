@@ -3,7 +3,7 @@
                              https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.diviso.habittrackbackend</groupId>
+    <groupId>com.diviso.habittrack</groupId>
     <artifactId>habittrack-backend</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
@@ -31,16 +31,14 @@
         <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
-        <start-class>com.diviso.habittrackbackend.HabittrackBackendApp</start-class>
+        <start-class>com.diviso.habittrack.HabittrackBackendApp</start-class>
         <argLine>-Djava.security.egd=file:/dev/./urandom -Xmx1G</argLine>
         <m2e.apt.activation>jdt_apt</m2e.apt.activation>
         <run.addResources>false</run.addResources>
         <spring-boot.version>${project.parent.version}</spring-boot.version>
         <archunit-junit5.version>1.3.0</archunit-junit5.version>
-        <blockhound-junit-platform.version>1.0.10.RELEASE</blockhound-junit-platform.version>
         <checkstyle.version>10.21.0</checkstyle.version>
-        <checksum-maven-plugin.version>1.11</checksum-maven-plugin.version>
-        <commons-beanutils.version>1.9.4</commons-beanutils.version>
+       <!-- <checksum-maven-plugin.version>1.11</checksum-maven-plugin.version> -->
         <frontend-maven-plugin.version>1.15.1</frontend-maven-plugin.version>
         <git-commit-id-maven-plugin.version>9.0.1</git-commit-id-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
@@ -65,7 +63,6 @@
         <maven-site-plugin.version>3.21.0</maven-site-plugin.version>
         <maven-surefire-plugin.version>3.5.2</maven-surefire-plugin.version>
         <maven-war-plugin.version>3.4.0</maven-war-plugin.version>
-        <micrometer-context-propagation.version>1.1.2</micrometer-context-propagation.version>
         <modernizer-maven-plugin.version>2.9.0</modernizer-maven-plugin.version>
         <nohttp-checkstyle.version>0.0.11</nohttp-checkstyle.version>
         <profile.api-docs/>
@@ -78,7 +75,7 @@
         <sonar-maven-plugin.version>5.0.0.4389</sonar-maven-plugin.version>
         <spotless-maven-plugin.version>2.43.0</spotless-maven-plugin.version>
         <spring.profiles.active>dev</spring.profiles.active>
-        <springdoc-openapi-starter-webflux-api.version>2.7.0</springdoc-openapi-starter-webflux-api.version>
+        <springdoc-openapi-starter-webmvc-api.version>2.7.0</springdoc-openapi-starter-webmvc-api.version>
     </properties>
 
     <dependencies>
@@ -106,7 +103,11 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-r2dbc</artifactId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -135,11 +136,21 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-webflux</artifactId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -148,13 +159,21 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-data</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
-            <artifactId>springdoc-openapi-starter-webflux-api</artifactId>
-            <version>${springdoc-openapi-starter-webflux-api.version}</version>
+            <artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+            <version>${springdoc-openapi-starter-webmvc-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-hibernate6</artifactId>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
@@ -191,61 +210,47 @@
             <artifactId>HikariCP</artifactId>
         </dependency>
         <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <version>${commons-beanutils.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>commons-logging</groupId>
-                    <artifactId>commons-logging</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>io.asyncer</groupId>
-            <artifactId>r2dbc-mysql</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.micrometer</groupId>
-            <artifactId>context-propagation</artifactId>
-            <version>${micrometer-context-propagation.version}</version>
-        </dependency>
-        <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus-simpleclient</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-resolver-dns-native-macos</artifactId>
-            <classifier>osx-aarch_64</classifier>
-        </dependency>
-        <dependency>
-            <groupId>io.netty</groupId>
-            <artifactId>netty-tcnative-boringssl-static</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.projectreactor.tools</groupId>
-            <artifactId>blockhound-junit-platform</artifactId>
-            <version>${blockhound-junit-platform.version}</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
+            <groupId>javax.cache</groupId>
+            <artifactId>cache-api</artifactId>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <classifier>jakarta</classifier>
+        </dependency>
+        <dependency>
             <groupId>org.glassfish.jaxb</groupId>
             <artifactId>jaxb-runtime</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-jcache</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
         </dependency>
         <dependency>
             <groupId>org.liquibase</groupId>
@@ -262,10 +267,6 @@
             <artifactId>mapstruct-processor</artifactId>
             <version>${mapstruct.version}</version>
             <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-commons</artifactId>
         </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
@@ -425,6 +426,10 @@
                                 <version>${mapstruct.version}</version>
                             </path>
                             <path>
+                                <groupId>org.hibernate.orm</groupId>
+                                <artifactId>hibernate-jpamodelgen</artifactId>
+                            </path>
+                            <path>
                                 <groupId>org.glassfish.jaxb</groupId>
                                 <artifactId>jaxb-runtime</artifactId>
                             </path>
@@ -476,14 +481,13 @@
                         <!-- Due to spring-boot repackage, without adding this property test classes are not found
                              See https://github.com/spring-projects/spring-boot/issues/6254 -->
                         <!-- Force alphabetical order to have a reproducible build -->
-                        <!-- Fix tests at java 13+ https://github.com/reactor/BlockHound/issues/33 -->
                         <classesDirectory>${project.build.outputDirectory}</classesDirectory>
                         <runOrder>alphabetical</runOrder>
                         <includes>
                             <include>**/*IT*</include>
                             <include>**/*IntTest*</include>
                         </includes>
-                        <argLine>@{argLine} -XX:+AllowRedefinitionToAddDeleteMethods -Dspring.profiles.active=${profile.test}</argLine>
+                        <argLine>@{argLine} -Dspring.profiles.active=${profile.test}</argLine>
                     </configuration>
                     <executions>
                         <execution>
@@ -524,13 +528,11 @@
                     <version>${maven-surefire-plugin.version}</version>
                     <configuration>
                         <!-- Force alphabetical order to have a reproducible build -->
-                        <!-- Fix tests at java 13+ https://github.com/reactor/BlockHound/issues/33 -->
                         <runOrder>alphabetical</runOrder>
                         <excludes>
                             <exclude>**/*IT*</exclude>
                             <exclude>**/*IntTest*</exclude>
                         </excludes>
-                        <argLine>@{argLine} -XX:+AllowRedefinitionToAddDeleteMethods</argLine>
                         <systemPropertyVariables>
                             <java.util.logging.config.file>src/test/resources/logback.xml</java.util.logging.config.file>
                         </systemPropertyVariables>
@@ -695,11 +697,11 @@
                         </includeOnlyProperties>
                     </configuration>
                 </plugin>
-                <plugin>
+                <!--<plugin>
                     <groupId>net.nicoulaj.maven.plugins</groupId>
-                    <artifactId>checksum-maven-plugin</artifactId>
-                    <version>${checksum-maven-plugin.version}</version>
-                </plugin>
+                    <artifactId>checksum-maven-plugin</artifactId> 
+                    <version>${checksum-maven-plugin.version}</version> 
+                </plugin> -->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>properties-maven-plugin</artifactId>
@@ -782,6 +784,7 @@
                         <defaultSchemaName/>
                         <username>${liquibase-plugin.username}</username>
                         <password>${liquibase-plugin.password}</password>
+                        <referenceUrl>hibernate:spring:com.diviso.habittrack.domain?dialect=org.hibernate.dialect.MySQL8Dialect&amp;hibernate.physical_naming_strategy=org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
                         <verbose>true</verbose>
                         <logging>debug</logging>
                         <contexts>!test</contexts>
@@ -933,6 +936,10 @@
             <id>IDE</id>
             <dependencies>
                 <dependency>
+                    <groupId>org.hibernate.orm</groupId>
+                    <artifactId>hibernate-jpamodelgen</artifactId>
+                </dependency>
+                <dependency>
                     <groupId>org.mapstruct</groupId>
                     <artifactId>mapstruct-processor</artifactId>
                     <version>${mapstruct.version}</version>
@@ -1046,7 +1053,7 @@
             </properties>
             <build>
                 <plugins>
-                    <plugin>
+                    <!--<plugin>
                         <groupId>net.nicoulaj.maven.plugins</groupId>
                         <artifactId>checksum-maven-plugin</artifactId>
                         <executions>
@@ -1097,7 +1104,7 @@
                             <includeRelativePath>true</includeRelativePath>
                             <quiet>true</quiet>
                         </configuration>
-                    </plugin>
+                    </plugin> -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-antrun-plugin</artifactId>

@@ -162,7 +162,7 @@ class HabitTrackResourceApi {
     return _response;
   }
 
-  /// getAllHabitTracksAsStream
+  /// getAllHabitTracks
   /// 
   ///
   /// Parameters:
@@ -175,7 +175,7 @@ class HabitTrackResourceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<HabitTrack>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<HabitTrack>>> getAllHabitTracksAsStream({ 
+  Future<Response<BuiltList<HabitTrack>>> getAllHabitTracks({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
