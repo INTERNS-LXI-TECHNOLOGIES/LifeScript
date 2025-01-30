@@ -1,3 +1,4 @@
+import 'package:communication/widgets/home_page.dart';
 import 'package:communication_openapi/openapi.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +61,7 @@ class _TongueTwisterState extends State<TongueTwister> {
     return Scaffold(
       body: Stack(
         children: [
+          
           // Background Image
           Container(
             decoration: BoxDecoration(
@@ -71,6 +73,29 @@ class _TongueTwisterState extends State<TongueTwister> {
             ),
           ),
           // Glassmorphic Content
+         
+        // Back Button (Top Left)
+        Positioned(
+          top: 40, // Adjust as needed
+          left: 16, // Adjust as needed
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => HomeScreen()),
+              );
+            },
+            child: Container(
+              padding: EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.black.withOpacity(0.6),
+              ),
+              child: Icon(Icons.arrow_back, color: Colors.white, size: 28),
+            ),
+          ),
+        ),
+
           Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
