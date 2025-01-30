@@ -8,8 +8,8 @@ import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
-import 'package:openapi/src/model/jwt_token.dart';
-import 'package:openapi/src/model/login_vm.dart';
+import 'package:openapiPomodoroBreak/src/model/jwt_token.dart';
+import 'package:openapiPomodoroBreak/src/model/login_vm.dart';
 
 class AuthenticateControllerApi {
 

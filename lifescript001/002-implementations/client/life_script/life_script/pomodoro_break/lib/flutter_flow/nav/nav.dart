@@ -1,8 +1,8 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:pomodoro_break/delete_page/delete_page_widget.dart';
 import 'package:pomodoro_break/info_page/Instruction_Page_Widget.dart' as instruction_page_widget;
 import 'package:pomodoro_break/login_page/Login_Page_Widget.dart';
 import 'package:provider/provider.dart';
@@ -49,6 +49,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       name: 'loginPage',
       path: '/loginPage',
       builder: (context, params) => LoginPageWidget(),
+    ),
+    FFRoute(
+      name: 'deletePage',
+      path: '/deletePage',
+      builder: (context, params) => DeletePageWidget(),
     ),
     FFRoute(
       name: 'infoPage',

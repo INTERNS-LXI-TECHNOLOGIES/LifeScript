@@ -1,0 +1,22 @@
+{
+  "annotations": {},
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "text",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "language",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "difficultyLevel",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "TongueTwister",
+  "relationships": []
+}

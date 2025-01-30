@@ -1,0 +1,27 @@
+{
+  "communicationBackendApp": {
+    "twisterPractice": {
+      "home": {
+        "title": "Twister Practices",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Twister Practice",
+        "createOrEditLabel": "Create or edit a Twister Practice",
+        "notFound": "No Twister Practices found"
+      },
+      "created": "A new Twister Practice is created with identifier {{ param }}",
+      "updated": "A Twister Practice is updated with identifier {{ param }}",
+      "deleted": "A Twister Practice is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Twister Practice {{ id }}?"
+      },
+      "detail": {
+        "title": "Twister Practice"
+      },
+      "id": "ID",
+      "score": "Score",
+      "timesPracticed": "Times Practiced",
+      "corrections": "Corrections",
+      "mediaContent": "Media Content"
+    }
+  }
+}

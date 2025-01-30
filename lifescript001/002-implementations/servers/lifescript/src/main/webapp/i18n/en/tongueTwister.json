@@ -1,0 +1,27 @@
+{
+  "communicationApp": {
+    "tongueTwister": {
+      "home": {
+        "title": "Tongue Twisters",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Tongue Twister",
+        "createOrEditLabel": "Create or edit a Tongue Twister",
+        "notFound": "No Tongue Twisters found"
+      },
+      "created": "A new Tongue Twister is created with identifier {{ param }}",
+      "updated": "A Tongue Twister is updated with identifier {{ param }}",
+      "deleted": "A Tongue Twister is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Tongue Twister {{ id }}?"
+      },
+      "detail": {
+        "title": "Tongue Twister"
+      },
+      "id": "ID",
+      "text": "Text",
+      "language": "Language",
+      "difficultyLevel": "Difficulty Level",
+      "creator": "Creator"
+    }
+  }
+}

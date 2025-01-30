@@ -1,0 +1,23 @@
+{
+  "annotations": {
+    "changelogDate": "20250126103754"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "score",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "timesPracticed",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "corrections",
+      "fieldType": "String"
+    }
+  ],
+  "name": "TwisterPractice",
+  "relationships": [],
+  "searchEngine": "no"
+}

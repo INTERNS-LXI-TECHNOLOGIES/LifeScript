@@ -1,0 +1,27 @@
+entity UserProfile { 
+    nickName String required,         
+    address String required         
+}
+
+entity TwisterPractice { 
+    score Integer,                    
+    timesPracticed Integer,        
+    corrections String               
+}
+
+entity MediaContent { 
+    text String,                     
+    audio Blob,                      
+    uploadDateTime ZonedDateTime,     
+    language String required,         
+    difficultyLevel Integer required  
+}
+
+relationship OneToOne {
+    UserProfile{user(login)} to User with builtInEntity
+}
+
+relationship OneToMany {
+     UserProfile{twisterPractice(login)} to TwisterPractice 
+    MediaContent {twisterPractice} to TwisterPractice 
+}

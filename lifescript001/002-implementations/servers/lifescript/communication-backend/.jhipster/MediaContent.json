@@ -1,0 +1,40 @@
+{
+  "annotations": {
+    "changelogDate": "20250126103753"
+  },
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "text",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "audio",
+      "fieldType": "Blob"
+    },
+    {
+      "fieldName": "uploadDateTime",
+      "fieldType": "ZonedDateTime"
+    },
+    {
+      "fieldName": "language",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "difficultyLevel",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "MediaContent",
+  "relationships": [
+    {
+      "otherEntityName": "twisterPractice",
+      "relationshipName": "twisterPractice",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no"
+}
