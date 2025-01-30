@@ -11,12 +11,12 @@ class InstructionPageBloc extends Bloc<InstructionPageEvent, InstructionPageStat
   InstructionPageBloc({required this.navigate}) : super(InstructionPageInitial()) {
     on<NavigateToHomePage>((event, emit) {
       print('Back to Home page via Bloc');
-      navigate('/Home'); // Trigger navigation to Home
+      navigate('/Home');
     });
 
     on<NavigateToSetPomodoroPage>((event, emit) {
       print('Entering to PomodoroSet page via Bloc');
-      navigate('/setPomodoro'); // Trigger navigation to Set Pomodoro
+      navigate('/setPomodoro');
     });
   }
 }

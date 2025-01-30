@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_bloc/flutter_bloc.dart'; // Use flutter_bloc package
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:openapi/openapi.dart';
+import 'package:openapiPomodoroBreak/openapi.dart';
 
 part 'set_pomodoro_event.dart';
 part 'set_pomodoro_state.dart';
@@ -24,13 +24,16 @@ class SetPomodoroBloc extends Bloc<SetPomodoroEvent, SetPomodoroState> {
     });
 
     on<NavigateToInstructionPage>((event, emit) {
-      navigate('/infopage'); // Trigger navigation to InstructionPageWidget
+      navigate('/infopage');
+    });
+
+    on<NavigateToHomePage>((event, emit) {
+      navigate('/home');
     });
   }
 
   Future<bool> _checkIfPomodoroExists() async {
     try {
-      // Ensure the JWT token is set
       final jwtToken = Openapi.jwt;
       if (jwtToken == null || jwtToken.isEmpty) {
         throw DioException(

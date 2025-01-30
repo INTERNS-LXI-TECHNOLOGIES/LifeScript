@@ -9,7 +9,7 @@ abstract class HomePageEvent extends Equatable {
 
 class NavigateToInfoPage extends HomePageEvent {}
 
-class NavigateToDeletePage extends HomePageEvent {} // New event for delete page
+class NavigateToDeletePage extends HomePageEvent {}
 
 class PrintMessage extends HomePageEvent {
   final String message;

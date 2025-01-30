@@ -11,16 +11,16 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   HomePageBloc({required this.navigate}) : super(HomePageInitial()) {
     on<NavigateToInfoPage>((event, emit) {
       print('Entered to InstructionPage with bloc installation...');
-      navigate('/infoPage'); // Trigger navigation
+      navigate('/infoPage');
     });
 
     on<NavigateToDeletePage>((event, emit) {
       print('Entered to deletePage with bloc installation...');
-      navigate('/deletePage'); // Trigger navigation to delete page
+      navigate('/deletePage');
     });
 
     on<PrintMessage>((event, emit) {
-      print(event.message); // Handle print message
+      print(event.message);
     });
   }
 }

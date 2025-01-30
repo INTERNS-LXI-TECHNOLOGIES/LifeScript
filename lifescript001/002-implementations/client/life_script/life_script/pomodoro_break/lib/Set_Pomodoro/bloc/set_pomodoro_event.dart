@@ -19,3 +19,5 @@ class UpdateBreakDuration extends SetPomodoroEvent {
 class CheckExistingPomodoro extends SetPomodoroEvent {}
 
 class NavigateToInstructionPage extends SetPomodoroEvent {}
+
+class NavigateToHomePage extends SetPomodoroEvent {}

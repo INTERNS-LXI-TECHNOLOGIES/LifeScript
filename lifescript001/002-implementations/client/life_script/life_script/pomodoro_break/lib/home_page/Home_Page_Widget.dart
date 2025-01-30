@@ -1,3 +1,5 @@
+import 'package:pomodoro_break/home_page/bloc/home_page_bloc.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -6,11 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:circular_menu/circular_menu.dart';
-import 'package:flutter_bloc/flutter_bloc.dart'; // Import the flutter_bloc package
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'home_page_model.dart';
 export 'home_page_model.dart';
-import '../bloc/homepage/home_page_bloc.dart'; // Import the Bloc file
 
 class HomePageWidget extends StatelessWidget {
   const HomePageWidget({super.key});
@@ -64,7 +65,7 @@ class HomePageView extends StatelessWidget {
                       builder: (context, state) {
                         return FFButtonWidget(
                           onPressed: () {
-                            context.read<HomePageBloc>().add(NavigateToInfoPage()); // Trigger Bloc event
+                            context.read<HomePageBloc>().add(NavigateToInfoPage());
                           },
                           text: 'Set Pomodoro',
                           options: FFButtonOptions(

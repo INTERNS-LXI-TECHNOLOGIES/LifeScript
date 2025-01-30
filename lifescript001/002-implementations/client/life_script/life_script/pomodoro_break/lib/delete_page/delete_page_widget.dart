@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:pomodoro_break/bloc/deletepage/delete_page_bloc.dart';
-import 'package:pomodoro_break/bloc/deletepage/delete_page_event.dart';
-import 'package:pomodoro_break/bloc/deletepage/delete_page_state.dart';
-
+import 'package:pomodoro_break/delete_page/bloc/delete_page_bloc.dart';
+import 'package:pomodoro_break/delete_page/bloc/delete_page_state.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -11,7 +9,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:openapi/openapi.dart'; // Import OpenAPI package
+import 'package:openapiPomodoroBreak/openapi.dart';
 
 import 'delete_page_model.dart';
 export 'delete_page_model.dart';
