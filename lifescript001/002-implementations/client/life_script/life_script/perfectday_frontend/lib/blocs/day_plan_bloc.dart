@@ -15,7 +15,8 @@ class DayPlanBloc extends Bloc<DayPlanEvent, DayPlanState> {
         // Create a DayPlan object using the OpenAPI model
         final dayPlan = PerfectDay((b) => b
           ..title = event.title
-          ..description = event.description);
+          ..description = event.description
+          ..date = event.date);
 
         final response = await _api.getPerfectDayResourceApi().createPerfectDay(
           perfectDay: dayPlan,

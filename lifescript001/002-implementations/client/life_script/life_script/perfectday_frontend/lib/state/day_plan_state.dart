@@ -1,4 +1,6 @@
-abstract class DayPlanState {}
+abstract class DayPlanState {
+  get authorities => null;
+}
 
 class DayPlanInitialState extends DayPlanState {}
 

@@ -38,7 +38,7 @@ class Perfectdayplan1Model extends FlutterFlowModel<Perfectdayplan1Widget> {
     textFieldFocusNode2?.dispose();
     textController2?.dispose();
 
-     textFieldFocusNode3?.dispose();
+    textFieldFocusNode3?.dispose();
     textController3?.dispose();
   }
 }
