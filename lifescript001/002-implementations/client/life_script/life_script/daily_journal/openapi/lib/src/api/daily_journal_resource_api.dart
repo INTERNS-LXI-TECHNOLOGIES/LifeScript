@@ -13,6 +13,7 @@ import 'package:daily_journal_openapi/src/api_util.dart';
 import 'package:daily_journal_openapi/src/model/daily_journal.dart';
 
 class DailyJournalResourceApi {
+
   final Dio _dio;
 
   final Serializers _serializers;
@@ -20,10 +21,10 @@ class DailyJournalResourceApi {
   const DailyJournalResourceApi(this._dio, this._serializers);
 
   /// createDailyJournal
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [dailyJournal]
+  /// * [dailyJournal] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -33,7 +34,7 @@ class DailyJournalResourceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [DailyJournal] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<DailyJournal>> createDailyJournal({
+  Future<Response<DailyJournal>> createDailyJournal({ 
     required DailyJournal dailyJournal,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -61,9 +62,10 @@ class DailyJournalResourceApi {
     try {
       const _type = FullType(DailyJournal);
       _bodyData = _serializers.serialize(dailyJournal, specifiedType: _type);
-    } catch (error, stackTrace) {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(
+         requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
@@ -86,12 +88,11 @@ class DailyJournalResourceApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-              rawResponse,
-              specifiedType: const FullType(DailyJournal),
-            ) as DailyJournal;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(DailyJournal),
+      ) as DailyJournal;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -115,10 +116,10 @@ class DailyJournalResourceApi {
   }
 
   /// deleteDailyJournal
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [id]
+  /// * [id] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -128,7 +129,7 @@ class DailyJournalResourceApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> deleteDailyJournal({
+  Future<Response<void>> deleteDailyJournal({ 
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -137,8 +138,7 @@ class DailyJournalResourceApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/daily-journals/{id}'.replaceAll('{' r'id' '}',
-        encodeQueryParameter(_serializers, id, const FullType(int)).toString());
+    final _path = r'/api/daily-journals/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -163,7 +163,7 @@ class DailyJournalResourceApi {
   }
 
   /// getAllDailyJournalsAsStream1
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -175,7 +175,7 @@ class DailyJournalResourceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<DailyJournal>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<DailyJournal>>> getAllDailyJournalsAsStream1({
+  Future<Response<BuiltList<DailyJournal>>> getAllDailyJournalsAsStream1({ 
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -208,13 +208,11 @@ class DailyJournalResourceApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-              rawResponse,
-              specifiedType:
-                  const FullType(BuiltList, [FullType(DailyJournal)]),
-            ) as BuiltList<DailyJournal>;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(DailyJournal)]),
+      ) as BuiltList<DailyJournal>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -238,10 +236,10 @@ class DailyJournalResourceApi {
   }
 
   /// getDailyJournal
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [id]
+  /// * [id] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -251,7 +249,7 @@ class DailyJournalResourceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [DailyJournal] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<DailyJournal>> getDailyJournal({
+  Future<Response<DailyJournal>> getDailyJournal({ 
     required int id,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -260,8 +258,7 @@ class DailyJournalResourceApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/daily-journals/{id}'.replaceAll('{' r'id' '}',
-        encodeQueryParameter(_serializers, id, const FullType(int)).toString());
+    final _path = r'/api/daily-journals/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -286,12 +283,11 @@ class DailyJournalResourceApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-              rawResponse,
-              specifiedType: const FullType(DailyJournal),
-            ) as DailyJournal;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(DailyJournal),
+      ) as DailyJournal;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -315,11 +311,11 @@ class DailyJournalResourceApi {
   }
 
   /// partialUpdateDailyJournal
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [id]
-  /// * [dailyJournal]
+  /// * [id] 
+  /// * [dailyJournal] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -329,7 +325,7 @@ class DailyJournalResourceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [DailyJournal] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<DailyJournal>> partialUpdateDailyJournal({
+  Future<Response<DailyJournal>> partialUpdateDailyJournal({ 
     required int id,
     required DailyJournal dailyJournal,
     CancelToken? cancelToken,
@@ -339,8 +335,7 @@ class DailyJournalResourceApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/daily-journals/{id}'.replaceAll('{' r'id' '}',
-        encodeQueryParameter(_serializers, id, const FullType(int)).toString());
+    final _path = r'/api/daily-journals/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'PATCH',
       headers: <String, dynamic>{
@@ -359,9 +354,10 @@ class DailyJournalResourceApi {
     try {
       const _type = FullType(DailyJournal);
       _bodyData = _serializers.serialize(dailyJournal, specifiedType: _type);
-    } catch (error, stackTrace) {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(
+         requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
@@ -384,12 +380,11 @@ class DailyJournalResourceApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-              rawResponse,
-              specifiedType: const FullType(DailyJournal),
-            ) as DailyJournal;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(DailyJournal),
+      ) as DailyJournal;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -413,11 +408,11 @@ class DailyJournalResourceApi {
   }
 
   /// updateDailyJournal
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [id]
-  /// * [dailyJournal]
+  /// * [id] 
+  /// * [dailyJournal] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -427,7 +422,7 @@ class DailyJournalResourceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [DailyJournal] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<DailyJournal>> updateDailyJournal({
+  Future<Response<DailyJournal>> updateDailyJournal({ 
     required int id,
     required DailyJournal dailyJournal,
     CancelToken? cancelToken,
@@ -437,8 +432,7 @@ class DailyJournalResourceApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/daily-journals/{id}'.replaceAll('{' r'id' '}',
-        encodeQueryParameter(_serializers, id, const FullType(int)).toString());
+    final _path = r'/api/daily-journals/{id}'.replaceAll('{' r'id' '}', encodeQueryParameter(_serializers, id, const FullType(int)).toString());
     final _options = Options(
       method: r'PUT',
       headers: <String, dynamic>{
@@ -457,9 +451,10 @@ class DailyJournalResourceApi {
     try {
       const _type = FullType(DailyJournal);
       _bodyData = _serializers.serialize(dailyJournal, specifiedType: _type);
-    } catch (error, stackTrace) {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(
+         requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
@@ -482,12 +477,11 @@ class DailyJournalResourceApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-              rawResponse,
-              specifiedType: const FullType(DailyJournal),
-            ) as DailyJournal;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(DailyJournal),
+      ) as DailyJournal;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -509,4 +503,5 @@ class DailyJournalResourceApi {
       extra: _response.extra,
     );
   }
+
 }
