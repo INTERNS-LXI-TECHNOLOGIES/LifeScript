@@ -12,13 +12,12 @@ part 'daily_journal.g.dart';
 /// DailyJournal
 ///
 /// Properties:
-/// * [id]
-/// * [title]
-/// * [content]
-/// * [date]
+/// * [id] 
+/// * [title] 
+/// * [content] 
+/// * [date] 
 @BuiltValue()
-abstract class DailyJournal
-    implements Built<DailyJournal, DailyJournalBuilder> {
+abstract class DailyJournal implements Built<DailyJournal, DailyJournalBuilder> {
   @BuiltValueField(wireName: r'id')
   int? get id;
 
@@ -84,9 +83,7 @@ class _$DailyJournalSerializer implements PrimitiveSerializer<DailyJournal> {
     DailyJournal object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return _serializeProperties(serializers, object,
-            specifiedType: specifiedType)
-        .toList();
+    return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
   }
 
   void _deserializeProperties(
@@ -157,3 +154,4 @@ class _$DailyJournalSerializer implements PrimitiveSerializer<DailyJournal> {
     return result.build();
   }
 }
+
