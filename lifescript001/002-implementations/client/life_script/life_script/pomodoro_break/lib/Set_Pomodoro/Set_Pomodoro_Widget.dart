@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:openapi/openapi.dart';
+import 'package:openapiPomodoroBreak/openapi.dart';
+import 'package:pomodoro_break/Set_Pomodoro/bloc/set_pomodoro_bloc.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -7,11 +8,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_bloc/flutter_bloc.dart'; // Import the flutter_bloc package
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '/flutter_flow/flutter_flow_icon_button.dart';
 
 import 'set_pomodoro_model.dart';
 export 'set_pomodoro_model.dart';
-import '../bloc/setpomodoro/set_pomodoro_bloc.dart'; // Import the Bloc file
 
 class SetPomodoroWidget extends StatelessWidget {
   const SetPomodoroWidget({super.key});
@@ -19,7 +20,7 @@ class SetPomodoroWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SetPomodoroBloc(),
+      create: (context) => SetPomodoroBloc(navigate: (route) => context.go(route))..add(CheckExistingPomodoro()),
       child: SetPomodoroView(),
     );
   }
@@ -41,6 +42,18 @@ class SetPomodoroView extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: FlutterFlowTheme.of(context).primary,
           automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderRadius: 8,
+            buttonSize: 40,
+            icon: Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+              size: 24,
+            ),
+            onPressed: () {
+              context.read<SetPomodoroBloc>().add(NavigateToInstructionPage());
+            },
+          ),
           title: Text(
             'Set Pomodoro',
             style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -337,12 +350,61 @@ class SetPomodoroView extends StatelessWidget {
                   ),
                   BlocBuilder<SetPomodoroBloc, SetPomodoroState>(
                     builder: (context, state) {
+                      if (state is PomodoroExists) {
+                        return Row(
+                          children: [
+                            Icon(Icons.warning, color: Colors.red),
+                            SizedBox(width: 8),
+                            Expanded(
+                              child: Text(
+                                'You have already created a Pomodoro. Complete it or delete the current Pomodoro to create a new one.',
+                                style: TextStyle(color: Colors.red),
+                              ),
+                            ),
+                          ],
+                        );
+                      }
                       return FFButtonWidget(
                         onPressed: () async {
+                          final jwtToken = Openapi.jwt;
+                          if (jwtToken == null || jwtToken.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Row(
+                                  children: [
+                                    Icon(Icons.error, color: Colors.white),
+                                    SizedBox(width: 8),
+                                    Text('Authentication token is missing. Please log in again.'),
+                                  ],
+                                ),
+                                behavior: SnackBarBehavior.floating,
+                                margin: EdgeInsets.only(bottom: 20.0, left: 20.0, right: 20.0),
+                              ),
+                            );
+                            return;
+                          }
+
+                          if (state is PomodoroExists) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Row(
+                                  children: [
+                                    Icon(Icons.warning, color: Colors.white),
+                                    SizedBox(width: 8),
+                                    Text('You have already created a Pomodoro. Complete it or delete the current Pomodoro to create a new one.'),
+                                  ],
+                                ),
+                                behavior: SnackBarBehavior.floating,
+                                margin: EdgeInsets.only(bottom: 20.0, left: 20.0, right: 20.0),
+                              ),
+                            );
+                            return;
+                          }
+
                           PomodoroBreakBuilder pomodoro = PomodoroBreakBuilder();
                     
                           pomodoro.totalWorkingHour = int.tryParse(_totalWorkingHourController.text) ?? 10;
-                          pomodoro.dailyDurationOfWork = 7;
+                          pomodoro.dailyDurationOfWork = 25;
                           pomodoro.splitBreakDuration = 17;
                           pomodoro.breakDuration = (state as SetPomodoroInitial).breakDuration;
                           pomodoro.completedBreaks = 2;
@@ -351,12 +413,16 @@ class SetPomodoroView extends StatelessWidget {
                           pomodoro.notificationForBreak = true;
                           pomodoro.finalMessage = "good job!";
 
-                          await Openapi().getPomodoroBreakResourceApi().createPomodoroBreak(pomodoroBreak: pomodoro.build(),
-                        headers: {'Authorization': 'Bearer ${Openapi.jwt}'}) ;
-                          
+                          final createdPomodoro = await Openapi().getPomodoroBreakResourceApi().createPomodoroBreak(
+                            pomodoroBreak: pomodoro.build(),
+                            headers: {'Authorization': 'Bearer $jwtToken'},
+                          );
+
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Pomodoro created successfully!')),
-                          ); 
+                            SnackBar(content: Text('Pomodoro created successfully! The ID is ${createdPomodoro.data?.id}')),
+                          );
+
+                          context.read<SetPomodoroBloc>().add(NavigateToHomePage());
                         },
                         text: 'Start Pomodoro',
                         options: FFButtonOptions(

@@ -1,0 +1,17 @@
+entity User {
+  login String required,
+  passwordHash String required,
+  firstName String,
+  lastName String,
+  email String required
+}
+
+entity TongueTwister {
+  text String required,
+  language String required,
+  difficultyLevel Integer
+}
+
+relationship ManyToOne {
+  TongueTwister{creator(login)} to User
+}

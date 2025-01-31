@@ -1,3 +1,5 @@
+import 'package:pomodoro_break/info_page/bloc/instruction_page_bloc.dart';
+
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -6,11 +8,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_bloc/flutter_bloc.dart'; // Import the flutter_bloc package
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'Instruction_Page_Model.dart';
 export 'Instruction_Page_Model.dart';
-import '../bloc/instructionpage/instruction_page_bloc.dart'; // Import the Bloc file
 
 class InstructionPageWidget extends StatelessWidget {
   const InstructionPageWidget({super.key});

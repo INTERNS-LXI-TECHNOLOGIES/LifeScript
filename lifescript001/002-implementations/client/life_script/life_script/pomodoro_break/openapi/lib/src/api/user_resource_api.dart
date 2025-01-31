@@ -9,9 +9,9 @@ import 'package:built_value/serializer.dart';
 import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
-import 'package:openapi/src/api_util.dart';
-import 'package:openapi/src/model/admin_user_dto.dart';
-import 'package:openapi/src/model/user.dart';
+import 'package:openapiPomodoroBreak/src/api_util.dart';
+import 'package:openapiPomodoroBreak/src/model/admin_user_dto.dart';
+import 'package:openapiPomodoroBreak/src/model/user.dart';
 
 class UserResourceApi {
 

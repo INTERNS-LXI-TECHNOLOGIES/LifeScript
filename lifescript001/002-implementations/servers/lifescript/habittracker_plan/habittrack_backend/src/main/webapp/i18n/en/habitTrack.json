@@ -1,0 +1,29 @@
+{
+  "habittrackBackendApp": {
+    "habitTrack": {
+      "home": {
+        "title": "Habit Tracks",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Habit Track",
+        "createOrEditLabel": "Create or edit a Habit Track",
+        "notFound": "No Habit Tracks found"
+      },
+      "created": "A new Habit Track is created with identifier {{ param }}",
+      "updated": "A Habit Track is updated with identifier {{ param }}",
+      "deleted": "A Habit Track is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Habit Track {{ id }}?"
+      },
+      "detail": {
+        "title": "Habit Track"
+      },
+      "id": "ID",
+      "habitId": "Habit Id",
+      "habitName": "Habit Name",
+      "description": "Description",
+      "category": "Category",
+      "startDate": "Start Date",
+      "endDate": "End Date"
+    }
+  }
+}

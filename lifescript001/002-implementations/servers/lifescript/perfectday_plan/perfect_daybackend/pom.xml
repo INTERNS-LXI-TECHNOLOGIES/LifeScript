@@ -680,11 +680,11 @@
                         </includeOnlyProperties>
                     </configuration>
                 </plugin>
-                <plugin>
+                 <!--<plugin>
                     <groupId>net.nicoulaj.maven.plugins</groupId>
                     <artifactId>checksum-maven-plugin</artifactId>
                     <version>${checksum-maven-plugin.version}</version>
-                </plugin>
+                </plugin>-->
                 <plugin>
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>properties-maven-plugin</artifactId>
@@ -1036,7 +1036,7 @@
             </properties>
             <build>
                 <plugins>
-                    <plugin>
+                  <!--  <plugin>
                         <groupId>net.nicoulaj.maven.plugins</groupId>
                         <artifactId>checksum-maven-plugin</artifactId>
                         <executions>
@@ -1087,7 +1087,7 @@
                             <includeRelativePath>true</includeRelativePath>
                             <quiet>true</quiet>
                         </configuration>
-                    </plugin>
+                    </plugin> -->
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-antrun-plugin</artifactId>

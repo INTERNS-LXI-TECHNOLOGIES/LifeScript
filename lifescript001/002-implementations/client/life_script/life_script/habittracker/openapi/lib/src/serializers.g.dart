@@ -9,7 +9,7 @@ part of 'serializers.dart';
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AdminUserDTO.serializer)
       ..add(Authority.serializer)
-      ..add(Habittrack.serializer)
+      ..add(HabitTrack.serializer)
       ..add(JWTToken.serializer)
       ..add(KeyAndPasswordVM.serializer)
       ..add(LoginVM.serializer)

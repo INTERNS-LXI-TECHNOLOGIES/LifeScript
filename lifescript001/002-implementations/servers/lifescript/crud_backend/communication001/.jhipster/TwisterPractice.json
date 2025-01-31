@@ -1,0 +1,20 @@
+{
+  "annotations": {},
+  "applications": "*",
+  "fields": [
+    {
+      "fieldName": "score",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "timesPracticed",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "corrections",
+      "fieldType": "String"
+    }
+  ],
+  "name": "TwisterPractice",
+  "relationships": []
+}

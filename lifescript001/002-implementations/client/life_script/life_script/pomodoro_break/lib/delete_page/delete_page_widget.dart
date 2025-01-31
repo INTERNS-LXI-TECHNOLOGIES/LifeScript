@@ -1,8 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:pomodoro_break/bloc/deletepage/delete_page_bloc.dart';
-import 'package:pomodoro_break/bloc/deletepage/delete_page_event.dart';
-import 'package:pomodoro_break/bloc/deletepage/delete_page_state.dart';
-
+import 'package:pomodoro_break/delete_page/bloc/delete_page_bloc.dart';
+import 'package:pomodoro_break/delete_page/bloc/delete_page_state.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
@@ -11,7 +9,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:openapi/openapi.dart'; // Import OpenAPI package
+import 'package:openapiPomodoroBreak/openapi.dart';
 
 import 'delete_page_model.dart';
 export 'delete_page_model.dart';
@@ -55,6 +53,8 @@ class _DeletePageWidgetState extends State<DeletePageWidget> {
 
   @override
   void dispose() {
+    _bloc.textController.dispose();
+    _bloc.textFieldFocusNode.dispose();
     _bloc.close();
     super.dispose();
   }
@@ -72,17 +72,17 @@ class _DeletePageWidgetState extends State<DeletePageWidget> {
           headers: {'Authorization': 'Bearer ${Openapi.jwt}'},
         );
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Pomodoro deleted successfully!')),
+          SnackBar(content: Text('Pomodoro #$id deleted successfully!')),
         );
         //context.read<DeletePageBloc>().add(NavigateToHomePage());
       } else {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Pomodoro ID does not exist')),
+          SnackBar(content: Text('Pomodoro ID $id does not exist')),
         );
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Failed to delete Pomodoro')),
+        SnackBar(content: Text('Failed to delete Pomodoro $id')),
       );
     }
   }
@@ -102,21 +102,16 @@ class _DeletePageWidgetState extends State<DeletePageWidget> {
           appBar: AppBar(
             backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
             automaticallyImplyLeading: false,
-            leading: BlocBuilder<DeletePageBloc, DeletePageState>(
-              builder: (context, state) {
-                return FlutterFlowIconButton(
-                  borderRadius: 8,
-                  buttonSize: 40,
-                  fillColor: Colors.transparent,
-                  icon: Icon(
-                    Icons.arrow_back,
-                    color: FlutterFlowTheme.of(context).primaryText,
-                    size: 24,
-                  ),
-                  onPressed: () {
-                    context.read<DeletePageBloc>().add(NavigateToHomePage());
-                  },
-                );
+            leading: FlutterFlowIconButton(
+              borderRadius: 8,
+              buttonSize: 40,
+              icon: Icon(
+                Icons.arrow_back,
+                color: FlutterFlowTheme.of(context).primaryText,
+                size: 24,
+              ),
+              onPressed: () {
+                context.go('/home'); // Navigate to home
               },
             ),
             title: Text(
@@ -340,7 +335,20 @@ class _DeletePageWidgetState extends State<DeletePageWidget> {
                                                     ),
                                               ),
                                               Text(
-                                                'Work: ${pomodoro.dailyDurationOfWork} min • Break: ${pomodoro.breakDuration} min',
+                                                'Total duration of work: ${pomodoro.totalWorkingHour} Hours • Work: ${pomodoro.dailyDurationOfWork} min • Break: ${pomodoro.breakDuration} min',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .bodyMedium
+                                                    .override(
+                                                      fontFamily: 'Inter Tight',
+                                                      color: FlutterFlowTheme.of(
+                                                              context)
+                                                          .secondaryText,
+                                                      letterSpacing: 0.0,
+                                                    ),
+                                              ),
+                                              Text(
+                                                'Created: ${pomodoro.dateOfPomodoro} at ${pomodoro.timeOfPomodoroCreation}',
                                                 style: FlutterFlowTheme.of(
                                                         context)
                                                     .bodyMedium
@@ -354,11 +362,18 @@ class _DeletePageWidgetState extends State<DeletePageWidget> {
                                               ),
                                             ],
                                           ),
-                                          Icon(
-                                            Icons.delete_outline,
-                                            color: FlutterFlowTheme.of(context)
-                                                .error,
-                                            size: 24,
+                                          IconButton(
+                                            icon: Icon(
+                                              Icons.delete_outline,
+                                              color: FlutterFlowTheme.of(context).error,
+                                              size: 24,
+                                            ),
+                                            onPressed: () async {
+                                              if (pomodoro.id != null) {
+                                                await deleteOperation(pomodoro.id!);
+                                              }
+                                              await _fetchPomodoros();
+                                            },
                                           ),
                                         ],
                                       ),

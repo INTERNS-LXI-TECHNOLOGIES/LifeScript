@@ -4,17 +4,17 @@
 
 import 'package:dio/dio.dart';
 import 'package:built_value/serializer.dart';
-import 'package:openapi/src/serializers.dart';
-import 'package:openapi/src/auth/api_key_auth.dart';
-import 'package:openapi/src/auth/basic_auth.dart';
-import 'package:openapi/src/auth/bearer_auth.dart';
-import 'package:openapi/src/auth/oauth.dart';
-import 'package:openapi/src/api/account_resource_api.dart';
-import 'package:openapi/src/api/authenticate_controller_api.dart';
-import 'package:openapi/src/api/authority_resource_api.dart';
-import 'package:openapi/src/api/pomodoro_break_resource_api.dart';
-import 'package:openapi/src/api/public_user_resource_api.dart';
-import 'package:openapi/src/api/user_resource_api.dart';
+import 'package:openapiPomodoroBreak/src/serializers.dart';
+import 'package:openapiPomodoroBreak/src/auth/api_key_auth.dart';
+import 'package:openapiPomodoroBreak/src/auth/basic_auth.dart';
+import 'package:openapiPomodoroBreak/src/auth/bearer_auth.dart';
+import 'package:openapiPomodoroBreak/src/auth/oauth.dart';
+import 'package:openapiPomodoroBreak/src/api/account_resource_api.dart';
+import 'package:openapiPomodoroBreak/src/api/authenticate_controller_api.dart';
+import 'package:openapiPomodoroBreak/src/api/authority_resource_api.dart';
+import 'package:openapiPomodoroBreak/src/api/pomodoro_break_resource_api.dart';
+import 'package:openapiPomodoroBreak/src/api/public_user_resource_api.dart';
+import 'package:openapiPomodoroBreak/src/api/user_resource_api.dart';
 
 class Openapi {
   static const String basePath = r'http://localhost:8080/';
