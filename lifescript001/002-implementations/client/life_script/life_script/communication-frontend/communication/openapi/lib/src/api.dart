@@ -23,7 +23,7 @@ class Openapi {
 
   final Dio dio;
   final Serializers serializers;
-   static String? jwt='';
+   static String? jwt;
 
   Openapi({
     Dio? dio,
