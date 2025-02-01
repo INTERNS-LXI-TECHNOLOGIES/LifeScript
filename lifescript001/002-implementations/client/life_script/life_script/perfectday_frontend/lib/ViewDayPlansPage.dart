@@ -20,15 +20,72 @@ class _ViewDayPlansPageState extends State<ViewDayPlansPage> {
     context.read<DayPlanBloc>().add(FetchDayPlansEvent());
   }
 
-  void _updateDayPlan(int id, String title, String description,Date date) {
-   
-    // Trigger the update event to update the DayPlan
+  void _showEditDialog(PerfectDay dayPlan) {
+    TextEditingController titleController =
+        TextEditingController(text: dayPlan.title);
+    TextEditingController descriptionController =
+        TextEditingController(text: dayPlan.description);
+
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text("Edit Day Plan"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: titleController,
+                decoration: const InputDecoration(labelText: "Title"),
+              ),
+              TextField(
+                controller: descriptionController,
+                decoration: const InputDecoration(labelText: "Description"),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text("Cancel"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                _updateDayPlan(
+                  dayPlan.id!,
+                  titleController.text,
+                  descriptionController.text,
+                  dayPlan.date,
+                );
+                Navigator.pop(context);
+              },
+              child: const Text("Update"),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _updateDayPlan(int id, String title, String description, Date date) {
     context.read<DayPlanBloc>().add(UpdateDayPlanEvent(
       id: id,
       title: title,
       description: description,
-      date: date,  // Pass the Date object here
+      date: date,
     ));
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      context.read<DayPlanBloc>().add(FetchDayPlansEvent());
+    });
+  }
+
+  void _deleteDayPlan(int id) {
+    context.read<DayPlanBloc>().add(DeleteDayPlanEvent(id));
+
+    Future.delayed(const Duration(milliseconds: 500), () {
+      context.read<DayPlanBloc>().add(FetchDayPlansEvent());
+    });
   }
 
   @override
@@ -42,6 +99,7 @@ class _ViewDayPlansPageState extends State<ViewDayPlansPage> {
           if (state is DayPlanLoadingState) {
             return const Center(child: CircularProgressIndicator());
           } else if (state is DayPlanDeleteState) {
+            // Handle any UI changes post-delete if needed
             print("Delete State");
           } else if (state is DayPlanFetchSuccessState) {
             return ListView.builder(
@@ -73,17 +131,14 @@ class _ViewDayPlansPageState extends State<ViewDayPlansPage> {
                         IconButton(
                           icon: const Icon(Icons.edit),
                           onPressed: () {
-                            // Call _updateDayPlan when the edit button is pressed
-                            _updateDayPlan(dayPlan.id!, 'Updated Title', 'Updated Description', dayPlan.date!);
+                            _showEditDialog(dayPlan);
                           },
                         ),
                         IconButton(
                           icon: const Icon(Icons.delete),
                           onPressed: () {
                             if (dayPlan.id != null) {
-                              context
-                                  .read<DayPlanBloc>()
-                                  .add(DeleteDayPlanEvent(dayPlan.id!));
+                              _deleteDayPlan(dayPlan.id!);
                             }
                           },
                         ),

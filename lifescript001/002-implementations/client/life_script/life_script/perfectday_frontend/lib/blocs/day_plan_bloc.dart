@@ -74,14 +74,15 @@ class DayPlanBloc extends Bloc<DayPlanEvent, DayPlanState> {
         emit(DayPlanErrorState("Failed to delete day plan: $e"));
       }
     });
-
     on<UpdateDayPlanEvent>((event, emit) async {
       emit(DayPlanLoadingState());
       try {
         final dayPlan = PerfectDay((b) => b
-          ..title = event.title
-          ..description = event.description
-          ..date = event.date );
+              ..id = event.id
+              ..title = event.title
+              ..description = event.description
+              ..date = event.date// Ensure correct format
+            ); // Ensure it's built properly
 
         final response = await _api.getPerfectDayResourceApi().updatePerfectDay(
           id: event.id,
@@ -89,8 +90,24 @@ class DayPlanBloc extends Bloc<DayPlanEvent, DayPlanState> {
           headers: {'Authorization': 'Bearer ${Openapi.jwt}'},
         );
 
+        print("Response Status: ${response.statusCode}");
+        print("Updating Day Plan...");
+        print("ID: ${event.id}");
+        print("Title: ${event.title}");
+        print("Description: ${event.description}");
+        print("Date: ${event.date}");
+
+        //print("Response Body: ${response.body}");
+
         if (response.statusCode == 200 || response.statusCode == 201) {
-          emit(DayPlanFetchSuccessState([dayPlan])); // You can update with the new dayPlan here
+          // Fetch updated day plans after update
+          final updatedPlans =
+              await _api.getPerfectDayResourceApi().getAllPerfectDays(
+            headers: {'Authorization': 'Bearer ${Openapi.jwt}'},
+          );
+
+          emit(
+              DayPlanFetchSuccessState(updatedPlans.data?.toList() ?? [])); // Emit updated list
           print("Successfully updated the day plan.");
         } else {
           emit(DayPlanErrorState("Failed to update the day plan."));
