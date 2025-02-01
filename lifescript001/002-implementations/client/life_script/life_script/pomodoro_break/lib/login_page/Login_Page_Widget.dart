@@ -26,16 +26,16 @@ class LoginPageWidget extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white, // White text for contrast
+                    color: Colors.white,
                   ),
                 ),
                 SizedBox(height: 20),
                 TextField(
                   controller: _usernameController,
-                  style: TextStyle(color: Colors.white), // White text input
+                  style: TextStyle(color: Colors.white), 
                   decoration: InputDecoration(
                     labelText: "Username",
-                    labelStyle: TextStyle(color: Colors.white54), // White label
+                    labelStyle: TextStyle(color: Colors.white54),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(color: Colors.white),
@@ -54,10 +54,10 @@ class LoginPageWidget extends StatelessWidget {
                 SizedBox(height: 20),
                 TextField(
                   controller: _passwordController,
-                  style: TextStyle(color: Colors.white), // White text input
+                  style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                     labelText: "Password",
-                    labelStyle: TextStyle(color: Colors.white54), // White label
+                    labelStyle: TextStyle(color: Colors.white54),
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                       borderSide: BorderSide(color: Colors.white),

@@ -15,7 +15,6 @@ import 'package:daily_journal_openapi/src/model/managed_user_vm.dart';
 import 'package:daily_journal_openapi/src/model/password_change_dto.dart';
 
 class AccountResourceApi {
-
   final Dio _dio;
 
   final Serializers _serializers;
@@ -23,10 +22,10 @@ class AccountResourceApi {
   const AccountResourceApi(this._dio, this._serializers);
 
   /// activateAccount
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [key] 
+  /// * [key]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -36,7 +35,7 @@ class AccountResourceApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> activateAccount({ 
+  Future<Response<void>> activateAccount({
     required String key,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -75,10 +74,10 @@ class AccountResourceApi {
   }
 
   /// changePassword
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [passwordChangeDTO] 
+  /// * [passwordChangeDTO]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -88,7 +87,7 @@ class AccountResourceApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> changePassword({ 
+  Future<Response<void>> changePassword({
     required PasswordChangeDTO passwordChangeDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -115,11 +114,11 @@ class AccountResourceApi {
 
     try {
       const _type = FullType(PasswordChangeDTO);
-      _bodyData = _serializers.serialize(passwordChangeDTO, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData =
+          _serializers.serialize(passwordChangeDTO, specifiedType: _type);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
@@ -142,10 +141,10 @@ class AccountResourceApi {
   }
 
   /// finishPasswordReset
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [keyAndPasswordVM] 
+  /// * [keyAndPasswordVM]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -155,7 +154,7 @@ class AccountResourceApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> finishPasswordReset({ 
+  Future<Response<void>> finishPasswordReset({
     required KeyAndPasswordVM keyAndPasswordVM,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -182,11 +181,11 @@ class AccountResourceApi {
 
     try {
       const _type = FullType(KeyAndPasswordVM);
-      _bodyData = _serializers.serialize(keyAndPasswordVM, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+      _bodyData =
+          _serializers.serialize(keyAndPasswordVM, specifiedType: _type);
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
@@ -209,7 +208,7 @@ class AccountResourceApi {
   }
 
   /// getAccount
-  /// 
+  ///
   ///
   /// Parameters:
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -221,7 +220,7 @@ class AccountResourceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [AdminUserDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<AdminUserDTO>> getAccount({ 
+  Future<Response<AdminUserDTO>> getAccount({
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -254,11 +253,12 @@ class AccountResourceApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null ? null : _serializers.deserialize(
-        rawResponse,
-        specifiedType: const FullType(AdminUserDTO),
-      ) as AdminUserDTO;
-
+      _responseData = rawResponse == null
+          ? null
+          : _serializers.deserialize(
+              rawResponse,
+              specifiedType: const FullType(AdminUserDTO),
+            ) as AdminUserDTO;
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -282,10 +282,10 @@ class AccountResourceApi {
   }
 
   /// registerAccount
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [managedUserVM] 
+  /// * [managedUserVM]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -295,7 +295,7 @@ class AccountResourceApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> registerAccount({ 
+  Future<Response<void>> registerAccount({
     required ManagedUserVM managedUserVM,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -323,10 +323,9 @@ class AccountResourceApi {
     try {
       const _type = FullType(ManagedUserVM);
       _bodyData = _serializers.serialize(managedUserVM, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
@@ -349,10 +348,10 @@ class AccountResourceApi {
   }
 
   /// requestPasswordReset
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [body] 
+  /// * [body]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -362,7 +361,7 @@ class AccountResourceApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> requestPasswordReset({ 
+  Future<Response<void>> requestPasswordReset({
     required String body,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -389,10 +388,9 @@ class AccountResourceApi {
 
     try {
       _bodyData = body;
-
-    } catch(error, stackTrace) {
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
@@ -415,10 +413,10 @@ class AccountResourceApi {
   }
 
   /// saveAccount
-  /// 
+  ///
   ///
   /// Parameters:
-  /// * [adminUserDTO] 
+  /// * [adminUserDTO]
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -428,7 +426,7 @@ class AccountResourceApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> saveAccount({ 
+  Future<Response<void>> saveAccount({
     required AdminUserDTO adminUserDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -456,10 +454,9 @@ class AccountResourceApi {
     try {
       const _type = FullType(AdminUserDTO);
       _bodyData = _serializers.serialize(adminUserDTO, specifiedType: _type);
-
-    } catch(error, stackTrace) {
+    } catch (error, stackTrace) {
       throw DioException(
-         requestOptions: _options.compose(
+        requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
@@ -480,5 +477,4 @@ class AccountResourceApi {
 
     return _response;
   }
-
 }

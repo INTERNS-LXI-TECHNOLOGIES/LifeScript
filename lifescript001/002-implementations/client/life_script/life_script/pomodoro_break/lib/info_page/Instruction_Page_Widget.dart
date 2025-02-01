@@ -48,7 +48,7 @@ class InstructionPageView extends StatelessWidget {
               size: 24,
             ),
             onPressed: () {
-              context.read<InstructionPageBloc>().add(NavigateToHomePage()); // Trigger Bloc event
+              context.read<InstructionPageBloc>().add(NavigateToHomePage());
             },
           ),
           title: Text(
@@ -444,7 +444,7 @@ class InstructionPageView extends StatelessWidget {
                   ),
                   FFButtonWidget(
                     onPressed: () {
-                      context.read<InstructionPageBloc>().add(NavigateToSetPomodoroPage()); // Trigger Bloc event
+                      context.read<InstructionPageBloc>().add(NavigateToSetPomodoroPage());
                     },
                     text: 'Start Your Pomodoro',
                     options: FFButtonOptions(

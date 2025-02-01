@@ -120,7 +120,7 @@ class _MediaContentUploadPageState extends State<MediaContentUploadPage> {
 
         return ElevatedButton(
           onPressed: () {
-            if (_formKey.currentState?.validate() ?? false) {
+            
               context.read<AdminMediaUploadBloc>().add(
                 UploadButtonEvent(
                   text: _text.text,
@@ -130,7 +130,7 @@ class _MediaContentUploadPageState extends State<MediaContentUploadPage> {
                   uploadDateTime: DateTime.parse(_uploadDateTime.text),
                 ),
               );
-            }
+            
           },
           child: Text('Submit'),
         );

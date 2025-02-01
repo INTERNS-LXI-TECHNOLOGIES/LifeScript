@@ -315,7 +315,7 @@ class _DailyJournalWidgetState extends State<DailyJournalWidget> {
 
                                   final response = await api.createDailyJournal(
                                     // Pass the type (not clear what you intend here; clarify if needed)
-                                    dailyJournal:
+                                      dailyJournal:
                                         journalEntry, // Pass the actual journal entry object
                                   ); // Correctly formatted date
 

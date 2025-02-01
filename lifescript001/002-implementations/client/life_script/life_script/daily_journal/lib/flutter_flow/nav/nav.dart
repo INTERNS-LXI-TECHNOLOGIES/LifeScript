@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:daily_journal/daily_journal/login_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
@@ -44,18 +45,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => DailyJournalWidget(),
+          builder: (context, _) => LoginWidget(),
         ),
         FFRoute(
           name: 'dailyjournal',
           path: '/dailyjournal',
           builder: (context, params) => DailyJournalWidget(),
         ),
-        FFRoute(
+       /* FFRoute(
           name: 'dailyjournal',
           path: '/dailyJournal',
           builder: (context, params) => DailyJournalWidget(),
-        )
+        )*/
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
 

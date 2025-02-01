@@ -14,6 +14,7 @@ import 'package:daily_journal_openapi/src/model/admin_user_dto.dart';
 import 'package:daily_journal_openapi/src/model/user.dart';
 
 class UserResourceApi {
+
   final Dio _dio;
 
   final Serializers _serializers;
@@ -21,10 +22,10 @@ class UserResourceApi {
   const UserResourceApi(this._dio, this._serializers);
 
   /// createUser
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [adminUserDTO]
+  /// * [adminUserDTO] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -34,7 +35,7 @@ class UserResourceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [User] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<User>> createUser({
+  Future<Response<User>> createUser({ 
     required AdminUserDTO adminUserDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -62,9 +63,10 @@ class UserResourceApi {
     try {
       const _type = FullType(AdminUserDTO);
       _bodyData = _serializers.serialize(adminUserDTO, specifiedType: _type);
-    } catch (error, stackTrace) {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(
+         requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
@@ -87,12 +89,11 @@ class UserResourceApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-              rawResponse,
-              specifiedType: const FullType(User),
-            ) as User;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(User),
+      ) as User;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -116,10 +117,10 @@ class UserResourceApi {
   }
 
   /// deleteUser
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [login]
+  /// * [login] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -129,7 +130,7 @@ class UserResourceApi {
   ///
   /// Returns a [Future]
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<void>> deleteUser({
+  Future<Response<void>> deleteUser({ 
     required String login,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -138,10 +139,7 @@ class UserResourceApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/admin/users/{login}'.replaceAll(
-        '{' r'login' '}',
-        encodeQueryParameter(_serializers, login, const FullType(String))
-            .toString());
+    final _path = r'/api/admin/users/{login}'.replaceAll('{' r'login' '}', encodeQueryParameter(_serializers, login, const FullType(String)).toString());
     final _options = Options(
       method: r'DELETE',
       headers: <String, dynamic>{
@@ -166,7 +164,7 @@ class UserResourceApi {
   }
 
   /// getAllUsers
-  ///
+  /// 
   ///
   /// Parameters:
   /// * [page] - Zero-based page index (0..N)
@@ -181,7 +179,7 @@ class UserResourceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [BuiltList<AdminUserDTO>] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<BuiltList<AdminUserDTO>>> getAllUsers({
+  Future<Response<BuiltList<AdminUserDTO>>> getAllUsers({ 
     int? page = 0,
     int? size = 20,
     BuiltList<String>? sort,
@@ -206,17 +204,9 @@ class UserResourceApi {
     );
 
     final _queryParameters = <String, dynamic>{
-      if (page != null)
-        r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
-      if (size != null)
-        r'size': encodeQueryParameter(_serializers, size, const FullType(int)),
-      if (sort != null)
-        r'sort': encodeCollectionQueryParameter<String>(
-          _serializers,
-          sort,
-          const FullType(BuiltList, [FullType(String)]),
-          format: ListFormat.multi,
-        ),
+      if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
+      if (size != null) r'size': encodeQueryParameter(_serializers, size, const FullType(int)),
+      if (sort != null) r'sort': encodeCollectionQueryParameter<String>(_serializers, sort, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
     };
 
     final _response = await _dio.request<Object>(
@@ -232,13 +222,11 @@ class UserResourceApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-              rawResponse,
-              specifiedType:
-                  const FullType(BuiltList, [FullType(AdminUserDTO)]),
-            ) as BuiltList<AdminUserDTO>;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(BuiltList, [FullType(AdminUserDTO)]),
+      ) as BuiltList<AdminUserDTO>;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -262,10 +250,10 @@ class UserResourceApi {
   }
 
   /// getUser
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [login]
+  /// * [login] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -275,7 +263,7 @@ class UserResourceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [AdminUserDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<AdminUserDTO>> getUser({
+  Future<Response<AdminUserDTO>> getUser({ 
     required String login,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -284,10 +272,7 @@ class UserResourceApi {
     ProgressCallback? onSendProgress,
     ProgressCallback? onReceiveProgress,
   }) async {
-    final _path = r'/api/admin/users/{login}'.replaceAll(
-        '{' r'login' '}',
-        encodeQueryParameter(_serializers, login, const FullType(String))
-            .toString());
+    final _path = r'/api/admin/users/{login}'.replaceAll('{' r'login' '}', encodeQueryParameter(_serializers, login, const FullType(String)).toString());
     final _options = Options(
       method: r'GET',
       headers: <String, dynamic>{
@@ -312,12 +297,11 @@ class UserResourceApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-              rawResponse,
-              specifiedType: const FullType(AdminUserDTO),
-            ) as AdminUserDTO;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(AdminUserDTO),
+      ) as AdminUserDTO;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -341,10 +325,10 @@ class UserResourceApi {
   }
 
   /// updateUser
-  ///
+  /// 
   ///
   /// Parameters:
-  /// * [adminUserDTO]
+  /// * [adminUserDTO] 
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -354,7 +338,7 @@ class UserResourceApi {
   ///
   /// Returns a [Future] containing a [Response] with a [AdminUserDTO] as data
   /// Throws [DioException] if API call or serialization fails
-  Future<Response<AdminUserDTO>> updateUser({
+  Future<Response<AdminUserDTO>> updateUser({ 
     required AdminUserDTO adminUserDTO,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
@@ -382,9 +366,10 @@ class UserResourceApi {
     try {
       const _type = FullType(AdminUserDTO);
       _bodyData = _serializers.serialize(adminUserDTO, specifiedType: _type);
-    } catch (error, stackTrace) {
+
+    } catch(error, stackTrace) {
       throw DioException(
-        requestOptions: _options.compose(
+         requestOptions: _options.compose(
           _dio.options,
           _path,
         ),
@@ -407,12 +392,11 @@ class UserResourceApi {
 
     try {
       final rawResponse = _response.data;
-      _responseData = rawResponse == null
-          ? null
-          : _serializers.deserialize(
-              rawResponse,
-              specifiedType: const FullType(AdminUserDTO),
-            ) as AdminUserDTO;
+      _responseData = rawResponse == null ? null : _serializers.deserialize(
+        rawResponse,
+        specifiedType: const FullType(AdminUserDTO),
+      ) as AdminUserDTO;
+
     } catch (error, stackTrace) {
       throw DioException(
         requestOptions: _response.requestOptions,
@@ -434,4 +418,5 @@ class UserResourceApi {
       extra: _response.extra,
     );
   }
+
 }
