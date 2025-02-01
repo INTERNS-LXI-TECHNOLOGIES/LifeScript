@@ -1,21 +1,16 @@
-import 'package:habittracker/widget/habittrack_homepage_widgetwidget.dart';
-import 'package:habittracker_openapi/openapi.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-
 import '../model/loginmodel.dart';
-import '../bloc/login_bloc.dart'; // Import the login bloc
+import '../bloc/login_bloc.dart'; 
 export '../model/loginmodel.dart';
 
 class LoginWidget extends StatelessWidget {
-  const LoginWidget({super.key});
+
+const LoginWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +48,6 @@ class _LoginFormState extends State<LoginForm> {
   @override
   void dispose() {
     _model.dispose();
-
     super.dispose();
   }
 

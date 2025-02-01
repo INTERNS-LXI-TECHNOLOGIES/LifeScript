@@ -2,17 +2,16 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:habittracker_openapi/openapi.dart';
 
-part 'login_event.dart';
-part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
+  
   LoginBloc() : super(LoginInitial()) {
     on<LoginSubmitted>(_onLoginSubmitted);
   }
 
-  Future<void> _onLoginSubmitted(
-      LoginSubmitted event, Emitter<LoginState> emit) async {
+  Future<void> _onLoginSubmitted(LoginSubmitted event, Emitter<LoginState> emit) async {
     emit(LoginLoading());
+    
     try {
       final Openapi openApi = Openapi();
 
@@ -22,19 +21,20 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
       final loginVM = loginVMBuilder.build();
 
-      final loginResponse =
-          await openApi.getAuthenticateControllerApi().authorize(loginVM: loginVM);
+      final loginResponse = await openApi.getAuthenticateControllerApi().authorize(loginVM: loginVM);
 
       if (loginResponse.statusCode == 200 || loginResponse.statusCode == 201) {
         Openapi.jwt = loginResponse.data!.idToken!;
-        final responseUser = await openApi
+        await openApi
             .getAccountResourceApi()
             .getAccount(headers: {'Authorization': 'Bearer ${Openapi.jwt}'});
         emit(LoginSuccess());
-      } else {
+      } 
+      else {
         emit(LoginFailure(error: 'Invalid credentials'));
       }
-    } catch (e) {
+    }
+    catch (e) {
       emit(LoginFailure(error: e.toString()));
     }
   }
@@ -43,3 +43,44 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
 
 
+abstract class LoginEvent extends Equatable {
+  const LoginEvent();
+
+  @override
+  List<Object> get props => [];
+}
+
+class LoginSubmitted extends LoginEvent {
+  final String username;
+  final String password;
+
+  const LoginSubmitted({required this.username, required this.password});
+
+  @override
+  List<Object> get props => [username, password];
+}
+
+
+
+
+abstract class LoginState extends Equatable {
+  const LoginState();
+
+  @override
+  List<Object> get props => [];
+}
+
+class LoginInitial extends LoginState {}
+
+class LoginLoading extends LoginState {}
+
+class LoginSuccess extends LoginState {}
+
+class LoginFailure extends LoginState {
+  final String error;
+
+  const LoginFailure({required this.error});
+
+  @override
+  List<Object> get props => [error];
+}

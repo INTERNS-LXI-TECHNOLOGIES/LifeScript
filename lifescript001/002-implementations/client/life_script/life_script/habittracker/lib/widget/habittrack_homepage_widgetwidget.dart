@@ -1,18 +1,12 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:habittracker/bloc/homepage/habit_track_bloc.dart';
-
-import 'package:habittracker_openapi/openapi.dart';
-
-import 'package:dio/dio.dart';
+import 'package:habittracker/widget/calendarpage_widget.dart';
+import 'package:habittracker/widget/delete_habitwidget.dart';
+import 'package:habittracker/widget/update_habitwidget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
-
 import '../model/habittrack_homepage_widgetmodel.dart';
 export '../model/habittrack_homepage_widgetmodel.dart';
 
@@ -20,16 +14,12 @@ class HabittrackhomepagewidgetWidget extends StatefulWidget {
   const HabittrackhomepagewidgetWidget({super.key});
 
   @override
-  
   State<HabittrackhomepagewidgetWidget> createState() =>
       _HabittrackhomepagewidgetWidgetState();
 }
 
-class _HabittrackhomepagewidgetWidgetState
-    extends State<HabittrackhomepagewidgetWidget> {
+class _HabittrackhomepagewidgetWidgetState extends State<HabittrackhomepagewidgetWidget> {
   late HabittrackhomepagewidgetModel _model;
-  //late final _bloc = Provider.of<HabitTrackBloc>(context, listen: false);
-
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -49,20 +39,105 @@ class _HabittrackhomepagewidgetWidgetState
   @override
   void dispose() {
     _model.dispose();
-
     super.dispose();
   }
 
+  void _showCalendarPopup(BuildContext context, bool isStartDate) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      builder: (BuildContext context) {
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.8,
+          padding: EdgeInsets.all(16),
+          child: CalendarpageWidget(
+            onDateSelected: (DateTime selectedDate) {
+              if (isStartDate) {
+                context
+                    .read<HabitTrackBloc>()
+                    .add(StartDateSelectedEvent(startDate: selectedDate));
+              } else {
+                context
+                    .read<HabitTrackBloc>()
+                    .add(EndDateSelectedEvent(endDate: selectedDate));
+              }
+              Navigator.pop(context); // Close the popup
+            },
+          ),
+        );
+      },
+    );
+  }
+
+
+  void _showUpdatePopup(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent, // Transparent background
+    builder: (BuildContext context) {
+      return Container(
+        height: MediaQuery.of(context).size.height * 0.6,
+        padding: EdgeInsets.all(16),
+        child: UpdateHabitWidget(
+          onUpdate: (habitName, description) {
+            // Handle the update logic here
+            final habitId = 1; // Replace with the actual habit ID
+            context.read<HabitTrackBloc>().add(
+                  UpdateHabitTrackEvent(
+                    id: habitId,
+                    habitName: habitName,
+                    description: description,
+                    startDate: DateTime.now().toUtc().toIso8601String(),
+                    endDate: DateTime.now().toUtc().toIso8601String(),
+                    category: 'Category',
+                  ),
+                );
+          },
+        ),
+      );
+    },
+  );
+}
+
+void _showDeletePopup(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: true,
+    backgroundColor: Colors.transparent, // Transparent background
+    builder: (BuildContext context) {
+      return Container(
+        height: MediaQuery.of(context).size.height * 0.4,
+        padding: EdgeInsets.all(16),
+        child: DeleteHabitWidget(
+          onDelete: () {
+            
+            final habitId = 1; 
+            context.read<HabitTrackBloc>().add(
+                  DeleteHabitTrackEvent(id: habitId),
+                );
+          },
+        ),
+      );
+    },
+  );
+}
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        FocusScope.of(context).unfocus();
-        FocusManager.instance.primaryFocus?.unfocus();
-      },
+    return BlocProvider(
+    create: (context) => HabitTrackBloc(),
+    child: Builder(
+      builder: (context) {
+        return GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+    
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: Color(0xFF121212),
+        backgroundColor: Color.fromARGB(255, 0, 0, 0),
         body: SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.max,
@@ -88,17 +163,20 @@ class _HabittrackhomepagewidgetWidgetState
                     children: [
                       Text(
                         'Habit Tracker',
-                        style:
-                            FlutterFlowTheme.of(context).headlineLarge.override(
-                                  fontFamily: 'Inter Tight',
-                                  color: Colors.white,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                        style: FlutterFlowTheme.of(context)
+                            .headlineLarge
+                            .override(
+                              fontFamily: 'Inter Tight',
+                              color: Colors.white,
+                              letterSpacing: 0.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                       ),
                       Text(
                         'Build better habits, one day at a time',
-                        style: FlutterFlowTheme.of(context).bodyLarge.override(
+                        style: FlutterFlowTheme.of(context)
+                            .bodyLarge
+                            .override(
                               fontFamily: 'Inter',
                               color: Color(0xFFE0E0E0),
                               letterSpacing: 0.0,
@@ -144,7 +222,7 @@ class _HabittrackhomepagewidgetWidgetState
                           child: Container(
                             width: MediaQuery.sizeOf(context).width,
                             decoration: BoxDecoration(
-                              color: Color(0xFF2A2A2A),
+                              color: Color.fromARGB(255, 0, 0, 0),
                               borderRadius: BorderRadius.circular(16),
                             ),
                             child: Padding(
@@ -184,7 +262,7 @@ class _HabittrackhomepagewidgetWidgetState
                                           ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: Color(0xFF4A4A4A),
+                                          color: Color.fromARGB(255, 0, 0, 0),
                                           width: 1.0,
                                         ),
                                         borderRadius: BorderRadius.circular(8),
@@ -245,7 +323,7 @@ class _HabittrackhomepagewidgetWidgetState
                                           ),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: BorderSide(
-                                          color: Color(0xFF4A4A4A),
+                                          color: Color.fromARGB(255, 43, 42, 42),
                                           width: 1.0,
                                         ),
                                         borderRadius: BorderRadius.circular(8),
@@ -284,127 +362,6 @@ class _HabittrackhomepagewidgetWidgetState
                                     maxLines: null,
                                     validator: _model.textController2Validator
                                         .asValidator(context),
-                                  ),
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Expanded(
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFF333333),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            border: Border.all(
-                                              color: Color(0xFF4A4A4A),
-                                              width: 1,
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    12, 12, 12, 12),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  'Start Date',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        color:
-                                                            Color(0xFFE0E0E0),
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Icon(
-                                                      Icons.calendar_today,
-                                                      color: Color(0xFF03A9F4),
-                                                      size: 24,
-                                                    ),
-                                                    Text(
-                                                      'Select Date',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily: 'Inter',
-                                                            color: Colors.white,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ].divide(SizedBox(width: 8)),
-                                                ),
-                                              ].divide(SizedBox(height: 8)),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            color: Color(0xFF333333),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            border: Border.all(
-                                              color: Color(0xFF4A4A4A),
-                                              width: 1,
-                                            ),
-                                          ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    12, 12, 12, 12),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Text(
-                                                  'End Date',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        color:
-                                                            Color(0xFFE0E0E0),
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                                Row(
-                                                  mainAxisSize:
-                                                      MainAxisSize.max,
-                                                  children: [
-                                                    Icon(
-                                                      Icons.calendar_today,
-                                                      color: Color(0xFF03A9F4),
-                                                      size: 24,
-                                                    ),
-                                                    Text(
-                                                      'Select Date',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .bodyMedium
-                                                          .override(
-                                                            fontFamily: 'Inter',
-                                                            color: Colors.white,
-                                                            letterSpacing: 0.0,
-                                                          ),
-                                                    ),
-                                                  ].divide(SizedBox(width: 8)),
-                                                ),
-                                              ].divide(SizedBox(height: 8)),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
                                   ),
                                   Container(
                                     decoration: BoxDecoration(
@@ -462,7 +419,7 @@ class _HabittrackhomepagewidgetWidgetState
                           ),
                         ),
                         Material(
-                          color: Colors.transparent,
+                          color: const Color.fromARGB(255, 0, 0, 0),
                           elevation: 2,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(16),
@@ -470,7 +427,7 @@ class _HabittrackhomepagewidgetWidgetState
                           child: Container(
                             width: MediaQuery.sizeOf(context).width,
                             decoration: BoxDecoration(
-                              color: Color(0xFF2A2A2A),
+                              color: Color.fromARGB(255, 0, 0, 0),
                               borderRadius: BorderRadius.circular(16),
                             ),
                             child: Padding(
@@ -489,10 +446,188 @@ class _HabittrackhomepagewidgetWidgetState
                                           letterSpacing: 0.0,
                                         ),
                                   ),
+
                                   Row(
                                     mainAxisSize: MainAxisSize.max,
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Expanded(
+                                        child: BlocBuilder<HabitTrackBloc,
+                                            HabitTrackState>(
+                                          builder: (context, state) {
+                                            DateTime? startDate;
+                                            if (state
+                                                is HabitTrackDateSelectedState) {
+                                              startDate = state.startDate;
+                                            }
+
+                                            return GestureDetector(
+                                              onTap: () =>
+                                                  _showCalendarPopup(
+                                                      context, true),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xFF333333),
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                  border: Border.all(
+                                                    color: Color(0xFF4A4A4A),
+                                                    width: 1,
+                                                  ),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(12, 12, 12, 12),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        'Start Date',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Inter',
+                                                              color: Color(
+                                                                  0xFFE0E0E0),
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
+                                                      ),
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.calendar_today,
+                                                            color: Color(
+                                                                0xFF03A9F4),
+                                                            size: 24,
+                                                          ),
+                                                          Text(
+                                                            startDate != null
+                                                                ? '${startDate.toLocal()}'
+                                                                    .split(' ')[0]
+                                                                : 'Select Date',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Inter',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ].divide(
+                                                            SizedBox(width: 8)),
+                                                      ),
+                                                    ].divide(
+                                                        SizedBox(height: 8)),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox(width: 16),
+                                      Expanded(
+                                        child: BlocBuilder<HabitTrackBloc,
+                                            HabitTrackState>(
+                                          builder: (context, state) {
+                                            DateTime? endDate;
+                                            if (state
+                                                is HabitTrackDateSelectedState) {
+                                              endDate = state.endDate;
+                                            }
+
+                                            return GestureDetector(
+                                              onTap: () =>
+                                                  _showCalendarPopup(
+                                                      context, false),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: Color(0xFF333333),
+                                                  borderRadius:
+                                                      BorderRadius.circular(8),
+                                                  border: Border.all(
+                                                    color: Color(0xFF4A4A4A),
+                                                    width: 1,
+                                                  ),
+                                                ),
+                                                child: Padding(
+                                                  padding: EdgeInsetsDirectional
+                                                      .fromSTEB(12, 12, 12, 12),
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: [
+                                                      Text(
+                                                        'End Date',
+                                                        style: FlutterFlowTheme
+                                                                .of(context)
+                                                            .bodyMedium
+                                                            .override(
+                                                              fontFamily:
+                                                                  'Inter',
+                                                              color: Color(
+                                                                  0xFFE0E0E0),
+                                                              letterSpacing:
+                                                                  0.0,
+                                                            ),
+                                                      ),
+                                                      Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        children: [
+                                                          Icon(
+                                                            Icons.calendar_today,
+                                                            color: Color(
+                                                                0xFF03A9F4),
+                                                            size: 24,
+                                                          ),
+                                                          Text(
+                                                            endDate != null
+                                                                ? '${endDate.toLocal()}'
+                                                                    .split(' ')[0]
+                                                                : 'Select Date',
+                                                            style: FlutterFlowTheme
+                                                                    .of(context)
+                                                                .bodyMedium
+                                                                .override(
+                                                                  fontFamily:
+                                                                      'Inter',
+                                                                  color: Colors
+                                                                      .white,
+                                                                  letterSpacing:
+                                                                      0.0,
+                                                                ),
+                                                          ),
+                                                        ].divide(
+                                                            SizedBox(width: 8)),
+                                                      ),
+                                                    ].divide(
+                                                        SizedBox(height: 8)),
+                                                  ),
+                                                ),
+                                              ),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
                                     children: [
                                       Expanded(
                                         child: Container(
@@ -505,50 +640,30 @@ class _HabittrackhomepagewidgetWidgetState
                                               width: 1,
                                             ),
                                           ),
-                                          child: Padding(
-                                            padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    12, 12, 12, 12),
-                                            child: Row(
-                                              mainAxisSize: MainAxisSize.max,
-                                              children: [
-                                                Icon(
-                                                  Icons.timer,
-                                                  color: Colors.orange,
-                                                  size: 24,
-                                                ),
-                                                Text(
-                                                  'Set Duration',
-                                                  style: FlutterFlowTheme.of(
-                                                          context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        fontFamily: 'Inter',
-                                                        color: Colors.white,
-                                                        letterSpacing: 0.0,
-                                                      ),
-                                                ),
-                                              ].divide(SizedBox(width: 8)),
-                                            ),
-                                          ),
                                         ),
                                       ),
-                                   
                                       FFButtonWidget(
-                                       onPressed: () {
+                                        onPressed: () {
                                           final habitName = _model.textController1.text;
                                           final description = _model.textController2.text;
+                                          final startDate = DateTime.now().toUtc().toIso8601String();
+                                          final endDate = DateTime.now().toUtc().toIso8601String();
+                                          final category = 'Category';
 
-                                          if (habitName.isEmpty || description.isEmpty) {
+                                          if (habitName.isEmpty ||description.isEmpty) {
                                             print('Habit name and description cannot be empty');
-                                            
-                                            return;
                                           }
 
-                                          context.read<HabitTrackBloc>().add(HabitTrackSubmittedEvent(
-                                            habitName: habitName,
-                                            description: description,
-                                          ));
+                                          context.read<HabitTrackBloc>().add(
+                                                HabitTrackSubmittedEvent(
+                                                  id: 1, // Add a unique id here
+                                                  habitName: habitName,
+                                                  description: description,
+                                                  startDate: startDate,
+                                                  endDate: endDate,
+                                                  category: category,
+                                                ),
+                                              );
                                         },
                                         text: 'Start',
                                         options: FFButtonOptions(
@@ -561,21 +676,61 @@ class _HabittrackhomepagewidgetWidgetState
                                               EdgeInsetsDirectional.fromSTEB(
                                                   0, 0, 0, 0),
                                           color: Colors.orange,
-                                          textStyle:
-                                              FlutterFlowTheme.of(context)
-                                                  .titleSmall
-                                                  .override(
-                                                    fontFamily: 'Inter Tight',
-                                                    color: Colors.white,
-                                                    letterSpacing: 0.0,
-                                                  ),
+                                          textStyle: FlutterFlowTheme.of(
+                                                  context)
+                                              .titleSmall
+                                              .override(
+                                                fontFamily: 'Inter Tight',
+                                                color: Colors.white,
+                                                letterSpacing: 0.0,
+                                              ),
                                           elevation: 0,
                                           borderRadius:
                                               BorderRadius.circular(24),
                                         ),
                                       ),
-                                    ],
+
+
+                                  FFButtonWidget(
+                                    onPressed: () => _showUpdatePopup(context), // Show Update Pop-Up
+                                    text: 'Update Habit',
+                                    options: FFButtonOptions(
+                                      width: 120,
+                                      height: 40,
+                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                      iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                      color: Colors.blue,
+                                      textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                            fontFamily: 'Inter',
+                                            color: Colors.white,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 0,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
                                   ),
+
+                                  FFButtonWidget(
+                                    onPressed: () => _showDeletePopup(context), // Show Delete Pop-Up
+                                    text: 'Delete Habit',
+                                    options: FFButtonOptions(
+                                      width: 120,
+                                      height: 40,
+                                      padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                      iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                                      color: Colors.red,
+                                      textStyle: FlutterFlowTheme.of(context).bodyMedium.override(
+                                            fontFamily: 'Inter',
+                                            color: Colors.white,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 0,
+                                      borderRadius: BorderRadius.circular(20),
+                                    ),
+                                  ),
+                                  ],
+                                  ),
+                                  
                                 ].divide(SizedBox(height: 16)),
                               ),
                             ),
@@ -590,7 +745,7 @@ class _HabittrackhomepagewidgetWidgetState
                           child: Container(
                             width: MediaQuery.sizeOf(context).width,
                             decoration: BoxDecoration(
-                              color: Color(0xFF2A2A2A),
+                              color: Color.fromARGB(255, 0, 0, 0),
                               borderRadius: BorderRadius.circular(16),
                             ),
                             child: Padding(
@@ -711,7 +866,7 @@ class _HabittrackhomepagewidgetWidgetState
                           child: Container(
                             width: MediaQuery.sizeOf(context).width,
                             decoration: BoxDecoration(
-                              color: Color(0xFF2A2A2A),
+                              color: Color.fromARGB(255, 0, 0, 0),
                               borderRadius: BorderRadius.circular(16),
                             ),
                             child: Padding(
@@ -830,6 +985,9 @@ class _HabittrackhomepagewidgetWidgetState
           ),
         ),
       ),
+    );
+      }
+    )
     );
   }
 }
