@@ -1,10 +1,12 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:pomodoro_break/Set_Pomodoro/Set_Pomodoro_Widget.dart';
+import 'package:pomodoro_break/delete_page/delete_page_widget.dart';
+import 'package:pomodoro_break/info_page/Instruction_Page_Widget.dart';
+import 'package:pomodoro_break/login_page/Login_Page_Widget.dart';
 import 'package:provider/provider.dart';
-
 import '/index.dart';
 import '/main.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -50,7 +52,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'LifeScript',
           path: '/lifeScript',
           builder: (context, params) => LifeScriptWidget(),
-        )
+        ),
+        FFRoute(
+          name: 'infoPage',
+          path: '/infoPage',
+          builder: (context, params) => InstructionPageWidget(),
+        ),
+        FFRoute(
+          name: 'setPomodoro',
+          path: '/setPomodoro',
+          builder: (context, params) => SetPomodoroWidget(),
+        ),
+        FFRoute(
+          name: 'deletePage',
+          path: '/deletePage',
+          builder: (context, params) => DeletePageWidget(),
+        ),
+        FFRoute(
+          name: 'loginPage',
+          path: '/loginPage',
+          builder: (context, params) => LoginPageWidget(),
+        ),
+        FFRoute(
+          name: 'home',
+          path: '/home',
+          builder: (context, params) => HomePageWidget(),
+        ),
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
 

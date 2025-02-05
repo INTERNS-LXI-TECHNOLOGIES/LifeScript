@@ -4,22 +4,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:go_router/go_router.dart';
-
 import 'package:habittracker/widget/habittrack_homepage_widgetwidget.dart';
-
-
 import 'package:goal_setting/index.dart';
-
 import 'package:life_script/life_script/life_script_widget.dart';
 import 'package:perfectday_frontend/PerfectdayWidget.dart';
 import 'package:pomodoro_break/home_page/Home_Page_Widget.dart';
+import 'package:pomodoro_break/info_page/Instruction_Page_Widget.dart';
+import 'package:pomodoro_break/set_pomodoro/Set_Pomodoro_Widget.dart';
+import 'package:pomodoro_break/delete_page/delete_page_widget.dart';
+import 'package:pomodoro_break/login_page/Login_Page_Widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/nav/nav.dart';
-
-///import 'life_script_widget.dart';
-//import 'communication_screen.dart';
-//import 'daily_journal_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -67,19 +63,29 @@ class _MyAppState extends State<MyApp> {
           path: '/dailyjournal',
           builder: (context, state) => DailyJournalWidget(),
         ),
-         GoRoute(
+        GoRoute(
           path: '/goalSetting',
           builder: (context, state) => GoalSettingWidget(),
-         // path: '/pomodoro',
-         // builder: (context, state) => HomePageWidget(),
-        ),
-         GoRoute(
-          path: '/pomodoro',
-          builder: (context, state) => HabittrackhomepagewidgetWidget(),
         ),
         GoRoute(
-           path: '/pomodoro',
+          path: '/pomodoro',
           builder: (context, state) => HomePageWidget(),
+        ),
+        GoRoute(
+          path: '/infoPage',
+          builder: (context, state) => InstructionPageWidget(),
+        ),
+        GoRoute(
+          path: '/setPomodoro',
+          builder: (context, state) => SetPomodoroWidget(),
+        ),
+        GoRoute(
+          path: '/deletePage',
+          builder: (context, state) => DeletePageWidget(),
+        ),
+        GoRoute(
+          path: '/loginPage',
+          builder: (context, state) => LoginPageWidget(),
         ),
       ],
     );

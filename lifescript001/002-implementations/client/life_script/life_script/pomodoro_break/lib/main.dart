@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:pomodoro_break/delete_page/delete_page_widget.dart';
+import 'package:pomodoro_break/final_view/final_view_widget.dart';
 import 'package:pomodoro_break/login_page/Login_Page_Widget.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
@@ -104,6 +105,7 @@ class _NavBarPageState extends State<NavBarPage> {
       'setPomodoro': SetPomodoroWidget(),
       'loginPage': LoginPageWidget(),
       'deletePage': DeletePageWidget(),
+      'finalView': FinalViewWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
 
