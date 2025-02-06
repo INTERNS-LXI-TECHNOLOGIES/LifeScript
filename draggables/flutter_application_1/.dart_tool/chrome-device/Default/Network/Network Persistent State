@@ -1,0 +1,1 @@
+{"net":{"http_server_properties":{"broken_alternative_services":[{"anonymization":["FAAAABAAAABodHRwOi8vbG9jYWxob3N0",false],"broken_count":3,"broken_until":"1738851648","host":"fonts.gstatic.com","port":443,"protocol_str":"quic"}],"servers":[],"version":5},"network_qualities":{"CAASABiAgICA+P////8B":"4G"}}}
