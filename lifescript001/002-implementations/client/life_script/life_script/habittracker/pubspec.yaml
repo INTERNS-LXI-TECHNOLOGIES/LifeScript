@@ -69,6 +69,7 @@ dependencies:
   table_calendar: ^3.0.9
   cupertino_icons: ^1.0.8
   flutter_secure_storage: ^4.2.1
+  flutter_riverpod: ^2.6.1
 
 dependency_overrides:
   http: 1.2.2

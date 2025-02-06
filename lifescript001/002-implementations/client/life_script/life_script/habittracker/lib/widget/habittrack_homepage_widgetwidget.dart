@@ -70,7 +70,7 @@ class _HabittrackhomepagewidgetWidgetState extends State<Habittrackhomepagewidge
   }
 
 
-  void _showUpdatePopup(BuildContext context) {
+  /*void _showUpdatePopup(BuildContext context) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
@@ -82,10 +82,9 @@ class _HabittrackhomepagewidgetWidgetState extends State<Habittrackhomepagewidge
         child: UpdateHabitWidget(
           onUpdate: (habitName, description) {
             // Handle the update logic here
-            final habitId = 1; // Replace with the actual habit ID
             context.read<HabitTrackBloc>().add(
                   UpdateHabitTrackEvent(
-                    id: habitId,
+                    id: 1, // Add a unique id here
                     habitName: habitName,
                     description: description,
                     startDate: DateTime.now().toUtc().toIso8601String(),
@@ -98,30 +97,27 @@ class _HabittrackhomepagewidgetWidgetState extends State<Habittrackhomepagewidge
       );
     },
   );
-}
+}*/
 
-void _showDeletePopup(BuildContext context) {
+void _showDeletePopup(BuildContext context, HabitTrackBloc bloc) {
   showModalBottomSheet(
     context: context,
     isScrollControlled: true,
-    backgroundColor: Colors.transparent, // Transparent background
-    builder: (BuildContext context) {
+    backgroundColor: Colors.transparent,
+    builder: (BuildContext bottomSheetContext) {
       return Container(
         height: MediaQuery.of(context).size.height * 0.4,
         padding: EdgeInsets.all(16),
         child: DeleteHabitWidget(
-          onDelete: () {
-            
-            final habitId = 1; 
-            context.read<HabitTrackBloc>().add(
-                  DeleteHabitTrackEvent(id: habitId),
-                );
+          onDelete: (id) {
+            bloc.add(DeleteHabitTrackEvent(id: int.parse(id)));
           },
         ),
       );
     },
   );
 }
+
 
   @override
   Widget build(BuildContext context) {
@@ -691,7 +687,7 @@ void _showDeletePopup(BuildContext context) {
                                       ),
 
 
-                                  FFButtonWidget(
+                                  /*FFButtonWidget(
                                     onPressed: () => _showUpdatePopup(context), // Show Update Pop-Up
                                     text: 'Update Habit',
                                     options: FFButtonOptions(
@@ -708,10 +704,10 @@ void _showDeletePopup(BuildContext context) {
                                       elevation: 0,
                                       borderRadius: BorderRadius.circular(20),
                                     ),
-                                  ),
+                                  ),*/
 
                                   FFButtonWidget(
-                                    onPressed: () => _showDeletePopup(context), // Show Delete Pop-Up
+                                    onPressed: () => _showDeletePopup(context, context.read<HabitTrackBloc>()), // Show Delete Pop-Up
                                     text: 'Delete Habit',
                                     options: FFButtonOptions(
                                       width: 120,

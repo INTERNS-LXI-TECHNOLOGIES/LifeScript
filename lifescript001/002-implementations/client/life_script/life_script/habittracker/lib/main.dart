@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:habittracker/widget/dark_glassmorphic.dart';
 import 'package:habittracker/widget/habittrack_homepage_widgetwidget.dart';
 import 'package:habittracker/widget/loginWidget.dart';
+import 'package:habittracker/widget/shape_drag_screen.dart';
 import 'package:habittracker_openapi/openapi.dart';
 
 void main() {
@@ -22,7 +24,7 @@ class MyApp extends StatelessWidget {
       ),
       home: LoginWidget(),
       routes: {
-        '/home': (context) => HabittrackhomepagewidgetWidget(),
+        '/home': (context) => DarkGlassmorphicUI(),
       },
     );
   }
