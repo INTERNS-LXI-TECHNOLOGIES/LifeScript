@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:habittracker/widget/dark_glassmorphic.dart';
 import 'package:habittracker/widget/habittrack_homepage_widgetwidget.dart';
 import 'package:habittracker/widget/loginWidget.dart';
+import 'package:habittracker/widget/puzzle_shape.dart';
 import 'package:habittracker/widget/shape_drag_screen.dart';
 import 'package:habittracker_openapi/openapi.dart';
 
@@ -20,11 +21,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Habit Tracker',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+       
+         primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: LoginWidget(),
       routes: {
-        '/home': (context) => DarkGlassmorphicUI(),
+        '/home': (context) => TetrisGameScreen(),
       },
     );
   }

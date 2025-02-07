@@ -1,124 +1,98 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
-class PuzzleShape extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
-    double notchSize = size.width * 0.2;
-    
-    path.moveTo(0, notchSize);
-    path.quadraticBezierTo(size.width * 0.1, 0, size.width * 0.3, 0);
-    path.quadraticBezierTo(size.width * 0.5, notchSize, size.width * 0.7, 0);
-    path.quadraticBezierTo(size.width * 0.9, 0, size.width, notchSize);
-    path.lineTo(size.width, size.height - notchSize);
-    path.quadraticBezierTo(size.width * 0.9, size.height, size.width * 0.7, size.height);
-    path.quadraticBezierTo(size.width * 0.5, size.height - notchSize, size.width * 0.3, size.height);
-    path.quadraticBezierTo(size.width * 0.1, size.height, 0, size.height - notchSize);
-    path.close();
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
+void main() {
+  runApp(TetrisGame());
 }
 
-class DraggableShape extends StatelessWidget {
-  final Color color;
-  final ValueNotifier<Offset> positionNotifier = ValueNotifier(Offset(100, 100));
-
-  DraggableShape({Key? key, required this.color}) : super(key: key);
-
+class TetrisGame extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ValueListenableBuilder<Offset>(
-      valueListenable: positionNotifier,
-      builder: (context, position, child) {
-        return Positioned(
-          left: position.dx,
-          top: position.dy,
-          child: Draggable(
-            feedback: ClipPath(
-              clipper: PuzzleShape(),
-              child: Container(
-                width: 50,
-                height: 50,
-                color: color.withOpacity(0.5),
-              ),
-            ),
-            childWhenDragging: Container(),
-            onDragEnd: (details) {
-              positionNotifier.value = details.offset;
-            },
-            child: ClipPath(
-              clipper: PuzzleShape(),
-              child: Container(
-                width: 50,
-                height: 50,
-                color: color,
-              ),
-            ),
-          ),
-        );
-      },
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: TetrisGameScreen(),
     );
   }
 }
 
-class DarkGlassmorphicUI extends StatelessWidget {
-  final List<Color> colors = [Colors.red, Colors.green, Colors.blue, Colors.yellow, Colors.purple];
+class TetrisGameScreen extends StatefulWidget {
+  @override
+  _TetrisGameScreenState createState() => _TetrisGameScreenState();
+}
+
+class _TetrisGameScreenState extends State<TetrisGameScreen> {
+  static const int rows = 10;
+  static const int cols = 10;
+  List<List<int>> grid = List.generate(rows, (i) => List.filled(cols, 0));
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Stack(
+      appBar: AppBar(title: Text("Tetris Puzzle UI")),
+      body: Column(
         children: [
-          Positioned.fill(
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [Colors.black, Color(0xFF000033)],
-                ),
-              ),
-            ),
-          ),
-          Align(
-            alignment: Alignment.center,
-          ),
-          ...List.generate(
-            colors.length,
-            (index) => DraggableShape(color: colors[index]),
-          ),
-          Align(
-            alignment: Alignment.bottomCenter,
-            child: BlockBuilder(),
-          ),
+          Expanded(flex: 3, child: _buildDraggablePieces()),
+          Expanded(flex: 7, child: _buildGrid()),
         ],
       ),
     );
   }
-}
 
-class BlockBuilder extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 100,
-      color: Colors.black54,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: List.generate(5, (index) {
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: DraggableShape(color: Colors.primaries[index]),
-          );
-        }),
+  Widget _buildDraggablePieces() {
+    List<List<int>> tetrominoL = [
+      [1, 0],
+      [1, 0],
+      [1, 1],
+    ];
+
+    return Center(
+      child: Draggable<List<List<int>>>(
+        data: tetrominoL,
+        feedback: _buildTetromino(tetrominoL, Colors.blue),
+        childWhenDragging: Opacity(
+          opacity: 0.5,
+          child: _buildTetromino(tetrominoL, Colors.blue),
+        ),
+        child: _buildTetromino(tetrominoL, Colors.blue),
       ),
+    );
+  }
+
+  Widget _buildGrid() {
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: cols,
+      ),
+      itemBuilder: (context, index) {
+        int row = index ~/ cols;
+        int col = index % cols;
+        return Container(
+          margin: EdgeInsets.all(1),
+          decoration: BoxDecoration(
+            color: grid[row][col] == 1 ? Colors.grey : Colors.white,
+            border: Border.all(color: Colors.black, width: 0.5),
+          ),
+        );
+      },
+      itemCount: rows * cols,
+    );
+  }
+
+  Widget _buildTetromino(List<List<int>> shape, Color color) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: shape.map((row) {
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: row.map((cell) {
+            return Container(
+              width: 20,
+              height: 20,
+              color: cell == 1 ? color : Colors.transparent,
+              margin: EdgeInsets.all(1),
+            );
+          }).toList(),
+        );
+      }).toList(),
     );
   }
 }
