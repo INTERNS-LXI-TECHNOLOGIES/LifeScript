@@ -3,12 +3,12 @@ import 'package:habittracker/widget/TetrisGameScreen.dart';
 import 'package:habittracker/widget/dark_glassmorphic.dart';
 import 'package:habittracker/widget/habittrack_homepage_widgetwidget.dart';
 import 'package:habittracker/widget/loginWidget.dart';
+import 'package:habittracker/widget/victory_streaks_widget.dart';
 
-import 'package:habittracker/widget/shape_drag_screen.dart';
 import 'package:habittracker_openapi/openapi.dart';
 
 void main() {
-  final openApi = Openapi(); // Initialize your Openapi instance here
+  final openApi = Openapi(); 
   runApp(MyApp(openApi: openApi));
 }
 
@@ -26,9 +26,9 @@ class MyApp extends StatelessWidget {
          primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginWidget(),
+      home: VictoryStreaksWidget(),
       routes: {
-        '/home': (context) => TetrisGameScreen(),
+        '/home': (context) => VictoryStreaksWidget(),
       },
     );
   }
