@@ -65,7 +65,10 @@ class _VictoryStreaksWidgetState extends State<VictoryStreaksWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 0),
                 child: SingleChildScrollView(
-                  primary: false,
+                  //primary: false,
+                  child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
+
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -801,6 +804,7 @@ class _VictoryStreaksWidgetState extends State<VictoryStreaksWidget> {
                       ),
                     ].divide(SizedBox(height: 24)),
                   ),
+                ),
                 ),
               ),
             ],
