@@ -1,0 +1,27 @@
+{
+  "annotations": {
+    "changelogDate": "20250212110737"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "safeZones",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "GeoFence",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "child",
+      "otherEntityRelationshipName": "geoFence",
+      "relationshipName": "child",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

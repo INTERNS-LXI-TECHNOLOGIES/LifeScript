@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity Child.
+    -->
+    <changeSet id="20250212110735-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="geo_fence_id"
+                                 baseTableName="child"
+                                 constraintName="fk_child__geo_fence_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="geo_fence"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="battery_status_id"
+                                 baseTableName="child"
+                                 constraintName="fk_child__battery_status_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="battery_status"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="teacher_id"
+                                 baseTableName="child"
+                                 constraintName="fk_child__teacher_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="teacher"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="parent_id"
+                                 baseTableName="child"
+                                 constraintName="fk_child__parent_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="parent"
+                                 />
+    </changeSet>
+</databaseChangeLog>

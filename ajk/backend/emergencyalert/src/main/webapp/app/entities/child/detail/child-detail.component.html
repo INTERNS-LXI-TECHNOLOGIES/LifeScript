@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (child(); as childRef) {
+      <div>
+        <h2 data-cy="childDetailsHeading"><span jhiTranslate="emergencyAlertApp.child.detail.title">Child</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ childRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.child.name">Name</span></dt>
+          <dd>
+            <span>{{ childRef.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.child.age">Age</span></dt>
+          <dd>
+            <span>{{ childRef.age }}</span>
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.child.emergencyContact">Emergency Contact</span></dt>
+          <dd>
+            <span>{{ childRef.emergencyContact }}</span>
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.child.geoFence">Geo Fence</span></dt>
+          <dd>
+            @if (child()!.geoFence) {
+              <div>
+                <a [routerLink]="['/geo-fence', child()!.geoFence?.id, 'view']">{{ childRef.geoFence?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.child.batteryStatus">Battery Status</span></dt>
+          <dd>
+            @if (child()!.batteryStatus) {
+              <div>
+                <a [routerLink]="['/battery-status', child()!.batteryStatus?.id, 'view']">{{ childRef.batteryStatus?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.child.teacher">Teacher</span></dt>
+          <dd>
+            @if (child()!.teacher) {
+              <div>
+                <a [routerLink]="['/teacher', child()!.teacher?.id, 'view']">{{ childRef.teacher?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.child.parent">Parent</span></dt>
+          <dd>
+            @if (child()!.parent) {
+              <div>
+                <a [routerLink]="['/parent', child()!.parent?.id, 'view']">{{ childRef.parent?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/child', childRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

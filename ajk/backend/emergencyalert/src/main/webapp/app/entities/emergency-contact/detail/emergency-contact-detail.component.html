@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (emergencyContact(); as emergencyContactRef) {
+      <div>
+        <h2 data-cy="emergencyContactDetailsHeading">
+          <span jhiTranslate="emergencyAlertApp.emergencyContact.detail.title">Emergency Contact</span>
+        </h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ emergencyContactRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.emergencyContact.name">Name</span></dt>
+          <dd>
+            <span>{{ emergencyContactRef.name }}</span>
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.emergencyContact.type">Type</span></dt>
+          <dd>
+            <span>{{ emergencyContactRef.type }}</span>
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.emergencyContact.phoneNumber">Phone Number</span></dt>
+          <dd>
+            <span>{{ emergencyContactRef.phoneNumber }}</span>
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.emergencyContact.parent">Parent</span></dt>
+          <dd>
+            @if (emergencyContact()!.parent) {
+              <div>
+                <a [routerLink]="['/parent', emergencyContact()!.parent?.id, 'view']">{{ emergencyContactRef.parent?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/emergency-contact', emergencyContactRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

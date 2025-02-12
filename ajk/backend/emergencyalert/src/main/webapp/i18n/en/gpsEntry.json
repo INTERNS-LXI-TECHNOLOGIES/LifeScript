@@ -1,0 +1,29 @@
+{
+  "emergencyAlertApp": {
+    "gpsEntry": {
+      "home": {
+        "title": "Gps Entries",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Gps Entry",
+        "createOrEditLabel": "Create or edit a Gps Entry",
+        "notFound": "No Gps Entries found"
+      },
+      "created": "A new Gps Entry is created with identifier {{ param }}",
+      "updated": "A Gps Entry is updated with identifier {{ param }}",
+      "deleted": "A Gps Entry is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Gps Entry {{ id }}?"
+      },
+      "detail": {
+        "title": "Gps Entry"
+      },
+      "id": "ID",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "timestamp": "Timestamp",
+      "deviceId": "Device Id",
+      "status": "Status",
+      "child": "Child"
+    }
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "annotations": {
+    "changelogDate": "20250212110735"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "age",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "emergencyContact",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Child",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "geoFence",
+      "otherEntityRelationshipName": "child",
+      "relationshipName": "geoFence",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "batteryStatus",
+      "otherEntityRelationshipName": "child",
+      "relationshipName": "batteryStatus",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "alert",
+      "otherEntityRelationshipName": "child",
+      "relationshipName": "alerts",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "teacher",
+      "relationshipName": "teacher",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "parent",
+      "otherEntityRelationshipName": "children",
+      "relationshipName": "parent",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

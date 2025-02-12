@@ -1,0 +1,148 @@
+<div>
+  <h2 id="page-heading" data-cy="GpsEntryHeading">
+    <span jhiTranslate="emergencyAlertApp.gpsEntry.home.title">Gps Entries</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="emergencyAlertApp.gpsEntry.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-gps-entry"
+        [routerLink]="['/gps-entry/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="emergencyAlertApp.gpsEntry.home.createLabel">Create a new Gps Entry</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (gpsEntries().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="emergencyAlertApp.gpsEntry.home.notFound">No Gps Entries found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="latitude">
+              <div class="d-flex">
+                <span jhiTranslate="emergencyAlertApp.gpsEntry.latitude">Latitude</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="longitude">
+              <div class="d-flex">
+                <span jhiTranslate="emergencyAlertApp.gpsEntry.longitude">Longitude</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="timestamp">
+              <div class="d-flex">
+                <span jhiTranslate="emergencyAlertApp.gpsEntry.timestamp">Timestamp</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="deviceId">
+              <div class="d-flex">
+                <span jhiTranslate="emergencyAlertApp.gpsEntry.deviceId">Device Id</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="status">
+              <div class="d-flex">
+                <span jhiTranslate="emergencyAlertApp.gpsEntry.status">Status</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="child.id">
+              <div class="d-flex">
+                <span jhiTranslate="emergencyAlertApp.gpsEntry.child">Child</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (gpsEntry of gpsEntries(); track trackId(gpsEntry)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/gps-entry', gpsEntry.id, 'view']">{{ gpsEntry.id }}</a>
+              </td>
+              <td>{{ gpsEntry.latitude }}</td>
+              <td>{{ gpsEntry.longitude }}</td>
+              <td>{{ gpsEntry.timestamp | formatMediumDatetime }}</td>
+              <td>{{ gpsEntry.deviceId }}</td>
+              <td>{{ gpsEntry.status }}</td>
+              <td>
+                @if (gpsEntry.child) {
+                  <div>
+                    <a [routerLink]="['/child', gpsEntry.child.id, 'view']">{{ gpsEntry.child.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/gps-entry', gpsEntry.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/gps-entry', gpsEntry.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(gpsEntry)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @if (gpsEntries().length > 0) {
+    <div>
+      <div class="d-flex justify-content-center">
+        <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+      </div>
+
+      <div class="d-flex justify-content-center">
+        <ngb-pagination
+          [collectionSize]="totalItems"
+          [page]="page"
+          [pageSize]="itemsPerPage"
+          [maxSize]="5"
+          [rotate]="true"
+          [boundaryLinks]="true"
+          (pageChange)="navigateToPage($event)"
+        ></ngb-pagination>
+      </div>
+    </div>
+  }
+</div>

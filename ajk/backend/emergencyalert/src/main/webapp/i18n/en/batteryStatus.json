@@ -1,0 +1,25 @@
+{
+  "emergencyAlertApp": {
+    "batteryStatus": {
+      "home": {
+        "title": "Battery Statuses",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Battery Status",
+        "createOrEditLabel": "Create or edit a Battery Status",
+        "notFound": "No Battery Statuses found"
+      },
+      "created": "A new Battery Status is created with identifier {{ param }}",
+      "updated": "A Battery Status is updated with identifier {{ param }}",
+      "deleted": "A Battery Status is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Battery Status {{ id }}?"
+      },
+      "detail": {
+        "title": "Battery Status"
+      },
+      "id": "ID",
+      "batteryLevel": "Battery Level",
+      "child": "Child"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "annotations": {
+    "changelogDate": "20250212110734"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "batteryLevel",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "BatteryStatus",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "child",
+      "otherEntityRelationshipName": "batteryStatus",
+      "relationshipName": "child",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

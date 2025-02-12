@@ -1,0 +1,58 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (alert(); as alertRef) {
+      <div>
+        <h2 data-cy="alertDetailsHeading"><span jhiTranslate="emergencyAlertApp.alert.detail.title">Alert</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ alertRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.alert.latitude">Latitude</span></dt>
+          <dd>
+            <span>{{ alertRef.latitude }}</span>
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.alert.longitude">Longitude</span></dt>
+          <dd>
+            <span>{{ alertRef.longitude }}</span>
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.alert.timestamp">Timestamp</span></dt>
+          <dd>
+            <span>{{ alertRef.timestamp | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.alert.deviceId">Device Id</span></dt>
+          <dd>
+            <span>{{ alertRef.deviceId }}</span>
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.alert.status">Status</span></dt>
+          <dd>
+            <span>{{ alertRef.status }}</span>
+          </dd>
+          <dt><span jhiTranslate="emergencyAlertApp.alert.child">Child</span></dt>
+          <dd>
+            @if (alert()!.child) {
+              <div>
+                <a [routerLink]="['/child', alert()!.child?.id, 'view']">{{ alertRef.child?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/alert', alertRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
