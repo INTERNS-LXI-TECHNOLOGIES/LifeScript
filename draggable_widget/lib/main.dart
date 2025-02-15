@@ -38,10 +38,19 @@ class _DragDropScreenState extends State<DragDropScreen> {
   { "id": 10, "task": "Research on AI", "color": "#DC143C", "shape": "circle" },
   { "id": 11, "task": "Backend API Development", "color": "#2E8B57", "shape": "hormones" }
 ]
+''';
 
+  String quadrantsResponse = '''
+[
+  { "id": 1, "name": "Quadrant 1", "icon": "hourglass_empty_rounded" },
+  { "id": 2, "name": "Quadrant 2", "icon": "hourglass_empty_rounded" },
+  { "id": 3, "name": "Quadrant 3", "icon": "hourglass_empty_rounded" },
+  { "id": 4, "name": "Quadrant 4", "icon": "hourglass_empty_rounded" }
+]
 ''';
 
   List<Map<String, dynamic>> taskData = [];
+  List<Map<String, dynamic>> quadrantsData = [];
   List<List<Map<String, dynamic>>> droppedTasks = [[], [], [], []];
 
   @override
@@ -53,6 +62,7 @@ class _DragDropScreenState extends State<DragDropScreen> {
   void _fetchData() {
     setState(() {
       taskData = List<Map<String, dynamic>>.from(jsonDecode(apiResponse));
+      quadrantsData = List<Map<String, dynamic>>.from(jsonDecode(quadrantsResponse));
     });
   }
 
@@ -69,46 +79,43 @@ class _DragDropScreenState extends State<DragDropScreen> {
       ),
       body: Column(
         children: [
-            // Draggable Task List
-            Expanded(
+          // Draggable Task List
+          Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: SingleChildScrollView(
-              child: Column(
-                children: [
-                Row(
-                  children: taskData.sublist(0, (taskData.length / 2).ceil()).map((task) {
-                  return Expanded(
-                    child: Draggable<Map<String, dynamic>>(
-                    data: task,
-                    feedback: _buildTask(task, true),
-                    childWhenDragging: Opacity(opacity: 0.3, child: _buildTask(task, false)),
-                    child: _buildTask(task, false),
+                child: Column(
+                  children: [
+                    Row(
+                      children: taskData.sublist(0, (taskData.length / 2).ceil()).map((task) {
+                        return Expanded(
+                          child: Draggable<Map<String, dynamic>>(
+                            data: task,
+                            feedback: _buildTask(task, true),
+                            childWhenDragging: Opacity(opacity: 0.3, child: _buildTask(task, false)),
+                            child: _buildTask(task, false),
+                          ),
+                        );
+                      }).toList(),
                     ),
-                  );
-                  }).toList(),
-                ),
-                Row(
-                  children: taskData.sublist((taskData.length / 2).ceil()).map((task) {
-                  return Expanded(
-                    child: Draggable<Map<String, dynamic>>(
-                    data: task,
-                    feedback: _buildTask(task, true),
-                    childWhenDragging: Opacity(opacity: 0.3, child: _buildTask(task, false)),
-                    child: _buildTask(task, false),
+                    Row(
+                      children: taskData.sublist((taskData.length / 2).ceil()).map((task) {
+                        return Expanded(
+                          child: Draggable<Map<String, dynamic>>(
+                            data: task,
+                            feedback: _buildTask(task, true),
+                            childWhenDragging: Opacity(opacity: 0.3, child: _buildTask(task, false)),
+                            child: _buildTask(task, false),
+                          ),
+                        );
+                      }).toList(),
                     ),
-                  );
-                  }).toList(),
+                  ],
                 ),
-                ],
-              ),
               ),
             ),
-            ),
-            
-
+          ),
           SizedBox(height: 5),
-
           // Quadrants (Drag Targets)
           Expanded(
             child: Padding(
@@ -117,7 +124,7 @@ class _DragDropScreenState extends State<DragDropScreen> {
                 crossAxisCount: 4,
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
-                children: List.generate(4, (index) {
+                children: List.generate(quadrantsData.length, (index) {
                   return DragTarget<Map<String, dynamic>>(
                     onAccept: (task) {
                       setState(() {
@@ -149,7 +156,7 @@ class _DragDropScreenState extends State<DragDropScreen> {
                               children: [
                                 Icon(Icons.hourglass_empty_rounded, color: Colors.orange, size: 28),
                                 SizedBox(height: 4),
-                                Text("Quadrant ${index + 1}",
+                                Text(quadrantsData[index]['name'],
                                     style: TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.bold)),
                                 SizedBox(height: 6),
                                 Text(
@@ -218,103 +225,96 @@ class _DragDropScreenState extends State<DragDropScreen> {
     );
   }
 
- 
-void _showResults() {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text(
-          "Task Summary",
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-        ),
-        content: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: List.generate(4, (index) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Quadrant ${index + 1}: ${droppedTasks[index].length} tasks",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueAccent),
-                  ),
-                  ...droppedTasks[index].map((task) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 2.0),
-                      child: Row(
-                        children: [
-                          CustomPaint(
-                            size: Size(16, 16),
-                            painter: ShapePainter(shape: task['shape'], color: _hexToColor(task['color'])),
-                          ),
-                          SizedBox(width: 8),
-                          Text(
-                            task['task'],
-                            style: TextStyle(fontSize: 16, color: Colors.black87),
-                          ),
-                        ],
-                      ),
-                    );
-                  }).toList(),
-                  SizedBox(height: 12),
-                ],
-              );
-            }),
+  void _showResults() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            "Task Summary",
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-            },
-            child: Text(
-              "OK",
-              style: TextStyle(fontSize: 16, color: Colors.orange),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: List.generate(quadrantsData.length, (index) {
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "${quadrantsData[index]['name']}: ${droppedTasks[index].length} tasks",
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueAccent),
+                    ),
+                    ...droppedTasks[index].map((task) {
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 2.0),
+                        child: Row(
+                          children: [
+                            CustomPaint(
+                              size: Size(16, 16),
+                              painter: ShapePainter(shape: task['shape'], color: _hexToColor(task['color'])),
+                            ),
+                            SizedBox(width: 8),
+                            Text(
+                              task['task'],
+                              style: TextStyle(fontSize: 16, color: Colors.black87),
+                            ),
+                          ],
+                        ),
+                      );
+                    }).toList(),
+                    SizedBox(height: 12),
+                  ],
+                );
+              }),
             ),
           ),
-        ],
-      );
-    },
-  );
-}
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                "OK",
+                style: TextStyle(fontSize: 16, color: Colors.orange),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
-// ...existing code...
-// ...existing code...
-
-Widget _buildTask(Map<String, dynamic> task, bool isDragging, {double sizeFactor = 1.0}) {
-  return Transform.scale(
-    scale: sizeFactor,
-    child: Container(
-      margin: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-      padding: EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.grey.shade300, width: 1),
-        boxShadow: [
-          if (!isDragging) BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 5, spreadRadius: 1),
-        ],
+  Widget _buildTask(Map<String, dynamic> task, bool isDragging, {double sizeFactor = 1.0}) {
+    return Transform.scale(
+      scale: sizeFactor,
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: Colors.grey.shade300, width: 1),
+          boxShadow: [
+            if (!isDragging) BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 5, spreadRadius: 1),
+          ],
+        ),
+        child: Row(
+          children: [
+            CustomPaint(
+              size: Size(24, 24),
+              painter: ShapePainter(shape: task['shape'], color: _hexToColor(task['color'])),
+            ),
+            SizedBox(width: 5),
+            Text(
+              task['task'],
+              style: TextStyle(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
-      child: Row(
-        children: [
-          CustomPaint(
-            size: Size(24, 24),
-            painter: ShapePainter(shape: task['shape'], color: _hexToColor(task['color'])),
-          ),
-          SizedBox(width: 5),
-          Text(
-            task['task'],
-            style: TextStyle(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
-    ),
-  );
-}
+    );
+  }
 
-// ...existing code...
-
-// ...existing code...
   // Helper Function for HEX Colors
   Color _hexToColor(String hex) {
     hex = hex.replaceFirst('#', '');
