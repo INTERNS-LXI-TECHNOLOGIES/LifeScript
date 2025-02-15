@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:draggable_screen/shape_painter.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
@@ -23,14 +24,15 @@ class DragDropScreen extends StatefulWidget {
 }
 
 class _DragDropScreenState extends State<DragDropScreen> {
-  String apiResponse = '''
-  [
-    {"id": 1, "task": "UI Design", "color": "#FFD700"},
-    {"id": 2, "task": "Backend API", "color": "#32CD32"},
-    {"id": 3, "task": "Bug Fixing", "color": "#FF6347"},
-    {"id": 4, "task": "Testing", "color": "#1E90FF"}
-  ]
-  ''';
+ String apiResponse = '''
+[
+  {"id": 1, "task": "UI Design", "color": "#FFD700", "shape": "circle"},
+  {"id": 2, "task": "Backend API", "color": "#32CD32", "shape": "square"},
+  {"id": 3, "task": "Bug Fixing", "color": "#FF6347", "shape": "triangle"},
+  {"id": 4, "task": "Testing", "color": "#1E90FF", "shape": "star"},
+  {"id": 5, "task": "Reading Book", "color": "#8A2BE2", "shape": "book"}
+]
+''';
 
   List<Map<String, dynamic>> taskData = [];
   List<List<Map<String, dynamic>>> droppedTasks = [[], [], [], []];
@@ -219,32 +221,35 @@ void _showResults() {
 }
 
   // Task Widget with Better UI
-  Widget _buildTask(Map<String, dynamic> task, bool isDragging, {double sizeFactor = 1.0}) {
-    return Transform.scale(
-      scale: sizeFactor,
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [_hexToColor(task['color']).withOpacity(0.9), Colors.white.withOpacity(0.6)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.grey.shade300, width: 1),
-          boxShadow: [
-            if (!isDragging) BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 5, spreadRadius: 1),
-          ],
-        ),
-        child: Text(
-          task['task'],
-          style: TextStyle(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.bold),
-        ),
+ Widget _buildTask(Map<String, dynamic> task, bool isDragging, {double sizeFactor = 1.0}) {
+  return Transform.scale(
+    scale: sizeFactor,
+    child: Container(
+      margin: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: Colors.grey.shade300, width: 1),
+        boxShadow: [
+          if (!isDragging) BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 5, spreadRadius: 1),
+        ],
       ),
-    );
-  }
-
+      child: Row(
+        children: [
+          CustomPaint(
+            size: Size(24, 24),
+            painter: ShapePainter(shape: task['shape'], color: _hexToColor(task['color'])),
+          ),
+          SizedBox(width: 5),
+          Text(
+            task['task'],
+            style: TextStyle(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    ),
+  );
+}
   // Helper Function for HEX Colors
   Color _hexToColor(String hex) {
     hex = hex.replaceFirst('#', '');
