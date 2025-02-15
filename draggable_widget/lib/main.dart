@@ -285,35 +285,36 @@ class _DragDropScreenState extends State<DragDropScreen> {
     );
   }
 
-  Widget _buildTask(Map<String, dynamic> task, bool isDragging, {double sizeFactor = 1.0}) {
-    return Transform.scale(
-      scale: sizeFactor,
-      child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 6, vertical: 6),
-        padding: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: Colors.grey.shade300, width: 1),
-          boxShadow: [
-            if (!isDragging) BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 5, spreadRadius: 1),
-          ],
+Widget _buildTask(Map<String, dynamic> task, bool isDragging, {double sizeFactor = 1.0}) {
+  return Transform.scale(
+    scale: sizeFactor,
+    child: Stack(
+      alignment: Alignment.center,
+      children: [
+        CustomPaint(
+          size: Size(90, 90), // Adjust the size as needed
+          painter: ShapePainter(shape: task['shape'], color: _hexToColor(task['color'])),
         ),
-        child: Row(
-          children: [
-            CustomPaint(
-              size: Size(24, 24),
-              painter: ShapePainter(shape: task['shape'], color: _hexToColor(task['color'])),
+        Container(
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: Colors.white.withOpacity(0.1), // Semi-transparent background for text
+          ),
+          child: Text(
+            task['task'],
+            style: TextStyle(
+              color: Colors.black87,
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
             ),
-            SizedBox(width: 5),
-            Text(
-              task['task'],
-              style: TextStyle(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.bold),
-            ),
-          ],
+            textAlign: TextAlign.center, // Center the text
+          ),
         ),
-      ),
-    );
-  }
+      ],
+    ),
+  );
+}
 
   // Helper Function for HEX Colors
   Color _hexToColor(String hex) {
