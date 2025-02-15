@@ -123,6 +123,11 @@ class _DragDropScreenState extends State<DragDropScreen> {
                                 Text("Quadrant ${index + 1}",
                                     style: TextStyle(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.bold)),
                                 SizedBox(height: 6),
+                                Text(
+                                  "Tasks: ${droppedTasks[index].length}",
+                                  style: TextStyle(color: Colors.black54, fontSize: 14),
+                                ),
+                                SizedBox(height: 6),
                                 Expanded(
                                   child: SingleChildScrollView(
                                     child: Wrap(
@@ -171,8 +176,47 @@ class _DragDropScreenState extends State<DragDropScreen> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: _showResults,
+        child: Icon(Icons.done),
+      ),
     );
   }
+
+ 
+void _showResults() {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: Text("Task Summary"),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: List.generate(4, (index) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text("Quadrant ${index + 1}: ${droppedTasks[index].length} tasks"),
+                ...droppedTasks[index].map((task) {
+                  return Text("- ${task['task']}");
+                }).toList(),
+                SizedBox(height: 8),
+              ],
+            );
+          }),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: Text("OK"),
+          ),
+        ],
+      );
+    },
+  );
+}
 
   // Task Widget with Better UI
   Widget _buildTask(Map<String, dynamic> task, bool isDragging, {double sizeFactor = 1.0}) {
