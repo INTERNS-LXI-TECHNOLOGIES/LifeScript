@@ -1,0 +1,28 @@
+name: trial
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.6.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_swiper_view: ^1.1.8
+  google_fonts: ^6.2.1
+  model_viewer_plus: ^1.9.1
+    # Needed for 3D transformations       # Three.js Dart wrapper for 3D models
+     # Needed for 3D transformations
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  assets:
+    - assets/cloud.jpg
+    - assets/human.glb
+
+  uses-material-design: true
