@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:habittracker/widget/habittrack_homepage_widgetwidget.dart';
 import 'package:goal_setting/index.dart';
 import 'package:life_script/life_script/life_script_widget.dart';
+import 'package:life_script/splash_screen.dart';
 import 'package:perfectday_frontend/PerfectdayWidget.dart';
 import 'package:pomodoro_break/home_page/Home_Page_Widget.dart';
 import 'package:pomodoro_break/info_page/Instruction_Page_Widget.dart';
@@ -53,7 +54,7 @@ class _MyAppState extends State<MyApp> {
       routes: [
         GoRoute(
           path: '/home',
-          builder: (context, state) => LifeScriptWidget(),
+          builder: (context, state) => SplashScreen(),
         ),
         GoRoute(
           path: '/communication',
