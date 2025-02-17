@@ -34,7 +34,7 @@ class _DragDropScreenState extends State<DragDropScreen> {
   { "id": 6, "task": "Book Reading", "color": "#FF4500", "shape": "book" },
   { "id": 7, "task": "Testing Features", "color": "#008080", "shape": "star" },
   { "id": 8, "task": "Drawing and Design", "color": "#800080", "shape": "triangle" },
-  { "id": 9, "task": "UI Layout Fix", "color": "#4682B4", "shape": "square" },
+  { "id": 9, "task": "UI Layout Fix", "color": "#4682B4", "shape": "spanner" },
   { "id": 10, "task": "Research on AI", "color": "#DC143C", "shape": "circle" },
   { "id": 11, "task": "Backend API Development", "color": "#2E8B57", "shape": "hormones" }
 ]

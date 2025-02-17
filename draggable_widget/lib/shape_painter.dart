@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -17,8 +19,8 @@ class ShapePainter extends CustomPainter {
       case 'circle':
         _drawCircle(canvas, size, paint);
         break;
-      case 'square':
-        _drawSquare(canvas, size, paint);
+      case 'spanner':
+        _drawSpanner(canvas, size, paint);
         break;
       case 'triangle':
         _drawTriangle(canvas, size, paint);
@@ -57,9 +59,7 @@ class ShapePainter extends CustomPainter {
     canvas.drawCircle(Offset(size.width / 2, size.height / 2), size.width / 2, paint);
   }
 
-  void _drawSquare(Canvas canvas, Size size, Paint paint) {
-    canvas.drawRect(Rect.fromLTWH(0, 0, size.width, size.height), paint);
-  }
+  
 
   void _drawTriangle(Canvas canvas, Size size, Paint paint) {
     final path = Path()
@@ -70,19 +70,39 @@ class ShapePainter extends CustomPainter {
     canvas.drawPath(path, paint);
   }
 
+  
   void _drawStar(Canvas canvas, Size size, Paint paint) {
-    final path = Path();
-    final double r = size.width / 4; // Reduced inner radius
-    final double R = size.width / 2; // Reduced outer radius
-    final double alpha = 2 * math.pi / 5;
-    for (int i = 0; i < 5; i++) {
-      path.lineTo(r * math.cos(alpha * i) + size.width / 2, r * math.sin(alpha * i) + size.height / 2);
-      path.lineTo(R * math.cos(alpha * i + alpha / 2) + size.width / 2, R * math.sin(alpha * i + alpha / 2) + size.height / 2);
-    }
-    path.close();
-    canvas.drawPath(path, paint);
+    final double outerRadius = size.width / 2;
+    final double innerRadius = outerRadius * math.sqrt(3) / 3;
+    final double angleOffset = math.pi / 10;
+
+    // Starting point
+    double angle = math.pi / 2 + angleOffset;
+    Offset startOuterPoint = Offset(
+      size.width / 2 + outerRadius * math.cos(angle),
+      size.height / 2 + outerRadius * math.sin(angle),
+    );
+    canvas.drawPoints(PointMode.lines, [startOuterPoint, ..._drawStarPoints(size, angle, outerRadius, innerRadius)], paint);
   }
 
+  List<Offset> _drawStarPoints(Size size, double startAngle, double outerRadius, double innerRadius) {
+    List<Offset> points = [];
+    int numPoints = 10;
+    for (int i = 0; i < numPoints; i++) {
+      double outerAngle = (startAngle + i * 2 * math.pi / numPoints) - math.pi / 2;
+      double innerAngle = outerAngle + math.pi / numPoints;
+      Offset outerPoint = Offset(
+        size.width / 2 + outerRadius * math.cos(outerAngle),
+        size.height / 2 + outerRadius * math.sin(outerAngle),
+      );
+      Offset innerPoint = Offset(
+        size.width / 2 + innerRadius * math.cos(innerAngle),
+        size.height / 2 + innerRadius * math.sin(innerAngle),
+      );
+      points.addAll([outerPoint, innerPoint]);
+    }
+    return points;
+  }
  void _drawBook(Canvas canvas, Size size, Paint paint) {
   final path = Path();
 
@@ -125,6 +145,37 @@ void _drawRunning(Canvas canvas, Size size, Paint paint) {
     ..moveTo(size.width / 3, size.height / 2) // Adjusted second arm position
     ..lineTo(size.width * 0.6, size.height * 0.7); // Adjusted second arm length
   canvas.drawPath(path, paint);
+}
+void _drawSpanner(Canvas canvas, Size size, Paint paint) {
+  final path = Path();
+
+  // **Head of the Spanner (Open End)**
+  path.moveTo(size.width * 0.2, size.height * 0.3);
+  path.arcToPoint(
+    Offset(size.width * 0.35, size.height * 0.2),
+    radius: Radius.circular(size.width * 0.15),
+    clockwise: false,
+  );
+  path.arcToPoint(
+    Offset(size.width * 0.2, size.height * 0.3),
+    radius: Radius.circular(size.width * 0.12),
+    clockwise: false,
+  );
+  path.close();
+  canvas.drawPath(path, paint);
+
+  // **Handle of the Spanner**
+  final handlePath = Path();
+  handlePath.moveTo(size.width * 0.3, size.height * 0.25);
+  handlePath.lineTo(size.width * 0.5, size.height * 0.75);
+  handlePath.lineTo(size.width * 0.45, size.height * 0.78);
+  handlePath.lineTo(size.width * 0.25, size.height * 0.3);
+  handlePath.close();
+  canvas.drawPath(handlePath, paint);
+
+  // **Bottom End (Hole for Hanging)**
+  canvas.drawCircle(
+      Offset(size.width * 0.5, size.height * 0.75), size.width * 0.05, paint);
 }
 
 
