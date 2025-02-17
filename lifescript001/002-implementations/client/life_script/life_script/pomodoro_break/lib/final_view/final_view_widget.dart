@@ -1,3 +1,4 @@
+import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -57,47 +58,49 @@ class _FinalViewWidgetState extends State<FinalViewWidget> {
                 height: MediaQuery.sizeOf(context).height * 1.0,
                 fit: BoxFit.cover,
               ),
-              Container(
-                width: MediaQuery.sizeOf(context).width * 1.0,
-                height: MediaQuery.sizeOf(context).height * 1.0,
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Color(0x33000000), Color(0x66000000)],
-                    stops: [0.0, 1.0],
-                    begin: AlignmentDirectional(0.0, -1.0),
-                    end: AlignmentDirectional(0, 1.0),
-                  ),
-                ),
-                child: Padding(
-                  padding:
-                      EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 350.0,
-                        height: 50.0,
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 0.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.max,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 0.0),
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width * 1.0,
                         decoration: BoxDecoration(
-                          color: Color(0x33FFFFFF),
-                          borderRadius: BorderRadius.circular(24.0),
+                          borderRadius: BorderRadius.circular(16.0),
                         ),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              4.0, 4.0, 4.0, 4.0),
+                              8.0, 8.0, 8.0, 8.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Expanded(
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.go('/home');
+                                },
                                 child: Container(
-                                  height: 44.0,
+                                  width: 100.0,
+                                  height: 40.0,
                                   decoration: BoxDecoration(
-                                    color: FlutterFlowTheme.of(context).primary,
                                     borderRadius: BorderRadius.circular(20.0),
+                                    shape: BoxShape.rectangle,
+                                    border: Border.all(
+                                      color:
+                                          FlutterFlowTheme.of(context).accent4,
+                                    ),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 12.0, 12.0, 12.0),
+                                        8.0, 10.0, 8.0, 0.0),
                                     child: Text(
                                       'Pomodoro',
                                       textAlign: TextAlign.center,
@@ -105,28 +108,34 @@ class _FinalViewWidgetState extends State<FinalViewWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Inter',
-                                            color: FlutterFlowTheme.of(context)
-                                                .info,
+                                            color: Colors.white,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
                                 ),
                               ),
-                              Expanded(
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.go('/home');
+                                },
                                 child: Container(
-                                  height: 44.0,
+                                  width: 100.0,
+                                  height: 40.0,
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      bottomLeft: Radius.circular(0.0),
-                                      bottomRight: Radius.circular(0.0),
-                                      topLeft: Radius.circular(0.0),
-                                      topRight: Radius.circular(0.0),
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    border: Border.all(
+                                      color:
+                                          FlutterFlowTheme.of(context).accent4,
                                     ),
                                   ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 12.0, 12.0, 12.0),
+                                        8.0, 10.0, 8.0, 0.0),
                                     child: Text(
                                       'Short Break',
                                       textAlign: TextAlign.center,
@@ -134,20 +143,34 @@ class _FinalViewWidgetState extends State<FinalViewWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Inter',
-                                            color: FlutterFlowTheme.of(context)
-                                                .info,
+                                            color: Colors.white,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
                                 ),
                               ),
-                              Expanded(
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.go('/home');
+                                },
                                 child: Container(
-                                  height: 44.0,
+                                  width: 100.0,
+                                  height: 40.0,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20.0),
+                                    border: Border.all(
+                                      color:
+                                          FlutterFlowTheme.of(context).accent4,
+                                    ),
+                                  ),
                                   child: Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        12.0, 12.0, 12.0, 12.0),
+                                        8.0, 10.0, 8.0, 0.0),
                                     child: Text(
                                       'Long Break',
                                       textAlign: TextAlign.center,
@@ -155,121 +178,159 @@ class _FinalViewWidgetState extends State<FinalViewWidget> {
                                           .bodyMedium
                                           .override(
                                             fontFamily: 'Inter',
-                                            color: FlutterFlowTheme.of(context)
-                                                .info,
+                                            color: Colors.white,
                                             letterSpacing: 0.0,
                                           ),
                                     ),
                                   ),
                                 ),
                               ),
-                            ].divide(SizedBox(width: 4.0)),
+                            ].divide(SizedBox(width: 8.0)),
                           ),
                         ),
                       ),
-                      Column(
+                    ),
+                    Container(
+                      width: 300.0,
+                      height: 300.0,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(150.0),
+                        border: Border.all(
+                          color: FlutterFlowTheme.of(context).accent4,
+                          width: 4.0,
+                        ),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(
+                            24.0, 24.0, 24.0, 24.0),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              '25:00',
+                              style: FlutterFlowTheme.of(context)
+                                  .displayLarge
+                                  .override(
+                                    fontFamily: 'Inter Tight',
+                                    color: Colors.white,
+                                    letterSpacing: 0.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                            ),
+                            Text(
+                              'Pomodoro Time',
+                              style: FlutterFlowTheme.of(context)
+                                  .bodyMedium
+                                  .override(
+                                    fontFamily: 'Inter',
+                                    color: Colors.black,
+                                    letterSpacing: 0.0,
+                                  ),
+                            ),
+                          ].divide(SizedBox(height: 16.0)),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+                      child: Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text(
-                            '25:00',
-                            style: FlutterFlowTheme.of(context)
-                                .displayLarge
-                                .override(
-                                  fontFamily: 'Inter Tight',
-                                  color: FlutterFlowTheme.of(context).info,
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                500.0, 0.0, 500.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      150.0, 0.0, 0.0, 0.0),
-                                  child: Material(
-                                    color: Colors.transparent,
-                                    elevation: 4.0,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(40.0),
-                                    ),
-                                    child: Container(
-                                      width: 80.0,
-                                      height: 80.0,
-                                      decoration: BoxDecoration(
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        borderRadius:
-                                            BorderRadius.circular(40.0),
-                                      ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            2.0, 0.0, 0.0, 0.0),
-                                        child: Icon(
-                                          Icons.play_arrow,
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          size: 50.0,
-                                        ),
-                                      ),
-                                    ),
+                          FFButtonWidget(
+                            onPressed: () async {
+                              context.go('/home');
+                            },
+                            text: 'START',
+                            options: FFButtonOptions(
+                              width: 160.0,
+                              height: 50.0,
+                              padding: EdgeInsets.all(8.0),
+                              iconPadding: EdgeInsetsDirectional.fromSTEB(
+                                  0.0, 0.0, 0.0, 0.0),
+                              color: Colors.white,
+                              textStyle: FlutterFlowTheme.of(context)
+                                  .headlineSmall
+                                  .override(
+                                    fontFamily: 'Inter Tight',
+                                    color: Colors.black,
+                                    letterSpacing: 0.0,
                                   ),
-                                ),
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Container(
-                                      width: 48.0,
-                                      height: 48.0,
-                                      decoration: BoxDecoration(
-                                        color: Color(0x33FFFFFF),
-                                        borderRadius:
-                                            BorderRadius.circular(24.0),
-                                      ),
-                                      child: Icon(
-                                        Icons.refresh,
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        size: 30.0,
-                                      ),
-                                    ),
-                                    Container(
-                                      width: 48.0,
-                                      height: 48.0,
-                                      decoration: BoxDecoration(
-                                        color: Color(0x33FFFFFF),
-                                        borderRadius:
-                                            BorderRadius.circular(24.0),
-                                      ),
-                                      child: Icon(
-                                        Icons.settings,
-                                        color:
-                                            FlutterFlowTheme.of(context).info,
-                                        size: 30.0,
-                                      ),
-                                    ),
-                                  ].divide(SizedBox(width: 16.0)),
-                                ),
-                              ].divide(SizedBox(width: 24.0)),
+                              elevation: 0.0,
+                              borderRadius: BorderRadius.circular(25.0),
                             ),
                           ),
-                        ].divide(SizedBox(height: 32.0)),
+                          FlutterFlowIconButton(
+                            borderRadius: 25.0,
+                            buttonSize: 50.0,
+                            icon: Icon(
+                              Icons.refresh,
+                              color: Colors.white,
+                              size: 24.0,
+                            ),
+                            onPressed: () async {
+                              context.go('/home');
+                            },
+                          ),
+                          FlutterFlowIconButton(
+                            borderRadius: 25.0,
+                            buttonSize: 50.0,
+                            icon: Icon(
+                              Icons.settings,
+                              color: Colors.white,
+                              size: 24.0,
+                            ),
+                            onPressed: () async {
+                              context.go('/home');
+                            },
+                          ),
+                          Align(
+                            alignment: AlignmentDirectional(1.0, 1.0),
+                            child: Container(
+                              width: 40.0,
+                              height: 40.0,
+                              decoration: BoxDecoration(
+                                color: Colors.transparent,
+                                borderRadius: BorderRadius.circular(8.0),
+                                border: Border.all(
+                                  color: Colors.white,
+                                  width: 1.0,
+                                ),
+                              ),
+                              child: InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  context.go('/home');
+                                },
+                                child: Icon(
+                                  Icons.fullscreen,
+                                  color: Colors.white,
+                                  size: 24.0,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ].divide(SizedBox(width: 16.0)),
                       ),
-                      Container(
-                        width: MediaQuery.sizeOf(context).width * 0.5,
+                    ),
+                    Padding(
+                      padding:
+                          EdgeInsetsDirectional.fromSTEB(0.0, 25.0, 0.0, 0.0),
+                      child: Container(
+                        width: MediaQuery.sizeOf(context).width * 0.974,
                         height: 80.0,
                         decoration: BoxDecoration(
-                          color: Color(0x33FFFFFF),
-                          borderRadius: BorderRadius.circular(16.0),
+                          borderRadius: BorderRadius.circular(12.0),
                         ),
                         child: Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(
-                              16.0, 16.0, 16.0, 16.0),
+                              8.0, 16.0, 8.0, 16.0),
                           child: Row(
                             mainAxisSize: MainAxisSize.max,
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -281,13 +342,12 @@ class _FinalViewWidgetState extends State<FinalViewWidget> {
                                     width: 48.0,
                                     height: 48.0,
                                     decoration: BoxDecoration(
-                                      color: FlutterFlowTheme.of(context).info,
-                                      borderRadius: BorderRadius.circular(24.0),
+                                      borderRadius: BorderRadius.circular(8.0),
                                     ),
                                     child: ClipRRect(
                                       borderRadius: BorderRadius.circular(24.0),
                                       child: Image.network(
-                                        'https://images.unsplash.com/photo-1505672984986-b7c468c7a134?w=500&h=500',
+                                        'https://images.unsplash.com/flagged/photo-1564434369363-696a2e6d96f9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTYyMDF8MHwxfHNlYXJjaHwxOHx8c2luZ2VyfGVufDB8fHx8MTczODc1ODExN3ww&ixlib=rb-4.0.3&q=80&w=1080',
                                         width: 48.0,
                                         height: 48.0,
                                         fit: BoxFit.cover,
@@ -301,24 +361,28 @@ class _FinalViewWidgetState extends State<FinalViewWidget> {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        'Lo-Fi Study Beats',
+                                        'Focus Music',
                                         style: FlutterFlowTheme.of(context)
                                             .bodyMedium
                                             .override(
                                               fontFamily: 'Inter',
                                               color:
                                                   FlutterFlowTheme.of(context)
-                                                      .info,
+                                                      .primaryBackground,
+                                              fontSize: 17.0,
                                               letterSpacing: 0.0,
                                             ),
                                       ),
                                       Text(
-                                        'Spotify Playlist',
+                                        'Lo-Fi Beats',
                                         style: FlutterFlowTheme.of(context)
                                             .bodySmall
                                             .override(
                                               fontFamily: 'Inter',
-                                              color: Color(0xCCFFFFFF),
+                                              color:
+                                                  FlutterFlowTheme.of(context)
+                                                      .primaryText,
+                                              fontSize: 12.0,
                                               letterSpacing: 0.0,
                                             ),
                                       ),
@@ -326,54 +390,81 @@ class _FinalViewWidgetState extends State<FinalViewWidget> {
                                   ),
                                 ].divide(SizedBox(width: 16.0)),
                               ),
-                              Padding(
-                                padding: EdgeInsetsDirectional.fromSTEB(
-                                    0.0, 0.0, 50.0, 0.0),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  children: [
-                                    Icon(
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  FlutterFlowIconButton(
+                                    buttonSize: 50.0,
+                                    fillColor: Colors.transparent,
+                                    icon: Icon(
                                       Icons.skip_previous,
-                                      color: FlutterFlowTheme.of(context).info,
+                                      color: Colors.white,
                                       size: 24.0,
                                     ),
-                                    Icon(
-                                      Icons.pause,
-                                      color: FlutterFlowTheme.of(context).info,
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                      context.go('/home');
+                                    },
+                                  ),
+                                  FlutterFlowIconButton(
+                                    borderRadius: 20.0,
+                                    buttonSize: 50.0,
+                                    fillColor: Colors.white,
+                                    icon: Icon(
+                                      Icons.play_arrow,
+                                      color: Colors.black,
                                       size: 24.0,
                                     ),
-                                    Icon(
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                      context.go('/home');
+                                    },
+                                  ),
+                                  FlutterFlowIconButton(
+                                    buttonSize: 50.0,
+                                    fillColor: Colors.transparent,
+                                    icon: Icon(
                                       Icons.skip_next,
-                                      color: FlutterFlowTheme.of(context).info,
+                                      color: Colors.white,
                                       size: 24.0,
                                     ),
-                                  ].divide(SizedBox(width: 16.0)),
-                                ),
+                                    onPressed: () {
+                                      print('IconButton pressed ...');
+                                      context.go('/home');
+                                    },
+                                  ),
+                                ].divide(SizedBox(width: 20.0)),
                               ),
-                            ].divide(SizedBox(width: 16.0)),
+                            ],
                           ),
                         ),
                       ),
-                      Align(
-                        alignment: AlignmentDirectional(1.0, 1.0),
-                        child: Container(
-                          width: 48.0,
-                          height: 48.0,
-                          decoration: BoxDecoration(
-                            color: Color(0x33FFFFFF),
-                            borderRadius: BorderRadius.circular(24.0),
-                          ),
-                          child: Icon(
-                            Icons.fullscreen,
-                            color: FlutterFlowTheme.of(context).info,
-                            size: 24.0,
-                          ),
-                        ),
-                      ),
-                    ].divide(SizedBox(height: 48.0)),
-                  ),
+                    ),
+                  ].divide(SizedBox(height: 24.0)),
                 ),
               ),
+              if (responsiveVisibility(
+                context: context,
+                phone: false,
+              ))
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 0.0, 0.0),
+                  child: FlutterFlowIconButton(
+                    borderColor: FlutterFlowTheme.of(context).accent4,
+                    borderRadius: 8.0,
+                    borderWidth: 1.0,
+                    buttonSize: 40.0,
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: FlutterFlowTheme.of(context).info,
+                      size: 24.0,
+                    ),
+                    onPressed: () {
+                      print('Back IconButton pressed ...');
+                      context.go('/home');
+                    },
+                  ),
+                ),
             ],
           ),
         ),

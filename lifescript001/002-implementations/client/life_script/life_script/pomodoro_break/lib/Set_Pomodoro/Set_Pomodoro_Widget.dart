@@ -10,6 +10,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
+import 'package:flutter/gestures.dart';
+import 'package:flutter/rendering.dart';
 
 import 'set_pomodoro_model.dart';
 export 'set_pomodoro_model.dart';
@@ -21,13 +23,12 @@ class SetPomodoroWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => SetPomodoroBloc(navigate: (route) => context.go(route))..add(CheckExistingPomodoro()),
-      child: SetPomodoroView(),
+      child: SetPomodoroView(), // Add the required 'child' parameter
     );
   }
 }
 
 class SetPomodoroView extends StatelessWidget {
-  final TextEditingController _totalWorkingHourController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -76,31 +77,633 @@ class SetPomodoroView extends StatelessWidget {
                 mainAxisSize: MainAxisSize.max,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Total Working Hour',
-                    style: FlutterFlowTheme.of(context).headlineSmall.override(
-                      fontFamily: 'Inter Tight',
-                      color: FlutterFlowTheme.of(context).primaryText,
-                      letterSpacing: 0.0,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  TextField(
-                    controller: _totalWorkingHourController,
-                    decoration: InputDecoration(
-                      labelText: 'Enter total working hours',
-                      labelStyle: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Inter',
-                        color: FlutterFlowTheme.of(context).secondaryText,
-                        letterSpacing: 0.0,
-                      ),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
                   SizedBox(height: 32),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(32.0, 0.0, 32.0, 0.0),
+                    child: Material(
+                      color: Colors.transparent,
+                      elevation: 3.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16.0),
+                      ),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 250.0,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Break Time Tips',
+                                style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                      fontFamily: 'Inter Tight',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              Container(
+                                height: 120.0,
+                                child: DragTarget<Widget>(
+                                  builder: (context, candidateData, rejectedData) {
+                                    return ListView(
+                                      padding: EdgeInsets.fromLTRB(0.0, 0, 0, 0),
+                                      primary: false,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.horizontal,
+                                      children: [
+                                        Draggable<Widget>(
+                                          data: Container(
+                                            width: 250.0,
+                                            decoration: BoxDecoration(
+                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                              borderRadius: BorderRadius.circular(12.0),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.directions_walk,
+                                                    color: FlutterFlowTheme.of(context).primary,
+                                                    size: 32.0,
+                                                  ),
+                                                  Text(
+                                                    'Take a short walk',
+                                                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                          fontFamily: 'Inter',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                  Text(
+                                                    'Clear your mind with light exercise',
+                                                    style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                          fontFamily: 'Inter',
+                                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ].divide(SizedBox(height: 8.0)),
+                                              ),
+                                            ),
+                                          ),
+                                          feedback: Material(
+                                            child: Container(
+                                              width: 250.0,
+                                              decoration: BoxDecoration(
+                                                color: FlutterFlowTheme.of(context).primaryBackground,
+                                                borderRadius: BorderRadius.circular(12.0),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                                child: Column(
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.directions_walk,
+                                                      color: FlutterFlowTheme.of(context).primary,
+                                                      size: 32.0,
+                                                    ),
+                                                    Text(
+                                                      'Take a short walk',
+                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                            fontFamily: 'Inter',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                    Text(
+                                                      'Clear your mind with light exercise',
+                                                      style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                            fontFamily: 'Inter',
+                                                            color: FlutterFlowTheme.of(context).secondaryText,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ].divide(SizedBox(height: 8.0)),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          child: Container( // Add the required 'child' parameter
+                                            width: 250.0,
+                                            decoration: BoxDecoration(
+                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                              borderRadius: BorderRadius.circular(12.0),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.directions_walk,
+                                                    color: FlutterFlowTheme.of(context).primary,
+                                                    size: 32.0,
+                                                  ),
+                                                  Text(
+                                                    'Take a short walk',
+                                                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                          fontFamily: 'Inter',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                  Text(
+                                                    'Clear your mind with light exercise',
+                                                    style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                          fontFamily: 'Inter',
+                                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ].divide(SizedBox(height: 8.0)),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Draggable<Widget>(
+                                          data: Container(
+                                            width: 250.0,
+                                            decoration: BoxDecoration(
+                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                              borderRadius: BorderRadius.circular(12.0),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.local_drink,
+                                                    color: FlutterFlowTheme.of(context).primary,
+                                                    size: 32.0,
+                                                  ),
+                                                  Text(
+                                                    'Stay hydrated',
+                                                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                          fontFamily: 'Inter',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                  Text(
+                                                    'Remember to drink water',
+                                                    style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                          fontFamily: 'Inter',
+                                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ].divide(SizedBox(height: 8.0)),
+                                              ),
+                                            ),
+                                          ),
+                                          feedback: Material(
+                                            child: Container(
+                                              width: 250.0,
+                                              decoration: BoxDecoration(
+                                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                borderRadius: BorderRadius.circular(12.0),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                                child: Column(
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.local_drink,
+                                                      color: FlutterFlowTheme.of(context).primary,
+                                                      size: 32.0,
+                                                    ),
+                                                    Text(
+                                                      'Stay hydrated',
+                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                            fontFamily: 'Inter',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                    Text(
+                                                      'Remember to drink water',
+                                                      style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                            fontFamily: 'Inter',
+                                                            color: FlutterFlowTheme.of(context).secondaryText,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ].divide(SizedBox(height: 8.0)),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          child: Container(
+                                            width: 250.0,
+                                            decoration: BoxDecoration(
+                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                              borderRadius: BorderRadius.circular(12.0),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.local_drink,
+                                                    color: FlutterFlowTheme.of(context).primary,
+                                                    size: 32.0,
+                                                  ),
+                                                  Text(
+                                                    'Stay hydrated',
+                                                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                          fontFamily: 'Inter',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                  Text(
+                                                    'Remember to drink water',
+                                                    style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                          fontFamily: 'Inter',
+                                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ].divide(SizedBox(height: 8.0)),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Draggable<Widget>(
+                                          data: Container(
+                                            width: 200.0,
+                                            decoration: BoxDecoration(
+                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                              borderRadius: BorderRadius.circular(12.0),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.self_improvement,
+                                                    color: FlutterFlowTheme.of(context).primary,
+                                                    size: 32.0,
+                                                  ),
+                                                  Text(
+                                                    'Quick meditation',
+                                                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                          fontFamily: 'Inter',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                  Text(
+                                                    'Practice mindful breathing',
+                                                    style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                          fontFamily: 'Inter',
+                                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ].divide(SizedBox(height: 8.0)),
+                                              ),
+                                            ),
+                                          ),
+                                          feedback: Material(
+                                            child: Container(
+                                              width: 200.0,
+                                              decoration: BoxDecoration(
+                                                color: FlutterFlowTheme.of(context).primaryBackground,
+                                                borderRadius: BorderRadius.circular(12.0),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                                child: Column(
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.self_improvement,
+                                                      color: FlutterFlowTheme.of(context).primary,
+                                                      size: 32.0,
+                                                    ),
+                                                    Text(
+                                                      'Quick meditation',
+                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                            fontFamily: 'Inter',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                    Text(
+                                                      'Practice mindful breathing',
+                                                      style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                            fontFamily: 'Inter',
+                                                            color: FlutterFlowTheme.of(context).secondaryText,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ].divide(SizedBox(height: 8.0)),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          child: Container(
+                                            width: 200.0,
+                                            decoration: BoxDecoration(
+                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                              borderRadius: BorderRadius.circular(12.0),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.self_improvement,
+                                                    color: FlutterFlowTheme.of(context).primary,
+                                                    size: 32.0,
+                                                  ),
+                                                  Text(
+                                                    'Quick meditation',
+                                                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                          fontFamily: 'Inter',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                  Text(
+                                                    'Practice mindful breathing',
+                                                    style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                          fontFamily: 'Inter',
+                                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ].divide(SizedBox(height: 8.0)),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Draggable<Widget>(
+                                          data: Container(
+                                            width: 250.0,
+                                            decoration: BoxDecoration(
+                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                              borderRadius: BorderRadius.circular(12.0),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.scale,
+                                                    color: FlutterFlowTheme.of(context).primary,
+                                                    size: 32.0,
+                                                  ),
+                                                  Text(
+                                                    'Quick nap',
+                                                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                          fontFamily: 'Inter',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                  Text(
+                                                    'Take a quick deep nap on break time',
+                                                    style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                          fontFamily: 'Inter',
+                                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ].divide(SizedBox(height: 8.0)),
+                                              ),
+                                            ),
+                                          ),
+                                          feedback: Material(
+                                            child: Container(
+                                              width: 250.0,
+                                              decoration: BoxDecoration(
+                                                color: FlutterFlowTheme.of(context).secondaryBackground,
+                                                borderRadius: BorderRadius.circular(12.0),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                                child: Column(
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.scale,
+                                                      color: FlutterFlowTheme.of(context).primary,
+                                                      size: 32.0,
+                                                    ),
+                                                    Text(
+                                                      'Quick nap',
+                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                            fontFamily: 'Inter',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                    Text(
+                                                      'Take a quick deep nap on break time',
+                                                      style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                            fontFamily: 'Inter',
+                                                            color: FlutterFlowTheme.of(context).secondaryText,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ].divide(SizedBox(height: 8.0)),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          child: Container(
+                                            width: 250.0,
+                                            decoration: BoxDecoration(
+                                              color: FlutterFlowTheme.of(context).secondaryBackground,
+                                              borderRadius: BorderRadius.circular(12.0),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.scale,
+                                                    color: FlutterFlowTheme.of(context).primary,
+                                                    size: 32.0,
+                                                  ),
+                                                  Text(
+                                                    'Quick nap',
+                                                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                          fontFamily: 'Inter',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                  Text(
+                                                    'Take a quick deep nap on break time',
+                                                    style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                          fontFamily: 'Inter',
+                                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ].divide(SizedBox(height: 8.0)),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        Draggable<Widget>(
+                                          data: Container(
+                                            width: 270.0,
+                                            decoration: BoxDecoration(
+                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                              borderRadius: BorderRadius.circular(12.0),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.remove_red_eye,
+                                                    color: FlutterFlowTheme.of(context).primary,
+                                                    size: 32.0,
+                                                  ),
+                                                  Text(
+                                                    'Eye Relaxation',
+                                                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                          fontFamily: 'Inter',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                  Text(
+                                                    'Look away from the screen or do palming',
+                                                    style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                          fontFamily: 'Inter',
+                                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ].divide(SizedBox(height: 8.0)),
+                                              ),
+                                            ),
+                                          ),
+                                          feedback: Material(
+                                            child: Container(
+                                              width: 270.0,
+                                              decoration: BoxDecoration(
+                                                color: FlutterFlowTheme.of(context).primaryBackground,
+                                                borderRadius: BorderRadius.circular(12.0),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                                child: Column(
+                                                  mainAxisSize: MainAxisSize.max,
+                                                  mainAxisAlignment: MainAxisAlignment.center,
+                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.remove_red_eye,
+                                                      color: FlutterFlowTheme.of(context).primary,
+                                                      size: 32.0,
+                                                    ),
+                                                    Text(
+                                                      'Eye Relaxation',
+                                                      style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                            fontFamily: 'Inter',
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                    Text(
+                                                      'Look away from the screen or do palming',
+                                                      style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                            fontFamily: 'Inter',
+                                                            color: FlutterFlowTheme.of(context).secondaryText,
+                                                            letterSpacing: 0.0,
+                                                          ),
+                                                    ),
+                                                  ].divide(SizedBox(height: 8.0)),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                          child: Container(
+                                            width: 270.0,
+                                            decoration: BoxDecoration(
+                                              color: FlutterFlowTheme.of(context).primaryBackground,
+                                              borderRadius: BorderRadius.circular(12.0),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
+                                              child: Column(
+                                                mainAxisSize: MainAxisSize.max,
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                children: [
+                                                  Icon(
+                                                    Icons.remove_red_eye,
+                                                    color: FlutterFlowTheme.of(context).primary,
+                                                    size: 32.0,
+                                                  ),
+                                                  Text(
+                                                    'Eye Relaxation',
+                                                    style: FlutterFlowTheme.of(context).bodyLarge.override(
+                                                          fontFamily: 'Inter',
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                  Text(
+                                                    'Look away from the screen or do palming',
+                                                    style: FlutterFlowTheme.of(context).bodySmall.override(
+                                                          fontFamily: 'Inter',
+                                                          color: FlutterFlowTheme.of(context).secondaryText,
+                                                          letterSpacing: 0.0,
+                                                        ),
+                                                  ),
+                                                ].divide(SizedBox(height: 8.0)),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ].divide(SizedBox(width: 16.0)),
+                                    );
+                                  },
+                                  onAccept: (data) {
+                                    // Handle the drop
+                                  },
+                                ),
+                              ),
+                            ].divide(SizedBox(height: 16.0)),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                   Material(
                     color: Colors.transparent,
                     elevation: 2,
@@ -271,79 +874,54 @@ class SetPomodoroView extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Material(
-                    color: Colors.transparent,
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      decoration: BoxDecoration(
-                        color: FlutterFlowTheme.of(context).secondaryBackground,
-                        borderRadius: BorderRadius.circular(16),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(32.0, 0.0, 32.0, 0.0),
+                    child: Material(
+                      color: Colors.transparent,
+                      elevation: 3.0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16.0),
                       ),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 24, 24, 24),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Text(
-                              'Break Time Tips',
-                              style: FlutterFlowTheme.of(context)
-                                  .headlineSmall
-                                  .override(
-                                    fontFamily: 'Inter Tight',
-                                    color: FlutterFlowTheme.of(context)
-                                        .primaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                            Text(
-                              '• Take a short walk to refresh your mind',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                            Text(
-                              '• Do quick stretching exercises',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                            Text(
-                              '• Stay hydrated during breaks',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                            Text(
-                              '• Avoid screen time if possible',
-                              style: FlutterFlowTheme.of(context)
-                                  .bodyMedium
-                                  .override(
-                                    fontFamily: 'Inter',
-                                    color: FlutterFlowTheme.of(context)
-                                        .secondaryText,
-                                    letterSpacing: 0.0,
-                                  ),
-                            ),
-                          ].divide(SizedBox(height: 16)),
+                      child: Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 250.0,
+                        decoration: BoxDecoration(
+                          color: FlutterFlowTheme.of(context).secondaryBackground,
+                          borderRadius: BorderRadius.circular(16.0),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(24.0, 24.0, 24.0, 24.0),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Text(
+                                'Break Time Tips',
+                                style: FlutterFlowTheme.of(context).headlineSmall.override(
+                                      fontFamily: 'Inter Tight',
+                                      letterSpacing: 0.0,
+                                    ),
+                              ),
+                              Container(
+                                height: 120.0,
+                                child: DragTarget<Widget>(
+                                  builder: (context, candidateData, rejectedData) {
+                                    return ListView(
+                                      padding: EdgeInsets.fromLTRB(0.0, 0, 0, 0),
+                                      primary: false,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.horizontal,
+                                      children: [
+                                        // Empty for now
+                                      ],
+                                    );
+                                  },
+                                  onAccept: (data) {
+                                    // Handle the drop
+                                  },
+                                ),
+                              ),
+                            ].divide(SizedBox(height: 16.0)),
+                          ),
                         ),
                       ),
                     ),
@@ -403,7 +981,7 @@ class SetPomodoroView extends StatelessWidget {
 
                           PomodoroBreakBuilder pomodoro = PomodoroBreakBuilder();
                     
-                          pomodoro.totalWorkingHour = int.tryParse(_totalWorkingHourController.text) ?? 10;
+                          pomodoro.totalWorkingHour = 8;
                           pomodoro.dailyDurationOfWork = 25;
                           pomodoro.splitBreakDuration = 17;
                           pomodoro.breakDuration = (state as SetPomodoroInitial).breakDuration;

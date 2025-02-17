@@ -146,6 +146,7 @@ class InstructionPageView extends StatelessWidget {
                               children: [
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center, // Center the icon
                                   children: [
                                     Icon(
                                       Icons.timer,
@@ -166,6 +167,7 @@ class InstructionPageView extends StatelessWidget {
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(
                                       Icons.coffee,
@@ -186,6 +188,7 @@ class InstructionPageView extends StatelessWidget {
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(
                                       Icons.repeat,
@@ -206,6 +209,7 @@ class InstructionPageView extends StatelessWidget {
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(
                                       Icons.hotel,
@@ -260,9 +264,11 @@ class InstructionPageView extends StatelessWidget {
                             ),
                             Column(
                               mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(
                                       Icons.check_circle_outline,
@@ -283,6 +289,7 @@ class InstructionPageView extends StatelessWidget {
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(
                                       Icons.check_circle_outline,
@@ -303,6 +310,7 @@ class InstructionPageView extends StatelessWidget {
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(
                                       Icons.check_circle_outline,
@@ -323,6 +331,7 @@ class InstructionPageView extends StatelessWidget {
                                 ),
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     Icon(
                                       Icons.check_circle_outline,

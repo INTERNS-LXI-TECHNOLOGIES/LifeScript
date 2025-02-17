@@ -28,7 +28,7 @@ class SetPomodoroBloc extends Bloc<SetPomodoroEvent, SetPomodoroState> {
     });
 
     on<NavigateToHomePage>((event, emit) {
-      navigate('/home');
+      navigate('/finalView');
     });
   }
 
