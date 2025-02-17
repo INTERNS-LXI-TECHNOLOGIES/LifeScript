@@ -72,12 +72,12 @@ class ShapePainter extends CustomPainter {
 
   void _drawStar(Canvas canvas, Size size, Paint paint) {
     final path = Path();
-    final double r = size.width / 2;
-    final double R = size.width;
+    final double r = size.width / 4; // Reduced inner radius
+    final double R = size.width / 2; // Reduced outer radius
     final double alpha = 2 * math.pi / 5;
     for (int i = 0; i < 5; i++) {
-      path.lineTo(r * math.cos(alpha * i), r * math.sin(alpha * i));
-      path.lineTo(R * math.cos(alpha * i + alpha / 2), R * math.sin(alpha * i + alpha / 2));
+      path.lineTo(r * math.cos(alpha * i) + size.width / 2, r * math.sin(alpha * i) + size.height / 2);
+      path.lineTo(R * math.cos(alpha * i + alpha / 2) + size.width / 2, R * math.sin(alpha * i + alpha / 2) + size.height / 2);
     }
     path.close();
     canvas.drawPath(path, paint);

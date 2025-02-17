@@ -128,8 +128,18 @@ class _DragDropScreenState extends State<DragDropScreen> {
                   return DragTarget<Map<String, dynamic>>(
                     onAccept: (task) {
                       setState(() {
-                        droppedTasks[index].add(task);
+                        if (!droppedTasks[index].contains(task)) {
+                          droppedTasks[index].add(task);
+                        }
                         taskData.remove(task);
+                      });
+                    },
+                    onWillAccept: (task) {
+                      return !droppedTasks[index].contains(task);
+                    },
+                    onLeave: (task) {
+                      setState(() {
+                        droppedTasks[index].remove(task);
                       });
                     },
                     builder: (context, candidateData, rejectedData) {
