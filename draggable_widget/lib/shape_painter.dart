@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+import 'package:lottie/lottie.dart';
+
 
 class ShapePainter extends CustomPainter {
   final String shape;
@@ -105,33 +107,40 @@ class ShapePainter extends CustomPainter {
   }
  void _drawBook(Canvas canvas, Size size, Paint paint) {
   final path = Path();
+  Lottie.asset(
+      'assets/json/Lottie Lego.json',
+      width: size.width,
+      height: size.height,
+      fit: BoxFit.cover,
+      repeat: true,
+    );
 
   // Left cover
-  path.moveTo(size.width * 0.1, size.height * 0.1);
-  path.lineTo(size.width * 0.45, size.height * 0.2);
-  path.lineTo(size.width * 0.45, size.height * 0.8);
-  path.lineTo(size.width * 0.1, size.height * 0.9);
-  path.close();
-  canvas.drawPath(path, paint);
+  // path.moveTo(size.width * 0.1, size.height * 0.1);
+  // path.lineTo(size.width * 0.45, size.height * 0.2);
+  // path.lineTo(size.width * 0.45, size.height * 0.8);
+  // path.lineTo(size.width * 0.1, size.height * 0.9);
+  // path.close();
+  // canvas.drawPath(path, paint);
 
   // Right cover
-  final path2 = Path();
-  path2.moveTo(size.width * 0.55, size.height * 0.2);
-  path2.lineTo(size.width * 0.9, size.height * 0.1);
-  path2.lineTo(size.width * 0.9, size.height * 0.9);
-  path2.lineTo(size.width * 0.55, size.height * 0.8);
-  path2.close();
-  canvas.drawPath(path2, paint);
+  // final path2 = Path();
+  // path2.moveTo(size.width * 0.55, size.height * 0.2);
+  // path2.lineTo(size.width * 0.9, size.height * 0.1);
+  // path2.lineTo(size.width * 0.9, size.height * 0.9);
+  // path2.lineTo(size.width * 0.55, size.height * 0.8);
+  // path2.close();
+  // canvas.drawPath(path2, paint);
 
   // Spine
-  final spinePaint = Paint()
-    ..color = Colors.black
-    ..style = PaintingStyle.stroke
-    ..strokeWidth = 3;
-  canvas.drawLine(Offset(size.width * 0.45, size.height * 0.2),
-      Offset(size.width * 0.55, size.height * 0.2), spinePaint);
-  canvas.drawLine(Offset(size.width * 0.45, size.height * 0.8),
-      Offset(size.width * 0.55, size.height * 0.8), spinePaint);
+  // final spinePaint = Paint()
+  //   ..color = Colors.black
+  //   ..style = PaintingStyle.stroke
+  //   ..strokeWidth = 3;
+  // canvas.drawLine(Offset(size.width * 0.45, size.height * 0.2),
+  //     Offset(size.width * 0.55, size.height * 0.2), spinePaint);
+  // canvas.drawLine(Offset(size.width * 0.45, size.height * 0.8),
+  //     Offset(size.width * 0.55, size.height * 0.8), spinePaint);
 }
 
 void _drawRunning(Canvas canvas, Size size, Paint paint) {
