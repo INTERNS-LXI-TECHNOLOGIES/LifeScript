@@ -1,3 +1,5 @@
+import 'package:habittracker/widget/DragDropScreen.dart';
+
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
@@ -782,6 +784,12 @@ class _VictoryStreaksWidgetState extends State<VictoryStreaksWidget> {
                       ),
                       FFButtonWidget(
                         onPressed: () {
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DragDropScreen(),
+                          ),
+                          );
                           print('Button pressed ...');
                         },
                         text: 'Add New Habit',

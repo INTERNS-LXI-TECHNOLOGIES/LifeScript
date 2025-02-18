@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_swiper_view/flutter_swiper_view.dart';
 import 'package:goal_setting/goal_setting/goal_setting_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:habittracker/widget/victory_streaks_widget.dart';
 import 'package:life_script/index.dart';
 import 'package:model_viewer_plus/model_viewer_plus.dart';
 import 'package:perfectday_frontend/PerfectdayWidget.dart';
@@ -318,7 +319,7 @@ class HomeScreen extends StatelessWidget {
                             case 4:
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => RefreshScreen()),
+                                MaterialPageRoute(builder: (context) => VictoryStreaksWidget()),
                               );
                               break;
                           }
