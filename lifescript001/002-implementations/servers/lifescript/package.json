@@ -85,6 +85,7 @@
     "@popperjs/core": "2.11.8",
     "bootstrap": "5.3.3",
     "bootswatch": "5.3.3",
+    "communication": "file:",
     "dayjs": "1.11.11",
     "ngx-infinite-scroll": "17.0.0",
     "rxjs": "7.8.1",
