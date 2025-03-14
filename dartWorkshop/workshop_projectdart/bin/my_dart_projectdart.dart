@@ -28,24 +28,31 @@ print('Q1: ${organizations.first.getTotalEmployees()}');
 print('Q2: ${organizations.first.getTotalSalaryExpenditure()}');
 print('Q3: ${organizations.first.getHighestPaidEmployee()}');
 print('Q4: ${organizations.first.getEmployeesSortedBySalary()}');
-//print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-//print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-// print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-// print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-// print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-// print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-// print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-// print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-// print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-// print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-// print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-// print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-// print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-// print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-// print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-// print('Q2: ${organizations.first.getHighestPaidEmployee()}');
-// print('Q2: ${organizations.first.getHighestPaidEmployee()}');
+print('Q5: ${organizations.first.getHighestPaidEmployee()}');
+print('Q6: ${organizations.first.getTotalEmployees()}');
+print('Q7: ${organizations.first.getTotalSalaryExpenditure()}');
+print('Q8: ${organizations.first.getEmployeesSortedBySalary()}');
+print('Q9: ${organizations.first.getEmployeesEarningAbove(6000)}');
+print('Q10: ${organizations.first.getTotalBranches()}');
+print('Q11: ${organizations.first.getTopNSalaries(10000)}');
 
+print('Q13: ${organizations.first.getEmployeesWithName("Abi")}');
+
+print('Q15: ${organizations.first.getEmployeesByBranch()}');
+print('Q16: ${organizations.first.getEmployeesEarningAbove(50000)}');
+print('Q17: ${organizations.first.getTotalSalaryPerBranch()}');
+print('Q18: ${organizations.first.hasEmployee("Employee1")}');
+print('Q19: ${organizations.first.getHighestPaidEmployee()}');
+print('Q20: ${organizations.first.isAnyEmployeeEarningBelow(50000)}');
+print('Q21: ${organizations.first.getEmployeesWithOddId()}');
+print('Q22: ${organizations.first.getEmployeesEarningAbove(50000)}');
+print('Q23: ${organizations.first.getNthHighestPaidEmployee(2)}');
+print('Q24: ${organizations.first.getAverageSalaryOfEmployees()}');
+print('Q25: ${organizations.first.getEmployeesNotInBranch("BranchOne")}');
+print('Q26: ${organizations.first.getBranchIdsWithSalaryAbove(50000)}');
+print('Q27: ${organizations.first.doAllBranchesHaveEmployees()}');
+print('Q28: ${organizations.first.getBranchWithHighestAverageSalary()}');
+print('Q29: ${organizations.first.getEmployeesWithName("Abi")}');
 
 
 
