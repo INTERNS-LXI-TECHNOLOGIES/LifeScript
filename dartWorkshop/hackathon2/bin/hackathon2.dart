@@ -170,13 +170,51 @@ print('Q6: ${getDepartmentsWithMinEmployees(3)}');
 
 
 
-
 // 8. Get employees by department
 // getEmployeesByDepartment() 
 
 
 // 9. Get department with the highest average salary
 // getDepartmentWithHighestAverageSalary()
+List<Map<String,dynamic>>getDepartmentWithHighestAverageSalary(){
+  Map<int,double> totalSalaryPerDept= {};
+  Map<int,int>empCountPerDept={};
+  for (var e in employees){
+    totalSalaryPerDept[e['deptno']]=(totalSalaryPerDept[e['deptno']]??0)+e['sal'];
+    empCountPerDept[e['deptno']]= (empCountPerDept[e['deptno']]??0)+1;
+  }
+  num highestAvg =0;
+  num highestDept =0;
+  for(var dep in empCountPerDept.keys){
+    double avg = totalSalaryPerDept[dep]!/empCountPerDept[dep]!;
+    if (avg>highestAvg){
+      highestAvg =avg;
+      highestDept=dep;
+    }
+  }
+  return departments.where((a)=>a['deptno']==highestDept).toList();
+
+
+}
+ print('Q9: ${getDepartmentWithHighestAverageSalary()}');
+// List <Map<String ,dynamic>>getDepartmentWithHighestAverageSalary(){
+//   Map<int, double> totalSalaryPerDept = {};
+//   Map<int, int> empCountPerDept = {};
+//   for (var e in employees) {
+//     totalSalaryPerDept[e['deptno']] = (totalSalaryPerDept[e['deptno']] ?? 0) + e['sal'];
+//     empCountPerDept[e['deptno']] = (empCountPerDept[e['deptno']] ?? 0) + 1;
+//   }
+//   double highestAvg = 0;
+//   int highestDept = 0;
+//   for (var dept in empCountPerDept.keys) {
+//     double avg = totalSalaryPerDept[dept]! / empCountPerDept[dept]!;
+//     if (avg > highestAvg) {
+//       highestAvg = avg;
+//       highestDept = dept;
+//     }
+//   }
+//   return departments.where((dept) => dept['deptno'] == highestDept).toList();
+// }
 
 // 10. Get total number of departments
 // getTotalDepartments() 
