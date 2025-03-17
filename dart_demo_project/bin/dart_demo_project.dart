@@ -45,4 +45,15 @@ void main(List<String> arguments) {
   removeValues();
   print(numbers);
 
+
+  List<String> values = ['apple' , 'orange' , 'banana' , 'grapes' , 'mango']; 
+
+  findIndex(String value) => values.indexOf('banana');
+  print(findIndex('banana'));
+
+  /*findLastIndex( value) => values.lastIndexOf(value);
+  print(findLastIndex('grapes'));*/
+
+  containsValue(String value) => values.contains(value);
+  print(containsValue('banana'));
 }
