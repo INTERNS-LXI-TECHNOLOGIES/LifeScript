@@ -141,17 +141,19 @@ int  getTotalEmployeesInEachDepartment()  => employees.length;
 // 5. Find employees earning more than a threshold
  List<Map<String, dynamic>> getEmployeesEarningAbove(double threshold) => employees.where((e) => e['sal'] > 30000).toList();
 
+
 // 6. Find departments with at least N employees
-// getDepartmentsWithMinEmployees(int minEmployees) 
+List<Map<String, dynamic>> getDepartmentsWithMinEmployees(int minEmployees) => departments.where((d) => employees.where((e) => e['deptno'] == d['deptno']).length >= minEmployees).toList();
+
 
 // 7. Get average salary per department
-// getAverageSalaryPerDepartment()
+List<Map<String, double>> getAverageSalaryPerDepartment() =>  departments.map((d) => {d['dname'] as String: employees.where((e) => e['deptno'] == d['deptno']).map((e) => e['sal'] as int).reduce((a, b) => a + b) / employees.where((e) => e['deptno'] == d['deptno']).length}).toList();
 
 // 8. Get employees by department
 List<Map<String, dynamic>> getEmployeesByDepartment() => employees.where((e) => e['deptno'] == 1).toList(); 
 
 // 9. Get department with the highest average salary
-// getDepartmentWithHighestAverageSalary()
+Map<String, double>  getDepartmentWithHighestAverageSalary() => departments.map((d) => {d['dname'] as String: employees.where((e) => e['deptno'] == d['deptno']).map((e) => e['sal'] as int).reduce((a, b) => a + b) / employees.where((e) => e['deptno'] == d['deptno']).length}).reduce((a, b) => a.values.first > b.values.first ? a : b);
 
 // 10. Get total number of departments
 int getTotalDepartments() =>  departments.length;
@@ -166,16 +168,23 @@ int getTotalDepartments() =>  departments.length;
  List<Map<String, dynamic>> getEmployeesWithName(String name) => employees.where((e) => e['name'] == name).toList();
 
 // 14. Get median salary of all employees
-// double getMedianSalary() 
+ double getMedianSalary() {
+   List<int> salaries = employees.map((e) => e['sal'] as int).toList();
+   salaries.sort();
+   int middle = salaries.length ~/ 2;
+   return salaries.length.isOdd ? salaries[middle].toDouble() : (salaries[middle - 1] + salaries[middle]) / 2;
+ }
 
 // 15. Get employee count per department
 List<Map<String, int>> getEmployeeCountPerDepartment()  =>  departments.map((d) => {d['dname'] as String: employees.where((e) => e['deptno'] == d['deptno']).length}).toList();
 
+
 // 16. Get employees with salary in a given range
-// getEmployeesWithSalaryInRange(double min, double max)
+List<Map<String, dynamic>> getEmployeesWithSalaryInRange(double min, double max) =>   employees.where((e) => e['sal'] >= min && e['sal'] <= max).toList();
+
 
 // 17. Get total salary per department
-// getTotalSalaryPerDepartment() 
+List<Map<String, dynamic>> getTotalSalaryPerDepartment() =>  departments.map((d) => {d['dname'] as String: employees.where((e) => e['deptno'] == d['deptno']).map((e) => e['sal'] as int).reduce((a, b) => a + b)}).toList();
 
 // 18. Check if a department has at least one employee
  bool hasEmployeeInDepartment(int deptId) => employees.any((e) => e['deptno'] == deptId);
@@ -190,25 +199,26 @@ List<Map<String, int>> getEmployeeCountPerDepartment()  =>  departments.map((d) 
 List<Map<String, dynamic>> getEmployeesWithOddId() => employees.where((e) => e['empno'] % 2 != 0).toList();
 
 // 22. Get total number of employees earning within a salary range
-// getTotalEmployeesWithSalaryInRange(double min, double max) 
+int  getTotalEmployeesWithSalaryInRange(double min, double max) => employees.where((e) => e['sal'] >= min && e['sal'] <= max).length;
 
 // 23. Get the Nth highest-paid employee
  List<Map<String, dynamic>> getNthHighestPaidEmployee(int n)  => employees.map((e) => e).toList()..sort((a, b) => b['sal'].compareTo(a['sal']));
 
 // 24. Get the average salary of employees
-// getAverageSalaryOfEmployees()
+double getAverageSalaryOfEmployees() =>  employees.map((e) => e['sal'] as int).reduce((a, b) => a + b) / employees.length;
+
 
 // 25. Get employees who are not in a specific department
-// getEmployeesNotInDepartment(int deptId) 
+List<Map<String, dynamic>> getEmployeesNotInDepartment(int deptId)  => employees.where((e) => e['deptno'] != 1).toList(); 
 
 // 26. Get department IDs where total salary exceeds a given amount
-// getDepartmentIdsWithSalaryAbove(double threshold)
+List getDepartmentIdsWithSalaryAbove(double threshold) => departments.where((d) => employees.where((e) => e['deptno'] == d['deptno']).map((e) => e['sal'] as int).reduce((a, b) => a + b) > 100000).map((d) => d['deptno']).toList();
 
 // 27. Check if all departments have at least one employee
-// doAllDepartmentsHaveEmployees()
+bool doAllDepartmentsHaveEmployees() => departments.every((d) => employees.any((e) => e['deptno'] == d['deptno']));
 
 // 28. Get departments that have employees earning above a salary threshold
-// getDepartmentsWithEmployeesAboveSalary(double threshold)
+ List<Map<String, dynamic>> getDepartmentsWithEmployeesAboveSalary(double threshold) => departments.where((d) => employees.where((e) => e['deptno'] == d['deptno'] && e['sal'] > 30000).isNotEmpty).toList();
 
 // 29. Get unique employees by name (handling duplicates)
  Set<String> getUniqueEmployeesByName() => employees.map((e) => (e['ename'] ?? '').toString()) .toSet();
@@ -223,17 +233,29 @@ List<Map<String, dynamic>> getEmployeesWithOddId() => employees.where((e) => e['
   print('3. Highest Paid Employee: ${getHighestPaidEmployee()}');
   print('4. Employees Sorted by Salary: ${getEmployeesSortedBySalary()}');
   print('5. Employees Earning Above 30000: ${getEmployeesEarningAbove(30000)}');
+  print('6. Departments with at least 2 Employees: ${getDepartmentsWithMinEmployees(2)}');
+  print('7. Average Salary Per Department: ${getAverageSalaryPerDepartment()}');
   print('8. Employees in Department 1: ${getEmployeesByDepartment()}');
+  print('9. Department with Highest Average Salary: ${getDepartmentWithHighestAverageSalary()}');
   print('10. Total Departments: ${getTotalDepartments()}');
   print('11. Top 3 Salaries: ${getTopNSalaries(3)}'); 
   print('12. Is Employee 1001 in Department 1: ${isEmployeeInDepartment(1001, 1)}');
   print('13. Get employees by name: ${getEmployeesWithName('sreeja')}'); 
+  print('14. Median Salary: ${getMedianSalary()}');
   print('15. Employee Count Per Department: ${getEmployeeCountPerDepartment()}');
+  print('16. Employees with Salary in Range 25000-50000: ${getEmployeesWithSalaryInRange(25000, 50000)}');
+  print('17. Total Salary Per Department: ${getTotalSalaryPerDepartment()}');
   print('18. Does Department 1 have Employees: ${hasEmployeeInDepartment(1)}');
   print('19. Employees with ID Prefix 10: ${getEmployeesWithIdPrefix("10")}');
   print('20. Is Any Employee Earning Below 25000: ${isAnyEmployeeEarningBelow(25000)}');
   print('21. Employees with Odd ID: ${getEmployeesWithOddId()}');
+  print('22. Total Employees with Salary in Range 25000-50000: ${getTotalEmployeesWithSalaryInRange(25000, 50000)}');
   print('23. Get the Nth highest-paid employee: ${getNthHighestPaidEmployee(10)}');
+  print('24. Average Salary of Employees: ${getAverageSalaryOfEmployees()}');
+  print('25. Employees Not in Department 1: ${getEmployeesNotInDepartment(1)}');
+  print('26. Department IDs with Total Salary Above 100000: ${getDepartmentIdsWithSalaryAbove(100000)}');
+  print('27. Do All Departments Have Employees: ${doAllDepartmentsHaveEmployees()}');
+  print('28. Departments with Employees Earning Above 30000: ${getDepartmentsWithEmployeesAboveSalary(  30000)}');
   print('29. Unique Employees by Name: ${getUniqueEmployeesByName()}');
   print('30. Employees with Highest Commission: ${getEmployeesWithHighestCommission()}');
 
