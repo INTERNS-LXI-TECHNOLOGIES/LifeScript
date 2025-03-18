@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 void main(){
 
 //fixed-length list.
@@ -70,11 +72,88 @@ print('------------------------------------');
 final numbers = <int>[1, 2, 3, 4, 5, 6, 7];
 var result = numbers.firstWhere((f)=> f>3);//the 3 is in the list where its first number of the list is 1 which is the firstwhere 
 print(result);
+
+print('------------------Constructors------------------');
+
+final share = List.filled(4, []);
+share[0].add(50);
+print(share);
 print('------------------------------------');
 
+final unique = List.generate(5,(_)=>[]);
+unique[0].add(100);
+print(unique);
+print('------------------------------------');
 
+final digits = <int>[1, 2, 3];
+final listOf = List<num>.of(digits);
+print(listOf);
+print('------------------------------------');
 
+final values = <int>[1, 2, 3, 4, 5, 6, 7];
+final unmodifiable= List.unmodifiable(values);
+print(unmodifiable);
+// unmodifiable[1]=10;
+// //print(unmodifiable);
 
+print('------------------Methods------------------');
+
+final mNumber = <int> [1,2,3,4,5,6,7,8,9,10];
+mNumber.add(11);
+print(mNumber);
+
+mNumber.addAll({12,13});
+print(mNumber);
+print('------------------------------------');
+
+var value1 =mNumber.any((any)=> any>5);
+print(value1);
+var value2= mNumber.any((any)=>any>50);
+print(value2);
+print('------------------------------------');
+
+var alphabets = <String>['A','B','C','D','E'];
+var mapResult = alphabets.asMap();
+print(mapResult);
+print('------------------------------------');
+
+final cNumbers = <int>[1, 2, 3];
+cNumbers.clear();
+print(cNumbers.length);
+print(cNumbers);
+print('------------------------------------');
+
+final gasPlanets = <int, String>{1: 'Jupiter', 2: 'Saturn'};
+var containsResult1= gasPlanets.containsKey(5);
+var containsResult2= gasPlanets.containsValue('Jupiter');
+print(containsResult1);
+print(containsResult2);
+print('------------------------------------');
+
+final elementNumbers = <int>[1, 2, 3, 5, 6, 7];
+final elementAt1 = elementNumbers.elementAt(5);
+final elementAt2 = elementNumbers.elementAtOrNull(4);
+final elementAt3 = elementNumbers.elementAtOrNull(8);
+print(elementAt1);
+print(elementAt2);
+print(elementAt3);
+print('------------------------------------');
+
+final everyNum = <int,String>{1:'A',2:'B',3:'C'};
+final everyResult1 = everyNum.keys.every((k)=> k<5);// Checks whether all keys are smaller than 5.
+final everyResult2 = everyNum.keys.every((k)=> k>7);// Checks whether all keys are greater than 7.
+print(everyResult1);
+print(everyResult2);
+print('------------------------------------');
+
+final foldNumbers= <int> [1,2,3,4];
+var folresult= foldNumbers.fold(0,(a,b)=> a+b);
+print(folresult); 
+final f2numbers = <double>[10, 2, 5, 0.5];
+final fresult = f2numbers.fold<double>(
+    15, (p, e) => p + e);
+print(fresult); 
+print('------------------------------------');
 
 
 
