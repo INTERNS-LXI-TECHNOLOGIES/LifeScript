@@ -95,4 +95,67 @@ void main(List<String> arguments) {
  }
 
  print(number);
+
+ List<String> names = ['anila','sruthi','sreeja','farsha','jenifer'];
+ print(names.last);
+ print(names.first);
+ print(names.removeLast());
+ print(names.removeAt(0));
+ names.removeRange(0,2);
+
+ print(names);
+
+ names.addAll( ['amy', 'jack' ,'james','aby']);
+ print(names);
+
+ names.removeWhere((e) => e.startsWith('j')) ;
+ print(names);
+
+ 
+ print(names.contains('amy'));
+
+print(names.elementAt(0)) ;
+
+print(names.elementAtOrNull(3));
+
+print(names.indexOf('amy' , 0)); // index startswith
+
+print(names.indexWhere((e) => e.length >= 4 , 0));
+
+
+print(names.lastIndexOf('amy' , 2));
+
+print(names.lastIndexWhere((e) => e.endsWith('a') , 0));
+
+print(names.firstWhere((e) => e.startsWith('a'), orElse: () => 'not found' ));
+
+print(names.lastWhere((e) => e.length==3 , orElse: ()=> 'can not found'));
+
+
+names.forEach((e) => print('hello $e'));
+
+List<int> nums = [1,2,3,4,5];
+
+Iterable<int> num = nums.map((e) => e*10);
+print(num.toList());
+
+Iterable<int> a = num.where((e) => e <= 20);
+print(a);
+
+List<dynamic> b = ['apple' , 2 , 'apple' , 'orange' , 4] ;
+Iterable<String> c = b.whereType<String>();
+print(c);
+
+List<List<int>> nestedList = [[1,2,3], [5,6] , [9,8]];
+
+Iterable<int> expandIt() => nestedList.expand((e)=>e);
+print(expandIt());
+
+List<String> words = ['Hello iam Butterfly','How are you','How old are you'];
+Iterable<String> word =  words.expand((e) => e.split(''));
+print(word);
+
+
+
+
 }
