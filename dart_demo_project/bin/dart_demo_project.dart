@@ -56,4 +56,43 @@ void main(List<String> arguments) {
 
   containsValue(String value) => values.contains(value);
   print(containsValue('banana'));
+
+
+  List<String> fixedList = List<String>.filled(3,'apple');
+  print(fixedList);
+  fixedList[0] = 'banana';
+  print(fixedList);
+   print(fixedList.length);
+
+  List<String> fruits = ['apple' , 'orange' , 'banana' , 'grapes' , 'mango'];
+  fruits.replaceRange(0, 2 , ['kiwi' , 'papaya', 'watermelon']);
+  print(fruits);
+
+  fruits.sort();
+  print(fruits);
+
+  fruits.shuffle();
+  print(fruits);
+
+  for(var fruit in fruits){
+    print(fruit);
+  }
+
+  bool isVowel(String char) => 'aeiou'.contains(char);
+  print(isVowel('a'));
+
+  List<String> vowels = ['n' , 'p' , 'i' , 'm' , 'm'];
+
+ final vowel = vowels.singleWhere(isVowel , orElse: () => 'No vowels found');
+ print(vowel);
+
+
+ List<int> number = [1 , 2, 3, 4, 5];
+ number.where((e) => e.isOdd).forEach((e) =>print(e));
+
+ for(var nums in number.toList()){   // empty list 
+  number.remove(nums); 
+ }
+
+ print(number);
 }
