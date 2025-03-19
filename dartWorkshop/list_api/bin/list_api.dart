@@ -1,4 +1,5 @@
 import 'dart:collection';
+import 'package:collection/collection.dart';
 
 void main(){
 
@@ -17,7 +18,7 @@ print(fixedLengthListt);
 // fixedLengthListt.add(20);
 print('------------------------------------');
 
-final growableListt= <String>['A','Z','P','Q'];
+final growableListt= <String>['A','Z','P','A','Q'];
 
 growableListt[0]='R';
 print(growableListt);
@@ -27,7 +28,7 @@ growableListt.addAll({'T','Y'});
 print(growableListt);
 print('------------------------------------');
 
-final aIndex= growableListt.indexOf('W');
+final aIndex= growableListt.indexOf('A');
 print (aIndex);//the result is -1 if the indexof value is not in the List
 final BIndex = growableListt.lastIndexOf('R');
 print (BIndex);
@@ -155,7 +156,114 @@ final fresult = f2numbers.fold<double>(
 print(fresult); 
 print('------------------------------------');
 
+final followedByNumber  = <String>['A','B','C'];
+var fByResult = followedByNumber.followedBy(['D','E']);
+print(fByResult);
+print('------------------------------------');
+
+List<int> iterableNumbers = [1, 2, 3, 4];
+Set<String> fruits = {'apple', 'banana', 'cherry'};
+Map<int,String>empdetails = {1:'A',2:'B',3:'C'};
+
+print(iterableNumbers is Iterable);//iterable is possible in List
+print(fruits is Iterable);//iterable is possible in Set
+print(empdetails is Iterable);//iterable is NOT possible in Map
+print('------------------------------------');
+
+final foreachNum = <int>[1,2,3,4];
+final foreachStr= <String>['A','B','C','D'];
+foreachNum.forEach(print);
+foreachStr.forEach(print);
+print('------------------------------------');
+
+final getRangeNum= <int>[1,2,3,4,5,6,7,8,9,10];
+final getRangeStr= <String>['A','B','C','D','E','F','G','H',];
+var resultGetRange1 = getRangeNum.getRange(1, 5);
+var resultGetRange2= getRangeStr.getRange(5, 6);
+print(resultGetRange1);
+print(resultGetRange2);
+print('------------------------------------');
+
+final notes = <String>['do', 're', 'mi', 're','he','mn','aq'];
+print(notes.indexOf('re')); 
+print(notes.indexOf('re', 2));
+print('------------------------------------');
+
+print(notes.indexWhere((a)=> a.startsWith('m')));
+print(notes.indexWhere((a)=> a.startsWith('r'),2));
+print('------------------------------------');
+
+final insertNumbers = <int>[1, 2, 3, 4];
+insertNumbers.insert(3, 8);//3 is the index/position where the element 8 will be inserted
+print(insertNumbers);
+insertNumbers.insertAll(5, {5,6,7,8});
+print(insertNumbers);
+print('------------------------------------');
+
+final joinvalues= <int,String>{1:'ram',2:'shyam',3:'roy'};
+print(joinvalues.keys.join('_'));
+print(joinvalues.values.join('_'));
+print('------------------------------------');
+
+final latwhereNumbers = <int>[1, 2, 3, 5, 6, 7];
+var lwresult = numbers.lastWhere((element) => element < 5);
+lwresult = latwhereNumbers.lastWhere((element) => element > 5);
+lwresult = latwhereNumbers.lastWhere((e)=>e>10,orElse: ()=>-1);
+print(lwresult);
+print('------------------------------------');
+
+List<Map<String, dynamic>> students = [
+    {'name': 'Alice', 'grade': 'A'},
+    {'name': 'Bob', 'grade': 'B'},
+    {'name': 'Charlie', 'grade': 'A'},
+    {'name': 'David', 'grade': 'C'},
+    {'name': 'Eve', 'grade': 'B'}
+];
+var grouped = groupBy(students, (k)=> k['name']);
+print(grouped);
+print('------------------------------------');
+
+final sWnumbers = <int>[2, 2, 7, 8, 10];
+var swresult = sWnumbers.singleWhere((a)=> a>8);
+print(swresult);
+print('------------------------------------');
+
+final skipNumbers = <int>[-1,-2,-3,1, 2, 3, 5, 6, 7];
+final skipwords = ["skip", "this", "until", "important", "data", "follows"];
+final sresult= skipNumbers.skip(3);
+final sresult2=skipwords.skipWhile((a)=> a!= 'important');//when the skip starts it skip everyhings until it find the condition
+print(sresult);
+print(sresult2);
+print('------------------------------------');
+
+final colors = <String>['red', 'green', 'blue', 'orange', 'pink'];
+print(colors.sublist(3, 4));
+print( skipNumbers.takeWhile((a)=> a.isNegative));
+print('------------------------------------');
+
+final mixedList = [1, "hello", 2.5, 3, true, 4];
+print(mixedList.whereType<int>());
+print(mixedList.whereType<String>());
+print('------------------------------------');
 
 
+print('------------------binarySearch method------------------');
 
+List <int> bSMNumber = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+List<String> bsmNames = ['Alice', 'Bob', 'Charlie', 'David'];
+
+bSMNumber.sort();
+var bsmResult = bSMNumber.binarySearch(5, (a, b) => a.compareTo(b));
+int bsmResult1 = binarySearch(bSMNumber, 4);
+print(bsmResult1);
+print(bsmResult);
+
+bsmNames.sort();
+var bsmResult3 = bsmNames.binarySearch('Bob', (a,b)=> a.compareTo(b));
+print(bsmResult3);
+
+print('------------------binarySearchBy method------------------');
+
+int bsmResult4 = bSMNumber.binarySearchBy(2, (num)=>num);
+print(bsmResult4);
 }
